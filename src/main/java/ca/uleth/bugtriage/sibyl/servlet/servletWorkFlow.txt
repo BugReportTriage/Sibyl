@@ -1,0 +1,6 @@
+Workflow for servlets. Details of what the servlets do is found in web.xml
+
+1. consent.html
+2. ConsentServlet 
+3. BackgroundServlet
+4. AccountSetup
