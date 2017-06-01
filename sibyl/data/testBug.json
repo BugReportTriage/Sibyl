@@ -1,0 +1,107 @@
+{
+   "bugs" : [
+      {
+         "alias" : null,
+         "assigned_to" : "odvarko@gmail.com",
+         "assigned_to_detail" : {
+            "email" : "odvarko@gmail.com",
+            "id" : 303767,
+            "name" : "odvarko@gmail.com",
+            "real_name" : "Jan Honza Odvarko [:Honza]"
+         },
+         "blocks" : [
+            1308219
+         ],
+         "cc" : [
+            "mmucci@mozilla.com",
+            "nchevobbe@mozilla.com"
+         ],
+         "cc_detail" : [
+            {
+               "email" : "mmucci@mozilla.com",
+               "id" : 458208,
+               "name" : "mmucci@mozilla.com",
+               "real_name" : "Marco Mucci [:MarcoM]"
+            },
+            {
+               "email" : "nchevobbe@mozilla.com",
+               "id" : 557153,
+               "name" : "nchevobbe@mozilla.com",
+               "real_name" : "Nicolas Chevobbe [:nchevobbe]"
+            }
+         ],
+         "cf_crash_signature" : "",
+         "cf_fx_iteration" : "55.5 - May 15",
+         "cf_fx_points" : "---",
+         "cf_has_regression_range" : "---",
+         "cf_has_str" : "---",
+         "cf_last_resolved" : "2017-05-03T08:30:14Z",
+         "cf_platform_rel" : "---",
+         "cf_qa_whiteboard" : "",
+         "cf_rank" : null,
+         "cf_status_firefox53" : "---",
+         "cf_status_firefox54" : "---",
+         "cf_status_firefox55" : "verified",
+         "cf_status_firefox56" : "---",
+         "cf_status_firefox57" : "---",
+         "cf_status_firefox_esr45" : "---",
+         "cf_status_firefox_esr52" : "---",
+         "cf_tracking_firefox53" : "---",
+         "cf_tracking_firefox54" : "---",
+         "cf_tracking_firefox55" : "---",
+         "cf_tracking_firefox56" : "---",
+         "cf_tracking_firefox57" : "---",
+         "cf_tracking_firefox_esr45" : "---",
+         "cf_tracking_firefox_esr52" : "---",
+         "cf_tracking_firefox_relnote" : "---",
+         "cf_user_story" : "",
+         "classification" : "Client Software",
+         "comment_count" : 16,
+         "component" : "Developer Tools: Console",
+         "creation_time" : "2017-05-02T07:02:14Z",
+         "creator" : "odvarko@gmail.com",
+         "creator_detail" : {
+            "email" : "odvarko@gmail.com",
+            "id" : 303767,
+            "name" : "odvarko@gmail.com",
+            "real_name" : "Jan Honza Odvarko [:Honza]"
+         },
+         "depends_on" : [
+            1307879
+         ],
+         "dupe_of" : null,
+         "flags" : [],
+         "groups" : [],
+         "id" : 1361270,
+         "is_cc_accessible" : true,
+         "is_confirmed" : true,
+         "is_creator_accessible" : true,
+         "is_open" : false,
+         "keywords" : [],
+         "last_change_time" : "2017-05-17T14:57:47Z",
+         "mentors" : [],
+         "mentors_detail" : [],
+         "op_sys" : "Unspecified",
+         "platform" : "Unspecified",
+         "priority" : "P1",
+         "product" : "Firefox",
+         "qa_contact" : "iulia.cristescu@softvision.ro",
+         "qa_contact_detail" : {
+            "email" : "iulia.cristescu@softvision.ro",
+            "id" : 565219,
+            "name" : "iulia.cristescu@softvision.ro",
+            "real_name" : "Iulia Cristescu, QA [:IuliaC]"
+         },
+         "resolution" : "FIXED",
+         "see_also" : [],
+         "severity" : "normal",
+         "status" : "VERIFIED",
+         "summary" : "Avoid exception when searching in the Console panel",
+         "target_milestone" : "Firefox 55",
+         "url" : "",
+         "version" : "unspecified",
+         "votes" : 0,
+         "whiteboard" : "[console-html] "
+      }
+   ]
+}

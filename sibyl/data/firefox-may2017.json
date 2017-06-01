@@ -1,0 +1,4686 @@
+{
+   "bugs" : [
+      {
+         "alias" : null,
+         "assigned_to" : "odvarko@gmail.com",
+         "assigned_to_detail" : {
+            "email" : "odvarko@gmail.com",
+            "id" : 303767,
+            "name" : "odvarko@gmail.com",
+            "real_name" : "Jan Honza Odvarko [:Honza]"
+         },
+         "blocks" : [
+            1308219
+         ],
+         "cc" : [
+            "mmucci@mozilla.com",
+            "nchevobbe@mozilla.com"
+         ],
+         "cc_detail" : [
+            {
+               "email" : "mmucci@mozilla.com",
+               "id" : 458208,
+               "name" : "mmucci@mozilla.com",
+               "real_name" : "Marco Mucci [:MarcoM]"
+            },
+            {
+               "email" : "nchevobbe@mozilla.com",
+               "id" : 557153,
+               "name" : "nchevobbe@mozilla.com",
+               "real_name" : "Nicolas Chevobbe [:nchevobbe]"
+            }
+         ],
+         "cf_crash_signature" : "",
+         "cf_fx_iteration" : "55.5 - May 15",
+         "cf_fx_points" : "---",
+         "cf_has_regression_range" : "---",
+         "cf_has_str" : "---",
+         "cf_last_resolved" : "2017-05-03T08:30:14Z",
+         "cf_platform_rel" : "---",
+         "cf_qa_whiteboard" : "",
+         "cf_rank" : null,
+         "cf_status_firefox53" : "---",
+         "cf_status_firefox54" : "---",
+         "cf_status_firefox55" : "verified",
+         "cf_status_firefox56" : "---",
+         "cf_status_firefox57" : "---",
+         "cf_status_firefox_esr45" : "---",
+         "cf_status_firefox_esr52" : "---",
+         "cf_tracking_firefox53" : "---",
+         "cf_tracking_firefox54" : "---",
+         "cf_tracking_firefox55" : "---",
+         "cf_tracking_firefox56" : "---",
+         "cf_tracking_firefox57" : "---",
+         "cf_tracking_firefox_esr45" : "---",
+         "cf_tracking_firefox_esr52" : "---",
+         "cf_tracking_firefox_relnote" : "---",
+         "cf_user_story" : "",
+         "classification" : "Client Software",
+         "comment_count" : 16,
+         "component" : "Developer Tools: Console",
+         "creation_time" : "2017-05-02T07:02:14Z",
+         "creator" : "odvarko@gmail.com",
+         "creator_detail" : {
+            "email" : "odvarko@gmail.com",
+            "id" : 303767,
+            "name" : "odvarko@gmail.com",
+            "real_name" : "Jan Honza Odvarko [:Honza]"
+         },
+         "depends_on" : [
+            1307879
+         ],
+         "dupe_of" : null,
+         "flags" : [],
+         "groups" : [],
+         "id" : 1361270,
+         "is_cc_accessible" : true,
+         "is_confirmed" : true,
+         "is_creator_accessible" : true,
+         "is_open" : false,
+         "keywords" : [],
+         "last_change_time" : "2017-05-17T14:57:47Z",
+         "mentors" : [],
+         "mentors_detail" : [],
+         "op_sys" : "Unspecified",
+         "platform" : "Unspecified",
+         "priority" : "P1",
+         "product" : "Firefox",
+         "qa_contact" : "iulia.cristescu@softvision.ro",
+         "qa_contact_detail" : {
+            "email" : "iulia.cristescu@softvision.ro",
+            "id" : 565219,
+            "name" : "iulia.cristescu@softvision.ro",
+            "real_name" : "Iulia Cristescu, QA [:IuliaC]"
+         },
+         "resolution" : "FIXED",
+         "see_also" : [],
+         "severity" : "normal",
+         "status" : "VERIFIED",
+         "summary" : "Avoid exception when searching in the Console panel",
+         "target_milestone" : "Firefox 55",
+         "url" : "",
+         "version" : "unspecified",
+         "votes" : 0,
+         "whiteboard" : "[console-html] "
+      },
+      {
+         "alias" : null,
+         "assigned_to" : "VYV03354@nifty.ne.jp",
+         "assigned_to_detail" : {
+            "email" : "VYV03354@nifty.ne.jp",
+            "id" : 5842,
+            "name" : "VYV03354@nifty.ne.jp",
+            "real_name" : "Masatoshi Kimura [:emk]"
+         },
+         "blocks" : [
+            1321778
+         ],
+         "cc" : [
+            "dolske@mozilla.com",
+            "gchang@mozilla.com",
+            "itis_sayed@hotmail.com",
+            "jcristau@mozilla.com",
+            "jhofmann@mozilla.com",
+            "paul.silaghi@softvision.ro",
+            "VYV03354@nifty.ne.jp"
+         ],
+         "cc_detail" : [
+            {
+               "email" : "dolske@mozilla.com",
+               "id" : 27780,
+               "name" : "dolske@mozilla.com",
+               "real_name" : "Justin Dolske [:Dolske]"
+            },
+            {
+               "email" : "gchang@mozilla.com",
+               "id" : 506302,
+               "name" : "gchang@mozilla.com",
+               "real_name" : "Gerry Chang [:gchang]"
+            },
+            {
+               "email" : "itis_sayed@hotmail.com",
+               "id" : 557425,
+               "name" : "itis_sayed@hotmail.com",
+               "real_name" : "Sayed"
+            },
+            {
+               "email" : "jcristau@mozilla.com",
+               "id" : 580382,
+               "name" : "jcristau@mozilla.com",
+               "real_name" : "Julien Cristau [:jcristau]"
+            },
+            {
+               "email" : "jhofmann@mozilla.com",
+               "id" : 522029,
+               "name" : "jhofmann@mozilla.com",
+               "real_name" : "Johann Hofmann [:johannh]"
+            },
+            {
+               "email" : "paul.silaghi@softvision.ro",
+               "id" : 428011,
+               "name" : "paul.silaghi@softvision.ro",
+               "real_name" : "Paul Silaghi, QA [:pauly]"
+            },
+            {
+               "email" : "VYV03354@nifty.ne.jp",
+               "id" : 5842,
+               "name" : "VYV03354@nifty.ne.jp",
+               "real_name" : "Masatoshi Kimura [:emk]"
+            }
+         ],
+         "cf_crash_signature" : "",
+         "cf_fx_iteration" : "---",
+         "cf_fx_points" : "---",
+         "cf_has_regression_range" : "---",
+         "cf_has_str" : "---",
+         "cf_last_resolved" : "2017-05-03T20:23:04Z",
+         "cf_platform_rel" : "---",
+         "cf_qa_whiteboard" : "",
+         "cf_rank" : null,
+         "cf_status_firefox53" : "unaffected",
+         "cf_status_firefox54" : "verified",
+         "cf_status_firefox55" : "verified",
+         "cf_status_firefox56" : "---",
+         "cf_status_firefox57" : "---",
+         "cf_status_firefox_esr45" : "---",
+         "cf_status_firefox_esr52" : "unaffected",
+         "cf_tracking_firefox53" : "---",
+         "cf_tracking_firefox54" : "---",
+         "cf_tracking_firefox55" : "---",
+         "cf_tracking_firefox56" : "---",
+         "cf_tracking_firefox57" : "---",
+         "cf_tracking_firefox_esr45" : "---",
+         "cf_tracking_firefox_esr52" : "---",
+         "cf_tracking_firefox_relnote" : "---",
+         "cf_user_story" : "",
+         "classification" : "Client Software",
+         "comment_count" : 14,
+         "component" : "Security",
+         "creation_time" : "2017-05-02T08:07:26Z",
+         "creator" : "emil.ghitta@softvision.ro",
+         "creator_detail" : {
+            "email" : "emil.ghitta@softvision.ro",
+            "id" : 588744,
+            "name" : "emil.ghitta@softvision.ro",
+            "real_name" : "Emil Ghitta, QA [:emilghitta]"
+         },
+         "depends_on" : [],
+         "dupe_of" : null,
+         "flags" : [],
+         "groups" : [],
+         "id" : 1361288,
+         "is_cc_accessible" : true,
+         "is_confirmed" : true,
+         "is_creator_accessible" : true,
+         "is_open" : false,
+         "keywords" : [
+            "regression"
+         ],
+         "last_change_time" : "2017-05-10T08:20:35Z",
+         "mentors" : [],
+         "mentors_detail" : [],
+         "op_sys" : "All",
+         "platform" : "All",
+         "priority" : "--",
+         "product" : "Firefox",
+         "qa_contact" : "emil.ghitta@softvision.ro",
+         "qa_contact_detail" : {
+            "email" : "emil.ghitta@softvision.ro",
+            "id" : 588744,
+            "name" : "emil.ghitta@softvision.ro",
+            "real_name" : "Emil Ghitta, QA [:emilghitta]"
+         },
+         "resolution" : "FIXED",
+         "see_also" : [],
+         "severity" : "normal",
+         "status" : "VERIFIED",
+         "summary" : "The Advanced button from the \"Unable to Connect Securely\" neterror page is not working",
+         "target_milestone" : "Firefox 55",
+         "url" : "",
+         "version" : "Trunk",
+         "votes" : 0,
+         "whiteboard" : ""
+      },
+      {
+         "alias" : null,
+         "assigned_to" : "shashwat.jolly@gmail.com",
+         "assigned_to_detail" : {
+            "email" : "shashwat.jolly@gmail.com",
+            "id" : 595311,
+            "name" : "shashwat.jolly@gmail.com",
+            "real_name" : "Shashwat Jolly"
+         },
+         "blocks" : [
+            1351268
+         ],
+         "cc" : [
+            "almas.hossain1993@gmail.com",
+            "mmucci@mozilla.com",
+            "shashwat.jolly@gmail.com"
+         ],
+         "cc_detail" : [
+            {
+               "email" : "almas.hossain1993@gmail.com",
+               "id" : 559179,
+               "name" : "almas.hossain1993@gmail.com",
+               "real_name" : "Almas Hossain[:mAlmas]"
+            },
+            {
+               "email" : "mmucci@mozilla.com",
+               "id" : 458208,
+               "name" : "mmucci@mozilla.com",
+               "real_name" : "Marco Mucci [:MarcoM]"
+            },
+            {
+               "email" : "shashwat.jolly@gmail.com",
+               "id" : 595311,
+               "name" : "shashwat.jolly@gmail.com",
+               "real_name" : "Shashwat Jolly"
+            }
+         ],
+         "cf_crash_signature" : "",
+         "cf_fx_iteration" : "55.5 - May 15",
+         "cf_fx_points" : "---",
+         "cf_has_regression_range" : "---",
+         "cf_has_str" : "---",
+         "cf_last_resolved" : "2017-05-14T16:45:33Z",
+         "cf_platform_rel" : "---",
+         "cf_qa_whiteboard" : "",
+         "cf_rank" : null,
+         "cf_status_firefox53" : "---",
+         "cf_status_firefox54" : "---",
+         "cf_status_firefox55" : "verified",
+         "cf_status_firefox56" : "---",
+         "cf_status_firefox57" : "---",
+         "cf_status_firefox_esr45" : "---",
+         "cf_status_firefox_esr52" : "---",
+         "cf_tracking_firefox53" : "---",
+         "cf_tracking_firefox54" : "---",
+         "cf_tracking_firefox55" : "---",
+         "cf_tracking_firefox56" : "---",
+         "cf_tracking_firefox57" : "---",
+         "cf_tracking_firefox_esr45" : "---",
+         "cf_tracking_firefox_esr52" : "---",
+         "cf_tracking_firefox_relnote" : "---",
+         "cf_user_story" : "",
+         "classification" : "Client Software",
+         "comment_count" : 17,
+         "component" : "General",
+         "creation_time" : "2017-05-03T11:48:17Z",
+         "creator" : "dao+bmo@mozilla.com",
+         "creator_detail" : {
+            "email" : "dao+bmo@mozilla.com",
+            "id" : 219124,
+            "name" : "dao+bmo@mozilla.com",
+            "real_name" : "Dão Gottwald [::dao]"
+         },
+         "depends_on" : [
+            1356555
+         ],
+         "dupe_of" : null,
+         "flags" : [],
+         "groups" : [],
+         "id" : 1361693,
+         "is_cc_accessible" : true,
+         "is_confirmed" : true,
+         "is_creator_accessible" : true,
+         "is_open" : false,
+         "keywords" : [
+            "good-first-bug"
+         ],
+         "last_change_time" : "2017-05-17T12:15:27Z",
+         "mentors" : [],
+         "mentors_detail" : [],
+         "op_sys" : "All",
+         "platform" : "All",
+         "priority" : "P1",
+         "product" : "Firefox",
+         "qa_contact" : "brindusa.tot@softvision.ro",
+         "qa_contact_detail" : {
+            "email" : "brindusa.tot@softvision.ro",
+            "id" : 553429,
+            "name" : "brindusa.tot@softvision.ro",
+            "real_name" : "Brindusa Tot[:brindusat]"
+         },
+         "resolution" : "FIXED",
+         "see_also" : [],
+         "severity" : "normal",
+         "status" : "VERIFIED",
+         "summary" : "Update about:license page title",
+         "target_milestone" : "Firefox 55",
+         "url" : "",
+         "version" : "Trunk",
+         "votes" : 0,
+         "whiteboard" : "[reserve-photon-visual][p2][good first bug][lang=html]"
+      },
+      {
+         "alias" : null,
+         "assigned_to" : "evan@tseng.io",
+         "assigned_to_detail" : {
+            "email" : "evan@tseng.io",
+            "id" : 459562,
+            "name" : "evan@tseng.io",
+            "real_name" : "Evan Tseng [:evanxd] (Away 5/27 - 5/30)"
+         },
+         "blocks" : [
+            1354473
+         ],
+         "cc" : [
+            "frlee@mozilla.com",
+            "mconley@mozilla.com",
+            "timdream@gmail.com"
+         ],
+         "cc_detail" : [
+            {
+               "email" : "frlee@mozilla.com",
+               "id" : 474089,
+               "name" : "frlee@mozilla.com",
+               "real_name" : "Francis Lee [:frlee]"
+            },
+            {
+               "email" : "mconley@mozilla.com",
+               "id" : 403756,
+               "name" : "mconley@mozilla.com",
+               "real_name" : "Mike Conley (:mconley)"
+            },
+            {
+               "email" : "timdream@gmail.com",
+               "id" : 185001,
+               "name" : "timdream@gmail.com",
+               "real_name" : "Tim Guan-tin Chien [:timdream] (please needinfo)"
+            }
+         ],
+         "cf_crash_signature" : "",
+         "cf_fx_iteration" : "---",
+         "cf_fx_points" : "---",
+         "cf_has_regression_range" : "---",
+         "cf_has_str" : "---",
+         "cf_last_resolved" : "2017-05-10T22:28:46Z",
+         "cf_platform_rel" : "---",
+         "cf_qa_whiteboard" : "",
+         "cf_rank" : null,
+         "cf_status_firefox53" : "---",
+         "cf_status_firefox54" : "---",
+         "cf_status_firefox55" : "verified",
+         "cf_status_firefox56" : "---",
+         "cf_status_firefox57" : "---",
+         "cf_status_firefox_esr45" : "---",
+         "cf_status_firefox_esr52" : "---",
+         "cf_tracking_firefox53" : "---",
+         "cf_tracking_firefox54" : "---",
+         "cf_tracking_firefox55" : "---",
+         "cf_tracking_firefox56" : "---",
+         "cf_tracking_firefox57" : "---",
+         "cf_tracking_firefox_esr45" : "---",
+         "cf_tracking_firefox_esr52" : "---",
+         "cf_tracking_firefox_relnote" : "---",
+         "cf_user_story" : "",
+         "classification" : "Client Software",
+         "comment_count" : 15,
+         "component" : "Preferences",
+         "creation_time" : "2017-05-04T08:43:50Z",
+         "creator" : "evan@tseng.io",
+         "creator_detail" : {
+            "email" : "evan@tseng.io",
+            "id" : 459562,
+            "name" : "evan@tseng.io",
+            "real_name" : "Evan Tseng [:evanxd] (Away 5/27 - 5/30)"
+         },
+         "depends_on" : [],
+         "dupe_of" : null,
+         "flags" : [
+            {
+               "creation_date" : "2017-05-04T08:55:07Z",
+               "id" : 1575613,
+               "modification_date" : "2017-05-04T08:55:07Z",
+               "name" : "qe-verify",
+               "setter" : "frlee@mozilla.com",
+               "status" : "+",
+               "type_id" : 864
+            }
+         ],
+         "groups" : [],
+         "id" : 1361969,
+         "is_cc_accessible" : true,
+         "is_confirmed" : true,
+         "is_creator_accessible" : true,
+         "is_open" : false,
+         "keywords" : [],
+         "last_change_time" : "2017-05-24T13:04:33Z",
+         "mentors" : [],
+         "mentors_detail" : [],
+         "op_sys" : "Unspecified",
+         "platform" : "Unspecified",
+         "priority" : "P1",
+         "product" : "Firefox",
+         "qa_contact" : "hani.yacoub@softvision.ro",
+         "qa_contact_detail" : {
+            "email" : "hani.yacoub@softvision.ro",
+            "id" : 583007,
+            "name" : "hani.yacoub@softvision.ro",
+            "real_name" : "Hani Yacoub"
+         },
+         "resolution" : "FIXED",
+         "see_also" : [
+            "https://bugzilla.mozilla.org/show_bug.cgi?id=1353915"
+         ],
+         "severity" : "normal",
+         "status" : "VERIFIED",
+         "summary" : "Update the URL of \"Firefox Support\" Link at the bottom-left side on the Preferences page",
+         "target_milestone" : "Firefox 55",
+         "url" : "",
+         "version" : "unspecified",
+         "votes" : 0,
+         "whiteboard" : "[photon-preference]"
+      },
+      {
+         "alias" : null,
+         "assigned_to" : "nhnt11@gmail.com",
+         "assigned_to_detail" : {
+            "email" : "nhnt11@gmail.com",
+            "id" : 481547,
+            "name" : "nhnt11@gmail.com",
+            "real_name" : "Nihanth Subramanya [:nhnt11]"
+         },
+         "blocks" : [
+            1347543
+         ],
+         "cc" : [
+            "bugzilla@terrax.net",
+            "dao+bmo@mozilla.com",
+            "jwatt@jwatt.org",
+            "majed.rifat@gmail.com",
+            "mak77@bonardo.net",
+            "mmucci@mozilla.com",
+            "nhnt11@gmail.com",
+            "Virtual@MsgSafe.io"
+         ],
+         "cc_detail" : [
+            {
+               "email" : "bugzilla@terrax.net",
+               "id" : 580271,
+               "name" : "bugzilla@terrax.net",
+               "real_name" : "Darkspirit"
+            },
+            {
+               "email" : "dao+bmo@mozilla.com",
+               "id" : 219124,
+               "name" : "dao+bmo@mozilla.com",
+               "real_name" : "Dão Gottwald [::dao]"
+            },
+            {
+               "email" : "jwatt@jwatt.org",
+               "id" : 32767,
+               "name" : "jwatt@jwatt.org",
+               "real_name" : "Jonathan Watt [:jwatt]"
+            },
+            {
+               "email" : "majed.rifat@gmail.com",
+               "id" : 575261,
+               "name" : "majed.rifat@gmail.com",
+               "real_name" : "Md.Majedul islam"
+            },
+            {
+               "email" : "mak77@bonardo.net",
+               "id" : 240353,
+               "name" : "mak77@bonardo.net",
+               "real_name" : "Marco Bonardo [::mak]"
+            },
+            {
+               "email" : "mmucci@mozilla.com",
+               "id" : 458208,
+               "name" : "mmucci@mozilla.com",
+               "real_name" : "Marco Mucci [:MarcoM]"
+            },
+            {
+               "email" : "nhnt11@gmail.com",
+               "id" : 481547,
+               "name" : "nhnt11@gmail.com",
+               "real_name" : "Nihanth Subramanya [:nhnt11]"
+            },
+            {
+               "email" : "Virtual@MsgSafe.io",
+               "id" : 342842,
+               "name" : "Virtual@MsgSafe.io",
+               "real_name" : "Virtual_ManPL [:Virtual] - (please needinfo? me - so I will see your comment/reply/question/etc.)"
+            }
+         ],
+         "cf_crash_signature" : "",
+         "cf_fx_iteration" : "55.5 - May 15",
+         "cf_fx_points" : "---",
+         "cf_has_regression_range" : "---",
+         "cf_has_str" : "---",
+         "cf_last_resolved" : "2017-05-05T20:26:02Z",
+         "cf_platform_rel" : "---",
+         "cf_qa_whiteboard" : "",
+         "cf_rank" : null,
+         "cf_status_firefox53" : "unaffected",
+         "cf_status_firefox54" : "unaffected",
+         "cf_status_firefox55" : "fixed",
+         "cf_status_firefox56" : "---",
+         "cf_status_firefox57" : "---",
+         "cf_status_firefox_esr45" : "---",
+         "cf_status_firefox_esr52" : "unaffected",
+         "cf_tracking_firefox53" : "---",
+         "cf_tracking_firefox54" : "---",
+         "cf_tracking_firefox55" : "---",
+         "cf_tracking_firefox56" : "---",
+         "cf_tracking_firefox57" : "---",
+         "cf_tracking_firefox_esr45" : "---",
+         "cf_tracking_firefox_esr52" : "---",
+         "cf_tracking_firefox_relnote" : "---",
+         "cf_user_story" : "",
+         "classification" : "Client Software",
+         "comment_count" : 14,
+         "component" : "Theme",
+         "creation_time" : "2017-05-04T16:15:29Z",
+         "creator" : "alice0775@yahoo.co.jp",
+         "creator_detail" : {
+            "email" : "alice0775@yahoo.co.jp",
+            "id" : 293623,
+            "name" : "alice0775@yahoo.co.jp",
+            "real_name" : "Alice0775 White"
+         },
+         "depends_on" : [],
+         "dupe_of" : null,
+         "flags" : [],
+         "groups" : [],
+         "id" : 1362100,
+         "is_cc_accessible" : true,
+         "is_confirmed" : true,
+         "is_creator_accessible" : true,
+         "is_open" : false,
+         "keywords" : [
+            "regression"
+         ],
+         "last_change_time" : "2017-05-18T15:28:37Z",
+         "mentors" : [],
+         "mentors_detail" : [],
+         "op_sys" : "All",
+         "platform" : "All",
+         "priority" : "P1",
+         "product" : "Firefox",
+         "qa_contact" : "brindusa.tot@softvision.ro",
+         "qa_contact_detail" : {
+            "email" : "brindusa.tot@softvision.ro",
+            "id" : 553429,
+            "name" : "brindusa.tot@softvision.ro",
+            "real_name" : "Brindusa Tot[:brindusat]"
+         },
+         "resolution" : "FIXED",
+         "see_also" : [],
+         "severity" : "normal",
+         "status" : "VERIFIED",
+         "summary" : "Width of the bookmark toolbar widget shrinks during animation of star",
+         "target_milestone" : "Firefox 55",
+         "url" : "",
+         "version" : "55 Branch",
+         "votes" : 0,
+         "whiteboard" : "[photon-visual][p1]"
+      },
+      {
+         "alias" : null,
+         "assigned_to" : "mak77@bonardo.net",
+         "assigned_to_detail" : {
+            "email" : "mak77@bonardo.net",
+            "id" : 240353,
+            "name" : "mak77@bonardo.net",
+            "real_name" : "Marco Bonardo [::mak]"
+         },
+         "blocks" : [
+            492172
+         ],
+         "cc" : [
+            "alice0775@yahoo.co.jp",
+            "brindusa.tot@softvision.ro",
+            "mak77@bonardo.net",
+            "rift1994raahim@gmail.com",
+            "tnikkel@gmail.com",
+            "Virtual@MsgSafe.io"
+         ],
+         "cc_detail" : [
+            {
+               "email" : "alice0775@yahoo.co.jp",
+               "id" : 293623,
+               "name" : "alice0775@yahoo.co.jp",
+               "real_name" : "Alice0775 White"
+            },
+            {
+               "email" : "brindusa.tot@softvision.ro",
+               "id" : 553429,
+               "name" : "brindusa.tot@softvision.ro",
+               "real_name" : "Brindusa Tot[:brindusat]"
+            },
+            {
+               "email" : "mak77@bonardo.net",
+               "id" : 240353,
+               "name" : "mak77@bonardo.net",
+               "real_name" : "Marco Bonardo [::mak]"
+            },
+            {
+               "email" : "rift1994raahim@gmail.com",
+               "id" : 541945,
+               "name" : "rift1994raahim@gmail.com",
+               "real_name" : "Md. Rahimul Islam"
+            },
+            {
+               "email" : "tnikkel@gmail.com",
+               "id" : 255010,
+               "name" : "tnikkel@gmail.com",
+               "real_name" : "Timothy Nikkel (:tnikkel)"
+            },
+            {
+               "email" : "Virtual@MsgSafe.io",
+               "id" : 342842,
+               "name" : "Virtual@MsgSafe.io",
+               "real_name" : "Virtual_ManPL [:Virtual] - (please needinfo? me - so I will see your comment/reply/question/etc.)"
+            }
+         ],
+         "cf_crash_signature" : "",
+         "cf_fx_iteration" : "---",
+         "cf_fx_points" : "---",
+         "cf_has_regression_range" : "---",
+         "cf_has_str" : "---",
+         "cf_last_resolved" : "2017-05-19T16:16:23Z",
+         "cf_platform_rel" : "---",
+         "cf_qa_whiteboard" : "[bugday-20170524]",
+         "cf_rank" : null,
+         "cf_status_firefox53" : "---",
+         "cf_status_firefox54" : "---",
+         "cf_status_firefox55" : "verified",
+         "cf_status_firefox56" : "---",
+         "cf_status_firefox57" : "---",
+         "cf_status_firefox_esr45" : "---",
+         "cf_status_firefox_esr52" : "---",
+         "cf_tracking_firefox53" : "---",
+         "cf_tracking_firefox54" : "---",
+         "cf_tracking_firefox55" : "---",
+         "cf_tracking_firefox56" : "---",
+         "cf_tracking_firefox57" : "---",
+         "cf_tracking_firefox_esr45" : "---",
+         "cf_tracking_firefox_esr52" : "---",
+         "cf_tracking_firefox_relnote" : "---",
+         "cf_user_story" : "",
+         "classification" : "Client Software",
+         "comment_count" : 18,
+         "component" : "Bookmarks & History",
+         "creation_time" : "2017-05-05T13:46:31Z",
+         "creator" : "euthanasia_waltz@yahoo.co.jp",
+         "creator_detail" : {
+            "email" : "euthanasia_waltz@yahoo.co.jp",
+            "id" : 533510,
+            "name" : "euthanasia_waltz@yahoo.co.jp",
+            "real_name" : "atlanto"
+         },
+         "depends_on" : [
+            1352459
+         ],
+         "dupe_of" : null,
+         "flags" : [],
+         "groups" : [],
+         "id" : 1362394,
+         "is_cc_accessible" : true,
+         "is_confirmed" : true,
+         "is_creator_accessible" : true,
+         "is_open" : false,
+         "keywords" : [],
+         "last_change_time" : "2017-05-29T14:42:58Z",
+         "mentors" : [],
+         "mentors_detail" : [],
+         "op_sys" : "Unspecified",
+         "platform" : "Unspecified",
+         "priority" : "P2",
+         "product" : "Firefox",
+         "qa_contact" : "",
+         "resolution" : "FIXED",
+         "see_also" : [],
+         "severity" : "minor",
+         "status" : "VERIFIED",
+         "summary" : "Some favicons in bookmarks sidebar/library use ugly rescale",
+         "target_milestone" : "Firefox 55",
+         "url" : "",
+         "version" : "55 Branch",
+         "votes" : 0,
+         "whiteboard" : "[fxsearch]"
+      },
+      {
+         "alias" : null,
+         "assigned_to" : "ttromey@mozilla.com",
+         "assigned_to_detail" : {
+            "email" : "ttromey@mozilla.com",
+            "id" : 516940,
+            "name" : "ttromey@mozilla.com",
+            "real_name" : "Tom Tromey :tromey"
+         },
+         "blocks" : [
+            1362416
+         ],
+         "cc" : [
+            "jimb@mozilla.com",
+            "jlaster@mozilla.com",
+            "maruf.rahman.95@gmail.com",
+            "rift1994raahim@gmail.com",
+            "ttromey@mozilla.com"
+         ],
+         "cc_detail" : [
+            {
+               "email" : "jimb@mozilla.com",
+               "id" : 298765,
+               "name" : "jimb@mozilla.com",
+               "real_name" : "Jim Blandy :jimb"
+            },
+            {
+               "email" : "jlaster@mozilla.com",
+               "id" : 555817,
+               "name" : "jlaster@mozilla.com",
+               "real_name" : "Jason Laster [:jlast]"
+            },
+            {
+               "email" : "maruf.rahman.95@gmail.com",
+               "id" : 559911,
+               "name" : "maruf.rahman.95@gmail.com",
+               "real_name" : "Mohammad Maruf Rahman"
+            },
+            {
+               "email" : "rift1994raahim@gmail.com",
+               "id" : 541945,
+               "name" : "rift1994raahim@gmail.com",
+               "real_name" : "Md. Rahimul Islam"
+            },
+            {
+               "email" : "ttromey@mozilla.com",
+               "id" : 516940,
+               "name" : "ttromey@mozilla.com",
+               "real_name" : "Tom Tromey :tromey"
+            }
+         ],
+         "cf_crash_signature" : "",
+         "cf_fx_iteration" : "---",
+         "cf_fx_points" : "---",
+         "cf_has_regression_range" : "---",
+         "cf_has_str" : "---",
+         "cf_last_resolved" : "2017-05-08T03:14:28Z",
+         "cf_platform_rel" : "---",
+         "cf_qa_whiteboard" : "[bugday-20170517]",
+         "cf_rank" : null,
+         "cf_status_firefox53" : "---",
+         "cf_status_firefox54" : "---",
+         "cf_status_firefox55" : "fixed",
+         "cf_status_firefox56" : "---",
+         "cf_status_firefox57" : "---",
+         "cf_status_firefox_esr45" : "---",
+         "cf_status_firefox_esr52" : "---",
+         "cf_tracking_firefox53" : "---",
+         "cf_tracking_firefox54" : "---",
+         "cf_tracking_firefox55" : "---",
+         "cf_tracking_firefox56" : "---",
+         "cf_tracking_firefox57" : "---",
+         "cf_tracking_firefox_esr45" : "---",
+         "cf_tracking_firefox_esr52" : "---",
+         "cf_tracking_firefox_relnote" : "---",
+         "cf_user_story" : "",
+         "classification" : "Client Software",
+         "comment_count" : 14,
+         "component" : "Developer Tools: Debugger",
+         "creation_time" : "2017-05-05T14:04:44Z",
+         "creator" : "account-mozilla-bugzilla@dlehmann.eu",
+         "creator_detail" : {
+            "email" : "account-mozilla-bugzilla@dlehmann.eu",
+            "id" : 589966,
+            "name" : "account-mozilla-bugzilla@dlehmann.eu",
+            "real_name" : "Daniel Lehmann"
+         },
+         "depends_on" : [],
+         "dupe_of" : null,
+         "flags" : [],
+         "groups" : [],
+         "id" : 1362403,
+         "is_cc_accessible" : true,
+         "is_confirmed" : true,
+         "is_creator_accessible" : true,
+         "is_open" : false,
+         "keywords" : [],
+         "last_change_time" : "2017-05-18T17:22:25Z",
+         "mentors" : [],
+         "mentors_detail" : [],
+         "op_sys" : "Unspecified",
+         "platform" : "Unspecified",
+         "priority" : "--",
+         "product" : "Firefox",
+         "qa_contact" : "",
+         "resolution" : "FIXED",
+         "see_also" : [],
+         "severity" : "normal",
+         "status" : "VERIFIED",
+         "summary" : "step in for...in loop jumps out of loop instead of next iteration",
+         "target_milestone" : "Firefox 55",
+         "url" : "",
+         "version" : "54 Branch",
+         "votes" : 0,
+         "whiteboard" : ""
+      },
+      {
+         "alias" : null,
+         "assigned_to" : "jhofmann@mozilla.com",
+         "assigned_to_detail" : {
+            "email" : "jhofmann@mozilla.com",
+            "id" : 522029,
+            "name" : "jhofmann@mozilla.com",
+            "real_name" : "Johann Hofmann [:johannh]"
+         },
+         "blocks" : [
+            1352364
+         ],
+         "cc" : [
+            "dao+bmo@mozilla.com",
+            "jcristau@mozilla.com",
+            "jhofmann@mozilla.com",
+            "mmucci@mozilla.com",
+            "ovidiu.boca@softvision.ro"
+         ],
+         "cc_detail" : [
+            {
+               "email" : "dao+bmo@mozilla.com",
+               "id" : 219124,
+               "name" : "dao+bmo@mozilla.com",
+               "real_name" : "Dão Gottwald [::dao]"
+            },
+            {
+               "email" : "jcristau@mozilla.com",
+               "id" : 580382,
+               "name" : "jcristau@mozilla.com",
+               "real_name" : "Julien Cristau [:jcristau]"
+            },
+            {
+               "email" : "jhofmann@mozilla.com",
+               "id" : 522029,
+               "name" : "jhofmann@mozilla.com",
+               "real_name" : "Johann Hofmann [:johannh]"
+            },
+            {
+               "email" : "mmucci@mozilla.com",
+               "id" : 458208,
+               "name" : "mmucci@mozilla.com",
+               "real_name" : "Marco Mucci [:MarcoM]"
+            },
+            {
+               "email" : "ovidiu.boca@softvision.ro",
+               "id" : 551038,
+               "name" : "ovidiu.boca@softvision.ro",
+               "real_name" : "ovidiu boca[:Ovidiu] PTO until 06.06.2017 for any issues please contact brindusa.tot@softvision.ro"
+            }
+         ],
+         "cf_crash_signature" : "",
+         "cf_fx_iteration" : "55.5 - May 15",
+         "cf_fx_points" : "---",
+         "cf_has_regression_range" : "---",
+         "cf_has_str" : "---",
+         "cf_last_resolved" : "2017-05-12T12:44:49Z",
+         "cf_platform_rel" : "---",
+         "cf_qa_whiteboard" : "",
+         "cf_rank" : null,
+         "cf_status_firefox53" : "unaffected",
+         "cf_status_firefox54" : "unaffected",
+         "cf_status_firefox55" : "verified",
+         "cf_status_firefox56" : "---",
+         "cf_status_firefox57" : "---",
+         "cf_status_firefox_esr45" : "---",
+         "cf_status_firefox_esr52" : "unaffected",
+         "cf_tracking_firefox53" : "---",
+         "cf_tracking_firefox54" : "---",
+         "cf_tracking_firefox55" : "+",
+         "cf_tracking_firefox56" : "---",
+         "cf_tracking_firefox57" : "---",
+         "cf_tracking_firefox_esr45" : "---",
+         "cf_tracking_firefox_esr52" : "---",
+         "cf_tracking_firefox_relnote" : "---",
+         "cf_user_story" : "",
+         "classification" : "Client Software",
+         "comment_count" : 10,
+         "component" : "Theme",
+         "creation_time" : "2017-05-05T14:26:24Z",
+         "creator" : "mstange@themasta.com",
+         "creator_detail" : {
+            "email" : "mstange@themasta.com",
+            "id" : 293943,
+            "name" : "mstange@themasta.com",
+            "real_name" : "Markus Stange [:mstange]"
+         },
+         "depends_on" : [],
+         "dupe_of" : null,
+         "flags" : [],
+         "groups" : [],
+         "id" : 1362409,
+         "is_cc_accessible" : true,
+         "is_confirmed" : true,
+         "is_creator_accessible" : true,
+         "is_open" : false,
+         "keywords" : [
+            "regression"
+         ],
+         "last_change_time" : "2017-05-17T15:07:34Z",
+         "mentors" : [],
+         "mentors_detail" : [],
+         "op_sys" : "Mac OS X",
+         "platform" : "All",
+         "priority" : "P1",
+         "product" : "Firefox",
+         "qa_contact" : "brindusa.tot@softvision.ro",
+         "qa_contact_detail" : {
+            "email" : "brindusa.tot@softvision.ro",
+            "id" : 553429,
+            "name" : "brindusa.tot@softvision.ro",
+            "real_name" : "Brindusa Tot[:brindusat]"
+         },
+         "resolution" : "FIXED",
+         "see_also" : [
+            "https://bugzilla.mozilla.org/show_bug.cgi?id=956573"
+         ],
+         "severity" : "normal",
+         "status" : "VERIFIED",
+         "summary" : "The back button arrow is too opaque in inactive windows if the back button is disabled",
+         "target_milestone" : "Firefox 55",
+         "url" : "",
+         "version" : "Trunk",
+         "votes" : 0,
+         "whiteboard" : "[photon-visual][p1]"
+      },
+      {
+         "alias" : null,
+         "assigned_to" : "rchien@mozilla.com",
+         "assigned_to_detail" : {
+            "email" : "rchien@mozilla.com",
+            "id" : 472014,
+            "name" : "rchien@mozilla.com",
+            "real_name" : "Ricky Chien [:rickychien]"
+         },
+         "blocks" : [
+            1357285,
+            1335905
+         ],
+         "cc" : [
+            "fliu@mozilla.com",
+            "frlee@mozilla.com",
+            "hani.yacoub@softvision.ro",
+            "jaws@mozilla.com",
+            "mconley@mozilla.com",
+            "rchien@mozilla.com"
+         ],
+         "cc_detail" : [
+            {
+               "email" : "fliu@mozilla.com",
+               "id" : 548031,
+               "name" : "fliu@mozilla.com",
+               "real_name" : "Fischer [:Fischer]"
+            },
+            {
+               "email" : "frlee@mozilla.com",
+               "id" : 474089,
+               "name" : "frlee@mozilla.com",
+               "real_name" : "Francis Lee [:frlee]"
+            },
+            {
+               "email" : "hani.yacoub@softvision.ro",
+               "id" : 583007,
+               "name" : "hani.yacoub@softvision.ro",
+               "real_name" : "Hani Yacoub"
+            },
+            {
+               "email" : "jaws@mozilla.com",
+               "id" : 409754,
+               "name" : "jaws@mozilla.com",
+               "real_name" : "(Away 27 May - 5 June) Jared Wein [:jaws] (please needinfo? me)"
+            },
+            {
+               "email" : "mconley@mozilla.com",
+               "id" : 403756,
+               "name" : "mconley@mozilla.com",
+               "real_name" : "Mike Conley (:mconley)"
+            },
+            {
+               "email" : "rchien@mozilla.com",
+               "id" : 472014,
+               "name" : "rchien@mozilla.com",
+               "real_name" : "Ricky Chien [:rickychien]"
+            }
+         ],
+         "cf_crash_signature" : "",
+         "cf_fx_iteration" : "---",
+         "cf_fx_points" : "---",
+         "cf_has_regression_range" : "---",
+         "cf_has_str" : "---",
+         "cf_last_resolved" : "2017-05-10T13:27:19Z",
+         "cf_platform_rel" : "---",
+         "cf_qa_whiteboard" : "",
+         "cf_rank" : null,
+         "cf_status_firefox53" : "---",
+         "cf_status_firefox54" : "---",
+         "cf_status_firefox55" : "verified",
+         "cf_status_firefox56" : "---",
+         "cf_status_firefox57" : "---",
+         "cf_status_firefox_esr45" : "---",
+         "cf_status_firefox_esr52" : "---",
+         "cf_tracking_firefox53" : "---",
+         "cf_tracking_firefox54" : "---",
+         "cf_tracking_firefox55" : "---",
+         "cf_tracking_firefox56" : "---",
+         "cf_tracking_firefox57" : "---",
+         "cf_tracking_firefox_esr45" : "---",
+         "cf_tracking_firefox_esr52" : "---",
+         "cf_tracking_firefox_relnote" : "---",
+         "cf_user_story" : "",
+         "classification" : "Client Software",
+         "comment_count" : 11,
+         "component" : "Preferences",
+         "creation_time" : "2017-05-08T15:59:13Z",
+         "creator" : "rchien@mozilla.com",
+         "creator_detail" : {
+            "email" : "rchien@mozilla.com",
+            "id" : 472014,
+            "name" : "rchien@mozilla.com",
+            "real_name" : "Ricky Chien [:rickychien]"
+         },
+         "depends_on" : [
+            1357352
+         ],
+         "dupe_of" : null,
+         "flags" : [
+            {
+               "creation_date" : "2017-05-08T17:01:13Z",
+               "id" : 1577378,
+               "modification_date" : "2017-05-08T17:01:13Z",
+               "name" : "qe-verify",
+               "setter" : "frlee@mozilla.com",
+               "status" : "+",
+               "type_id" : 864
+            }
+         ],
+         "groups" : [],
+         "id" : 1363062,
+         "is_cc_accessible" : true,
+         "is_confirmed" : true,
+         "is_creator_accessible" : true,
+         "is_open" : false,
+         "keywords" : [],
+         "last_change_time" : "2017-05-16T09:15:51Z",
+         "mentors" : [],
+         "mentors_detail" : [],
+         "op_sys" : "Unspecified",
+         "platform" : "Unspecified",
+         "priority" : "P1",
+         "product" : "Firefox",
+         "qa_contact" : "hani.yacoub@softvision.ro",
+         "qa_contact_detail" : {
+            "email" : "hani.yacoub@softvision.ro",
+            "id" : 583007,
+            "name" : "hani.yacoub@softvision.ro",
+            "real_name" : "Hani Yacoub"
+         },
+         "resolution" : "FIXED",
+         "see_also" : [],
+         "severity" : "normal",
+         "status" : "VERIFIED",
+         "summary" : "Fix broken data-hidden-from-search=true search result",
+         "target_milestone" : "Firefox 55",
+         "url" : "",
+         "version" : "unspecified",
+         "votes" : 0,
+         "whiteboard" : "[photon-preference]"
+      },
+      {
+         "alias" : null,
+         "assigned_to" : "amarchesini@mozilla.com",
+         "assigned_to_detail" : {
+            "email" : "amarchesini@mozilla.com",
+            "id" : 446257,
+            "name" : "amarchesini@mozilla.com",
+            "real_name" : "Andrea Marchesini [:baku]"
+         },
+         "blocks" : [
+            1363307
+         ],
+         "cc" : [
+            "bgrinstead@mozilla.com",
+            "rahmantanvir25558@gmail.com"
+         ],
+         "cc_detail" : [
+            {
+               "email" : "bgrinstead@mozilla.com",
+               "id" : 476442,
+               "name" : "bgrinstead@mozilla.com",
+               "real_name" : "Brian Grinstead [:bgrins]"
+            },
+            {
+               "email" : "rahmantanvir25558@gmail.com",
+               "id" : 566584,
+               "name" : "rahmantanvir25558@gmail.com",
+               "real_name" : "Tanvir Rahman"
+            }
+         ],
+         "cf_crash_signature" : "",
+         "cf_fx_iteration" : "---",
+         "cf_fx_points" : "---",
+         "cf_has_regression_range" : "---",
+         "cf_has_str" : "---",
+         "cf_last_resolved" : "2017-05-12T12:45:21Z",
+         "cf_platform_rel" : "---",
+         "cf_qa_whiteboard" : "",
+         "cf_rank" : null,
+         "cf_status_firefox53" : "---",
+         "cf_status_firefox54" : "---",
+         "cf_status_firefox55" : "verified",
+         "cf_status_firefox56" : "---",
+         "cf_status_firefox57" : "---",
+         "cf_status_firefox_esr45" : "---",
+         "cf_status_firefox_esr52" : "---",
+         "cf_tracking_firefox53" : "---",
+         "cf_tracking_firefox54" : "---",
+         "cf_tracking_firefox55" : "---",
+         "cf_tracking_firefox56" : "---",
+         "cf_tracking_firefox57" : "---",
+         "cf_tracking_firefox_esr45" : "---",
+         "cf_tracking_firefox_esr52" : "---",
+         "cf_tracking_firefox_relnote" : "---",
+         "cf_user_story" : "",
+         "classification" : "Client Software",
+         "comment_count" : 8,
+         "component" : "Developer Tools: Console",
+         "creation_time" : "2017-05-09T07:41:36Z",
+         "creator" : "amarchesini@mozilla.com",
+         "creator_detail" : {
+            "email" : "amarchesini@mozilla.com",
+            "id" : 446257,
+            "name" : "amarchesini@mozilla.com",
+            "real_name" : "Andrea Marchesini [:baku]"
+         },
+         "depends_on" : [],
+         "dupe_of" : null,
+         "flags" : [],
+         "groups" : [],
+         "id" : 1363288,
+         "is_cc_accessible" : true,
+         "is_confirmed" : true,
+         "is_creator_accessible" : true,
+         "is_open" : false,
+         "keywords" : [],
+         "last_change_time" : "2017-05-24T09:22:58Z",
+         "mentors" : [],
+         "mentors_detail" : [],
+         "op_sys" : "Unspecified",
+         "platform" : "Unspecified",
+         "priority" : "--",
+         "product" : "Firefox",
+         "qa_contact" : "",
+         "resolution" : "FIXED",
+         "see_also" : [],
+         "severity" : "normal",
+         "status" : "VERIFIED",
+         "summary" : "Add a warning when Console.time(label) is used twice",
+         "target_milestone" : "Firefox 55",
+         "url" : "",
+         "version" : "unspecified",
+         "votes" : 0,
+         "whiteboard" : ""
+      },
+      {
+         "alias" : null,
+         "assigned_to" : "amarchesini@mozilla.com",
+         "assigned_to_detail" : {
+            "email" : "amarchesini@mozilla.com",
+            "id" : 446257,
+            "name" : "amarchesini@mozilla.com",
+            "real_name" : "Andrea Marchesini [:baku]"
+         },
+         "blocks" : [],
+         "cc" : [
+            "bgrinstead@mozilla.com",
+            "cmills@mozilla.com",
+            "maruf.rahman.95@gmail.com",
+            "nchevobbe@mozilla.com",
+            "rahmantanvir25558@gmail.com"
+         ],
+         "cc_detail" : [
+            {
+               "email" : "bgrinstead@mozilla.com",
+               "id" : 476442,
+               "name" : "bgrinstead@mozilla.com",
+               "real_name" : "Brian Grinstead [:bgrins]"
+            },
+            {
+               "email" : "cmills@mozilla.com",
+               "id" : 475085,
+               "name" : "cmills@mozilla.com",
+               "real_name" : "Chris Mills (Mozilla, MDN editor) [:cmills]"
+            },
+            {
+               "email" : "maruf.rahman.95@gmail.com",
+               "id" : 559911,
+               "name" : "maruf.rahman.95@gmail.com",
+               "real_name" : "Mohammad Maruf Rahman"
+            },
+            {
+               "email" : "nchevobbe@mozilla.com",
+               "id" : 557153,
+               "name" : "nchevobbe@mozilla.com",
+               "real_name" : "Nicolas Chevobbe [:nchevobbe]"
+            },
+            {
+               "email" : "rahmantanvir25558@gmail.com",
+               "id" : 566584,
+               "name" : "rahmantanvir25558@gmail.com",
+               "real_name" : "Tanvir Rahman"
+            }
+         ],
+         "cf_crash_signature" : "",
+         "cf_fx_iteration" : "---",
+         "cf_fx_points" : "---",
+         "cf_has_regression_range" : "---",
+         "cf_has_str" : "---",
+         "cf_last_resolved" : "2017-05-12T12:45:26Z",
+         "cf_platform_rel" : "---",
+         "cf_qa_whiteboard" : "",
+         "cf_rank" : null,
+         "cf_status_firefox53" : "---",
+         "cf_status_firefox54" : "---",
+         "cf_status_firefox55" : "verified",
+         "cf_status_firefox56" : "---",
+         "cf_status_firefox57" : "---",
+         "cf_status_firefox_esr45" : "---",
+         "cf_status_firefox_esr52" : "---",
+         "cf_tracking_firefox53" : "---",
+         "cf_tracking_firefox54" : "---",
+         "cf_tracking_firefox55" : "---",
+         "cf_tracking_firefox56" : "---",
+         "cf_tracking_firefox57" : "---",
+         "cf_tracking_firefox_esr45" : "---",
+         "cf_tracking_firefox_esr52" : "---",
+         "cf_tracking_firefox_relnote" : "---",
+         "cf_user_story" : "",
+         "classification" : "Client Software",
+         "comment_count" : 18,
+         "component" : "Developer Tools: Console",
+         "creation_time" : "2017-05-09T08:58:36Z",
+         "creator" : "amarchesini@mozilla.com",
+         "creator_detail" : {
+            "email" : "amarchesini@mozilla.com",
+            "id" : 446257,
+            "name" : "amarchesini@mozilla.com",
+            "real_name" : "Andrea Marchesini [:baku]"
+         },
+         "depends_on" : [
+            1363288
+         ],
+         "dupe_of" : null,
+         "flags" : [],
+         "groups" : [],
+         "id" : 1363307,
+         "is_cc_accessible" : true,
+         "is_confirmed" : true,
+         "is_creator_accessible" : true,
+         "is_open" : false,
+         "keywords" : [
+            "dev-doc-needed"
+         ],
+         "last_change_time" : "2017-05-24T13:31:48Z",
+         "mentors" : [],
+         "mentors_detail" : [],
+         "op_sys" : "Unspecified",
+         "platform" : "Unspecified",
+         "priority" : "--",
+         "product" : "Firefox",
+         "qa_contact" : "",
+         "resolution" : "FIXED",
+         "see_also" : [],
+         "severity" : "normal",
+         "status" : "VERIFIED",
+         "summary" : "Add a warning when Console.timeEnd(label) is used with an unknown label",
+         "target_milestone" : "Firefox 55",
+         "url" : "",
+         "version" : "unspecified",
+         "votes" : 0,
+         "whiteboard" : "[bugday-20170524]"
+      },
+      {
+         "alias" : null,
+         "assigned_to" : "jhofmann@mozilla.com",
+         "assigned_to_detail" : {
+            "email" : "jhofmann@mozilla.com",
+            "id" : 522029,
+            "name" : "jhofmann@mozilla.com",
+            "real_name" : "Johann Hofmann [:johannh]"
+         },
+         "blocks" : [
+            1352364
+         ],
+         "cc" : [
+            "dao+bmo@mozilla.com",
+            "hani.yacoub@softvision.ro",
+            "jhofmann@mozilla.com",
+            "kazz@asamuzak.jp",
+            "mak77@bonardo.net",
+            "mmucci@mozilla.com",
+            "tomer.moz.bugs@tomercohen.com",
+            "Virtual@MsgSafe.io"
+         ],
+         "cc_detail" : [
+            {
+               "email" : "dao+bmo@mozilla.com",
+               "id" : 219124,
+               "name" : "dao+bmo@mozilla.com",
+               "real_name" : "Dão Gottwald [::dao]"
+            },
+            {
+               "email" : "hani.yacoub@softvision.ro",
+               "id" : 583007,
+               "name" : "hani.yacoub@softvision.ro",
+               "real_name" : "Hani Yacoub"
+            },
+            {
+               "email" : "jhofmann@mozilla.com",
+               "id" : 522029,
+               "name" : "jhofmann@mozilla.com",
+               "real_name" : "Johann Hofmann [:johannh]"
+            },
+            {
+               "email" : "kazz@asamuzak.jp",
+               "id" : 469653,
+               "name" : "kazz@asamuzak.jp",
+               "real_name" : "Kazumasa Hasegawa (Kazz)"
+            },
+            {
+               "email" : "mak77@bonardo.net",
+               "id" : 240353,
+               "name" : "mak77@bonardo.net",
+               "real_name" : "Marco Bonardo [::mak]"
+            },
+            {
+               "email" : "mmucci@mozilla.com",
+               "id" : 458208,
+               "name" : "mmucci@mozilla.com",
+               "real_name" : "Marco Mucci [:MarcoM]"
+            },
+            {
+               "email" : "tomer.moz.bugs@tomercohen.com",
+               "id" : 33744,
+               "name" : "tomer.moz.bugs@tomercohen.com",
+               "real_name" : "Tomer Cohen :tomer"
+            },
+            {
+               "email" : "Virtual@MsgSafe.io",
+               "id" : 342842,
+               "name" : "Virtual@MsgSafe.io",
+               "real_name" : "Virtual_ManPL [:Virtual] - (please needinfo? me - so I will see your comment/reply/question/etc.)"
+            }
+         ],
+         "cf_crash_signature" : "",
+         "cf_fx_iteration" : "55.5 - May 15",
+         "cf_fx_points" : "---",
+         "cf_has_regression_range" : "---",
+         "cf_has_str" : "---",
+         "cf_last_resolved" : "2017-05-10T13:27:45Z",
+         "cf_platform_rel" : "---",
+         "cf_qa_whiteboard" : "",
+         "cf_rank" : null,
+         "cf_status_firefox53" : "unaffected",
+         "cf_status_firefox54" : "unaffected",
+         "cf_status_firefox55" : "fixed",
+         "cf_status_firefox56" : "---",
+         "cf_status_firefox57" : "---",
+         "cf_status_firefox_esr45" : "---",
+         "cf_status_firefox_esr52" : "unaffected",
+         "cf_tracking_firefox53" : "---",
+         "cf_tracking_firefox54" : "---",
+         "cf_tracking_firefox55" : "---",
+         "cf_tracking_firefox56" : "---",
+         "cf_tracking_firefox57" : "---",
+         "cf_tracking_firefox_esr45" : "---",
+         "cf_tracking_firefox_esr52" : "---",
+         "cf_tracking_firefox_relnote" : "---",
+         "cf_user_story" : "",
+         "classification" : "Client Software",
+         "comment_count" : 10,
+         "component" : "Theme",
+         "creation_time" : "2017-05-09T15:04:35Z",
+         "creator" : "itiel_yn8@walla.com",
+         "creator_detail" : {
+            "email" : "itiel_yn8@walla.com",
+            "id" : 353822,
+            "name" : "itiel_yn8@walla.com",
+            "real_name" : "ItielMaN"
+         },
+         "depends_on" : [],
+         "dupe_of" : null,
+         "flags" : [],
+         "groups" : [],
+         "id" : 1363406,
+         "is_cc_accessible" : true,
+         "is_confirmed" : true,
+         "is_creator_accessible" : true,
+         "is_open" : false,
+         "keywords" : [
+            "regression"
+         ],
+         "last_change_time" : "2017-05-12T08:33:03Z",
+         "mentors" : [],
+         "mentors_detail" : [],
+         "op_sys" : "Unspecified",
+         "platform" : "Unspecified",
+         "priority" : "P1",
+         "product" : "Firefox",
+         "qa_contact" : "",
+         "resolution" : "FIXED",
+         "see_also" : [],
+         "severity" : "normal",
+         "status" : "VERIFIED",
+         "summary" : "Regression: \"Show your bookmarks\" button shrinks in size if moved to the Bookmarks Toolbar",
+         "target_milestone" : "Firefox 55",
+         "url" : "",
+         "version" : "unspecified",
+         "votes" : 0,
+         "whiteboard" : "[photon-visual][p1]"
+      },
+      {
+         "alias" : null,
+         "assigned_to" : "adw@mozilla.com",
+         "assigned_to_detail" : {
+            "email" : "adw@mozilla.com",
+            "id" : 334927,
+            "name" : "adw@mozilla.com",
+            "real_name" : "Drew Willcoxon :adw (Away 5/31–6/7)"
+         },
+         "blocks" : [
+            1180944,
+            1363692
+         ],
+         "cc" : [
+            "adw@mozilla.com",
+            "dao+bmo@mozilla.com",
+            "mak77@bonardo.net",
+            "past@mozilla.com",
+            "rahmantanvir25558@gmail.com"
+         ],
+         "cc_detail" : [
+            {
+               "email" : "adw@mozilla.com",
+               "id" : 334927,
+               "name" : "adw@mozilla.com",
+               "real_name" : "Drew Willcoxon :adw (Away 5/31–6/7)"
+            },
+            {
+               "email" : "dao+bmo@mozilla.com",
+               "id" : 219124,
+               "name" : "dao+bmo@mozilla.com",
+               "real_name" : "Dão Gottwald [::dao]"
+            },
+            {
+               "email" : "mak77@bonardo.net",
+               "id" : 240353,
+               "name" : "mak77@bonardo.net",
+               "real_name" : "Marco Bonardo [::mak]"
+            },
+            {
+               "email" : "past@mozilla.com",
+               "id" : 363318,
+               "name" : "past@mozilla.com",
+               "real_name" : "Panos Astithas [:past] (please needinfo?)"
+            },
+            {
+               "email" : "rahmantanvir25558@gmail.com",
+               "id" : 566584,
+               "name" : "rahmantanvir25558@gmail.com",
+               "real_name" : "Tanvir Rahman"
+            }
+         ],
+         "cf_crash_signature" : "",
+         "cf_fx_iteration" : "---",
+         "cf_fx_points" : "---",
+         "cf_has_regression_range" : "---",
+         "cf_has_str" : "---",
+         "cf_last_resolved" : "2017-05-12T12:45:13Z",
+         "cf_platform_rel" : "---",
+         "cf_qa_whiteboard" : "",
+         "cf_rank" : null,
+         "cf_status_firefox53" : "disabled",
+         "cf_status_firefox54" : "disabled",
+         "cf_status_firefox55" : "verified",
+         "cf_status_firefox56" : "---",
+         "cf_status_firefox57" : "---",
+         "cf_status_firefox_esr45" : "---",
+         "cf_status_firefox_esr52" : "---",
+         "cf_tracking_firefox53" : "---",
+         "cf_tracking_firefox54" : "---",
+         "cf_tracking_firefox55" : "---",
+         "cf_tracking_firefox56" : "---",
+         "cf_tracking_firefox57" : "---",
+         "cf_tracking_firefox_esr45" : "---",
+         "cf_tracking_firefox_esr52" : "---",
+         "cf_tracking_firefox_relnote" : "---",
+         "cf_user_story" : "",
+         "classification" : "Client Software",
+         "comment_count" : 20,
+         "component" : "Location Bar",
+         "creation_time" : "2017-05-09T15:04:42Z",
+         "creator" : "simona.marcu@softvision.ro",
+         "creator_detail" : {
+            "email" : "simona.marcu@softvision.ro",
+            "id" : 409434,
+            "name" : "simona.marcu@softvision.ro",
+            "real_name" : "Simona B [:simonab ]"
+         },
+         "depends_on" : [],
+         "dupe_of" : null,
+         "flags" : [],
+         "groups" : [],
+         "id" : 1363407,
+         "is_cc_accessible" : true,
+         "is_confirmed" : true,
+         "is_creator_accessible" : true,
+         "is_open" : false,
+         "keywords" : [],
+         "last_change_time" : "2017-05-19T12:01:03Z",
+         "mentors" : [],
+         "mentors_detail" : [],
+         "op_sys" : "Windows 7",
+         "platform" : "All",
+         "priority" : "P1",
+         "product" : "Firefox",
+         "qa_contact" : "",
+         "resolution" : "FIXED",
+         "see_also" : [],
+         "severity" : "normal",
+         "status" : "VERIFIED",
+         "summary" : "Awesome bar results and one-off buttons have different blue shades on keyboard selection",
+         "target_milestone" : "Firefox 55",
+         "url" : "",
+         "version" : "55 Branch",
+         "votes" : 0,
+         "whiteboard" : "[fxsearch]"
+      },
+      {
+         "alias" : null,
+         "assigned_to" : "adw@mozilla.com",
+         "assigned_to_detail" : {
+            "email" : "adw@mozilla.com",
+            "id" : 334927,
+            "name" : "adw@mozilla.com",
+            "real_name" : "Drew Willcoxon :adw (Away 5/31–6/7)"
+         },
+         "blocks" : [
+            1180944,
+            1337003
+         ],
+         "cc" : [
+            "adw@mozilla.com",
+            "past@mozilla.com"
+         ],
+         "cc_detail" : [
+            {
+               "email" : "adw@mozilla.com",
+               "id" : 334927,
+               "name" : "adw@mozilla.com",
+               "real_name" : "Drew Willcoxon :adw (Away 5/31–6/7)"
+            },
+            {
+               "email" : "past@mozilla.com",
+               "id" : 363318,
+               "name" : "past@mozilla.com",
+               "real_name" : "Panos Astithas [:past] (please needinfo?)"
+            }
+         ],
+         "cf_crash_signature" : "",
+         "cf_fx_iteration" : "---",
+         "cf_fx_points" : "---",
+         "cf_has_regression_range" : "---",
+         "cf_has_str" : "---",
+         "cf_last_resolved" : "2017-05-16T13:56:18Z",
+         "cf_platform_rel" : "---",
+         "cf_qa_whiteboard" : "",
+         "cf_rank" : null,
+         "cf_status_firefox53" : "unaffected",
+         "cf_status_firefox54" : "unaffected",
+         "cf_status_firefox55" : "verified",
+         "cf_status_firefox56" : "---",
+         "cf_status_firefox57" : "---",
+         "cf_status_firefox_esr45" : "---",
+         "cf_status_firefox_esr52" : "unaffected",
+         "cf_tracking_firefox53" : "---",
+         "cf_tracking_firefox54" : "---",
+         "cf_tracking_firefox55" : "---",
+         "cf_tracking_firefox56" : "---",
+         "cf_tracking_firefox57" : "---",
+         "cf_tracking_firefox_esr45" : "---",
+         "cf_tracking_firefox_esr52" : "---",
+         "cf_tracking_firefox_relnote" : "---",
+         "cf_user_story" : "",
+         "classification" : "Client Software",
+         "comment_count" : 6,
+         "component" : "Location Bar",
+         "creation_time" : "2017-05-10T11:43:52Z",
+         "creator" : "simona.marcu@softvision.ro",
+         "creator_detail" : {
+            "email" : "simona.marcu@softvision.ro",
+            "id" : 409434,
+            "name" : "simona.marcu@softvision.ro",
+            "real_name" : "Simona B [:simonab ]"
+         },
+         "depends_on" : [
+            1363407
+         ],
+         "dupe_of" : null,
+         "flags" : [],
+         "groups" : [],
+         "id" : 1363692,
+         "is_cc_accessible" : true,
+         "is_confirmed" : true,
+         "is_creator_accessible" : true,
+         "is_open" : false,
+         "keywords" : [
+            "regression"
+         ],
+         "last_change_time" : "2017-05-19T12:59:19Z",
+         "mentors" : [],
+         "mentors_detail" : [],
+         "op_sys" : "Windows 7",
+         "platform" : "All",
+         "priority" : "--",
+         "product" : "Firefox",
+         "qa_contact" : "",
+         "resolution" : "FIXED",
+         "see_also" : [],
+         "severity" : "normal",
+         "status" : "VERIFIED",
+         "summary" : "Broken key navigation in the URL drop-down in high contrast theme",
+         "target_milestone" : "Firefox 55",
+         "url" : "",
+         "version" : "55 Branch",
+         "votes" : 0,
+         "whiteboard" : "[fxsearch]"
+      },
+      {
+         "alias" : null,
+         "assigned_to" : "evan@tseng.io",
+         "assigned_to_detail" : {
+            "email" : "evan@tseng.io",
+            "id" : 459562,
+            "name" : "evan@tseng.io",
+            "real_name" : "Evan Tseng [:evanxd] (Away 5/27 - 5/30)"
+         },
+         "blocks" : [
+            1356269
+         ],
+         "cc" : [
+            "itis_sayed@hotmail.com",
+            "mconley@mozilla.com",
+            "rift1994raahim@gmail.com"
+         ],
+         "cc_detail" : [
+            {
+               "email" : "itis_sayed@hotmail.com",
+               "id" : 557425,
+               "name" : "itis_sayed@hotmail.com",
+               "real_name" : "Sayed"
+            },
+            {
+               "email" : "mconley@mozilla.com",
+               "id" : 403756,
+               "name" : "mconley@mozilla.com",
+               "real_name" : "Mike Conley (:mconley)"
+            },
+            {
+               "email" : "rift1994raahim@gmail.com",
+               "id" : 541945,
+               "name" : "rift1994raahim@gmail.com",
+               "real_name" : "Md. Rahimul Islam"
+            }
+         ],
+         "cf_crash_signature" : "",
+         "cf_fx_iteration" : "---",
+         "cf_fx_points" : "---",
+         "cf_has_regression_range" : "---",
+         "cf_has_str" : "---",
+         "cf_last_resolved" : "2017-05-12T12:45:48Z",
+         "cf_platform_rel" : "---",
+         "cf_qa_whiteboard" : "[bugday-20170517]",
+         "cf_rank" : null,
+         "cf_status_firefox53" : "---",
+         "cf_status_firefox54" : "---",
+         "cf_status_firefox55" : "fixed",
+         "cf_status_firefox56" : "---",
+         "cf_status_firefox57" : "---",
+         "cf_status_firefox_esr45" : "---",
+         "cf_status_firefox_esr52" : "---",
+         "cf_tracking_firefox53" : "---",
+         "cf_tracking_firefox54" : "---",
+         "cf_tracking_firefox55" : "---",
+         "cf_tracking_firefox56" : "---",
+         "cf_tracking_firefox57" : "---",
+         "cf_tracking_firefox_esr45" : "---",
+         "cf_tracking_firefox_esr52" : "---",
+         "cf_tracking_firefox_relnote" : "---",
+         "cf_user_story" : "",
+         "classification" : "Client Software",
+         "comment_count" : 9,
+         "component" : "Preferences",
+         "creation_time" : "2017-05-10T14:23:57Z",
+         "creator" : "evan@tseng.io",
+         "creator_detail" : {
+            "email" : "evan@tseng.io",
+            "id" : 459562,
+            "name" : "evan@tseng.io",
+            "real_name" : "Evan Tseng [:evanxd] (Away 5/27 - 5/30)"
+         },
+         "depends_on" : [],
+         "dupe_of" : null,
+         "flags" : [
+            {
+               "creation_date" : "2017-05-10T14:23:57Z",
+               "id" : 1578820,
+               "modification_date" : "2017-05-10T14:23:57Z",
+               "name" : "qe-verify",
+               "setter" : "evan@tseng.io",
+               "status" : "+",
+               "type_id" : 864
+            }
+         ],
+         "groups" : [],
+         "id" : 1363737,
+         "is_cc_accessible" : true,
+         "is_confirmed" : true,
+         "is_creator_accessible" : true,
+         "is_open" : false,
+         "keywords" : [],
+         "last_change_time" : "2017-05-18T18:08:47Z",
+         "mentors" : [],
+         "mentors_detail" : [],
+         "op_sys" : "Unspecified",
+         "platform" : "Unspecified",
+         "priority" : "P1",
+         "product" : "Firefox",
+         "qa_contact" : "hani.yacoub@softvision.ro",
+         "qa_contact_detail" : {
+            "email" : "hani.yacoub@softvision.ro",
+            "id" : 583007,
+            "name" : "hani.yacoub@softvision.ro",
+            "real_name" : "Hani Yacoub"
+         },
+         "resolution" : "FIXED",
+         "see_also" : [],
+         "severity" : "normal",
+         "status" : "VERIFIED",
+         "summary" : "The \"M\" of the \"Learn More\" strings on Reports section should be lowercased",
+         "target_milestone" : "Firefox 55",
+         "url" : "",
+         "version" : "unspecified",
+         "votes" : 0,
+         "whiteboard" : "[photon-preference]"
+      },
+      {
+         "alias" : null,
+         "assigned_to" : "mdeboer@mozilla.com",
+         "assigned_to_detail" : {
+            "email" : "mdeboer@mozilla.com",
+            "id" : 463945,
+            "name" : "mdeboer@mozilla.com",
+            "real_name" : "Mike de Boer [:mikedeboer]"
+         },
+         "blocks" : [
+            1349210,
+            1364672,
+            1365647
+         ],
+         "cc" : [
+            "adw@mozilla.com",
+            "gijskruitbosch+bugs@gmail.com",
+            "mdeboer@mozilla.com",
+            "mmucci@mozilla.com",
+            "paolo.mozmail@amadzone.org"
+         ],
+         "cc_detail" : [
+            {
+               "email" : "adw@mozilla.com",
+               "id" : 334927,
+               "name" : "adw@mozilla.com",
+               "real_name" : "Drew Willcoxon :adw (Away 5/31–6/7)"
+            },
+            {
+               "email" : "gijskruitbosch+bugs@gmail.com",
+               "id" : 159069,
+               "name" : "gijskruitbosch+bugs@gmail.com",
+               "real_name" : ":Gijs"
+            },
+            {
+               "email" : "mdeboer@mozilla.com",
+               "id" : 463945,
+               "name" : "mdeboer@mozilla.com",
+               "real_name" : "Mike de Boer [:mikedeboer]"
+            },
+            {
+               "email" : "mmucci@mozilla.com",
+               "id" : 458208,
+               "name" : "mmucci@mozilla.com",
+               "real_name" : "Marco Mucci [:MarcoM]"
+            },
+            {
+               "email" : "paolo.mozmail@amadzone.org",
+               "id" : 332229,
+               "name" : "paolo.mozmail@amadzone.org",
+               "real_name" : ":Paolo Amadini"
+            }
+         ],
+         "cf_crash_signature" : "",
+         "cf_fx_iteration" : "55.5 - May 15",
+         "cf_fx_points" : "---",
+         "cf_has_regression_range" : "---",
+         "cf_has_str" : "---",
+         "cf_last_resolved" : "2017-05-15T23:11:47Z",
+         "cf_platform_rel" : "---",
+         "cf_qa_whiteboard" : "",
+         "cf_rank" : null,
+         "cf_status_firefox53" : "---",
+         "cf_status_firefox54" : "---",
+         "cf_status_firefox55" : "verified",
+         "cf_status_firefox56" : "---",
+         "cf_status_firefox57" : "---",
+         "cf_status_firefox_esr45" : "---",
+         "cf_status_firefox_esr52" : "---",
+         "cf_tracking_firefox53" : "---",
+         "cf_tracking_firefox54" : "---",
+         "cf_tracking_firefox55" : "---",
+         "cf_tracking_firefox56" : "---",
+         "cf_tracking_firefox57" : "---",
+         "cf_tracking_firefox_esr45" : "---",
+         "cf_tracking_firefox_esr52" : "---",
+         "cf_tracking_firefox_relnote" : "---",
+         "cf_user_story" : "",
+         "classification" : "Client Software",
+         "comment_count" : 12,
+         "component" : "Toolbars and Customization",
+         "creation_time" : "2017-05-10T15:00:11Z",
+         "creator" : "mdeboer@mozilla.com",
+         "creator_detail" : {
+            "email" : "mdeboer@mozilla.com",
+            "id" : 463945,
+            "name" : "mdeboer@mozilla.com",
+            "real_name" : "Mike de Boer [:mikedeboer]"
+         },
+         "depends_on" : [
+            1293242,
+            1354141,
+            1364115
+         ],
+         "dupe_of" : null,
+         "flags" : [],
+         "groups" : [],
+         "id" : 1363753,
+         "is_cc_accessible" : true,
+         "is_confirmed" : true,
+         "is_creator_accessible" : true,
+         "is_open" : false,
+         "keywords" : [],
+         "last_change_time" : "2017-05-17T18:49:33Z",
+         "mentors" : [],
+         "mentors_detail" : [],
+         "op_sys" : "Unspecified",
+         "platform" : "Unspecified",
+         "priority" : "P1",
+         "product" : "Firefox",
+         "qa_contact" : "gwimberly@softvision.com",
+         "qa_contact_detail" : {
+            "email" : "gwimberly@softvision.com",
+            "id" : 554753,
+            "name" : "gwimberly@softvision.com",
+            "real_name" : "Grover Wimberly IV [:Grover-QA]"
+         },
+         "resolution" : "FIXED",
+         "see_also" : [],
+         "severity" : "normal",
+         "status" : "VERIFIED",
+         "summary" : "Ensure that the width of panel views do not exceed that of the main view",
+         "target_milestone" : "Firefox 55",
+         "url" : "",
+         "version" : "Trunk",
+         "votes" : 0,
+         "whiteboard" : "[photon-structure]"
+      },
+      {
+         "alias" : null,
+         "assigned_to" : "mak77@bonardo.net",
+         "assigned_to_detail" : {
+            "email" : "mak77@bonardo.net",
+            "id" : 240353,
+            "name" : "mak77@bonardo.net",
+            "real_name" : "Marco Bonardo [::mak]"
+         },
+         "blocks" : [
+            1344928
+         ],
+         "cc" : [
+            "brindusa.tot@softvision.ro",
+            "cbook@mozilla.com",
+            "gchang@mozilla.com",
+            "mak77@bonardo.net",
+            "past@mozilla.com",
+            "rkothari@mozilla.com",
+            "simona.marcu@softvision.ro",
+            "sledru@mozilla.com"
+         ],
+         "cc_detail" : [
+            {
+               "email" : "brindusa.tot@softvision.ro",
+               "id" : 553429,
+               "name" : "brindusa.tot@softvision.ro",
+               "real_name" : "Brindusa Tot[:brindusat]"
+            },
+            {
+               "email" : "cbook@mozilla.com",
+               "id" : 277293,
+               "name" : "cbook@mozilla.com",
+               "real_name" : "Carsten Book [:Tomcat]"
+            },
+            {
+               "email" : "gchang@mozilla.com",
+               "id" : 506302,
+               "name" : "gchang@mozilla.com",
+               "real_name" : "Gerry Chang [:gchang]"
+            },
+            {
+               "email" : "mak77@bonardo.net",
+               "id" : 240353,
+               "name" : "mak77@bonardo.net",
+               "real_name" : "Marco Bonardo [::mak]"
+            },
+            {
+               "email" : "past@mozilla.com",
+               "id" : 363318,
+               "name" : "past@mozilla.com",
+               "real_name" : "Panos Astithas [:past] (please needinfo?)"
+            },
+            {
+               "email" : "rkothari@mozilla.com",
+               "id" : 538805,
+               "name" : "rkothari@mozilla.com",
+               "real_name" : "Ritu Kothari (:ritu)"
+            },
+            {
+               "email" : "simona.marcu@softvision.ro",
+               "id" : 409434,
+               "name" : "simona.marcu@softvision.ro",
+               "real_name" : "Simona B [:simonab ]"
+            },
+            {
+               "email" : "sledru@mozilla.com",
+               "id" : 495955,
+               "name" : "sledru@mozilla.com",
+               "real_name" : "Sylvestre Ledru [:sylvestre]"
+            }
+         ],
+         "cf_crash_signature" : "",
+         "cf_fx_iteration" : "---",
+         "cf_fx_points" : "---",
+         "cf_has_regression_range" : "---",
+         "cf_has_str" : "---",
+         "cf_last_resolved" : "2017-05-12T12:46:08Z",
+         "cf_platform_rel" : "---",
+         "cf_qa_whiteboard" : "",
+         "cf_rank" : null,
+         "cf_status_firefox53" : "unaffected",
+         "cf_status_firefox54" : "fixed",
+         "cf_status_firefox55" : "verified",
+         "cf_status_firefox56" : "---",
+         "cf_status_firefox57" : "---",
+         "cf_status_firefox_esr45" : "---",
+         "cf_status_firefox_esr52" : "affected",
+         "cf_tracking_firefox53" : "---",
+         "cf_tracking_firefox54" : "---",
+         "cf_tracking_firefox55" : "---",
+         "cf_tracking_firefox56" : "---",
+         "cf_tracking_firefox57" : "---",
+         "cf_tracking_firefox_esr45" : "---",
+         "cf_tracking_firefox_esr52" : "---",
+         "cf_tracking_firefox_relnote" : "---",
+         "cf_user_story" : "",
+         "classification" : "Client Software",
+         "comment_count" : 32,
+         "component" : "Location Bar",
+         "creation_time" : "2017-05-11T08:48:29Z",
+         "creator" : "mak77@bonardo.net",
+         "creator_detail" : {
+            "email" : "mak77@bonardo.net",
+            "id" : 240353,
+            "name" : "mak77@bonardo.net",
+            "real_name" : "Marco Bonardo [::mak]"
+         },
+         "depends_on" : [],
+         "dupe_of" : null,
+         "flags" : [
+            {
+               "creation_date" : "2017-05-11T13:53:53Z",
+               "id" : 1579598,
+               "modification_date" : "2017-05-11T13:53:53Z",
+               "name" : "qe-verify",
+               "setter" : "past@mozilla.com",
+               "status" : "+",
+               "type_id" : 864
+            }
+         ],
+         "groups" : [],
+         "id" : 1364002,
+         "is_cc_accessible" : true,
+         "is_confirmed" : true,
+         "is_creator_accessible" : true,
+         "is_open" : false,
+         "keywords" : [],
+         "last_change_time" : "2017-05-29T09:24:07Z",
+         "mentors" : [],
+         "mentors_detail" : [],
+         "op_sys" : "Unspecified",
+         "platform" : "Unspecified",
+         "priority" : "P1",
+         "product" : "Firefox",
+         "qa_contact" : "simona.marcu@softvision.ro",
+         "qa_contact_detail" : {
+            "email" : "simona.marcu@softvision.ro",
+            "id" : 409434,
+            "name" : "simona.marcu@softvision.ro",
+            "real_name" : "Simona B [:simonab ]"
+         },
+         "resolution" : "FIXED",
+         "see_also" : [],
+         "severity" : "normal",
+         "status" : "VERIFIED",
+         "summary" : "Store the user-made search suggestion choice along with userMadeSearchSuggestionChoice",
+         "target_milestone" : "Firefox 55",
+         "url" : "",
+         "version" : "unspecified",
+         "votes" : 0,
+         "whiteboard" : "[fxsearch]"
+      },
+      {
+         "alias" : null,
+         "assigned_to" : "dao+bmo@mozilla.com",
+         "assigned_to_detail" : {
+            "email" : "dao+bmo@mozilla.com",
+            "id" : 219124,
+            "name" : "dao+bmo@mozilla.com",
+            "real_name" : "Dão Gottwald [::dao]"
+         },
+         "blocks" : [
+            1363485
+         ],
+         "cc" : [
+            "bruno.n.pagani@gmail.com",
+            "dale@mozilla.com",
+            "jhofmann@mozilla.com",
+            "majed.rifat@gmail.com",
+            "mmucci@mozilla.com",
+            "Virtual@MsgSafe.io"
+         ],
+         "cc_detail" : [
+            {
+               "email" : "bruno.n.pagani@gmail.com",
+               "id" : 408282,
+               "name" : "bruno.n.pagani@gmail.com",
+               "real_name" : "Bruno Pagani"
+            },
+            {
+               "email" : "dale@mozilla.com",
+               "id" : 389449,
+               "name" : "dale@mozilla.com",
+               "real_name" : "Dale Harvey (:daleharvey)"
+            },
+            {
+               "email" : "jhofmann@mozilla.com",
+               "id" : 522029,
+               "name" : "jhofmann@mozilla.com",
+               "real_name" : "Johann Hofmann [:johannh]"
+            },
+            {
+               "email" : "majed.rifat@gmail.com",
+               "id" : 575261,
+               "name" : "majed.rifat@gmail.com",
+               "real_name" : "Md.Majedul islam"
+            },
+            {
+               "email" : "mmucci@mozilla.com",
+               "id" : 458208,
+               "name" : "mmucci@mozilla.com",
+               "real_name" : "Marco Mucci [:MarcoM]"
+            },
+            {
+               "email" : "Virtual@MsgSafe.io",
+               "id" : 342842,
+               "name" : "Virtual@MsgSafe.io",
+               "real_name" : "Virtual_ManPL [:Virtual] - (please needinfo? me - so I will see your comment/reply/question/etc.)"
+            }
+         ],
+         "cf_crash_signature" : "",
+         "cf_fx_iteration" : "55.5 - May 15",
+         "cf_fx_points" : "---",
+         "cf_has_regression_range" : "---",
+         "cf_has_str" : "---",
+         "cf_last_resolved" : "2017-05-12T12:46:26Z",
+         "cf_platform_rel" : "---",
+         "cf_qa_whiteboard" : "",
+         "cf_rank" : null,
+         "cf_status_firefox53" : "---",
+         "cf_status_firefox54" : "---",
+         "cf_status_firefox55" : "fixed",
+         "cf_status_firefox56" : "---",
+         "cf_status_firefox57" : "---",
+         "cf_status_firefox_esr45" : "---",
+         "cf_status_firefox_esr52" : "---",
+         "cf_tracking_firefox53" : "---",
+         "cf_tracking_firefox54" : "---",
+         "cf_tracking_firefox55" : "---",
+         "cf_tracking_firefox56" : "---",
+         "cf_tracking_firefox57" : "---",
+         "cf_tracking_firefox_esr45" : "---",
+         "cf_tracking_firefox_esr52" : "---",
+         "cf_tracking_firefox_relnote" : "---",
+         "cf_user_story" : "",
+         "classification" : "Client Software",
+         "comment_count" : 12,
+         "component" : "Theme",
+         "creation_time" : "2017-05-11T14:35:38Z",
+         "creator" : "dao+bmo@mozilla.com",
+         "creator_detail" : {
+            "email" : "dao+bmo@mozilla.com",
+            "id" : 219124,
+            "name" : "dao+bmo@mozilla.com",
+            "real_name" : "Dão Gottwald [::dao]"
+         },
+         "depends_on" : [
+            1368370,
+            1365024
+         ],
+         "dupe_of" : null,
+         "flags" : [],
+         "groups" : [],
+         "id" : 1364090,
+         "is_cc_accessible" : true,
+         "is_confirmed" : true,
+         "is_creator_accessible" : true,
+         "is_open" : false,
+         "keywords" : [],
+         "last_change_time" : "2017-05-29T10:49:58Z",
+         "mentors" : [],
+         "mentors_detail" : [],
+         "op_sys" : "All",
+         "platform" : "All",
+         "priority" : "P1",
+         "product" : "Firefox",
+         "qa_contact" : "brindusa.tot@softvision.ro",
+         "qa_contact_detail" : {
+            "email" : "brindusa.tot@softvision.ro",
+            "id" : 553429,
+            "name" : "brindusa.tot@softvision.ro",
+            "real_name" : "Brindusa Tot[:brindusat]"
+         },
+         "resolution" : "FIXED",
+         "see_also" : [],
+         "severity" : "normal",
+         "status" : "VERIFIED",
+         "summary" : "Detach the reload and stop buttons from the location bar",
+         "target_milestone" : "Firefox 55",
+         "url" : "",
+         "version" : "Trunk",
+         "votes" : 0,
+         "whiteboard" : "[photon-visual][p1]"
+      },
+      {
+         "alias" : null,
+         "assigned_to" : "jhofmann@mozilla.com",
+         "assigned_to_detail" : {
+            "email" : "jhofmann@mozilla.com",
+            "id" : 522029,
+            "name" : "jhofmann@mozilla.com",
+            "real_name" : "Johann Hofmann [:johannh]"
+         },
+         "blocks" : [
+            1354082
+         ],
+         "cc" : [
+            "dao+bmo@mozilla.com",
+            "gijskruitbosch+bugs@gmail.com",
+            "mmucci@mozilla.com"
+         ],
+         "cc_detail" : [
+            {
+               "email" : "dao+bmo@mozilla.com",
+               "id" : 219124,
+               "name" : "dao+bmo@mozilla.com",
+               "real_name" : "Dão Gottwald [::dao]"
+            },
+            {
+               "email" : "gijskruitbosch+bugs@gmail.com",
+               "id" : 159069,
+               "name" : "gijskruitbosch+bugs@gmail.com",
+               "real_name" : ":Gijs"
+            },
+            {
+               "email" : "mmucci@mozilla.com",
+               "id" : 458208,
+               "name" : "mmucci@mozilla.com",
+               "real_name" : "Marco Mucci [:MarcoM]"
+            }
+         ],
+         "cf_crash_signature" : "",
+         "cf_fx_iteration" : "55.5 - May 15",
+         "cf_fx_points" : "---",
+         "cf_has_regression_range" : "---",
+         "cf_has_str" : "---",
+         "cf_last_resolved" : "2017-05-15T23:11:51Z",
+         "cf_platform_rel" : "---",
+         "cf_qa_whiteboard" : "",
+         "cf_rank" : null,
+         "cf_status_firefox53" : "unaffected",
+         "cf_status_firefox54" : "unaffected",
+         "cf_status_firefox55" : "verified",
+         "cf_status_firefox56" : "---",
+         "cf_status_firefox57" : "---",
+         "cf_status_firefox_esr45" : "---",
+         "cf_status_firefox_esr52" : "unaffected",
+         "cf_tracking_firefox53" : "---",
+         "cf_tracking_firefox54" : "---",
+         "cf_tracking_firefox55" : "---",
+         "cf_tracking_firefox56" : "---",
+         "cf_tracking_firefox57" : "---",
+         "cf_tracking_firefox_esr45" : "---",
+         "cf_tracking_firefox_esr52" : "---",
+         "cf_tracking_firefox_relnote" : "---",
+         "cf_user_story" : "",
+         "classification" : "Client Software",
+         "comment_count" : 8,
+         "component" : "Theme",
+         "creation_time" : "2017-05-11T18:24:30Z",
+         "creator" : "jhofmann@mozilla.com",
+         "creator_detail" : {
+            "email" : "jhofmann@mozilla.com",
+            "id" : 522029,
+            "name" : "jhofmann@mozilla.com",
+            "real_name" : "Johann Hofmann [:johannh]"
+         },
+         "depends_on" : [],
+         "dupe_of" : null,
+         "flags" : [],
+         "groups" : [],
+         "id" : 1364166,
+         "is_cc_accessible" : true,
+         "is_confirmed" : true,
+         "is_creator_accessible" : true,
+         "is_open" : false,
+         "keywords" : [
+            "regression"
+         ],
+         "last_change_time" : "2017-05-17T17:09:03Z",
+         "mentors" : [],
+         "mentors_detail" : [],
+         "op_sys" : "Unspecified",
+         "platform" : "Unspecified",
+         "priority" : "P1",
+         "product" : "Firefox",
+         "qa_contact" : "gwimberly@softvision.com",
+         "qa_contact_detail" : {
+            "email" : "gwimberly@softvision.com",
+            "id" : 554753,
+            "name" : "gwimberly@softvision.com",
+            "real_name" : "Grover Wimberly IV [:Grover-QA]"
+         },
+         "resolution" : "FIXED",
+         "see_also" : [],
+         "severity" : "normal",
+         "status" : "VERIFIED",
+         "summary" : "Combined toolbar buttons don't have toolbarbutton-1 class after opening the menu panel",
+         "target_milestone" : "Firefox 55",
+         "url" : "",
+         "version" : "unspecified",
+         "votes" : 0,
+         "whiteboard" : "[photon-structure][p2]"
+      },
+      {
+         "alias" : null,
+         "assigned_to" : "odvarko@gmail.com",
+         "assigned_to_detail" : {
+            "email" : "odvarko@gmail.com",
+            "id" : 303767,
+            "name" : "odvarko@gmail.com",
+            "real_name" : "Jan Honza Odvarko [:Honza]"
+         },
+         "blocks" : [],
+         "cc" : [
+            "mmucci@mozilla.com",
+            "odvarko@gmail.com"
+         ],
+         "cc_detail" : [
+            {
+               "email" : "mmucci@mozilla.com",
+               "id" : 458208,
+               "name" : "mmucci@mozilla.com",
+               "real_name" : "Marco Mucci [:MarcoM]"
+            },
+            {
+               "email" : "odvarko@gmail.com",
+               "id" : 303767,
+               "name" : "odvarko@gmail.com",
+               "real_name" : "Jan Honza Odvarko [:Honza]"
+            }
+         ],
+         "cf_crash_signature" : "",
+         "cf_fx_iteration" : "55.6 - May 29",
+         "cf_fx_points" : "---",
+         "cf_has_regression_range" : "---",
+         "cf_has_str" : "---",
+         "cf_last_resolved" : "2017-05-19T16:17:03Z",
+         "cf_platform_rel" : "---",
+         "cf_qa_whiteboard" : "",
+         "cf_rank" : null,
+         "cf_status_firefox53" : "---",
+         "cf_status_firefox54" : "---",
+         "cf_status_firefox55" : "verified",
+         "cf_status_firefox56" : "---",
+         "cf_status_firefox57" : "---",
+         "cf_status_firefox_esr45" : "---",
+         "cf_status_firefox_esr52" : "---",
+         "cf_tracking_firefox53" : "---",
+         "cf_tracking_firefox54" : "---",
+         "cf_tracking_firefox55" : "---",
+         "cf_tracking_firefox56" : "---",
+         "cf_tracking_firefox57" : "---",
+         "cf_tracking_firefox_esr45" : "---",
+         "cf_tracking_firefox_esr52" : "---",
+         "cf_tracking_firefox_relnote" : "---",
+         "cf_user_story" : "",
+         "classification" : "Client Software",
+         "comment_count" : 12,
+         "component" : "Developer Tools: Console",
+         "creation_time" : "2017-05-12T10:29:13Z",
+         "creator" : "nchevobbe@mozilla.com",
+         "creator_detail" : {
+            "email" : "nchevobbe@mozilla.com",
+            "id" : 557153,
+            "name" : "nchevobbe@mozilla.com",
+            "real_name" : "Nicolas Chevobbe [:nchevobbe]"
+         },
+         "depends_on" : [],
+         "dupe_of" : null,
+         "flags" : [],
+         "groups" : [],
+         "id" : 1364386,
+         "is_cc_accessible" : true,
+         "is_confirmed" : true,
+         "is_creator_accessible" : true,
+         "is_open" : false,
+         "keywords" : [],
+         "last_change_time" : "2017-05-22T11:18:47Z",
+         "mentors" : [],
+         "mentors_detail" : [],
+         "op_sys" : "Unspecified",
+         "platform" : "Unspecified",
+         "priority" : "P1",
+         "product" : "Firefox",
+         "qa_contact" : "iulia.cristescu@softvision.ro",
+         "qa_contact_detail" : {
+            "email" : "iulia.cristescu@softvision.ro",
+            "id" : 565219,
+            "name" : "iulia.cristescu@softvision.ro",
+            "real_name" : "Iulia Cristescu, QA [:IuliaC]"
+         },
+         "resolution" : "FIXED",
+         "see_also" : [],
+         "severity" : "normal",
+         "status" : "VERIFIED",
+         "summary" : "Search in frame function shouldn't check for the host",
+         "target_milestone" : "Firefox 55",
+         "url" : "",
+         "version" : "unspecified",
+         "votes" : 0,
+         "whiteboard" : "[console-html]"
+      },
+      {
+         "alias" : null,
+         "assigned_to" : "dao+bmo@mozilla.com",
+         "assigned_to_detail" : {
+            "email" : "dao+bmo@mozilla.com",
+            "id" : 219124,
+            "name" : "dao+bmo@mozilla.com",
+            "real_name" : "Dão Gottwald [::dao]"
+         },
+         "blocks" : [
+            1366240,
+            653670,
+            1364395
+         ],
+         "cc" : [
+            "dao+bmo@mozilla.com",
+            "jaws@mozilla.com",
+            "jhofmann@mozilla.com",
+            "mmucci@mozilla.com",
+            "tomer.moz.bugs@tomercohen.com"
+         ],
+         "cc_detail" : [
+            {
+               "email" : "dao+bmo@mozilla.com",
+               "id" : 219124,
+               "name" : "dao+bmo@mozilla.com",
+               "real_name" : "Dão Gottwald [::dao]"
+            },
+            {
+               "email" : "jaws@mozilla.com",
+               "id" : 409754,
+               "name" : "jaws@mozilla.com",
+               "real_name" : "(Away 27 May - 5 June) Jared Wein [:jaws] (please needinfo? me)"
+            },
+            {
+               "email" : "jhofmann@mozilla.com",
+               "id" : 522029,
+               "name" : "jhofmann@mozilla.com",
+               "real_name" : "Johann Hofmann [:johannh]"
+            },
+            {
+               "email" : "mmucci@mozilla.com",
+               "id" : 458208,
+               "name" : "mmucci@mozilla.com",
+               "real_name" : "Marco Mucci [:MarcoM]"
+            },
+            {
+               "email" : "tomer.moz.bugs@tomercohen.com",
+               "id" : 33744,
+               "name" : "tomer.moz.bugs@tomercohen.com",
+               "real_name" : "Tomer Cohen :tomer"
+            }
+         ],
+         "cf_crash_signature" : "",
+         "cf_fx_iteration" : "55.6 - May 29",
+         "cf_fx_points" : "---",
+         "cf_has_regression_range" : "---",
+         "cf_has_str" : "---",
+         "cf_last_resolved" : "2017-05-22T23:22:19Z",
+         "cf_platform_rel" : "---",
+         "cf_qa_whiteboard" : "",
+         "cf_rank" : null,
+         "cf_status_firefox53" : "---",
+         "cf_status_firefox54" : "---",
+         "cf_status_firefox55" : "fixed",
+         "cf_status_firefox56" : "---",
+         "cf_status_firefox57" : "---",
+         "cf_status_firefox_esr45" : "---",
+         "cf_status_firefox_esr52" : "---",
+         "cf_tracking_firefox53" : "---",
+         "cf_tracking_firefox54" : "---",
+         "cf_tracking_firefox55" : "---",
+         "cf_tracking_firefox56" : "---",
+         "cf_tracking_firefox57" : "---",
+         "cf_tracking_firefox_esr45" : "---",
+         "cf_tracking_firefox_esr52" : "---",
+         "cf_tracking_firefox_relnote" : "---",
+         "cf_user_story" : "",
+         "classification" : "Client Software",
+         "comment_count" : 6,
+         "component" : "Location Bar",
+         "creation_time" : "2017-05-12T10:29:23Z",
+         "creator" : "itiel_yn8@walla.com",
+         "creator_detail" : {
+            "email" : "itiel_yn8@walla.com",
+            "id" : 353822,
+            "name" : "itiel_yn8@walla.com",
+            "real_name" : "ItielMaN"
+         },
+         "depends_on" : [],
+         "dupe_of" : null,
+         "flags" : [],
+         "groups" : [],
+         "id" : 1364387,
+         "is_cc_accessible" : true,
+         "is_confirmed" : true,
+         "is_creator_accessible" : true,
+         "is_open" : false,
+         "keywords" : [],
+         "last_change_time" : "2017-05-23T15:23:08Z",
+         "mentors" : [],
+         "mentors_detail" : [],
+         "op_sys" : "All",
+         "platform" : "All",
+         "priority" : "P1",
+         "product" : "Firefox",
+         "qa_contact" : "brindusa.tot@softvision.ro",
+         "qa_contact_detail" : {
+            "email" : "brindusa.tot@softvision.ro",
+            "id" : 553429,
+            "name" : "brindusa.tot@softvision.ro",
+            "real_name" : "Brindusa Tot[:brindusat]"
+         },
+         "resolution" : "FIXED",
+         "see_also" : [],
+         "severity" : "normal",
+         "status" : "VERIFIED",
+         "summary" : "[RTL] URL bar text is faded out initially in new windows despite the text not overflowing the textbox",
+         "target_milestone" : "Firefox 55",
+         "url" : "",
+         "version" : "unspecified",
+         "votes" : 0,
+         "whiteboard" : "[photon-visual][p1]"
+      },
+      {
+         "alias" : null,
+         "assigned_to" : "mlongaray@hp.com",
+         "assigned_to_detail" : {
+            "email" : "mlongaray@hp.com",
+            "id" : 564938,
+            "name" : "mlongaray@hp.com",
+            "real_name" : "Matheus Longaray (:mlongaray)"
+         },
+         "blocks" : [
+            1306294
+         ],
+         "cc" : [
+            "emil.pasca@softvision.ro",
+            "gchang@mozilla.com",
+            "jcristau@mozilla.com",
+            "mdeboer@mozilla.com",
+            "mlongaray@hp.com",
+            "ryanvm@gmail.com"
+         ],
+         "cc_detail" : [
+            {
+               "email" : "emil.pasca@softvision.ro",
+               "id" : 570501,
+               "name" : "emil.pasca@softvision.ro",
+               "real_name" : "Emil Pasca [:emilpasca], Desktop Engineering QA"
+            },
+            {
+               "email" : "gchang@mozilla.com",
+               "id" : 506302,
+               "name" : "gchang@mozilla.com",
+               "real_name" : "Gerry Chang [:gchang]"
+            },
+            {
+               "email" : "jcristau@mozilla.com",
+               "id" : 580382,
+               "name" : "jcristau@mozilla.com",
+               "real_name" : "Julien Cristau [:jcristau]"
+            },
+            {
+               "email" : "mdeboer@mozilla.com",
+               "id" : 463945,
+               "name" : "mdeboer@mozilla.com",
+               "real_name" : "Mike de Boer [:mikedeboer]"
+            },
+            {
+               "email" : "mlongaray@hp.com",
+               "id" : 564938,
+               "name" : "mlongaray@hp.com",
+               "real_name" : "Matheus Longaray (:mlongaray)"
+            },
+            {
+               "email" : "ryanvm@gmail.com",
+               "id" : 75935,
+               "name" : "ryanvm@gmail.com",
+               "real_name" : "Ryan VanderMeulen [:RyanVM]"
+            }
+         ],
+         "cf_crash_signature" : "",
+         "cf_fx_iteration" : "---",
+         "cf_fx_points" : "---",
+         "cf_has_regression_range" : "---",
+         "cf_has_str" : "---",
+         "cf_last_resolved" : "2017-05-24T13:07:44Z",
+         "cf_platform_rel" : "---",
+         "cf_qa_whiteboard" : "",
+         "cf_rank" : null,
+         "cf_status_firefox53" : "wontfix",
+         "cf_status_firefox54" : "fixed",
+         "cf_status_firefox55" : "verified",
+         "cf_status_firefox56" : "---",
+         "cf_status_firefox57" : "---",
+         "cf_status_firefox_esr45" : "---",
+         "cf_status_firefox_esr52" : "unaffected",
+         "cf_tracking_firefox53" : "---",
+         "cf_tracking_firefox54" : "---",
+         "cf_tracking_firefox55" : "---",
+         "cf_tracking_firefox56" : "---",
+         "cf_tracking_firefox57" : "---",
+         "cf_tracking_firefox_esr45" : "---",
+         "cf_tracking_firefox_esr52" : "---",
+         "cf_tracking_firefox_relnote" : "---",
+         "cf_user_story" : "",
+         "classification" : "Client Software",
+         "comment_count" : 25,
+         "component" : "Session Restore",
+         "creation_time" : "2017-05-12T16:12:09Z",
+         "creator" : "dao+bmo@mozilla.com",
+         "creator_detail" : {
+            "email" : "dao+bmo@mozilla.com",
+            "id" : 219124,
+            "name" : "dao+bmo@mozilla.com",
+            "real_name" : "Dão Gottwald [::dao]"
+         },
+         "depends_on" : [],
+         "dupe_of" : null,
+         "flags" : [
+            {
+               "creation_date" : "2017-05-25T08:27:25Z",
+               "id" : 1587103,
+               "modification_date" : "2017-05-25T08:27:25Z",
+               "name" : "needinfo",
+               "requestee" : "emil.pasca@softvision.ro",
+               "setter" : "gchang@mozilla.com",
+               "status" : "?",
+               "type_id" : 800
+            }
+         ],
+         "groups" : [],
+         "id" : 1364483,
+         "is_cc_accessible" : true,
+         "is_confirmed" : true,
+         "is_creator_accessible" : true,
+         "is_open" : false,
+         "keywords" : [
+            "regression"
+         ],
+         "last_change_time" : "2017-05-25T16:37:18Z",
+         "mentors" : [],
+         "mentors_detail" : [],
+         "op_sys" : "All",
+         "platform" : "All",
+         "priority" : "--",
+         "product" : "Firefox",
+         "qa_contact" : "",
+         "resolution" : "FIXED",
+         "see_also" : [],
+         "severity" : "normal",
+         "status" : "VERIFIED",
+         "summary" : "Customize Mode tab doesn't get restored anymore",
+         "target_milestone" : "Firefox 55",
+         "url" : "",
+         "version" : "Trunk",
+         "votes" : 0,
+         "whiteboard" : ""
+      },
+      {
+         "alias" : null,
+         "assigned_to" : "mdeboer@mozilla.com",
+         "assigned_to_detail" : {
+            "email" : "mdeboer@mozilla.com",
+            "id" : 463945,
+            "name" : "mdeboer@mozilla.com",
+            "real_name" : "Mike de Boer [:mikedeboer]"
+         },
+         "blocks" : [
+            1354127
+         ],
+         "cc" : [
+            "gijskruitbosch+bugs@gmail.com",
+            "mdeboer@mozilla.com",
+            "mmucci@mozilla.com",
+            "Virtual@MsgSafe.io"
+         ],
+         "cc_detail" : [
+            {
+               "email" : "gijskruitbosch+bugs@gmail.com",
+               "id" : 159069,
+               "name" : "gijskruitbosch+bugs@gmail.com",
+               "real_name" : ":Gijs"
+            },
+            {
+               "email" : "mdeboer@mozilla.com",
+               "id" : 463945,
+               "name" : "mdeboer@mozilla.com",
+               "real_name" : "Mike de Boer [:mikedeboer]"
+            },
+            {
+               "email" : "mmucci@mozilla.com",
+               "id" : 458208,
+               "name" : "mmucci@mozilla.com",
+               "real_name" : "Marco Mucci [:MarcoM]"
+            },
+            {
+               "email" : "Virtual@MsgSafe.io",
+               "id" : 342842,
+               "name" : "Virtual@MsgSafe.io",
+               "real_name" : "Virtual_ManPL [:Virtual] - (please needinfo? me - so I will see your comment/reply/question/etc.)"
+            }
+         ],
+         "cf_crash_signature" : "",
+         "cf_fx_iteration" : "55.6 - May 29",
+         "cf_fx_points" : "---",
+         "cf_has_regression_range" : "---",
+         "cf_has_str" : "---",
+         "cf_last_resolved" : "2017-05-17T20:35:24Z",
+         "cf_platform_rel" : "---",
+         "cf_qa_whiteboard" : "",
+         "cf_rank" : null,
+         "cf_status_firefox53" : "---",
+         "cf_status_firefox54" : "---",
+         "cf_status_firefox55" : "verified",
+         "cf_status_firefox56" : "---",
+         "cf_status_firefox57" : "---",
+         "cf_status_firefox_esr45" : "---",
+         "cf_status_firefox_esr52" : "---",
+         "cf_tracking_firefox53" : "---",
+         "cf_tracking_firefox54" : "---",
+         "cf_tracking_firefox55" : "---",
+         "cf_tracking_firefox56" : "---",
+         "cf_tracking_firefox57" : "---",
+         "cf_tracking_firefox_esr45" : "---",
+         "cf_tracking_firefox_esr52" : "---",
+         "cf_tracking_firefox_relnote" : "---",
+         "cf_user_story" : "",
+         "classification" : "Client Software",
+         "comment_count" : 13,
+         "component" : "Toolbars and Customization",
+         "creation_time" : "2017-05-13T12:41:36Z",
+         "creator" : "cadeyrn@ymail.com",
+         "creator_detail" : {
+            "email" : "cadeyrn@ymail.com",
+            "id" : 359208,
+            "name" : "cadeyrn@ymail.com",
+            "real_name" : "Sören Hentzschel"
+         },
+         "depends_on" : [
+            1363756,
+            1363753
+         ],
+         "dupe_of" : null,
+         "flags" : [],
+         "groups" : [],
+         "id" : 1364672,
+         "is_cc_accessible" : true,
+         "is_confirmed" : true,
+         "is_creator_accessible" : true,
+         "is_open" : false,
+         "keywords" : [],
+         "last_change_time" : "2017-05-18T16:36:04Z",
+         "mentors" : [],
+         "mentors_detail" : [],
+         "op_sys" : "Unspecified",
+         "platform" : "Unspecified",
+         "priority" : "P1",
+         "product" : "Firefox",
+         "qa_contact" : "gwimberly@softvision.com",
+         "qa_contact_detail" : {
+            "email" : "gwimberly@softvision.com",
+            "id" : 554753,
+            "name" : "gwimberly@softvision.com",
+            "real_name" : "Grover Wimberly IV [:Grover-QA]"
+         },
+         "resolution" : "FIXED",
+         "see_also" : [],
+         "severity" : "normal",
+         "status" : "VERIFIED",
+         "summary" : "Glitches in animation in photon hamburger panel",
+         "target_milestone" : "Firefox 55",
+         "url" : "",
+         "version" : "Trunk",
+         "votes" : 0,
+         "whiteboard" : "[photon-structure]"
+      },
+      {
+         "alias" : null,
+         "assigned_to" : "dao+bmo@mozilla.com",
+         "assigned_to_detail" : {
+            "email" : "dao+bmo@mozilla.com",
+            "id" : 219124,
+            "name" : "dao+bmo@mozilla.com",
+            "real_name" : "Dão Gottwald [::dao]"
+         },
+         "blocks" : [
+            1363840
+         ],
+         "cc" : [
+            "carmen.fat@softvision.ro",
+            "dao+bmo@mozilla.com",
+            "jhofmann@mozilla.com",
+            "jwilliams@softvision.com",
+            "mmucci@mozilla.com",
+            "tomer.moz.bugs@tomercohen.com"
+         ],
+         "cc_detail" : [
+            {
+               "email" : "carmen.fat@softvision.ro",
+               "id" : 581789,
+               "name" : "carmen.fat@softvision.ro",
+               "real_name" : "Carmen Fat"
+            },
+            {
+               "email" : "dao+bmo@mozilla.com",
+               "id" : 219124,
+               "name" : "dao+bmo@mozilla.com",
+               "real_name" : "Dão Gottwald [::dao]"
+            },
+            {
+               "email" : "jhofmann@mozilla.com",
+               "id" : 522029,
+               "name" : "jhofmann@mozilla.com",
+               "real_name" : "Johann Hofmann [:johannh]"
+            },
+            {
+               "email" : "jwilliams@softvision.com",
+               "id" : 554370,
+               "name" : "jwilliams@softvision.com",
+               "real_name" : "Justin [:JW_SoftvisionQA]"
+            },
+            {
+               "email" : "mmucci@mozilla.com",
+               "id" : 458208,
+               "name" : "mmucci@mozilla.com",
+               "real_name" : "Marco Mucci [:MarcoM]"
+            },
+            {
+               "email" : "tomer.moz.bugs@tomercohen.com",
+               "id" : 33744,
+               "name" : "tomer.moz.bugs@tomercohen.com",
+               "real_name" : "Tomer Cohen :tomer"
+            }
+         ],
+         "cf_crash_signature" : "",
+         "cf_fx_iteration" : "55.5 - May 15",
+         "cf_fx_points" : "---",
+         "cf_has_regression_range" : "---",
+         "cf_has_str" : "---",
+         "cf_last_resolved" : "2017-05-15T23:12:05Z",
+         "cf_platform_rel" : "---",
+         "cf_qa_whiteboard" : "",
+         "cf_rank" : null,
+         "cf_status_firefox53" : "unaffected",
+         "cf_status_firefox54" : "unaffected",
+         "cf_status_firefox55" : "verified",
+         "cf_status_firefox56" : "---",
+         "cf_status_firefox57" : "---",
+         "cf_status_firefox_esr45" : "---",
+         "cf_status_firefox_esr52" : "unaffected",
+         "cf_tracking_firefox53" : "---",
+         "cf_tracking_firefox54" : "---",
+         "cf_tracking_firefox55" : "---",
+         "cf_tracking_firefox56" : "---",
+         "cf_tracking_firefox57" : "---",
+         "cf_tracking_firefox_esr45" : "---",
+         "cf_tracking_firefox_esr52" : "---",
+         "cf_tracking_firefox_relnote" : "---",
+         "cf_user_story" : "",
+         "classification" : "Client Software",
+         "comment_count" : 6,
+         "component" : "Theme",
+         "creation_time" : "2017-05-13T18:13:31Z",
+         "creator" : "itiel_yn8@walla.com",
+         "creator_detail" : {
+            "email" : "itiel_yn8@walla.com",
+            "id" : 353822,
+            "name" : "itiel_yn8@walla.com",
+            "real_name" : "ItielMaN"
+         },
+         "depends_on" : [],
+         "dupe_of" : null,
+         "flags" : [],
+         "groups" : [],
+         "id" : 1364702,
+         "is_cc_accessible" : true,
+         "is_confirmed" : true,
+         "is_creator_accessible" : true,
+         "is_open" : false,
+         "keywords" : [
+            "regression"
+         ],
+         "last_change_time" : "2017-05-17T17:09:18Z",
+         "mentors" : [],
+         "mentors_detail" : [],
+         "op_sys" : "Unspecified",
+         "platform" : "Unspecified",
+         "priority" : "P1",
+         "product" : "Firefox",
+         "qa_contact" : "brindusa.tot@softvision.ro",
+         "qa_contact_detail" : {
+            "email" : "brindusa.tot@softvision.ro",
+            "id" : 553429,
+            "name" : "brindusa.tot@softvision.ro",
+            "real_name" : "Brindusa Tot[:brindusat]"
+         },
+         "resolution" : "FIXED",
+         "see_also" : [],
+         "severity" : "normal",
+         "status" : "VERIFIED",
+         "summary" : "Forward button looks like Back button in RTL locales",
+         "target_milestone" : "Firefox 55",
+         "url" : "",
+         "version" : "55 Branch",
+         "votes" : 0,
+         "whiteboard" : "[photon-visual][p1]"
+      },
+      {
+         "alias" : null,
+         "assigned_to" : "dao+bmo@mozilla.com",
+         "assigned_to_detail" : {
+            "email" : "dao+bmo@mozilla.com",
+            "id" : 219124,
+            "name" : "dao+bmo@mozilla.com",
+            "real_name" : "Dão Gottwald [::dao]"
+         },
+         "blocks" : [
+            1325171,
+            1364090
+         ],
+         "cc" : [
+            "dao+bmo@mozilla.com",
+            "jhofmann@mozilla.com",
+            "jwilliams@softvision.com",
+            "mmucci@mozilla.com",
+            "tomer.moz.bugs@tomercohen.com"
+         ],
+         "cc_detail" : [
+            {
+               "email" : "dao+bmo@mozilla.com",
+               "id" : 219124,
+               "name" : "dao+bmo@mozilla.com",
+               "real_name" : "Dão Gottwald [::dao]"
+            },
+            {
+               "email" : "jhofmann@mozilla.com",
+               "id" : 522029,
+               "name" : "jhofmann@mozilla.com",
+               "real_name" : "Johann Hofmann [:johannh]"
+            },
+            {
+               "email" : "jwilliams@softvision.com",
+               "id" : 554370,
+               "name" : "jwilliams@softvision.com",
+               "real_name" : "Justin [:JW_SoftvisionQA]"
+            },
+            {
+               "email" : "mmucci@mozilla.com",
+               "id" : 458208,
+               "name" : "mmucci@mozilla.com",
+               "real_name" : "Marco Mucci [:MarcoM]"
+            },
+            {
+               "email" : "tomer.moz.bugs@tomercohen.com",
+               "id" : 33744,
+               "name" : "tomer.moz.bugs@tomercohen.com",
+               "real_name" : "Tomer Cohen :tomer"
+            }
+         ],
+         "cf_crash_signature" : "",
+         "cf_fx_iteration" : "55.6 - May 29",
+         "cf_fx_points" : "---",
+         "cf_has_regression_range" : "---",
+         "cf_has_str" : "---",
+         "cf_last_resolved" : "2017-05-19T16:17:13Z",
+         "cf_platform_rel" : "---",
+         "cf_qa_whiteboard" : "",
+         "cf_rank" : null,
+         "cf_status_firefox53" : "unaffected",
+         "cf_status_firefox54" : "unaffected",
+         "cf_status_firefox55" : "fixed",
+         "cf_status_firefox56" : "---",
+         "cf_status_firefox57" : "---",
+         "cf_status_firefox_esr45" : "---",
+         "cf_status_firefox_esr52" : "unaffected",
+         "cf_tracking_firefox53" : "---",
+         "cf_tracking_firefox54" : "---",
+         "cf_tracking_firefox55" : "---",
+         "cf_tracking_firefox56" : "---",
+         "cf_tracking_firefox57" : "---",
+         "cf_tracking_firefox_esr45" : "---",
+         "cf_tracking_firefox_esr52" : "---",
+         "cf_tracking_firefox_relnote" : "---",
+         "cf_user_story" : "",
+         "classification" : "Client Software",
+         "comment_count" : 6,
+         "component" : "Theme",
+         "creation_time" : "2017-05-15T19:54:28Z",
+         "creator" : "itiel_yn8@walla.com",
+         "creator_detail" : {
+            "email" : "itiel_yn8@walla.com",
+            "id" : 353822,
+            "name" : "itiel_yn8@walla.com",
+            "real_name" : "ItielMaN"
+         },
+         "depends_on" : [],
+         "dupe_of" : null,
+         "flags" : [],
+         "groups" : [],
+         "id" : 1365024,
+         "is_cc_accessible" : true,
+         "is_confirmed" : true,
+         "is_creator_accessible" : true,
+         "is_open" : false,
+         "keywords" : [
+            "regression",
+            "rtl"
+         ],
+         "last_change_time" : "2017-05-21T20:15:34Z",
+         "mentors" : [],
+         "mentors_detail" : [],
+         "op_sys" : "All",
+         "platform" : "All",
+         "priority" : "P1",
+         "product" : "Firefox",
+         "qa_contact" : "brindusa.tot@softvision.ro",
+         "qa_contact_detail" : {
+            "email" : "brindusa.tot@softvision.ro",
+            "id" : 553429,
+            "name" : "brindusa.tot@softvision.ro",
+            "real_name" : "Brindusa Tot[:brindusat]"
+         },
+         "resolution" : "FIXED",
+         "see_also" : [
+            "https://bugzilla.mozilla.org/show_bug.cgi?id=1337891"
+         ],
+         "severity" : "normal",
+         "status" : "VERIFIED",
+         "summary" : "Reload button mirrored in RTL builds",
+         "target_milestone" : "Firefox 55",
+         "url" : "",
+         "version" : "55 Branch",
+         "votes" : 0,
+         "whiteboard" : "[photon-visual][p1]"
+      },
+      {
+         "alias" : null,
+         "assigned_to" : "evan@tseng.io",
+         "assigned_to_detail" : {
+            "email" : "evan@tseng.io",
+            "id" : 459562,
+            "name" : "evan@tseng.io",
+            "real_name" : "Evan Tseng [:evanxd] (Away 5/27 - 5/30)"
+         },
+         "blocks" : [
+            1357285
+         ],
+         "cc" : [
+            "evan@tseng.io",
+            "francesco.lodolo@gmail.com",
+            "frlee@mozilla.com",
+            "mconley@mozilla.com"
+         ],
+         "cc_detail" : [
+            {
+               "email" : "evan@tseng.io",
+               "id" : 459562,
+               "name" : "evan@tseng.io",
+               "real_name" : "Evan Tseng [:evanxd] (Away 5/27 - 5/30)"
+            },
+            {
+               "email" : "francesco.lodolo@gmail.com",
+               "id" : 130462,
+               "name" : "francesco.lodolo@gmail.com",
+               "real_name" : "Francesco Lodolo [:flod]"
+            },
+            {
+               "email" : "frlee@mozilla.com",
+               "id" : 474089,
+               "name" : "frlee@mozilla.com",
+               "real_name" : "Francis Lee [:frlee]"
+            },
+            {
+               "email" : "mconley@mozilla.com",
+               "id" : 403756,
+               "name" : "mconley@mozilla.com",
+               "real_name" : "Mike Conley (:mconley)"
+            }
+         ],
+         "cf_crash_signature" : "",
+         "cf_fx_iteration" : "---",
+         "cf_fx_points" : "---",
+         "cf_has_regression_range" : "---",
+         "cf_has_str" : "---",
+         "cf_last_resolved" : "2017-05-18T12:27:54Z",
+         "cf_platform_rel" : "---",
+         "cf_qa_whiteboard" : "",
+         "cf_rank" : null,
+         "cf_status_firefox53" : "unaffected",
+         "cf_status_firefox54" : "unaffected",
+         "cf_status_firefox55" : "verified",
+         "cf_status_firefox56" : "---",
+         "cf_status_firefox57" : "---",
+         "cf_status_firefox_esr45" : "---",
+         "cf_status_firefox_esr52" : "---",
+         "cf_tracking_firefox53" : "---",
+         "cf_tracking_firefox54" : "---",
+         "cf_tracking_firefox55" : "---",
+         "cf_tracking_firefox56" : "---",
+         "cf_tracking_firefox57" : "---",
+         "cf_tracking_firefox_esr45" : "---",
+         "cf_tracking_firefox_esr52" : "---",
+         "cf_tracking_firefox_relnote" : "---",
+         "cf_user_story" : "",
+         "classification" : "Client Software",
+         "comment_count" : 13,
+         "component" : "Preferences",
+         "creation_time" : "2017-05-16T14:09:19Z",
+         "creator" : "hani.yacoub@softvision.ro",
+         "creator_detail" : {
+            "email" : "hani.yacoub@softvision.ro",
+            "id" : 583007,
+            "name" : "hani.yacoub@softvision.ro",
+            "real_name" : "Hani Yacoub"
+         },
+         "depends_on" : [],
+         "dupe_of" : null,
+         "flags" : [
+            {
+               "creation_date" : "2017-05-17T03:19:44Z",
+               "id" : 1582337,
+               "modification_date" : "2017-05-17T03:19:44Z",
+               "name" : "qe-verify",
+               "setter" : "frlee@mozilla.com",
+               "status" : "+",
+               "type_id" : 864
+            }
+         ],
+         "groups" : [],
+         "id" : 1365259,
+         "is_cc_accessible" : true,
+         "is_confirmed" : true,
+         "is_creator_accessible" : true,
+         "is_open" : false,
+         "keywords" : [],
+         "last_change_time" : "2017-05-24T12:58:47Z",
+         "mentors" : [],
+         "mentors_detail" : [],
+         "op_sys" : "All",
+         "platform" : "All",
+         "priority" : "P1",
+         "product" : "Firefox",
+         "qa_contact" : "hani.yacoub@softvision.ro",
+         "qa_contact_detail" : {
+            "email" : "hani.yacoub@softvision.ro",
+            "id" : 583007,
+            "name" : "hani.yacoub@softvision.ro",
+            "real_name" : "Hani Yacoub"
+         },
+         "resolution" : "FIXED",
+         "see_also" : [
+            "https://bugzilla.mozilla.org/show_bug.cgi?id=1366214"
+         ],
+         "severity" : "normal",
+         "status" : "VERIFIED",
+         "summary" : "Wrong message is displayed when searching for something with no search results",
+         "target_milestone" : "Firefox 55",
+         "url" : "",
+         "version" : "55 Branch",
+         "votes" : 0,
+         "whiteboard" : "[photon-preference]"
+      },
+      {
+         "alias" : null,
+         "assigned_to" : "mdeboer@mozilla.com",
+         "assigned_to_detail" : {
+            "email" : "mdeboer@mozilla.com",
+            "id" : 463945,
+            "name" : "mdeboer@mozilla.com",
+            "real_name" : "Mike de Boer [:mikedeboer]"
+         },
+         "blocks" : [
+            1352695
+         ],
+         "cc" : [
+            "bbell@mozilla.com",
+            "gijskruitbosch+bugs@gmail.com",
+            "mdeboer@mozilla.com",
+            "mmucci@mozilla.com"
+         ],
+         "cc_detail" : [
+            {
+               "email" : "bbell@mozilla.com",
+               "id" : 509819,
+               "name" : "bbell@mozilla.com",
+               "real_name" : ""
+            },
+            {
+               "email" : "gijskruitbosch+bugs@gmail.com",
+               "id" : 159069,
+               "name" : "gijskruitbosch+bugs@gmail.com",
+               "real_name" : ":Gijs"
+            },
+            {
+               "email" : "mdeboer@mozilla.com",
+               "id" : 463945,
+               "name" : "mdeboer@mozilla.com",
+               "real_name" : "Mike de Boer [:mikedeboer]"
+            },
+            {
+               "email" : "mmucci@mozilla.com",
+               "id" : 458208,
+               "name" : "mmucci@mozilla.com",
+               "real_name" : "Marco Mucci [:MarcoM]"
+            }
+         ],
+         "cf_crash_signature" : "",
+         "cf_fx_iteration" : "55.6 - May 29",
+         "cf_fx_points" : "---",
+         "cf_has_regression_range" : "---",
+         "cf_has_str" : "---",
+         "cf_last_resolved" : "2017-05-23T22:06:58Z",
+         "cf_platform_rel" : "---",
+         "cf_qa_whiteboard" : "",
+         "cf_rank" : null,
+         "cf_status_firefox53" : "---",
+         "cf_status_firefox54" : "---",
+         "cf_status_firefox55" : "verified",
+         "cf_status_firefox56" : "---",
+         "cf_status_firefox57" : "---",
+         "cf_status_firefox_esr45" : "---",
+         "cf_status_firefox_esr52" : "---",
+         "cf_tracking_firefox53" : "---",
+         "cf_tracking_firefox54" : "---",
+         "cf_tracking_firefox55" : "---",
+         "cf_tracking_firefox56" : "---",
+         "cf_tracking_firefox57" : "---",
+         "cf_tracking_firefox_esr45" : "---",
+         "cf_tracking_firefox_esr52" : "---",
+         "cf_tracking_firefox_relnote" : "---",
+         "cf_user_story" : "",
+         "classification" : "Client Software",
+         "comment_count" : 11,
+         "component" : "Toolbars and Customization",
+         "creation_time" : "2017-05-17T16:31:59Z",
+         "creator" : "mdeboer@mozilla.com",
+         "creator_detail" : {
+            "email" : "mdeboer@mozilla.com",
+            "id" : 463945,
+            "name" : "mdeboer@mozilla.com",
+            "real_name" : "Mike de Boer [:mikedeboer]"
+         },
+         "depends_on" : [
+            1363753
+         ],
+         "dupe_of" : null,
+         "flags" : [],
+         "groups" : [],
+         "id" : 1365647,
+         "is_cc_accessible" : true,
+         "is_confirmed" : true,
+         "is_creator_accessible" : true,
+         "is_open" : false,
+         "keywords" : [],
+         "last_change_time" : "2017-05-25T20:45:50Z",
+         "mentors" : [],
+         "mentors_detail" : [],
+         "op_sys" : "Unspecified",
+         "platform" : "Unspecified",
+         "priority" : "P1",
+         "product" : "Firefox",
+         "qa_contact" : "gwimberly@softvision.com",
+         "qa_contact_detail" : {
+            "email" : "gwimberly@softvision.com",
+            "id" : 554753,
+            "name" : "gwimberly@softvision.com",
+            "real_name" : "Grover Wimberly IV [:Grover-QA]"
+         },
+         "resolution" : "FIXED",
+         "see_also" : [],
+         "severity" : "normal",
+         "status" : "VERIFIED",
+         "summary" : "Ensure that the height of panel views does not shrink smaller that of the main view",
+         "target_milestone" : "Firefox 55",
+         "url" : "",
+         "version" : "Trunk",
+         "votes" : 0,
+         "whiteboard" : "[photon-structure]"
+      },
+      {
+         "alias" : null,
+         "assigned_to" : "dao+bmo@mozilla.com",
+         "assigned_to_detail" : {
+            "email" : "dao+bmo@mozilla.com",
+            "id" : 219124,
+            "name" : "dao+bmo@mozilla.com",
+            "real_name" : "Dão Gottwald [::dao]"
+         },
+         "blocks" : [
+            1365003
+         ],
+         "cc" : [
+            "dale@mozilla.com",
+            "garyshap@outlook.com",
+            "jhofmann@mozilla.com",
+            "maruf.rahman.95@gmail.com"
+         ],
+         "cc_detail" : [
+            {
+               "email" : "dale@mozilla.com",
+               "id" : 389449,
+               "name" : "dale@mozilla.com",
+               "real_name" : "Dale Harvey (:daleharvey)"
+            },
+            {
+               "email" : "garyshap@outlook.com",
+               "id" : 336421,
+               "name" : "garyshap@outlook.com",
+               "real_name" : "Gary [:streetwolf]"
+            },
+            {
+               "email" : "jhofmann@mozilla.com",
+               "id" : 522029,
+               "name" : "jhofmann@mozilla.com",
+               "real_name" : "Johann Hofmann [:johannh]"
+            },
+            {
+               "email" : "maruf.rahman.95@gmail.com",
+               "id" : 559911,
+               "name" : "maruf.rahman.95@gmail.com",
+               "real_name" : "Mohammad Maruf Rahman"
+            }
+         ],
+         "cf_crash_signature" : "",
+         "cf_fx_iteration" : "---",
+         "cf_fx_points" : "---",
+         "cf_has_regression_range" : "---",
+         "cf_has_str" : "---",
+         "cf_last_resolved" : "2017-05-19T00:16:37Z",
+         "cf_platform_rel" : "---",
+         "cf_qa_whiteboard" : "[bugday-20170524]",
+         "cf_rank" : null,
+         "cf_status_firefox53" : "---",
+         "cf_status_firefox54" : "---",
+         "cf_status_firefox55" : "verified",
+         "cf_status_firefox56" : "---",
+         "cf_status_firefox57" : "---",
+         "cf_status_firefox_esr45" : "---",
+         "cf_status_firefox_esr52" : "---",
+         "cf_tracking_firefox53" : "---",
+         "cf_tracking_firefox54" : "---",
+         "cf_tracking_firefox55" : "---",
+         "cf_tracking_firefox56" : "---",
+         "cf_tracking_firefox57" : "---",
+         "cf_tracking_firefox_esr45" : "---",
+         "cf_tracking_firefox_esr52" : "---",
+         "cf_tracking_firefox_relnote" : "---",
+         "cf_user_story" : "",
+         "classification" : "Client Software",
+         "comment_count" : 9,
+         "component" : "Theme",
+         "creation_time" : "2017-05-17T18:14:38Z",
+         "creator" : "dao+bmo@mozilla.com",
+         "creator_detail" : {
+            "email" : "dao+bmo@mozilla.com",
+            "id" : 219124,
+            "name" : "dao+bmo@mozilla.com",
+            "real_name" : "Dão Gottwald [::dao]"
+         },
+         "depends_on" : [
+            1365213
+         ],
+         "dupe_of" : null,
+         "flags" : [
+            {
+               "creation_date" : "2017-05-17T18:18:43Z",
+               "id" : 1582860,
+               "modification_date" : "2017-05-17T18:18:43Z",
+               "name" : "qe-verify",
+               "setter" : "dao+bmo@mozilla.com",
+               "status" : "+",
+               "type_id" : 864
+            }
+         ],
+         "groups" : [],
+         "id" : 1365683,
+         "is_cc_accessible" : true,
+         "is_confirmed" : true,
+         "is_creator_accessible" : true,
+         "is_open" : false,
+         "keywords" : [],
+         "last_change_time" : "2017-05-29T14:10:43Z",
+         "mentors" : [],
+         "mentors_detail" : [],
+         "op_sys" : "All",
+         "platform" : "All",
+         "priority" : "--",
+         "product" : "Firefox",
+         "qa_contact" : "",
+         "resolution" : "FIXED",
+         "see_also" : [],
+         "severity" : "normal",
+         "status" : "VERIFIED",
+         "summary" : "Increase horizontal margin around the location bar and the search bar",
+         "target_milestone" : "Firefox 55",
+         "url" : "",
+         "version" : "Trunk",
+         "votes" : 0,
+         "whiteboard" : ""
+      },
+      {
+         "alias" : null,
+         "assigned_to" : "dale@mozilla.com",
+         "assigned_to_detail" : {
+            "email" : "dale@mozilla.com",
+            "id" : 389449,
+            "name" : "dale@mozilla.com",
+            "real_name" : "Dale Harvey (:daleharvey)"
+         },
+         "blocks" : [
+            1325171
+         ],
+         "cc" : [
+            "dao+bmo@mozilla.com",
+            "jhofmann@mozilla.com",
+            "mmucci@mozilla.com",
+            "sajedul01sd@gmail.com",
+            "semidago@pavilionx2.com",
+            "timbugzilla@gmail.com",
+            "Virtual@MsgSafe.io"
+         ],
+         "cc_detail" : [
+            {
+               "email" : "dao+bmo@mozilla.com",
+               "id" : 219124,
+               "name" : "dao+bmo@mozilla.com",
+               "real_name" : "Dão Gottwald [::dao]"
+            },
+            {
+               "email" : "jhofmann@mozilla.com",
+               "id" : 522029,
+               "name" : "jhofmann@mozilla.com",
+               "real_name" : "Johann Hofmann [:johannh]"
+            },
+            {
+               "email" : "mmucci@mozilla.com",
+               "id" : 458208,
+               "name" : "mmucci@mozilla.com",
+               "real_name" : "Marco Mucci [:MarcoM]"
+            },
+            {
+               "email" : "sajedul01sd@gmail.com",
+               "id" : 554183,
+               "name" : "sajedul01sd@gmail.com",
+               "real_name" : "Sajedul Islam"
+            },
+            {
+               "email" : "semidago@pavilionx2.com",
+               "id" : 595641,
+               "name" : "semidago@pavilionx2.com",
+               "real_name" : "Sami"
+            },
+            {
+               "email" : "timbugzilla@gmail.com",
+               "id" : 437905,
+               "name" : "timbugzilla@gmail.com",
+               "real_name" : ""
+            },
+            {
+               "email" : "Virtual@MsgSafe.io",
+               "id" : 342842,
+               "name" : "Virtual@MsgSafe.io",
+               "real_name" : "Virtual_ManPL [:Virtual] - (please needinfo? me - so I will see your comment/reply/question/etc.)"
+            }
+         ],
+         "cf_crash_signature" : "",
+         "cf_fx_iteration" : "55.6 - May 29",
+         "cf_fx_points" : "---",
+         "cf_has_regression_range" : "---",
+         "cf_has_str" : "---",
+         "cf_last_resolved" : "2017-05-19T00:16:44Z",
+         "cf_platform_rel" : "---",
+         "cf_qa_whiteboard" : "",
+         "cf_rank" : null,
+         "cf_status_firefox53" : "---",
+         "cf_status_firefox54" : "---",
+         "cf_status_firefox55" : "verified",
+         "cf_status_firefox56" : "---",
+         "cf_status_firefox57" : "---",
+         "cf_status_firefox_esr45" : "---",
+         "cf_status_firefox_esr52" : "---",
+         "cf_tracking_firefox53" : "---",
+         "cf_tracking_firefox54" : "---",
+         "cf_tracking_firefox55" : "---",
+         "cf_tracking_firefox56" : "---",
+         "cf_tracking_firefox57" : "---",
+         "cf_tracking_firefox_esr45" : "---",
+         "cf_tracking_firefox_esr52" : "---",
+         "cf_tracking_firefox_relnote" : "---",
+         "cf_user_story" : "",
+         "classification" : "Client Software",
+         "comment_count" : 13,
+         "component" : "Theme",
+         "creation_time" : "2017-05-18T12:08:34Z",
+         "creator" : "dale@mozilla.com",
+         "creator_detail" : {
+            "email" : "dale@mozilla.com",
+            "id" : 389449,
+            "name" : "dale@mozilla.com",
+            "real_name" : "Dale Harvey (:daleharvey)"
+         },
+         "depends_on" : [
+            1366519
+         ],
+         "dupe_of" : null,
+         "flags" : [],
+         "groups" : [],
+         "id" : 1365906,
+         "is_cc_accessible" : true,
+         "is_confirmed" : true,
+         "is_creator_accessible" : true,
+         "is_open" : false,
+         "keywords" : [],
+         "last_change_time" : "2017-05-29T14:11:00Z",
+         "mentors" : [],
+         "mentors_detail" : [],
+         "op_sys" : "Windows",
+         "platform" : "Unspecified",
+         "priority" : "P1",
+         "product" : "Firefox",
+         "qa_contact" : "brindusa.tot@softvision.ro",
+         "qa_contact_detail" : {
+            "email" : "brindusa.tot@softvision.ro",
+            "id" : 553429,
+            "name" : "brindusa.tot@softvision.ro",
+            "real_name" : "Brindusa Tot[:brindusat]"
+         },
+         "resolution" : "FIXED",
+         "see_also" : [],
+         "severity" : "normal",
+         "status" : "VERIFIED",
+         "summary" : "Location bar and search bar text sizes are too small on Windows",
+         "target_milestone" : "Firefox 55",
+         "url" : "",
+         "version" : "unspecified",
+         "votes" : 0,
+         "whiteboard" : "[photon-visual][p1]"
+      },
+      {
+         "alias" : null,
+         "assigned_to" : "gtatum@mozilla.com",
+         "assigned_to_detail" : {
+            "email" : "gtatum@mozilla.com",
+            "id" : 561658,
+            "name" : "gtatum@mozilla.com",
+            "real_name" : "Greg Tatum [:gregtatum] [@gregtatum]"
+         },
+         "blocks" : [],
+         "cc" : [
+            "andrei.vaida@softvision.ro",
+            "brindusa.tot@softvision.ro",
+            "gchang@mozilla.com",
+            "gtatum@mozilla.com",
+            "jacob@fogcreek.com",
+            "majed.rifat@gmail.com",
+            "nfitzgerald@mozilla.com"
+         ],
+         "cc_detail" : [
+            {
+               "email" : "andrei.vaida@softvision.ro",
+               "id" : 488993,
+               "name" : "andrei.vaida@softvision.ro",
+               "real_name" : "Andrei Vaida [:avaida], Desktop Release QA – please ni? me"
+            },
+            {
+               "email" : "brindusa.tot@softvision.ro",
+               "id" : 553429,
+               "name" : "brindusa.tot@softvision.ro",
+               "real_name" : "Brindusa Tot[:brindusat]"
+            },
+            {
+               "email" : "gchang@mozilla.com",
+               "id" : 506302,
+               "name" : "gchang@mozilla.com",
+               "real_name" : "Gerry Chang [:gchang]"
+            },
+            {
+               "email" : "gtatum@mozilla.com",
+               "id" : 561658,
+               "name" : "gtatum@mozilla.com",
+               "real_name" : "Greg Tatum [:gregtatum] [@gregtatum]"
+            },
+            {
+               "email" : "jacob@fogcreek.com",
+               "id" : 364076,
+               "name" : "jacob@fogcreek.com",
+               "real_name" : "Jacob"
+            },
+            {
+               "email" : "majed.rifat@gmail.com",
+               "id" : 575261,
+               "name" : "majed.rifat@gmail.com",
+               "real_name" : "Md.Majedul islam"
+            },
+            {
+               "email" : "nfitzgerald@mozilla.com",
+               "id" : 417695,
+               "name" : "nfitzgerald@mozilla.com",
+               "real_name" : "Nick Fitzgerald [:fitzgen] [⏰PST; UTC-8]"
+            }
+         ],
+         "cf_crash_signature" : "",
+         "cf_fx_iteration" : "---",
+         "cf_fx_points" : "---",
+         "cf_has_regression_range" : "---",
+         "cf_has_str" : "---",
+         "cf_last_resolved" : "2017-05-21T20:22:07Z",
+         "cf_platform_rel" : "---",
+         "cf_qa_whiteboard" : "",
+         "cf_rank" : null,
+         "cf_status_firefox53" : "---",
+         "cf_status_firefox54" : "fixed",
+         "cf_status_firefox55" : "verified",
+         "cf_status_firefox56" : "---",
+         "cf_status_firefox57" : "---",
+         "cf_status_firefox_esr45" : "---",
+         "cf_status_firefox_esr52" : "---",
+         "cf_tracking_firefox53" : "---",
+         "cf_tracking_firefox54" : "---",
+         "cf_tracking_firefox55" : "---",
+         "cf_tracking_firefox56" : "---",
+         "cf_tracking_firefox57" : "---",
+         "cf_tracking_firefox_esr45" : "---",
+         "cf_tracking_firefox_esr52" : "---",
+         "cf_tracking_firefox_relnote" : "---",
+         "cf_user_story" : "",
+         "classification" : "Client Software",
+         "comment_count" : 15,
+         "component" : "Developer Tools: Memory",
+         "creation_time" : "2017-05-18T20:44:43Z",
+         "creator" : "jacob@fogcreek.com",
+         "creator_detail" : {
+            "email" : "jacob@fogcreek.com",
+            "id" : 364076,
+            "name" : "jacob@fogcreek.com",
+            "real_name" : "Jacob"
+         },
+         "depends_on" : [],
+         "dupe_of" : null,
+         "flags" : [
+            {
+               "creation_date" : "2017-05-26T04:31:28Z",
+               "id" : 1587726,
+               "modification_date" : "2017-05-26T04:31:28Z",
+               "name" : "qe-verify",
+               "setter" : "andrei.vaida@softvision.ro",
+               "status" : "+",
+               "type_id" : 864
+            }
+         ],
+         "groups" : [],
+         "id" : 1366061,
+         "is_cc_accessible" : true,
+         "is_confirmed" : true,
+         "is_creator_accessible" : true,
+         "is_open" : false,
+         "keywords" : [],
+         "last_change_time" : "2017-05-26T04:31:28Z",
+         "mentors" : [],
+         "mentors_detail" : [],
+         "op_sys" : "Unspecified",
+         "platform" : "Unspecified",
+         "priority" : "--",
+         "product" : "Firefox",
+         "qa_contact" : "",
+         "resolution" : "FIXED",
+         "see_also" : [],
+         "severity" : "normal",
+         "status" : "VERIFIED",
+         "summary" : "\"Save\" fails in Memory snapshot tool",
+         "target_milestone" : "Firefox 55",
+         "url" : "",
+         "version" : "53 Branch",
+         "votes" : 0,
+         "whiteboard" : ""
+      },
+      {
+         "alias" : null,
+         "assigned_to" : "evan@tseng.io",
+         "assigned_to_detail" : {
+            "email" : "evan@tseng.io",
+            "id" : 459562,
+            "name" : "evan@tseng.io",
+            "real_name" : "Evan Tseng [:evanxd] (Away 5/27 - 5/30)"
+         },
+         "blocks" : [
+            1357285
+         ],
+         "cc" : [
+            "francesco.lodolo@gmail.com",
+            "mconley@mozilla.com"
+         ],
+         "cc_detail" : [
+            {
+               "email" : "francesco.lodolo@gmail.com",
+               "id" : 130462,
+               "name" : "francesco.lodolo@gmail.com",
+               "real_name" : "Francesco Lodolo [:flod]"
+            },
+            {
+               "email" : "mconley@mozilla.com",
+               "id" : 403756,
+               "name" : "mconley@mozilla.com",
+               "real_name" : "Mike Conley (:mconley)"
+            }
+         ],
+         "cf_crash_signature" : "",
+         "cf_fx_iteration" : "---",
+         "cf_fx_points" : "---",
+         "cf_has_regression_range" : "---",
+         "cf_has_str" : "---",
+         "cf_last_resolved" : "2017-05-27T08:08:00Z",
+         "cf_platform_rel" : "---",
+         "cf_qa_whiteboard" : "",
+         "cf_rank" : null,
+         "cf_status_firefox53" : "---",
+         "cf_status_firefox54" : "---",
+         "cf_status_firefox55" : "verified",
+         "cf_status_firefox56" : "---",
+         "cf_status_firefox57" : "---",
+         "cf_status_firefox_esr45" : "---",
+         "cf_status_firefox_esr52" : "---",
+         "cf_tracking_firefox53" : "---",
+         "cf_tracking_firefox54" : "---",
+         "cf_tracking_firefox55" : "---",
+         "cf_tracking_firefox56" : "---",
+         "cf_tracking_firefox57" : "---",
+         "cf_tracking_firefox_esr45" : "---",
+         "cf_tracking_firefox_esr52" : "---",
+         "cf_tracking_firefox_relnote" : "---",
+         "cf_user_story" : "",
+         "classification" : "Client Software",
+         "comment_count" : 18,
+         "component" : "Preferences",
+         "creation_time" : "2017-05-19T10:09:16Z",
+         "creator" : "evan@tseng.io",
+         "creator_detail" : {
+            "email" : "evan@tseng.io",
+            "id" : 459562,
+            "name" : "evan@tseng.io",
+            "real_name" : "Evan Tseng [:evanxd] (Away 5/27 - 5/30)"
+         },
+         "depends_on" : [],
+         "dupe_of" : null,
+         "flags" : [
+            {
+               "creation_date" : "2017-05-19T10:09:16Z",
+               "id" : 1583981,
+               "modification_date" : "2017-05-19T10:09:16Z",
+               "name" : "qe-verify",
+               "setter" : "evan@tseng.io",
+               "status" : "+",
+               "type_id" : 864
+            }
+         ],
+         "groups" : [],
+         "id" : 1366214,
+         "is_cc_accessible" : true,
+         "is_confirmed" : true,
+         "is_creator_accessible" : true,
+         "is_open" : false,
+         "keywords" : [],
+         "last_change_time" : "2017-05-29T14:23:09Z",
+         "mentors" : [],
+         "mentors_detail" : [],
+         "op_sys" : "Unspecified",
+         "platform" : "Unspecified",
+         "priority" : "P1",
+         "product" : "Firefox",
+         "qa_contact" : "hani.yacoub@softvision.ro",
+         "qa_contact_detail" : {
+            "email" : "hani.yacoub@softvision.ro",
+            "id" : 583007,
+            "name" : "hani.yacoub@softvision.ro",
+            "real_name" : "Hani Yacoub"
+         },
+         "resolution" : "FIXED",
+         "see_also" : [
+            "https://bugzilla.mozilla.org/show_bug.cgi?id=1365259"
+         ],
+         "severity" : "normal",
+         "status" : "VERIFIED",
+         "summary" : "The result not found message should be \"Sorry! There are no results in Options for \" on Windows",
+         "target_milestone" : "Firefox 56",
+         "url" : "",
+         "version" : "55 Branch",
+         "votes" : 0,
+         "whiteboard" : "[photon-preference]"
+      },
+      {
+         "alias" : null,
+         "assigned_to" : "dao+bmo@mozilla.com",
+         "assigned_to_detail" : {
+            "email" : "dao+bmo@mozilla.com",
+            "id" : 219124,
+            "name" : "dao+bmo@mozilla.com",
+            "real_name" : "Dão Gottwald [::dao]"
+         },
+         "blocks" : [
+            1352366
+         ],
+         "cc" : [
+            "dale@mozilla.com",
+            "dao+bmo@mozilla.com",
+            "mmucci@mozilla.com"
+         ],
+         "cc_detail" : [
+            {
+               "email" : "dale@mozilla.com",
+               "id" : 389449,
+               "name" : "dale@mozilla.com",
+               "real_name" : "Dale Harvey (:daleharvey)"
+            },
+            {
+               "email" : "dao+bmo@mozilla.com",
+               "id" : 219124,
+               "name" : "dao+bmo@mozilla.com",
+               "real_name" : "Dão Gottwald [::dao]"
+            },
+            {
+               "email" : "mmucci@mozilla.com",
+               "id" : 458208,
+               "name" : "mmucci@mozilla.com",
+               "real_name" : "Marco Mucci [:MarcoM]"
+            }
+         ],
+         "cf_crash_signature" : "",
+         "cf_fx_iteration" : "55.6 - May 29",
+         "cf_fx_points" : "---",
+         "cf_has_regression_range" : "yes",
+         "cf_has_str" : "yes",
+         "cf_last_resolved" : "2017-05-23T22:18:09Z",
+         "cf_platform_rel" : "---",
+         "cf_qa_whiteboard" : "",
+         "cf_rank" : null,
+         "cf_status_firefox53" : "unaffected",
+         "cf_status_firefox54" : "unaffected",
+         "cf_status_firefox55" : "verified",
+         "cf_status_firefox56" : "---",
+         "cf_status_firefox57" : "---",
+         "cf_status_firefox_esr45" : "unaffected",
+         "cf_status_firefox_esr52" : "unaffected",
+         "cf_tracking_firefox53" : "---",
+         "cf_tracking_firefox54" : "---",
+         "cf_tracking_firefox55" : "---",
+         "cf_tracking_firefox56" : "---",
+         "cf_tracking_firefox57" : "---",
+         "cf_tracking_firefox_esr45" : "---",
+         "cf_tracking_firefox_esr52" : "---",
+         "cf_tracking_firefox_relnote" : "---",
+         "cf_user_story" : "",
+         "classification" : "Client Software",
+         "comment_count" : 16,
+         "component" : "Location Bar",
+         "creation_time" : "2017-05-20T13:51:28Z",
+         "creator" : "Virtual@MsgSafe.io",
+         "creator_detail" : {
+            "email" : "Virtual@MsgSafe.io",
+            "id" : 342842,
+            "name" : "Virtual@MsgSafe.io",
+            "real_name" : "Virtual_ManPL [:Virtual] - (please needinfo? me - so I will see your comment/reply/question/etc.)"
+         },
+         "depends_on" : [],
+         "dupe_of" : null,
+         "flags" : [],
+         "groups" : [],
+         "id" : 1366484,
+         "is_cc_accessible" : true,
+         "is_confirmed" : true,
+         "is_creator_accessible" : true,
+         "is_open" : false,
+         "keywords" : [
+            "nightly-community",
+            "regression"
+         ],
+         "last_change_time" : "2017-05-24T17:24:30Z",
+         "mentors" : [],
+         "mentors_detail" : [],
+         "op_sys" : "Windows 7",
+         "platform" : "x86_64",
+         "priority" : "P1",
+         "product" : "Firefox",
+         "qa_contact" : "brindusa.tot@softvision.ro",
+         "qa_contact_detail" : {
+            "email" : "brindusa.tot@softvision.ro",
+            "id" : 553429,
+            "name" : "brindusa.tot@softvision.ro",
+            "real_name" : "Brindusa Tot[:brindusat]"
+         },
+         "resolution" : "FIXED",
+         "see_also" : [],
+         "severity" : "major",
+         "status" : "VERIFIED",
+         "summary" : "Location bar and search bar don't have a border unless hover with lightweight theme applied",
+         "target_milestone" : "Firefox 55",
+         "url" : "",
+         "version" : "55 Branch",
+         "votes" : 1,
+         "whiteboard" : "[photon-visual][p1]"
+      },
+      {
+         "alias" : null,
+         "assigned_to" : "rchien@mozilla.com",
+         "assigned_to_detail" : {
+            "email" : "rchien@mozilla.com",
+            "id" : 472014,
+            "name" : "rchien@mozilla.com",
+            "real_name" : "Ricky Chien [:rickychien]"
+         },
+         "blocks" : [
+            1357285
+         ],
+         "cc" : [
+            "dao+bmo@mozilla.com",
+            "evan@tseng.io",
+            "frlee@mozilla.com",
+            "rchien@mozilla.com"
+         ],
+         "cc_detail" : [
+            {
+               "email" : "dao+bmo@mozilla.com",
+               "id" : 219124,
+               "name" : "dao+bmo@mozilla.com",
+               "real_name" : "Dão Gottwald [::dao]"
+            },
+            {
+               "email" : "evan@tseng.io",
+               "id" : 459562,
+               "name" : "evan@tseng.io",
+               "real_name" : "Evan Tseng [:evanxd] (Away 5/27 - 5/30)"
+            },
+            {
+               "email" : "frlee@mozilla.com",
+               "id" : 474089,
+               "name" : "frlee@mozilla.com",
+               "real_name" : "Francis Lee [:frlee]"
+            },
+            {
+               "email" : "rchien@mozilla.com",
+               "id" : 472014,
+               "name" : "rchien@mozilla.com",
+               "real_name" : "Ricky Chien [:rickychien]"
+            }
+         ],
+         "cf_crash_signature" : "",
+         "cf_fx_iteration" : "---",
+         "cf_fx_points" : "---",
+         "cf_has_regression_range" : "---",
+         "cf_has_str" : "---",
+         "cf_last_resolved" : "2017-05-24T20:37:36Z",
+         "cf_platform_rel" : "---",
+         "cf_qa_whiteboard" : "",
+         "cf_rank" : null,
+         "cf_status_firefox53" : "unaffected",
+         "cf_status_firefox54" : "unaffected",
+         "cf_status_firefox55" : "verified",
+         "cf_status_firefox56" : "---",
+         "cf_status_firefox57" : "---",
+         "cf_status_firefox_esr45" : "---",
+         "cf_status_firefox_esr52" : "---",
+         "cf_tracking_firefox53" : "---",
+         "cf_tracking_firefox54" : "---",
+         "cf_tracking_firefox55" : "---",
+         "cf_tracking_firefox56" : "---",
+         "cf_tracking_firefox57" : "---",
+         "cf_tracking_firefox_esr45" : "---",
+         "cf_tracking_firefox_esr52" : "---",
+         "cf_tracking_firefox_relnote" : "---",
+         "cf_user_story" : "",
+         "classification" : "Client Software",
+         "comment_count" : 8,
+         "component" : "Preferences",
+         "creation_time" : "2017-05-23T09:16:36Z",
+         "creator" : "hani.yacoub@softvision.ro",
+         "creator_detail" : {
+            "email" : "hani.yacoub@softvision.ro",
+            "id" : 583007,
+            "name" : "hani.yacoub@softvision.ro",
+            "real_name" : "Hani Yacoub"
+         },
+         "depends_on" : [],
+         "dupe_of" : null,
+         "flags" : [
+            {
+               "creation_date" : "2017-05-24T01:36:21Z",
+               "id" : 1586117,
+               "modification_date" : "2017-05-24T01:36:21Z",
+               "name" : "qe-verify",
+               "setter" : "rchien@mozilla.com",
+               "status" : "+",
+               "type_id" : 864
+            }
+         ],
+         "groups" : [],
+         "id" : 1366992,
+         "is_cc_accessible" : true,
+         "is_confirmed" : true,
+         "is_creator_accessible" : true,
+         "is_open" : false,
+         "keywords" : [],
+         "last_change_time" : "2017-05-25T13:23:05Z",
+         "mentors" : [],
+         "mentors_detail" : [],
+         "op_sys" : "All",
+         "platform" : "All",
+         "priority" : "P1",
+         "product" : "Firefox",
+         "qa_contact" : "hani.yacoub@softvision.ro",
+         "qa_contact_detail" : {
+            "email" : "hani.yacoub@softvision.ro",
+            "id" : 583007,
+            "name" : "hani.yacoub@softvision.ro",
+            "real_name" : "Hani Yacoub"
+         },
+         "resolution" : "FIXED",
+         "see_also" : [],
+         "severity" : "normal",
+         "status" : "VERIFIED",
+         "summary" : "Search highlight fill should match the spec",
+         "target_milestone" : "Firefox 55",
+         "url" : "",
+         "version" : "55 Branch",
+         "votes" : 0,
+         "whiteboard" : "[photon-preference]"
+      },
+      {
+         "alias" : null,
+         "assigned_to" : "sledru@mozilla.com",
+         "assigned_to_detail" : {
+            "email" : "sledru@mozilla.com",
+            "id" : 495955,
+            "name" : "sledru@mozilla.com",
+            "real_name" : "Sylvestre Ledru [:sylvestre]"
+         },
+         "blocks" : [
+            1367143,
+            1367321
+         ],
+         "cc" : [
+            "almas.hossain1993@gmail.com",
+            "computerwhiz.mozilla@outlook.com",
+            "dannyfox@pmtech.ca",
+            "dolske@mozilla.com",
+            "educmale@yahoo.com",
+            "florian@queze.net",
+            "gavin.sharp@gmail.com",
+            "hskupin@gmail.com",
+            "jgriffiths@mozilla.com",
+            "lchiarav@bidmc.harvard.edu",
+            "lmandel@mozilla.com",
+            "mbeltzner@gmail.com",
+            "mkmelin+mozilla@iki.fi",
+            "mozaakash@gmail.com",
+            "mverdi@mozilla.com",
+            "n4sabbir@gmail.com",
+            "pascalc@gmail.com",
+            "paul.silaghi@softvision.ro",
+            "paul@mozilla.com",
+            "philipp@mozilla.com",
+            "pollti@gmx.net",
+            "sledru@mozilla.com",
+            "xtc4uall@gmail.com"
+         ],
+         "cc_detail" : [
+            {
+               "email" : "almas.hossain1993@gmail.com",
+               "id" : 559179,
+               "name" : "almas.hossain1993@gmail.com",
+               "real_name" : "Almas Hossain[:mAlmas]"
+            },
+            {
+               "email" : "computerwhiz.mozilla@outlook.com",
+               "id" : 497380,
+               "name" : "computerwhiz.mozilla@outlook.com",
+               "real_name" : "Wesley Branton"
+            },
+            {
+               "email" : "dannyfox@pmtech.ca",
+               "id" : 379839,
+               "name" : "dannyfox@pmtech.ca",
+               "real_name" : "Dan Pernokis"
+            },
+            {
+               "email" : "dolske@mozilla.com",
+               "id" : 27780,
+               "name" : "dolske@mozilla.com",
+               "real_name" : "Justin Dolske [:Dolske]"
+            },
+            {
+               "email" : "educmale@yahoo.com",
+               "id" : 113150,
+               "name" : "educmale@yahoo.com",
+               "real_name" : "john ruskin"
+            },
+            {
+               "email" : "florian@queze.net",
+               "id" : 149052,
+               "name" : "florian@queze.net",
+               "real_name" : "Florian Quèze [:florian] [:flo] (away until Monday May 29th)"
+            },
+            {
+               "email" : "gavin.sharp@gmail.com",
+               "id" : 103593,
+               "name" : "gavin.sharp@gmail.com",
+               "real_name" : ":Gavin Sharp [email: gavin@gavinsharp.com]"
+            },
+            {
+               "email" : "hskupin@gmail.com",
+               "id" : 76551,
+               "name" : "hskupin@gmail.com",
+               "real_name" : "Henrik Skupin (:whimboo)"
+            },
+            {
+               "email" : "jgriffiths@mozilla.com",
+               "id" : 421111,
+               "name" : "jgriffiths@mozilla.com",
+               "real_name" : "Jeff Griffiths (:canuckistani) (:⚡︎)"
+            },
+            {
+               "email" : "lchiarav@bidmc.harvard.edu",
+               "id" : 190407,
+               "name" : "lchiarav@bidmc.harvard.edu",
+               "real_name" : "Lucius Chiaraviglio"
+            },
+            {
+               "email" : "lmandel@mozilla.com",
+               "id" : 424995,
+               "name" : "lmandel@mozilla.com",
+               "real_name" : "Lawrence Mandel [:lmandel] (use needinfo)"
+            },
+            {
+               "email" : "mbeltzner@gmail.com",
+               "id" : 137548,
+               "name" : "mbeltzner@gmail.com",
+               "real_name" : "Mike Beltzner [:beltzner, not reading bugmail]"
+            },
+            {
+               "email" : "mkmelin+mozilla@iki.fi",
+               "id" : 101158,
+               "name" : "mkmelin+mozilla@iki.fi",
+               "real_name" : "Magnus Melin"
+            },
+            {
+               "email" : "mozaakash@gmail.com",
+               "id" : 339035,
+               "name" : "mozaakash@gmail.com",
+               "real_name" : "Aakash Desai [:aakashd]"
+            },
+            {
+               "email" : "mverdi@mozilla.com",
+               "id" : 368084,
+               "name" : "mverdi@mozilla.com",
+               "real_name" : "Verdi [:verdi]"
+            },
+            {
+               "email" : "n4sabbir@gmail.com",
+               "id" : 529620,
+               "name" : "n4sabbir@gmail.com",
+               "real_name" : "Nazir Ahmed Sabbir [:NaSb]"
+            },
+            {
+               "email" : "pascalc@gmail.com",
+               "id" : 24572,
+               "name" : "pascalc@gmail.com",
+               "real_name" : "Pascal Chevrel:pascalc"
+            },
+            {
+               "email" : "paul.silaghi@softvision.ro",
+               "id" : 428011,
+               "name" : "paul.silaghi@softvision.ro",
+               "real_name" : "Paul Silaghi, QA [:pauly]"
+            },
+            {
+               "email" : "paul@mozilla.com",
+               "id" : 174962,
+               "name" : "paul@mozilla.com",
+               "real_name" : "Paul Rouget [:paul]"
+            },
+            {
+               "email" : "philipp@mozilla.com",
+               "id" : 485651,
+               "name" : "philipp@mozilla.com",
+               "real_name" : "(Currently slow to respond) Philipp Sackl [:phlsa] (Firefox UX) please use needinfo"
+            },
+            {
+               "email" : "pollti@gmx.net",
+               "id" : 481519,
+               "name" : "pollti@gmx.net",
+               "real_name" : "Tim [:pollti]"
+            },
+            {
+               "email" : "sledru@mozilla.com",
+               "id" : 495955,
+               "name" : "sledru@mozilla.com",
+               "real_name" : "Sylvestre Ledru [:sylvestre]"
+            },
+            {
+               "email" : "xtc4uall@gmail.com",
+               "id" : 104905,
+               "name" : "xtc4uall@gmail.com",
+               "real_name" : "(mostly gone) XtC4UaLL [:xtc4uall]"
+            }
+         ],
+         "cf_crash_signature" : "",
+         "cf_fx_iteration" : "---",
+         "cf_fx_points" : "---",
+         "cf_has_regression_range" : "---",
+         "cf_has_str" : "---",
+         "cf_last_resolved" : "2017-05-24T20:37:46Z",
+         "cf_platform_rel" : "---",
+         "cf_qa_whiteboard" : "",
+         "cf_rank" : null,
+         "cf_status_firefox53" : "---",
+         "cf_status_firefox54" : "---",
+         "cf_status_firefox55" : "fixed",
+         "cf_status_firefox56" : "---",
+         "cf_status_firefox57" : "affected",
+         "cf_status_firefox_esr45" : "---",
+         "cf_status_firefox_esr52" : "---",
+         "cf_tracking_firefox53" : "---",
+         "cf_tracking_firefox54" : "---",
+         "cf_tracking_firefox55" : "---",
+         "cf_tracking_firefox56" : "---",
+         "cf_tracking_firefox57" : "---",
+         "cf_tracking_firefox_esr45" : "---",
+         "cf_tracking_firefox_esr52" : "---",
+         "cf_tracking_firefox_relnote" : "---",
+         "cf_user_story" : "",
+         "classification" : "Client Software",
+         "comment_count" : 11,
+         "component" : "Menus",
+         "creation_time" : "2017-05-23T17:04:34Z",
+         "creator" : "sledru@mozilla.com",
+         "creator_detail" : {
+            "email" : "sledru@mozilla.com",
+            "id" : 495955,
+            "name" : "sledru@mozilla.com",
+            "real_name" : "Sylvestre Ledru [:sylvestre]"
+         },
+         "depends_on" : [],
+         "dupe_of" : null,
+         "flags" : [],
+         "groups" : [],
+         "id" : 1367145,
+         "is_cc_accessible" : true,
+         "is_confirmed" : true,
+         "is_creator_accessible" : true,
+         "is_open" : false,
+         "keywords" : [],
+         "last_change_time" : "2017-05-29T14:06:04Z",
+         "mentors" : [],
+         "mentors_detail" : [],
+         "op_sys" : "All",
+         "platform" : "All",
+         "priority" : "--",
+         "product" : "Firefox",
+         "qa_contact" : "",
+         "resolution" : "FIXED",
+         "see_also" : [],
+         "severity" : "normal",
+         "status" : "VERIFIED",
+         "summary" : "Enable the  \"What's new?\" link also for nightly",
+         "target_milestone" : "Firefox 55",
+         "url" : "",
+         "version" : "Trunk",
+         "votes" : 0,
+         "whiteboard" : ""
+      },
+      {
+         "alias" : null,
+         "assigned_to" : "gijskruitbosch+bugs@gmail.com",
+         "assigned_to_detail" : {
+            "email" : "gijskruitbosch+bugs@gmail.com",
+            "id" : 159069,
+            "name" : "gijskruitbosch+bugs@gmail.com",
+            "real_name" : ":Gijs"
+         },
+         "blocks" : [
+            1354084
+         ],
+         "cc" : [
+            "gijskruitbosch+bugs@gmail.com",
+            "mdeboer@mozilla.com",
+            "mmucci@mozilla.com"
+         ],
+         "cc_detail" : [
+            {
+               "email" : "gijskruitbosch+bugs@gmail.com",
+               "id" : 159069,
+               "name" : "gijskruitbosch+bugs@gmail.com",
+               "real_name" : ":Gijs"
+            },
+            {
+               "email" : "mdeboer@mozilla.com",
+               "id" : 463945,
+               "name" : "mdeboer@mozilla.com",
+               "real_name" : "Mike de Boer [:mikedeboer]"
+            },
+            {
+               "email" : "mmucci@mozilla.com",
+               "id" : 458208,
+               "name" : "mmucci@mozilla.com",
+               "real_name" : "Marco Mucci [:MarcoM]"
+            }
+         ],
+         "cf_crash_signature" : "",
+         "cf_fx_iteration" : "55.6 - May 29",
+         "cf_fx_points" : "---",
+         "cf_has_regression_range" : "---",
+         "cf_has_str" : "---",
+         "cf_last_resolved" : "2017-05-25T00:48:55Z",
+         "cf_platform_rel" : "---",
+         "cf_qa_whiteboard" : "",
+         "cf_rank" : null,
+         "cf_status_firefox53" : "---",
+         "cf_status_firefox54" : "---",
+         "cf_status_firefox55" : "verified",
+         "cf_status_firefox56" : "---",
+         "cf_status_firefox57" : "---",
+         "cf_status_firefox_esr45" : "---",
+         "cf_status_firefox_esr52" : "---",
+         "cf_tracking_firefox53" : "---",
+         "cf_tracking_firefox54" : "---",
+         "cf_tracking_firefox55" : "---",
+         "cf_tracking_firefox56" : "---",
+         "cf_tracking_firefox57" : "---",
+         "cf_tracking_firefox_esr45" : "---",
+         "cf_tracking_firefox_esr52" : "---",
+         "cf_tracking_firefox_relnote" : "---",
+         "cf_user_story" : "",
+         "classification" : "Client Software",
+         "comment_count" : 9,
+         "component" : "Toolbars and Customization",
+         "creation_time" : "2017-05-24T13:15:03Z",
+         "creator" : "past@mozilla.com",
+         "creator_detail" : {
+            "email" : "past@mozilla.com",
+            "id" : 363318,
+            "name" : "past@mozilla.com",
+            "real_name" : "Panos Astithas [:past] (please needinfo?)"
+         },
+         "depends_on" : [],
+         "dupe_of" : null,
+         "flags" : [],
+         "groups" : [],
+         "id" : 1367409,
+         "is_cc_accessible" : true,
+         "is_confirmed" : true,
+         "is_creator_accessible" : true,
+         "is_open" : false,
+         "keywords" : [],
+         "last_change_time" : "2017-05-26T23:19:55Z",
+         "mentors" : [],
+         "mentors_detail" : [],
+         "op_sys" : "Unspecified",
+         "platform" : "Unspecified",
+         "priority" : "P1",
+         "product" : "Firefox",
+         "qa_contact" : "gwimberly@softvision.com",
+         "qa_contact_detail" : {
+            "email" : "gwimberly@softvision.com",
+            "id" : 554753,
+            "name" : "gwimberly@softvision.com",
+            "real_name" : "Grover Wimberly IV [:Grover-QA]"
+         },
+         "resolution" : "FIXED",
+         "see_also" : [],
+         "severity" : "normal",
+         "status" : "VERIFIED",
+         "summary" : "New sync panel in hamburger menu stretches user image",
+         "target_milestone" : "Firefox 55",
+         "url" : "",
+         "version" : "Trunk",
+         "votes" : 0,
+         "whiteboard" : "[photon-structure]"
+      },
+      {
+         "alias" : null,
+         "assigned_to" : "mak77@bonardo.net",
+         "assigned_to_detail" : {
+            "email" : "mak77@bonardo.net",
+            "id" : 240353,
+            "name" : "mak77@bonardo.net",
+            "real_name" : "Marco Bonardo [::mak]"
+         },
+         "blocks" : [
+            1192503,
+            1337003
+         ],
+         "cc" : [
+            "adw@mozilla.com",
+            "mak77@bonardo.net",
+            "mconley@mozilla.com",
+            "past@mozilla.com"
+         ],
+         "cc_detail" : [
+            {
+               "email" : "adw@mozilla.com",
+               "id" : 334927,
+               "name" : "adw@mozilla.com",
+               "real_name" : "Drew Willcoxon :adw (Away 5/31–6/7)"
+            },
+            {
+               "email" : "mak77@bonardo.net",
+               "id" : 240353,
+               "name" : "mak77@bonardo.net",
+               "real_name" : "Marco Bonardo [::mak]"
+            },
+            {
+               "email" : "mconley@mozilla.com",
+               "id" : 403756,
+               "name" : "mconley@mozilla.com",
+               "real_name" : "Mike Conley (:mconley)"
+            },
+            {
+               "email" : "past@mozilla.com",
+               "id" : 363318,
+               "name" : "past@mozilla.com",
+               "real_name" : "Panos Astithas [:past] (please needinfo?)"
+            }
+         ],
+         "cf_crash_signature" : "",
+         "cf_fx_iteration" : "---",
+         "cf_fx_points" : "---",
+         "cf_has_regression_range" : "---",
+         "cf_has_str" : "---",
+         "cf_last_resolved" : "2017-05-25T00:48:58Z",
+         "cf_platform_rel" : "---",
+         "cf_qa_whiteboard" : "",
+         "cf_rank" : null,
+         "cf_status_firefox53" : "unaffected",
+         "cf_status_firefox54" : "unaffected",
+         "cf_status_firefox55" : "verified",
+         "cf_status_firefox56" : "---",
+         "cf_status_firefox57" : "---",
+         "cf_status_firefox_esr45" : "---",
+         "cf_status_firefox_esr52" : "unaffected",
+         "cf_tracking_firefox53" : "---",
+         "cf_tracking_firefox54" : "---",
+         "cf_tracking_firefox55" : "---",
+         "cf_tracking_firefox56" : "---",
+         "cf_tracking_firefox57" : "---",
+         "cf_tracking_firefox_esr45" : "---",
+         "cf_tracking_firefox_esr52" : "---",
+         "cf_tracking_firefox_relnote" : "---",
+         "cf_user_story" : "",
+         "classification" : "Client Software",
+         "comment_count" : 15,
+         "component" : "Location Bar",
+         "creation_time" : "2017-05-24T14:09:46Z",
+         "creator" : "simona.marcu@softvision.ro",
+         "creator_detail" : {
+            "email" : "simona.marcu@softvision.ro",
+            "id" : 409434,
+            "name" : "simona.marcu@softvision.ro",
+            "real_name" : "Simona B [:simonab ]"
+         },
+         "depends_on" : [],
+         "dupe_of" : null,
+         "flags" : [
+            {
+               "creation_date" : "2017-05-25T00:48:58Z",
+               "id" : 1586963,
+               "modification_date" : "2017-05-25T00:48:58Z",
+               "name" : "in-testsuite",
+               "setter" : "ryanvm@gmail.com",
+               "status" : "+",
+               "type_id" : 37
+            }
+         ],
+         "groups" : [],
+         "id" : 1367427,
+         "is_cc_accessible" : true,
+         "is_confirmed" : true,
+         "is_creator_accessible" : true,
+         "is_open" : false,
+         "keywords" : [
+            "regression"
+         ],
+         "last_change_time" : "2017-05-26T22:03:04Z",
+         "mentors" : [],
+         "mentors_detail" : [],
+         "op_sys" : "Unspecified",
+         "platform" : "Unspecified",
+         "priority" : "P1",
+         "product" : "Firefox",
+         "qa_contact" : "",
+         "resolution" : "FIXED",
+         "see_also" : [],
+         "severity" : "normal",
+         "status" : "VERIFIED",
+         "summary" : "The one-offs bar is not displayed in the Awesome Bar while search suggestions hint is displayed",
+         "target_milestone" : "Firefox 55",
+         "url" : "",
+         "version" : "55 Branch",
+         "votes" : 0,
+         "whiteboard" : "[fxsearch]"
+      },
+      {
+         "alias" : null,
+         "assigned_to" : "mconley@mozilla.com",
+         "assigned_to_detail" : {
+            "email" : "mconley@mozilla.com",
+            "id" : 403756,
+            "name" : "mconley@mozilla.com",
+            "real_name" : "Mike Conley (:mconley)"
+         },
+         "blocks" : [
+            1362866
+         ],
+         "cc" : [
+            "dao+bmo@mozilla.com",
+            "edilee@mozilla.com",
+            "felipc@gmail.com",
+            "giles@thaumas.net",
+            "hani.yacoub@softvision.ro",
+            "mconley@mozilla.com",
+            "mozillamarcia.knous@gmail.com",
+            "philringnalda@gmail.com",
+            "Virtual@MsgSafe.io"
+         ],
+         "cc_detail" : [
+            {
+               "email" : "dao+bmo@mozilla.com",
+               "id" : 219124,
+               "name" : "dao+bmo@mozilla.com",
+               "real_name" : "Dão Gottwald [::dao]"
+            },
+            {
+               "email" : "edilee@mozilla.com",
+               "id" : 125983,
+               "name" : "edilee@mozilla.com",
+               "real_name" : "Ed Lee :Mardak"
+            },
+            {
+               "email" : "felipc@gmail.com",
+               "id" : 208747,
+               "name" : "felipc@gmail.com",
+               "real_name" : ":Felipe Gomes (needinfo me!)"
+            },
+            {
+               "email" : "giles@thaumas.net",
+               "id" : 170965,
+               "name" : "giles@thaumas.net",
+               "real_name" : "Ralph Giles (:rillian) | needinfo me"
+            },
+            {
+               "email" : "hani.yacoub@softvision.ro",
+               "id" : 583007,
+               "name" : "hani.yacoub@softvision.ro",
+               "real_name" : "Hani Yacoub"
+            },
+            {
+               "email" : "mconley@mozilla.com",
+               "id" : 403756,
+               "name" : "mconley@mozilla.com",
+               "real_name" : "Mike Conley (:mconley)"
+            },
+            {
+               "email" : "mozillamarcia.knous@gmail.com",
+               "id" : 8519,
+               "name" : "mozillamarcia.knous@gmail.com",
+               "real_name" : "Marcia Knous [:marcia - use ni]"
+            },
+            {
+               "email" : "philringnalda@gmail.com",
+               "id" : 135518,
+               "name" : "philringnalda@gmail.com",
+               "real_name" : "Phil Ringnalda (:philor)"
+            },
+            {
+               "email" : "Virtual@MsgSafe.io",
+               "id" : 342842,
+               "name" : "Virtual@MsgSafe.io",
+               "real_name" : "Virtual_ManPL [:Virtual] - (please needinfo? me - so I will see your comment/reply/question/etc.)"
+            }
+         ],
+         "cf_crash_signature" : "",
+         "cf_fx_iteration" : "---",
+         "cf_fx_points" : "---",
+         "cf_has_regression_range" : "---",
+         "cf_has_str" : "---",
+         "cf_last_resolved" : "2017-05-28T04:31:21Z",
+         "cf_platform_rel" : "---",
+         "cf_qa_whiteboard" : "",
+         "cf_rank" : null,
+         "cf_status_firefox53" : "unaffected",
+         "cf_status_firefox54" : "unaffected",
+         "cf_status_firefox55" : "fixed",
+         "cf_status_firefox56" : "---",
+         "cf_status_firefox57" : "---",
+         "cf_status_firefox_esr45" : "---",
+         "cf_status_firefox_esr52" : "---",
+         "cf_tracking_firefox53" : "---",
+         "cf_tracking_firefox54" : "---",
+         "cf_tracking_firefox55" : "---",
+         "cf_tracking_firefox56" : "---",
+         "cf_tracking_firefox57" : "---",
+         "cf_tracking_firefox_esr45" : "---",
+         "cf_tracking_firefox_esr52" : "---",
+         "cf_tracking_firefox_relnote" : "---",
+         "cf_user_story" : "",
+         "classification" : "Client Software",
+         "comment_count" : 29,
+         "component" : "Tabbed Browser",
+         "creation_time" : "2017-05-25T00:56:37Z",
+         "creator" : "aki@mozilla.com",
+         "creator_detail" : {
+            "email" : "aki@mozilla.com",
+            "id" : 329611,
+            "name" : "aki@mozilla.com",
+            "real_name" : "Aki Sasaki [:aki]"
+         },
+         "depends_on" : [],
+         "dupe_of" : null,
+         "flags" : [],
+         "groups" : [],
+         "id" : 1367621,
+         "is_cc_accessible" : true,
+         "is_confirmed" : true,
+         "is_creator_accessible" : true,
+         "is_open" : false,
+         "keywords" : [
+            "regression"
+         ],
+         "last_change_time" : "2017-05-29T20:46:05Z",
+         "mentors" : [],
+         "mentors_detail" : [],
+         "op_sys" : "Unspecified",
+         "platform" : "Unspecified",
+         "priority" : "--",
+         "product" : "Firefox",
+         "qa_contact" : "",
+         "resolution" : "FIXED",
+         "see_also" : [],
+         "severity" : "normal",
+         "status" : "VERIFIED",
+         "summary" : "opening a new tab no longer focuses in the url bar in fullscreen",
+         "target_milestone" : "Firefox 55",
+         "url" : "",
+         "version" : "unspecified",
+         "votes" : 0,
+         "whiteboard" : ""
+      }
+   ]
+}
