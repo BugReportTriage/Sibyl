@@ -4,22 +4,15 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import ca.uleth.bugtriage.sibyl.Classification;
-import ca.uleth.bugtriage.sibyl.Project;
 import ca.uleth.bugtriage.sibyl.classifier.Classifier;
 import ca.uleth.bugtriage.sibyl.report.BugReport;
-import ca.uleth.bugtriage.sibyl.utils.BugzillaPage;
-import ca.uleth.bugtriage.sibyl.utils.Messages;
 import ca.uleth.bugtriage.sibyl.utils.Utils;
 
 public abstract class HeuristicClassifier extends Classifier {
@@ -168,11 +161,14 @@ public abstract class HeuristicClassifier extends Classifier {
 	}
 
 	private static int getDuplicateId(BugReport report) {
+		
+		if(true)
+			throw new UnsupportedOperationException();
 
 		//try {
 			//String reportUrl = user.getRepository() + "/show_bug.cgi?id="
 				//	+ report.getId();
-
+/*
 			BugzillaPage page = new BugzillaPage();
 			//URL bugReportURL = new URL(reportUrl);
 			Messages messages = new Messages();
@@ -190,7 +186,7 @@ public abstract class HeuristicClassifier extends Classifier {
 				String dupIdStr = matcher.group(1);
 				return Integer.parseInt(dupIdStr);
 			}
-
+ 		*/
 		//} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 		//	e.printStackTrace();

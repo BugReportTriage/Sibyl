@@ -4,20 +4,13 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import ca.uleth.bugtriage.sibyl.classifier.bugzilla.BugzillaData;
 import ca.uleth.bugtriage.sibyl.classifier.eclipse.EclipseData;
-import ca.uleth.bugtriage.sibyl.classifier.evolution.EvolutionData;
 import ca.uleth.bugtriage.sibyl.classifier.firefox.FirefoxData;
-import ca.uleth.bugtriage.sibyl.classifier.gcc.GccData;
-import ca.uleth.bugtriage.sibyl.classifier.mylar.MylarData;
-import ca.uleth.bugtriage.sibyl.dataset.GccDataset;
 import ca.uleth.bugtriage.sibyl.report.BugReport;
 import ca.uleth.bugtriage.sibyl.utils.Utils;
 
@@ -91,19 +84,7 @@ public class DeveloperInfo {
 			// }else if
 			// (this.developerInfoFilename.equals(GccDataset.DEVELOPER_INFO)) {
 			// conversionData = GCCData.USER_NAMES;
-		} else if (this.developerInfoFilename
-				.equals(EvolutionData.DEVELOPER_INFO)) {
-			conversionData = EvolutionData.USER_NAMES;
-		}else if (this.developerInfoFilename
-				.equals(GccData.DEVELOPER_INFO)) {
-			conversionData = GccData.USER_NAMES;
-		}else if (this.developerInfoFilename
-				.equals(MylarData.DEVELOPER_INFO)) {
-			conversionData = MylarData.USER_NAMES;
-		}else if (this.developerInfoFilename
-				.equals(BugzillaData.DEVELOPER_INFO)) {
-			conversionData = BugzillaData.USER_NAMES;
-		}
+		} 
 		return createConversionMap(conversionData);
 	}
 	

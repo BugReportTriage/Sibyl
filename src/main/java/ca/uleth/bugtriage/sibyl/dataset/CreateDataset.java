@@ -9,14 +9,12 @@ import java.util.Date;
 import java.util.List;
 
 import ca.uleth.bugtriage.sibyl.Project;
-import ca.uleth.bugtriage.sibyl.User;
 import ca.uleth.bugtriage.sibyl.report.BugReport;
-import ca.uleth.bugtriage.sibyl.servlet.util.Webpage;
 import ca.uleth.bugtriage.sibyl.utils.Utils;
 
 public class CreateDataset {
 
-	public static DatasetInfo getMonth(User user, int month, int year) {
+	public static DatasetInfo getMonth(Project project, int month, int year) {
 		String startDay = "01";
 		String endDay = "01";
 		switch (month) {
@@ -48,27 +46,15 @@ public class CreateDataset {
 		String monthName;
 		monthName = getMonthName(month);
 		try {
-			return new DatasetInfo(
-					user.getProject().getProduct().toLowerCase()
-							+ "_" + monthName + year + ".bugs",
-					user.getRepository()
+			return new DatasetInfo(project.getProduct().toLowerCase() + "_" + monthName + year + ".bugs",
+					project.getURL()
 							/* RESOLVED and ASSIGNED */
 							+ "/buglist.cgi?query_format=advanced&short_desc_type=allwordssubstr&short_desc=&product="
-							+ URLEncoder.encode(user.getProject().getProduct(),
-									Webpage.ENCODE_FORMAT)
-							+ "&long_desc_type=allwordssubstr&long_desc=&bug_file_loc_type=allwordssubstr&bug_file_loc=&keywords_type=allwords&keywords=&bug_status=ASSIGNED&bug_status=RESOLVED&bug_status=VERIFIED&bug_status=CLOSED&emailtype1=substring&email1=&emailtype2=substring&email2=&bugidtype=include&bug_id=&votes=&chfieldfrom="
-							+ year
-							+ "-"
-							+ month
-							+ "-"
-							+ startDay
-							+ "&chfieldto="
-							+ +year
-							+ "-"
-							+ month
-							+ "-"
-							+ endDay
-							+ "&chfield=bug_status&chfield=resolution&chfieldvalue=&cmdtype=doit&order=Reuse+same+sort+as+last+time&field0-0-0=noop&type0-0-0=noop&value0-0-0=");
+							+ URLEncoder.encode(project.getProduct(),
+									null)
+					+ "&long_desc_type=allwordssubstr&long_desc=&bug_file_loc_type=allwordssubstr&bug_file_loc=&keywords_type=allwords&keywords=&bug_status=ASSIGNED&bug_status=RESOLVED&bug_status=VERIFIED&bug_status=CLOSED&emailtype1=substring&email1=&emailtype2=substring&email2=&bugidtype=include&bug_id=&votes=&chfieldfrom="
+					+ year + "-" + month + "-" + startDay + "&chfieldto=" + +year + "-" + month + "-" + endDay
+					+ "&chfield=bug_status&chfield=resolution&chfieldvalue=&cmdtype=doit&order=Reuse+same+sort+as+last+time&field0-0-0=noop&type0-0-0=noop&value0-0-0=");
 		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -77,12 +63,13 @@ public class CreateDataset {
 		return null;
 		/*
 		 * RESOVLED only +
-		 * "/buglist.cgi?query_format=advanced&short_desc_type=allwordssubstr&short_desc=&product=" +
-		 * serverInfo.getProduct() +
-		 * "&long_desc_type=allwordssubstr&long_desc=&bug_file_loc_type=allwordssubstr&bug_file_loc=&keywords_type=allwords&keywords=&bug_status=RESOLVED&bug_status=VERIFIED&emailtype1=substring&email1=&emailtype2=substring&email2=&bugidtype=include&bug_id=&votes=&chfieldfrom=" +
-		 * year + "-" + month + "-" + start + "&chfieldto=" + year + "-" + month +
-		 * "-" + end +
-		 * "&chfield=resolution&chfieldvalue=&cmdtype=doit&order=Reuse+same+sort+as+last+time&field0-0-0=noop&type0-0-0=noop&value0-0-0=");
+		 * "/buglist.cgi?query_format=advanced&short_desc_type=allwordssubstr&short_desc=&product="
+		 * + serverInfo.getProduct() +
+		 * "&long_desc_type=allwordssubstr&long_desc=&bug_file_loc_type=allwordssubstr&bug_file_loc=&keywords_type=allwords&keywords=&bug_status=RESOLVED&bug_status=VERIFIED&emailtype1=substring&email1=&emailtype2=substring&email2=&bugidtype=include&bug_id=&votes=&chfieldfrom="
+		 * + year + "-" + month + "-" + start + "&chfieldto=" + year + "-" +
+		 * month + "-" + end +
+		 * "&chfield=resolution&chfieldvalue=&cmdtype=doit&order=Reuse+same+sort+as+last+time&field0-0-0=noop&type0-0-0=noop&value0-0-0="
+		 * );
 		 */
 
 	}
@@ -133,67 +120,12 @@ public class CreateDataset {
 		return monthName;
 	}
 
-	private final User user;
+	private final Project project;
 
-	public CreateDataset(User user) {
-		this.user = user;
-
-	}
-
-	public void run(int month, int year) {
-		DatasetInfo info = getMonth(this.user, month, year);
-		System.out.println(info.getQueryURL());
-		Dataset data = new QueryDataset(this.user, info.getQueryURL());
-		System.out.println("Getting Data: " + month + "/" + year);
-		List<BugReport> bugs = data.getData();
-		System.out.println("Data retrieved: " + month + "/" + year);
-
-		Utils.writeDataset(info.getFilename(), bugs);
-	}
-
-	public void run(Date start, Date end) {
-		DatasetInfo info = getInfo(start, end);
-		
-		// Check if the data already has been retrieved
-		File dataFile = new File(info.getFilename());
-		if(dataFile.exists()){
-			System.err.println("Data file " + info.getFilename() + " exisits already");
-			return;
-		}
-		
-		Dataset data = new QueryDataset(this.user, info.getQueryURL());
-
-		DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-		System.out.println("Getting Data: " + formatter.format(start) + " to "
-				+ formatter.format(end));
-		List<BugReport> bugs = /*new ArrayList<TriageBugReport>();*/ data.getData();
-		System.out.println("Data retrieved: " + formatter.format(start)
-				+ " to " + formatter.format(end));
-		System.out.println("Num bugs: " + bugs.size());
-
-		Utils.writeDataset(info.getFilename(), bugs);
-	}
-
-	private DatasetInfo getInfo(Date start, Date end) {
-		return new DatasetInfo(FileDataset.constructFilename(this.user, start, end), QueryDataset.constructUrl(
-				this.user, start, end));
-	}
-
-	public static void main(String[] args) {
-
-		int year = 2006;
-		int startMonth = 2;
-		int endMonth = 3;
-		User user = new User(User.UNKNOWN_USER_ID, "janvik@cs.ubc.ca",
-				"BugTriage", Project.PLATFORM);
-		CreateDataset extrator = new CreateDataset(user);
-
-		for (int month = startMonth; month <= endMonth; month++) {
-			extrator.run(month, year);
-		}
+	public CreateDataset(Project p) {
+		this.project = p;
 
 	}
-
 }
 
 class DatasetInfo {

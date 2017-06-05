@@ -2,7 +2,6 @@ package ca.uleth.bugtriage.sibyl.utils;
 
 import java.util.Properties;
 
-import javax.mail.Address;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Session;
@@ -10,9 +9,6 @@ import javax.mail.Transport;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import javax.mail.internet.MimeMessage.RecipientType;
-
-import ca.uleth.bugtriage.sibyl.User;
 
 public class EmailNotification {
 

@@ -114,7 +114,12 @@ public class ComponentClassifier extends MLClassifier {
 			// printIds(trainingReports);
 
 			try {
-				partitionClassifier = new MLClassifier(Classifier.makeCopy(this.classifier));
+				
+				if(true)
+					throw new UnsupportedOperationException();
+				
+				partitionClassifier = null; //new MLClassifier(Classifier.makeCopy(this.classifier));
+				
 				if (heuristic == Heuristic.SUBCOMPONENT) {
 					Profiles profiles = ca.uleth.bugtriage.sibyl.classifier.Classifier.createSubcomponentProfiles(trainingReports, heuristic);
 					partitionClassifier.setProfile(profiles);
