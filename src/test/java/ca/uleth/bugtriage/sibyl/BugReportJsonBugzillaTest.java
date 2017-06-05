@@ -32,6 +32,6 @@ public class BugReportJsonBugzillaTest extends TestCase {
 
 	@Test
 	public void testAttributes(){
-		assertEquals("odvarko@gmail.com", report.getAssigned_to());
+		assertEquals("ttromey@mozilla.com", report.getAssigned_to());
 	}
 }
