@@ -33,5 +33,16 @@ public class BugReportJsonBugzillaTest extends TestCase {
 	@Test
 	public void testAttributes(){
 		assertEquals("ttromey@mozilla.com", report.getAssigned_to());
-	}
+		assertEquals("Developer Tools: Framework", report.getComponent());
+		assertEquals("2017-05-15T09:28:10Z", report.getCreation_time());
+		assertEquals("ttromey@mozilla.com", report.getCreator());
+		assertEquals("2017-05-17T10:22:28Z", report.getLast_change_time());
+		assertEquals("Unspecified", report.getOp_sys());
+		assertEquals("Unspecified", report.getPlatform());
+		assertEquals("P1", report.getPriority());
+		assertEquals("FIXED", report.getResolution());
+		assertEquals("normal", report.getSeverity());
+		assertEquals("RESOLVED", report.getStatus());
+		assertEquals("devtools-source-map: update to 0.5.0", report.getSummary());
+			}
 }
