@@ -15,18 +15,17 @@ import ca.uleth.bugtriage.sibyl.report.BugReport;
 import ca.uleth.bugtriage.sibyl.utils.Environment;
 import ca.uleth.bugtriage.sibyl.utils.FrequencyTable;
 import ca.uleth.bugtriage.sibyl.utils.Profiles;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 public abstract class Classifier {
 
 	public abstract Classification classify(BugReport report);
 
 	public void printStats() {
-		throw new NotImplementedException();
+		throw new UnsupportedOperationException();
 	}
 
 	public void resetStats() {
-		throw new NotImplementedException();
+		throw new UnsupportedOperationException();
 	}
 
 	public static void saveClassifier(String classifierName,

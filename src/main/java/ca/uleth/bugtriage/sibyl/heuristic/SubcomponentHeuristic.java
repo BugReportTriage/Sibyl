@@ -2,7 +2,6 @@ package ca.uleth.bugtriage.sibyl.heuristic;
 
 import ca.uleth.bugtriage.sibyl.Classification;
 import ca.uleth.bugtriage.sibyl.report.BugReport;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 public class SubcomponentHeuristic extends HeuristicClassifier {
 
@@ -20,10 +19,10 @@ public class SubcomponentHeuristic extends HeuristicClassifier {
 	}
 
 	public void printStats() {
-		throw new NotImplementedException();
+		throw new UnsupportedOperationException();
 	}
 
 	public void resetStats() {
-		throw new NotImplementedException();
+		throw new UnsupportedOperationException();
 	}
 }
