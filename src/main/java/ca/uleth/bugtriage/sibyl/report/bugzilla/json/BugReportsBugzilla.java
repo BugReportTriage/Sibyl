@@ -18,22 +18,22 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
     "faults"
 })
  
-public class BugReports {
+public class BugReportsBugzilla {
 
     @JsonProperty("bugs")
-    private List<Report> bugs = null;
+    private List<ReportBugzilla> bugs = null;
     @JsonProperty("faults")
     private List<Object> faults = null;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
     @JsonProperty("bugs")
-    public List<Report> getBugs() {
+    public List<ReportBugzilla> getBugs() {
         return bugs;
     }
 
     @JsonProperty("bugs")
-    public void setBugs(List<Report> bugs) {
+    public void setBugs(List<ReportBugzilla> bugs) {
         this.bugs = bugs;
     }
 

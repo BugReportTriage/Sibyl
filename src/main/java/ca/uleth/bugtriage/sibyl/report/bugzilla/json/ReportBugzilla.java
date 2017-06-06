@@ -14,7 +14,8 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @JsonPropertyOrder({ "assigned_to", "assigned_to_detail", "cc", "cc_detail", "component", "creation_time", "creator",
 		"creator_detail", "dupe_of", "id", "last_change_time", "op_sys", "platform", "priority", "resolution",
 		"severity", "status", "summary" })
-public class Report {
+
+public class ReportBugzilla {
 
 	@JsonProperty("assigned_to")
 	private String assigned_to;
