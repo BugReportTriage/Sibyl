@@ -23,17 +23,11 @@ import ca.uleth.bugtriage.sibyl.report.bugzilla.json.ReportBugzilla;
 
 public class BugzillaDataset {
 
-	private static final String REST_ENDPOINT_PRODUCT = "/rest/bug?" + "product=";
-	private static final String CLOSED_FIXED = "&resolution=FIXED&status=RESOLVED&status=VERIFIED&status=CLOSED";
+		private static final String CLOSED_FIXED = "&resolution=FIXED&status=RESOLVED&status=VERIFIED&status=CLOSED";
 
 	private static final String DATA_FIELDS = "id," + "cc," + "component," + "summary," + "creator," + "assigned_to,"
 			+ "resolution," + "creation_time," + "op_sys," + "platform," + "last_change_time," + "priority,"
 			+ "dupe_of," + "severity," + "status";
-
-	// https://bugzilla.mozilla.org/rest/bug?product=Firefox&resolution=FIXED&status=VERIFIED&creation_time=2016-01-01
-	public static String constructUrl(Project project) {
-		return project.url + REST_ENDPOINT_PRODUCT + project.product + CLOSED_FIXED + "&include_fields=";
-	}
 
 	/**
 	 * Get bug report data for a project.
@@ -49,16 +43,25 @@ public class BugzillaDataset {
 	 *         20creation_ts%3C2010-06-02
 	 */
 
-	public static String getData(Project project) {
+	public static String getReports(Project project) {
 
+		String url = project.url + "/rest/bug?product=" + project.product + CLOSED_FIXED + "&include_fields=" + DATA_FIELDS + "&quicksearch=creation_ts%3E=" + project.startDate
+				+ "%20creation_ts%3C" + project.endDate;
+		return getJsonData(url);
+
+	}
+
+	public static String getHistory(Project project, String reportId) {
+
+		/* GET /rest/bug/(id)/history */
+		String url = project.url + "/rest/bug/" + reportId + "/history";
+		return getJsonData(url);
+	}
+
+	private static String getJsonData(String url) {
 		InputStream is = null;
 		try {
 			try {
-
-				String url = constructUrl(project) + DATA_FIELDS + "&quicksearch=creation_ts%3E=" + project.startDate
-						+ "%20creation_ts%3C" + project.endDate;
-				System.out.println(url);
-
 				URLConnection c = new URL(url).openConnection();
 				c.addRequestProperty("Accept", "application/json");
 				c.addRequestProperty("Content-Type", "application/json");

@@ -7,7 +7,7 @@ public class KDEPlasmaDataset {
 
 	public static void main(String[] args) {
 		
-		String url = BugzillaDataset.constructUrl(Project.KDE_PLASMA);
+		String url = BugzillaDataset.getReports(Project.KDE_PLASMA);
 		System.out.println(url);
 		
 	}

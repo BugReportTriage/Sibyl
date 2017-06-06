@@ -7,7 +7,7 @@ public class LibreOfficeDataset {
 
 	public static void main(String[] args) {
 		
-		String url = BugzillaDataset.constructUrl(Project.LIBREOFFICE);
+		String url = BugzillaDataset.getReports(Project.LIBREOFFICE);
 		System.out.println(url);
 		
 	}
