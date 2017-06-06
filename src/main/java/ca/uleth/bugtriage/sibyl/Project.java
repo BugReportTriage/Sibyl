@@ -13,35 +13,47 @@ import ca.uleth.bugtriage.sibyl.heuristic.Heuristic;
 import ca.uleth.bugtriage.sibyl.sibyl.Sibyl;
 
 public enum Project {
-	UNKNOWN("Unknown Project", "Unknown URL", "Unknown Product", "", "", null, null, null, Sibyl.DEFAULT_THRESHOLD), 
-	PLATFORM("Eclipse-Platform", "https://bugs.eclipse.org/bugs/", "Platform", "2017-05-15", EclipseData.ECLIPSE_DIR, EclipseData.DUPLICATES, Classifiers.ECLIPSE, Heuristic.ECLIPSE, 9), 
-	FIREFOX("Firefox", "https://bugzilla.mozilla.org/", "Firefox", "2017-05-15", FirefoxData.FIREFOX_DIR, FirefoxData.DUPLICATES, Classifiers.FIREFOX, Heuristic.MOZILLA, 9),
-	KDE_PLASMA("KDE-Plasma 5", "https://bugs.kde.org/", "plasmashell", "2017-05-15", KDEData.KDE_PLASMA_DIR, KDEData.DUPLICATES, Classifiers.KDE_PLASMA, Heuristic.KDE_PLASMA, 9),
-	LIBREOFFICE(LibreOfficeData.PROJECT, LibreOfficeData.URL, LibreOfficeData.PRODUCT, "2017-05-15", LibreOfficeData.LIBRE_OFFICE_DIR, LibreOfficeData.DUPLICATES, Classifiers.LIBREOFFICE, Heuristic.LIBREOFFICE, 9),
-	;
+	UNKNOWN("Unknown Project", "Unknown URL", "Unknown Product", "", "", "", null, null, null,
+			Sibyl.DEFAULT_THRESHOLD), 
+	PLATFORM("Eclipse-Platform", "https://bugs.eclipse.org/bugs/", "Platform",
+					"2017-05-15", "2017-06-15", EclipseData.ECLIPSE_DIR, EclipseData.DUPLICATES, Classifiers.ECLIPSE,
+					Heuristic.ECLIPSE, 9), 
+	FIREFOX("Firefox", "https://bugzilla.mozilla.org/", "Firefox", "2017-05-01",
+							"2017-06-01", FirefoxData.FIREFOX_DIR, FirefoxData.DUPLICATES, Classifiers.FIREFOX,
+							Heuristic.MOZILLA, 9), 
+	KDE_PLASMA("KDE-Plasma 5", "https://bugs.kde.org/", "plasmashell",
+									"2017-05-15", "2017-05-15", KDEData.KDE_PLASMA_DIR, KDEData.DUPLICATES, Classifiers.KDE_PLASMA,
+									Heuristic.KDE_PLASMA, 9), 
+	LIBREOFFICE(LibreOfficeData.PROJECT, LibreOfficeData.URL,
+											LibreOfficeData.PRODUCT, "2017-05-15", "2017-05-15", LibreOfficeData.LIBRE_OFFICE_DIR,
+											LibreOfficeData.DUPLICATES, Classifiers.LIBREOFFICE, Heuristic.LIBREOFFICE,
+											9),;
 
 	public static final String PROJECT_ID_TAG = "project";
 
-	private final String url;
+	public final String url;
 
-	private final String name;
+	public final String name;
 
-	private final String product;
+	public final String product;
 
-	private final String dataDir;
+	public final String dataDir;
 
-	private final Heuristic heuristic;	
+	public final Heuristic heuristic;
 
-	private final Classifiers classifiers;
+	public final Classifiers classifiers;
 
-	private final String duplicateReportsFile;
+	public final String duplicateReportsFile;
 
-	private final double threshold;
-	
-	private final String startDate;
+	public final double threshold;
 
-	private Project(String name, String url, String product, String date, String dataDir, String dupFile, 
-			Classifiers classifiers, Heuristic heuristic, double threshold) {
+	public String startDate;
+
+	public String endDate;
+
+	// FIX: Too many parameters. Use data classes.
+	private Project(String name, String url, String product, String startDate, String endDate, String dataDir,
+			String dupFile, Classifiers classifiers, Heuristic heuristic, double threshold) {
 		this.name = name;
 		this.product = product;
 		this.url = url;
@@ -50,46 +62,23 @@ public enum Project {
 		this.heuristic = heuristic;
 		this.duplicateReportsFile = dupFile;
 		this.threshold = threshold;
-		this.startDate = date;
+		this.startDate = startDate;
+		this.endDate = endDate;
 	}
 
-	public String getName() {
-		return this.name;
-	}
-
-	public String getURL() {
-		return this.url;
-	}
-
-	public String getProduct() {
-		return this.product;
-	}
-
-	public String getDataDir() {
-		return this.dataDir;
-	}
-
-	public Heuristic getHeuristic() {
-		return this.heuristic;
-	}
-
-	public TriageClassifier getDeveloperClassifier()
-			throws ClassifierNotFoundException {
+	public TriageClassifier getDeveloperClassifier() throws ClassifierNotFoundException {
 		try {
 			return this.classifiers.getDeveloperClassifier();
 		} catch (FileNotFoundException e) {
-			throw new ClassifierNotFoundException(
-					"A developer classifier for the " + this.getName() + " was not found.");
+			throw new ClassifierNotFoundException("A developer classifier for the " + name + " was not found.");
 		}
 	}
 
-	public TriageClassifier getComponentClassifier()
-			throws ClassifierNotFoundException {
+	public TriageClassifier getComponentClassifier() throws ClassifierNotFoundException {
 		try {
 			return this.classifiers.getComponentClassifier();
 		} catch (FileNotFoundException e) {
-			throw new ClassifierNotFoundException(
-					"A component classifier for " + this.getName() + " was not found.");
+			throw new ClassifierNotFoundException("A component classifier for " + name + " was not found.");
 		}
 	}
 
@@ -97,46 +86,29 @@ public enum Project {
 		if (project != null) {
 			for (Project knownProject : Project.values()) {
 				if (project.toLowerCase().equals(
-						// Make sure that the same method to get the name is used in AccountSetupForm.repository()
-						knownProject.getProduct().toLowerCase())) {
+						// Make sure that the same method to get the name is
+						// used in AccountSetupForm.repository()
+						knownProject.product.toLowerCase())) {
 					return knownProject;
 				}
 			}
 		}
 		return UNKNOWN;
 	}
-	
-	public static void main(String[] args) {
-		System.out.println(getProject("Mylar"));
-	}
-
-	public String getDupsFile() {
-		return this.duplicateReportsFile;
-	}
 
 	public TriageClassifier getSubcomponentClassifier() throws ClassifierNotFoundException {
 		try {
 			return this.classifiers.getSubcomponentClassifier();
 		} catch (FileNotFoundException e) {
-			throw new ClassifierNotFoundException(
-					"A subcomponent classifier for " + this.getName() + " was not found.");
+			throw new ClassifierNotFoundException("A subcomponent classifier for " + name + " was not found.");
 		}
-	}
-
-	public double getThreshold() {
-		return threshold;
 	}
 
 	public TriageClassifier getCCClassifier() throws ClassifierNotFoundException {
 		try {
 			return this.classifiers.getCCClassifier();
 		} catch (FileNotFoundException e) {
-			throw new ClassifierNotFoundException(
-					"A subcomponent classifier for " + this.getName() + " was not found.");
+			throw new ClassifierNotFoundException("A subcomponent classifier for " + name + " was not found.");
 		}
-	}	
-
-	public String getStartDate() {		
-		return startDate;
 	}
 }

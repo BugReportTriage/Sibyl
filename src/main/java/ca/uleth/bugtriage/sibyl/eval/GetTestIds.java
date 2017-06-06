@@ -6,15 +6,15 @@ public class GetTestIds {
 
 	public static String constructQuery(Project project, String start, String end){
 		
-		String projectName = (project.getName().contains("Eclipse")) ? "Eclipse" : project.getName() ;
+		String projectName = (project.name.contains("Eclipse")) ? "Eclipse" : project.name ;
 		
 		StringBuffer query = new StringBuffer();
-		query.append(project.getURL());
+		query.append(project.url);
 		query.append("buglist.cgi?query_format=advanced&short_desc_type=allwordssubstr&short_desc=&");
-		if(project.getName().contains("Eclipse")){
+		if(project.name.contains("Eclipse")){
 			query.append("classification=" + projectName);
 		}
-		query.append("&product=" + project.getProduct());
+		query.append("&product=" + project.product);
 		query.append("&long_desc_type=allwordssubstr&long_desc=&bug_file_loc_type=allwordssubstr&bug_file_loc=&status_whiteboard_type=allwordssubstr&status_whiteboard=&keywords_type=allwords&keywords=&");
 		query.append("bug_status=RESOLVED&");
 		query.append("bug_status=VERIFIED&");

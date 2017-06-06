@@ -134,7 +134,7 @@ public abstract class RecommendationAnalysis {
 			}
 		} catch (ClassifierNotFoundException e) {
 			System.err.println("Classifier not found for project "
-					+ project.getName());
+					+ project.name);
 		}
 		return unknowns;
 	}

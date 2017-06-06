@@ -31,7 +31,7 @@ public class RecommenderEval {
 			.getClassifier();
 
 	public static void main(String[] args) {
-		String[] dataFiles = dataFiles(new File(Project.PLATFORM.getDataDir()));
+		String[] dataFiles = dataFiles(new File(Project.PLATFORM.dataDir));
 		String classifierFile = Environment.getClassifierDir() + "platform.classifier";
 		RecommenderEval.run(
 				classifierFile, getTestingFiles(dataFiles, 30));

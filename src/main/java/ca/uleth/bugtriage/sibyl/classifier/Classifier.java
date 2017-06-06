@@ -41,7 +41,7 @@ public abstract class Classifier {
 
 	public static Profiles createDeveloperProfiles(String[] dataset,
 			Project project) {
-		Profiles profile = new Profiles(dataset, project.getHeuristic());
+		Profiles profile = new Profiles(dataset, project.heuristic);
 		System.out.println("Creating profiles...");
 		profile.createProfiles(NUM_PROFILE_MONTHS);
 		
@@ -64,7 +64,7 @@ public abstract class Classifier {
 		
 		
 		System.err.println("Before Pruning: " + profile.size());
-		profile.pruneAverage(project.getThreshold()
+		profile.pruneAverage(project.threshold
 				/ Classifier.NUM_PROFILE_MONTHS);
 		System.err.println("After Pruning: " + profile.size());
 		return profile;

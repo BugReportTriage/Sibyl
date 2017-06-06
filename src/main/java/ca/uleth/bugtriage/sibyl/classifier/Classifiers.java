@@ -126,7 +126,7 @@ public enum Classifiers {
 	}
 
 	public static String getClassifierFilename(Project project) {
-		return project.getProduct().toLowerCase();
+		return project.product.toLowerCase();
 	}
 
 	public static TriageClassifier updateClassifier(Heuristic heuristic, ClassifierType type) {
@@ -135,7 +135,7 @@ public enum Classifiers {
 		throw new UnsupportedOperationException();
 		
 		Project project = null;
-		String[] dataFiles = Utils.dataFiles(new File(project.getDataDir()));
+		String[] dataFiles = Utils.dataFiles(new File(project.dataDir));
 
 		Profiles profile = null;
 		String classifierName = getClassifierFilename(project);
@@ -158,7 +158,7 @@ public enum Classifiers {
 			data = Utils.getDataset(dataFiles, 90);
 		}
 
-		String dupFile = project.getDupsFile();
+		String dupFile = project.duplicateReportsFile;
 		if (heuristic != null)
 			heuristic.getClassifier().setDataset(dupFile);
 		TriageClassifier classifier = Classifier.create(type, data, null, null, heuristic, profile, true);

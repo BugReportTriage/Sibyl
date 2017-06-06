@@ -9,7 +9,7 @@ public class FirefoxDataset {
 		
 		String url = BugzillaDataset.constructUrl(Project.FIREFOX);
 		//System.out.println(url);
-		String data = BugzillaDataset.getData(url);
+		String data = BugzillaDataset.getData(Project.FIREFOX);
 		System.out.println(data);		
 	}
 }

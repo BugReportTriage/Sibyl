@@ -46,11 +46,11 @@ public class CreateDataset {
 		String monthName;
 		monthName = getMonthName(month);
 		try {
-			return new DatasetInfo(project.getProduct().toLowerCase() + "_" + monthName + year + ".bugs",
-					project.getURL()
+			return new DatasetInfo(project.product.toLowerCase() + "_" + monthName + year + ".bugs",
+					project.url
 							/* RESOLVED and ASSIGNED */
 							+ "/buglist.cgi?query_format=advanced&short_desc_type=allwordssubstr&short_desc=&product="
-							+ URLEncoder.encode(project.getProduct(),
+							+ URLEncoder.encode(project.product,
 									null)
 					+ "&long_desc_type=allwordssubstr&long_desc=&bug_file_loc_type=allwordssubstr&bug_file_loc=&keywords_type=allwords&keywords=&bug_status=ASSIGNED&bug_status=RESOLVED&bug_status=VERIFIED&bug_status=CLOSED&emailtype1=substring&email1=&emailtype2=substring&email2=&bugidtype=include&bug_id=&votes=&chfieldfrom="
 					+ year + "-" + month + "-" + startDay + "&chfieldto=" + +year + "-" + month + "-" + endDay
