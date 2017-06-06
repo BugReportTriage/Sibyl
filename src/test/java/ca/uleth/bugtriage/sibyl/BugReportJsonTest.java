@@ -22,7 +22,7 @@ public class BugReportJsonTest extends TestCase {
 	private ReportBugzilla report = null;	
 
 	@Test
-	public void testAttributes() throws JsonParseException, JsonMappingException, IOException {
+	public void testBugzillaJSON() throws JsonParseException, JsonMappingException, IOException {
 
 		ObjectMapper mapper = new ObjectMapper();
 		BugReportsBugzilla bugs = mapper.readValue(new File(TEST_BUGZILLA_BUG_FILENAME), BugReportsBugzilla.class);

@@ -15,7 +15,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 		"creator_detail", "dupe_of", "id", "last_change_time", "op_sys", "platform", "priority", "resolution",
 		"severity", "status", "summary" })
 
-public class ReportBugzilla {
+public class ReportBugzilla implements Comparable<ReportBugzilla>{
 
 	@JsonProperty("assigned_to")
 	private String assigned_to;
@@ -216,6 +216,26 @@ public class ReportBugzilla {
 				+ ", last_change_time=" + last_change_time + ", op_sys=" + op_sys + ", platform=" + platform
 				+ ", priority=" + priority + ", resolution=" + resolution + ", severity=" + severity + ", status="
 				+ status + ", summary=" + summary + "]";
+	}
+
+	@Override
+	public int compareTo(ReportBugzilla report) {		
+		return this.id.intValue() - report.id.intValue();
+	}
+	
+	
+	@Override
+	public int hashCode() {		
+		return id.intValue();
+	}
+	
+	@Override
+	public boolean equals(Object o) {
+		if(o instanceof ReportBugzilla){
+			ReportBugzilla r = (ReportBugzilla)o;
+			return this.id.equals(r.id);
+		}
+		return false;
 	}
 
 }
