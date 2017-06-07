@@ -1,5 +1,8 @@
 language: java
 
+notifications:
+  email: false
+
 install: mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
 
 script:
