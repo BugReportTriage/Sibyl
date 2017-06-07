@@ -1,13 +1,10 @@
 package ca.uleth.bugtriage.sibyl.sibyl;
 
-import java.io.File;
-import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 
 import ca.uleth.bugtriage.sibyl.Classification;
-import ca.uleth.bugtriage.sibyl.utils.Messages;
 
 public class Sibyl {
 	
@@ -36,7 +33,7 @@ public class Sibyl {
 	public static final String ACCOUNT_FILE = "account.user";
 
 	public static final String ASSIGNMENT_COUNT_FILE = "assignments.count";
-	
+/*	
 	public static File createSubmittedDir(SibylUser user, Messages messages){
 		File submittedDir = new File(user.getUserDataDir() + Sibyl.SUBMITTED_DIR_NAME);
 		if (submittedDir.exists() == false) {
@@ -51,7 +48,7 @@ public class Sibyl {
 		}
 		return submittedDir;
 	}
-
+*/
 	public static final int NUM_SUBCOMPONENT_RECOMMENDATIONS = 3;
 
 	public static final int NUM_COMPONENT_RECOMMENDATIONS = 3;

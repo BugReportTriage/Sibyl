@@ -6,7 +6,6 @@ import java.util.Random;
 
 import ca.uleth.bugtriage.sibyl.Classification;
 import ca.uleth.bugtriage.sibyl.report.BugReport;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 import weka.core.Instance;
 import weka.core.Instances;
 
@@ -18,7 +17,7 @@ public class SibylComponentClassifier extends TriageClassifier {
 	
 	@Override
 	protected void build(Instances dataset) throws Exception {
-		throw new NotImplementedException();
+		throw new UnsupportedOperationException();
 	}
 
 	
@@ -36,7 +35,7 @@ public class SibylComponentClassifier extends TriageClassifier {
 
 	@Override
 	protected List<Classification> classify(Instance instance) throws Exception {
-		throw new NotImplementedException();
+		throw new UnsupportedOperationException();
 	}
 
 	@Override

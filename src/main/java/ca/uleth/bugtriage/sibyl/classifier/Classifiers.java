@@ -3,14 +3,9 @@ package ca.uleth.bugtriage.sibyl.classifier;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Date;
-import java.util.Set;
 
-import ca.uleth.bugtriage.sibyl.Login;
 import ca.uleth.bugtriage.sibyl.Project;
-import ca.uleth.bugtriage.sibyl.User;
-import ca.uleth.bugtriage.sibyl.dataset.FileDataset;
 import ca.uleth.bugtriage.sibyl.heuristic.Heuristic;
-import ca.uleth.bugtriage.sibyl.report.BugReport;
 import ca.uleth.bugtriage.sibyl.utils.Environment;
 import ca.uleth.bugtriage.sibyl.utils.Profiles;
 import ca.uleth.bugtriage.sibyl.utils.Utils;
@@ -124,33 +119,23 @@ public enum Classifiers {
 	private Date getClassifierVersion(String classifierName) {
 		File classifierFile = new File(Environment.getClassifierDir() + classifierName);
 		return new Date(classifierFile.lastModified());
-	}
-
-	public static void main(String[] args) {
-		Project project = Project.PLATFORM;
-		User user = new User(User.UNKNOWN_USER_ID, Login.USER, Login.PASSWORD, project);
-		updateClassifier(user, project.getHeuristic(), ClassifierType.CC);
-	}
+	}	
 
 	public static void update(Project project) {
-		User user = new User(User.UNKNOWN_USER_ID, Login.USER, Login.PASSWORD, project);
-
-		FileDataset.updateData(user);
-		updateClassifier(user, project.getHeuristic(), ClassifierType.COMPONENT_BASED);
-		updateClassifier(user, Heuristic.COMPONENT, ClassifierType.SVM);
-		if (project == Project.PLATFORM)
-			updateClassifier(user, Heuristic.SUBCOMPONENT, ClassifierType.COMPONENT_BASED);
-
-		updateClassifier(user, null, ClassifierType.CC);
+		throw new UnsupportedOperationException();
 	}
 
 	public static String getClassifierFilename(Project project) {
-		return project.getProduct().toLowerCase();
+		return project.product.toLowerCase();
 	}
 
-	public static TriageClassifier updateClassifier(User user, Heuristic heuristic, ClassifierType type) {
-		Project project = user.getProject();
-		String[] dataFiles = Utils.dataFiles(new File(project.getDataDir()));
+	public static TriageClassifier updateClassifier(Heuristic heuristic, ClassifierType type) {
+		
+		if(true)
+		throw new UnsupportedOperationException();
+		
+		Project project = null;
+		String[] dataFiles = Utils.dataFiles(new File(project.dataDir));
 
 		Profiles profile = null;
 		String classifierName = getClassifierFilename(project);
@@ -173,7 +158,7 @@ public enum Classifiers {
 			data = Utils.getDataset(dataFiles, 90);
 		}
 
-		String dupFile = project.getDupsFile();
+		String dupFile = project.duplicateReportsFile;
 		if (heuristic != null)
 			heuristic.getClassifier().setDataset(dupFile);
 		TriageClassifier classifier = Classifier.create(type, data, null, null, heuristic, profile, true);

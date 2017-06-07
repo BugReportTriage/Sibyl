@@ -8,7 +8,6 @@ import java.util.regex.Pattern;
 
 import ca.uleth.bugtriage.sibyl.activity.BugActivity;
 import ca.uleth.bugtriage.sibyl.activity.events.StatusType;
-import ca.uleth.bugtriage.sibyl.report.BugzillaReport;
 
 /**
  * A bug report entered in Bugzilla.

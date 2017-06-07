@@ -29,7 +29,6 @@ import weka.attributeSelection.ASSearch;
 import weka.attributeSelection.AttributeSelection;
 import weka.attributeSelection.
 
-
 ChiSquaredAttributeEval;
 import weka.attributeSelection.InfoGainAttributeEval;
 import weka.attributeSelection.PrincipalComponents;
@@ -121,15 +120,15 @@ public abstract class TriageClassifier implements Serializable {
 		 * Normalizing via document length appears to have the most effect,
 		 * likley because of the low information content of most fetures
 		 */
-		((StringToWordVector) this.filter).setNormalizeDocLength(new SelectedTag(StringToWordVector.FILTER_NORMALIZE_ALL, StringToWordVector.TAGS_FILTER));
+		((StringToWordVector) this.filter).setNormalizeDocLength(
+				new SelectedTag(StringToWordVector.FILTER_NORMALIZE_ALL, StringToWordVector.TAGS_FILTER));
 
-		/* TODO Use n-gram tokenizer
-		NGramTokenizer t = new NGramTokenizer();
-	    t.setNGramMaxSize(maxGrams);
-	    t.setNGramMinSize(minGrams);    
-	    filter.setTokenizer(t);
-	    */     
-		
+		/*
+		 * TODO Use n-gram tokenizer NGramTokenizer t = new NGramTokenizer();
+		 * t.setNGramMaxSize(maxGrams); t.setNGramMinSize(minGrams);
+		 * filter.setTokenizer(t);
+		 */
+
 		// System.err.println("Using alphebetic tokens");
 		// ((StringToWordVector) this.filter).setOnlyAlphabeticTokens(true);
 
@@ -150,8 +149,7 @@ public abstract class TriageClassifier implements Serializable {
 
 	protected abstract void build(Instances dataset) throws Exception;
 
-	protected abstract List<Classification> classify(Instance instance)
-			throws Exception;
+	protected abstract List<Classification> classify(Instance instance) throws Exception;
 
 	public void setProfile(Profiles profile) {
 		this.profile = profile;
@@ -163,18 +161,15 @@ public abstract class TriageClassifier implements Serializable {
 	public List<Classification> classify(BugReport report) {
 		{
 			try {
-				Instance bugInstance = this.createInstance(report,
-						this.trainingDataset);
+				Instance bugInstance = this.createInstance(report, this.trainingDataset);
 
 				this.filter.input(bugInstance);
 				bugInstance = this.filter.output();
 
 				if (USE_ATTRIBUTE_SELECTION)
-					bugInstance = this.selector
-							.reduceDimensionality(bugInstance);
+					bugInstance = this.selector.reduceDimensionality(bugInstance);
 
-				List<Classification> classifications = this
-						.classify(bugInstance);
+				List<Classification> classifications = this.classify(bugInstance);
 				Collections.sort(classifications, Collections.reverseOrder());
 				return classifications;
 			} catch (Exception e) {
@@ -195,8 +190,7 @@ public abstract class TriageClassifier implements Serializable {
 			this.selector.setSearch(this.searcher);
 
 			this.selector.SelectAttributes(dataset);
-			System.out.println("Attributes selected: "
-					+ this.selector.numberAttributesSelected());
+			System.out.println("Attributes selected: " + this.selector.numberAttributesSelected());
 
 			filteredData = this.selector.reduceDimensionality(dataset);
 
@@ -229,10 +223,8 @@ public abstract class TriageClassifier implements Serializable {
 		this.filteredDataset = this.filterTrainingData(this.trainingDataset);
 
 		if (USE_ATTRIBUTE_SELECTION) {
-			System.out.println("Using "
-					+ this.evaluator.getClass().getSimpleName());
-			this.filteredDataset = this
-					.filterInformationContent(this.filteredDataset);
+			System.out.println("Using " + this.evaluator.getClass().getSimpleName());
+			this.filteredDataset = this.filterInformationContent(this.filteredDataset);
 		}
 
 		System.out.println("Building Classifier");
@@ -250,8 +242,7 @@ public abstract class TriageClassifier implements Serializable {
 		 */
 	}
 
-	protected Set<BugReport> getTrainingBugs(Set<BugReport> bugs,
-			Heuristic heuristic) {
+	protected Set<BugReport> getTrainingBugs(Set<BugReport> bugs, Heuristic heuristic) {
 
 		if (heuristic == null) {
 			return bugs;
@@ -319,15 +310,13 @@ public abstract class TriageClassifier implements Serializable {
 		return classList;
 	}
 
-	protected FastVector getClassNames(Set<BugReport> reports,
-			Heuristic heuristic) {
+	protected FastVector getClassNames(Set<BugReport> reports, Heuristic heuristic) {
 
 		String className;
 		FastVector<String> classNames = new FastVector<String>();
 
 		for (BugReport report : reports) {
-			className = heuristic.getClassifier().classify(report)
-					.getClassification();
+			className = heuristic.getClassifier().classify(report).getClassification();
 			if (classNames.contains(className) == false) {
 				classNames.addElement(className);
 			}
@@ -337,15 +326,13 @@ public abstract class TriageClassifier implements Serializable {
 		return classNames;
 	}
 
-	protected Instances createDataset(String datasetName,
-			Set<BugReport> trainingBugs,
-			Set<BugReport> testingBugs, Heuristic heuristic) {
+	protected Instances createDataset(String datasetName, Set<BugReport> trainingBugs, Set<BugReport> testingBugs,
+			Heuristic heuristic) {
 
 		// Remove testing reports from the training set
 
 		System.out.println("Test set size: " + testingBugs.size());
-		System.out.println("Training Set before removing test reports: "
-				+ trainingBugs.size());
+		System.out.println("Training Set before removing test reports: " + trainingBugs.size());
 
 		if (!trainingBugs.removeAll(testingBugs)) {
 			System.err.println("Training set unchanged - Manual processing");
@@ -360,8 +347,7 @@ public abstract class TriageClassifier implements Serializable {
 			trainingBugs.removeAll(toRemove);
 		}
 
-		System.out.println("Training Set after removing test reports: "
-				+ trainingBugs.size());
+		System.out.println("Training Set after removing test reports: " + trainingBugs.size());
 		trainingBugs = this.getTrainingBugs(trainingBugs, heuristic);
 
 		this.saveTrainingIds(trainingBugs);
@@ -419,16 +405,14 @@ public abstract class TriageClassifier implements Serializable {
 		return dataset;
 	}
 
-	protected void addInstances(Set<BugReport> bugs, Heuristic heuristic,
-			Instances dataset) {
+	protected void addInstances(Set<BugReport> bugs, Heuristic heuristic, Instances dataset) {
 		String h_classification;
 		Instance trainingInstance;
 		for (BugReport report : bugs) {
 			trainingInstance = this.makeTrainingInstance(report, dataset);
 
 			// Set class
-			h_classification = heuristic.getClassifier().classify(report)
-					.getClassification();
+			h_classification = heuristic.getClassifier().classify(report).getClassification();
 			trainingInstance.setClassValue(h_classification);
 			dataset.add(trainingInstance);
 
@@ -436,8 +420,7 @@ public abstract class TriageClassifier implements Serializable {
 		dataset.compactify();
 	}
 
-	protected Instance makeTrainingInstance(BugReport report,
-			Instances dataset) {
+	protected Instance makeTrainingInstance(BugReport report, Instances dataset) {
 
 		Instance instance = this.createInstance(report, dataset);
 		Attribute attribute = dataset.attribute(DESCRIPTION);
@@ -493,26 +476,19 @@ public abstract class TriageClassifier implements Serializable {
 			instance.setValue(attribute, report.getHardware().toLowerCase());
 		}
 
-		if (USE_VERSION) {
-			attribute = dataset.attribute(VERSION);
-			instance.setValue(attribute, report.getVersion().toLowerCase());
-		}
-
 		return instance;
+
 	}
 
-	public void train(Set<BugReport> reports,
-			Set<BugReport> testingBugs, Heuristic heuristic)
-			throws Exception {
+	public void train(Set<BugReport> reports, Set<BugReport> testingBugs, Heuristic heuristic) throws Exception {
 		System.out.println("Training " + this.getName());
 		// heuristic.getClassifier().useDuplicateResolver(true);
-		this.trainingDataset = createDataset("TrainingDataset", reports,
-				testingBugs, heuristic);
+		this.trainingDataset = createDataset("TrainingDataset", reports, testingBugs, heuristic);
 		this.train();
 	}
 
-	public void train(String[] trainingSets, String[] testingSet,
-			String developerInfoFile, Heuristic heuristic) throws Exception {
+	public void train(String[] trainingSets, String[] testingSet, String developerInfoFile, Heuristic heuristic)
+			throws Exception {
 
 		Set<BugReport> trainingBugs = Utils.getReports(trainingSets);
 
@@ -533,8 +509,7 @@ public abstract class TriageClassifier implements Serializable {
 		try {
 
 			System.out.println("Writing out classifier: " + saveFile.getName());
-			ObjectOutputStream out = new ObjectOutputStream(
-					new FileOutputStream(saveFile));
+			ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(saveFile));
 			out.writeObject(this);
 			out.close();
 			System.out.println("Classifier written out");

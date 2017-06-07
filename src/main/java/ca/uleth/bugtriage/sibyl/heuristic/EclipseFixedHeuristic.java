@@ -2,17 +2,12 @@ package ca.uleth.bugtriage.sibyl.heuristic;
 
 import java.util.List;
 
-import org.eclipse.mylar.provisional.bugzilla.core.Comment;
-
 import ca.uleth.bugtriage.sibyl.Classification;
-import ca.uleth.bugtriage.sibyl.Login;
-import ca.uleth.bugtriage.sibyl.Project;
-import ca.uleth.bugtriage.sibyl.User;
 import ca.uleth.bugtriage.sibyl.activity.events.ResolutionEvent;
 import ca.uleth.bugtriage.sibyl.activity.events.ResolutionType;
 import ca.uleth.bugtriage.sibyl.report.BugReport;
+import ca.uleth.bugtriage.sibyl.report.Comment;
 import ca.uleth.bugtriage.sibyl.utils.Email;
-import ca.uleth.bugtriage.sibyl.utils.LoginInfo;
 
 public class EclipseFixedHeuristic extends HeuristicClassifier {
 
@@ -100,9 +95,7 @@ public class EclipseFixedHeuristic extends HeuristicClassifier {
 			// that this is a duplicate of is the one who would have fixed this
 			if (type.equals(ResolutionType.DUPLICATE)) {
 				this.ruleCount[6]++;
-				User user = new User(User.UNKNOWN_USER_ID, Login.USER,
-						Login.PASSWORD, Project.PLATFORM);
-				Classification prediction = this.getDupResolver(user, report,
+				Classification prediction = this.getDupResolver(report,
 						this);
 				return new Classification(prediction.getClassification(),
 						"Duplicate Heuristic - " + prediction.getReason(), 1);

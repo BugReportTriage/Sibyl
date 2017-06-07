@@ -15,18 +15,17 @@ import ca.uleth.bugtriage.sibyl.report.BugReport;
 import ca.uleth.bugtriage.sibyl.utils.Environment;
 import ca.uleth.bugtriage.sibyl.utils.FrequencyTable;
 import ca.uleth.bugtriage.sibyl.utils.Profiles;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 public abstract class Classifier {
 
 	public abstract Classification classify(BugReport report);
 
 	public void printStats() {
-		throw new NotImplementedException();
+		throw new UnsupportedOperationException();
 	}
 
 	public void resetStats() {
-		throw new NotImplementedException();
+		throw new UnsupportedOperationException();
 	}
 
 	public static void saveClassifier(String classifierName,
@@ -42,7 +41,7 @@ public abstract class Classifier {
 
 	public static Profiles createDeveloperProfiles(String[] dataset,
 			Project project) {
-		Profiles profile = new Profiles(dataset, project.getHeuristic());
+		Profiles profile = new Profiles(dataset, project.heuristic);
 		System.out.println("Creating profiles...");
 		profile.createProfiles(NUM_PROFILE_MONTHS);
 		
@@ -65,7 +64,7 @@ public abstract class Classifier {
 		
 		
 		System.err.println("Before Pruning: " + profile.size());
-		profile.pruneAverage(project.getThreshold()
+		profile.pruneAverage(project.threshold
 				/ Classifier.NUM_PROFILE_MONTHS);
 		System.err.println("After Pruning: " + profile.size());
 		return profile;

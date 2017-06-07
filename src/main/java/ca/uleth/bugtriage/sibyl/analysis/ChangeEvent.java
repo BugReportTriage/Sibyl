@@ -8,7 +8,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import ca.uleth.bugtriage.sibyl.activity.BugActivity;
-import ca.uleth.bugtriage.sibyl.utils.BugzillaPage;
 
 public class ChangeEvent extends SubmissionEvent {
 
@@ -29,7 +28,7 @@ public class ChangeEvent extends SubmissionEvent {
 
 	public int assignmentRank() {
 		
-		List<String> recommendations = this.assignmentRecommendations();
+		List<String> recommendations = null;//this.assignmentRecommendations();
 	
 		/*
 		if(recommendations.size() == 1 && recommendations.get(0).contains("Control Report")) {
@@ -40,7 +39,7 @@ public class ChangeEvent extends SubmissionEvent {
 	}
 
 	public int componentRank() {
-		return this.rank(this.activityLog.getComponentChanges(), this.componentRecommendations());
+		return this.rank(this.activityLog.getComponentChanges(), null /*this.componentRecommendations()*/);
 	}
 
 	public int subcomponentRank() {
@@ -59,11 +58,11 @@ public class ChangeEvent extends SubmissionEvent {
 			// remove spaces and put all in same case
 			subcomponentChanges.add(change.replace(" ","").toLowerCase()); 
 		}
-		
+		/*
 		for(String recommendation : this.subcomponentRecommendations()){
 			// remove spaces and put all in same case
 			recommendations.add(recommendation.replace(" ","").toLowerCase()); 
-		}
+		}*/
 		return this.rank(subcomponentChanges, recommendations);
 	}
 	
@@ -85,22 +84,22 @@ public class ChangeEvent extends SubmissionEvent {
 
 	public List<String> assignmentRecommendations() {
 		return this
-				.recommendations(BugzillaPage.LOGGED_DEVELOPER_RECOMMENDATION_KEY);
+				.recommendations(""/*BugzillaPage.LOGGED_DEVELOPER_RECOMMENDATION_KEY*/);
 	}
 
 	public List<String> componentRecommendations() {
 		return this
-				.recommendations(BugzillaPage.LOGGED_COMPONENT_RECOMMENDATION_KEY);
+				.recommendations(""/*BugzillaPage.LOGGED_COMPONENT_RECOMMENDATION_KEY*/);
 	}
 
 	public List<String> subcomponentRecommendations() {
 		return this
-				.recommendations(BugzillaPage.LOGGED_SUBCOMPONENT_RECOMMENDATION_KEY);
+				.recommendations(""/*BugzillaPage.LOGGED_SUBCOMPONENT_RECOMMENDATION_KEY*/);
 	}
 	
 	public List<String> ccRecommendations() {
 		return this
-				.recommendations(BugzillaPage.LOGGED_CC_RECOMMENDATION_KEY);
+				.recommendations(""/*BugzillaPage.LOGGED_CC_RECOMMENDATION_KEY*/);
 	}
 
 	private List<String> recommendations(String formKey) {

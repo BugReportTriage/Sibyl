@@ -1,12 +1,9 @@
 package ca.uleth.bugtriage.sibyl.heuristic;
 
 public enum Heuristic {
-	//ECLIPSE(new EclipseHeuristic()), 
+	ECLIPSE(new EclipseHeuristic()), 
 	MOZILLA(new MozillaHeuristic()),
-	//GCC(new GCCHeuristic()), 
-	//EVOLUTION(new EvolutionHeuristicOptimized()), 
-	//COMPONENT(new ComponentHeuristic()), SUBCOMPONENT(new SubcomponentHeuristic()),
-	//TEST(new TestHeuristic()), ECLIPSE_FIXED(new EclipseFixedHeuristic()), ANT(null), MYLAR(new MylarHeuristic()), WONTFIX(new WontFixHeuristic())
+	COMPONENT(new ComponentHeuristic()), SUBCOMPONENT(new SubcomponentHeuristic()),
 	KDE_PLASMA(null), LIBREOFFICE(null)
 	;
 	

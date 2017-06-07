@@ -9,7 +9,6 @@ import java.util.Map;
 import java.util.Set;
 
 import org.apache.commons.math.stat.descriptive.DescriptiveStatistics;
-import org.apache.commons.math.stat.descriptive.DescriptiveStatistics;
 
 import ca.uleth.bugtriage.sibyl.Classification;
 import ca.uleth.bugtriage.sibyl.eval.DeveloperInfo;
@@ -18,8 +17,6 @@ import ca.uleth.bugtriage.sibyl.heuristic.HeuristicClassifier;
 import ca.uleth.bugtriage.sibyl.report.BugReport;
 import ca.uleth.bugtriage.sibyl.utils.Profiles;
 import ca.uleth.bugtriage.sibyl.utils.Utils;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
-import weka.classifiers.Classifier;
 import weka.core.Instance;
 
 public class ComponentClassifier extends MLClassifier {
@@ -43,7 +40,7 @@ public class ComponentClassifier extends MLClassifier {
 
 	@Override
 	protected List<Classification> classify(Instance instance) throws Exception {
-		throw new NotImplementedException();
+		throw new UnsupportedOperationException();
 	}
 
 	public List<Classification> classify(BugReport report,
@@ -114,7 +111,12 @@ public class ComponentClassifier extends MLClassifier {
 			// printIds(trainingReports);
 
 			try {
-				partitionClassifier = new MLClassifier(Classifier.makeCopy(this.classifier));
+				
+				if(true)
+					throw new UnsupportedOperationException();
+				
+				partitionClassifier = null; //new MLClassifier(Classifier.makeCopy(this.classifier));
+				
 				if (heuristic == Heuristic.SUBCOMPONENT) {
 					Profiles profiles = ca.uleth.bugtriage.sibyl.classifier.Classifier.createSubcomponentProfiles(trainingReports, heuristic);
 					partitionClassifier.setProfile(profiles);
