@@ -14,7 +14,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
     "removed"
 })
 @JsonIgnoreProperties(ignoreUnknown=true)  
-public class Change {
+public class ChangeBugzilla {
 
     @JsonProperty("added")
     private String added;    

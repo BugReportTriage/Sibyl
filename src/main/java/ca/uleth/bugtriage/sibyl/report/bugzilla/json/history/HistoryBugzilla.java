@@ -15,19 +15,19 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 public class HistoryBugzilla {
 
     @JsonProperty("changes")
-    private List<Change> changes = null;
+    private List<ChangeBugzilla> changes = null;
     @JsonProperty("when")
     private String when;
     @JsonProperty("who")
     private String who;
 
     @JsonProperty("changes")
-    public List<Change> getChanges() {
+    public List<ChangeBugzilla> getChanges() {
         return changes;
     }
 
     @JsonProperty("changes")
-    public void setChanges(List<Change> changes) {
+    public void setChanges(List<ChangeBugzilla> changes) {
         this.changes = changes;
     }
 
