@@ -48,9 +48,14 @@ public class BugzillaDataset {
 		String url = project.url + "/rest/bug?product=" + project.product + CLOSED_FIXED + "&include_fields=" + DATA_FIELDS + "&quicksearch=creation_ts%3E=" + project.startDate
 				+ "%20creation_ts%3C" + project.endDate;
 		return getJsonData(url);
-
 	}
 
+	/**
+	 * Get the history of a bug report
+	 * @param project The project to access.
+	 * @param reportId The id of the report.
+	 * @return Activity history of the report in JSON format.
+	 */
 	public static String getHistory(Project project, String reportId) {
 
 		/* GET /rest/bug/(id)/history */
@@ -58,6 +63,20 @@ public class BugzillaDataset {
 		return getJsonData(url);
 	}
 
+	/**
+	 * Get the comments of a bug report
+	 * @param project The project to access.
+	 * @param reportId The id of the report.
+	 * @return Comments of the report in JSON format.
+	 */
+	public static String getComments(Project project, String reportId) {
+
+		/* GET /rest/bug/(id)/comment */
+		String url = project.url + "/rest/bug/" + reportId + "/comment";
+		return getJsonData(url);
+	}
+
+	
 	private static String getJsonData(String url) {
 		InputStream is = null;
 		try {

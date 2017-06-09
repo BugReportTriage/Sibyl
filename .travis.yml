@@ -1,7 +1,13 @@
 language: java
 
+notifications:
+  email: false
+
+cache:
+  directories:
+  - $HOME/.m2
+  
 install: mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
 
 script:
-   - cat data/testBug.json
    - mvn test
