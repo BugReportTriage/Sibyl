@@ -7,10 +7,9 @@ import java.util.HashSet;
 import java.util.Hashtable;
 import java.util.Set;
 
-import org.codehaus.jackson.JsonParseException;
-import org.codehaus.jackson.map.JsonMappingException;
-import org.codehaus.jackson.map.ObjectMapper;
 import org.junit.Test;
+
+import com.fasterxml.jackson.core.JsonParseException;
 
 import ca.uleth.bugtriage.sibyl.report.bugzilla.json.BugReportsBugzilla;
 import ca.uleth.bugtriage.sibyl.report.bugzilla.json.ReportBugzilla;

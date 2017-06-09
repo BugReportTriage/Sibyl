@@ -1,10 +1,12 @@
 package ca.uleth.bugtriage.sibyl.report.bugzilla.json;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import ca.uleth.bugtriage.sibyl.activity.BugActivity;
 import ca.uleth.bugtriage.sibyl.activity.events.BugActivityEvent;
 import ca.uleth.bugtriage.sibyl.report.BugReport;
+import ca.uleth.bugtriage.sibyl.report.bugzilla.json.comment.Comment;
 import ca.uleth.bugtriage.sibyl.report.bugzilla.json.history.BugReportHistoryBugzilla;
 import ca.uleth.bugtriage.sibyl.report.bugzilla.json.history.HistoryBugzilla;
 
@@ -25,7 +27,8 @@ public class BugzillaAdapter {
 		report.setSummary(r.getSummary());
 		report.setPriority(r.getPriority());
 		report.setSeverity(r.getSeverity());
-		report.setDuplicateOf(r.getDupe_of().toString());
+		if(r.getDupe_of() != null)
+			report.setDuplicateOf(r.getDupe_of().toString());
 		
 		//report.getSubcomponent(); // TODO Only Eclipse?
 				
@@ -46,6 +49,19 @@ public class BugzillaAdapter {
 			history.addEvent(event);
 		}
 		return history;
+	}
+
+	public static List<ca.uleth.bugtriage.sibyl.report.Comment> convertComments(List<Comment> commentsBugzilla) {
+		List<ca.uleth.bugtriage.sibyl.report.Comment> comments = new ArrayList<ca.uleth.bugtriage.sibyl.report.Comment>();
+		for(Comment c : commentsBugzilla){
+			ca.uleth.bugtriage.sibyl.report.Comment comment = new ca.uleth.bugtriage.sibyl.report.Comment();
+			comment.setAuthour(c.getAuthor());
+			comment.setCreated(c.getCreationTime());
+			comment.setText(c.getText());
+			
+			comments.add(comment);
+		}
+		return comments;
 	}
 
 }

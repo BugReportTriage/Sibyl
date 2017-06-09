@@ -1,7 +1,7 @@
 
 package ca.uleth.bugtriage.sibyl.report.bugzilla.json.history;
 
-import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -13,13 +13,14 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
     "field_name",
     "removed"
 })
-@JsonIgnoreProperties(ignoreUnknown=true)  
+//@JsonIgnoreProperties(ignoreUnknown=true)
+@JsonIgnoreProperties
 public class ChangeBugzilla {
 
     @JsonProperty("added")
     private String added;    
     @JsonProperty("attachment_id")    
-    private Integer attachmentId;
+    private String attachmentId;
     @JsonProperty("field_name")
     private String fieldName;
     @JsonProperty("removed")
@@ -34,13 +35,13 @@ public class ChangeBugzilla {
     public void setAdded(String added) {
         this.added = added;
     }
-
+    
     @JsonProperty("attachment_id")    
-    public Integer getAttachmentId() {
+    public String getAttachmentId() {
         return attachmentId;
     }    
     @JsonProperty("attachment_id")    
-    public void setAttachmentId(Integer attachmentId) {
+    public void setAttachmentId(String attachmentId) {
         this.attachmentId = attachmentId;
     }
 

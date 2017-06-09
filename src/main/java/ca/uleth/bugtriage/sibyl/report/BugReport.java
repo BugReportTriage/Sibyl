@@ -17,9 +17,7 @@ public class BugReport implements Serializable, Comparable<BugReport> {
 	/**
 	 * Generated serialization id
 	 */
-	private static final long serialVersionUID = 8129839924723442681L;
-
-	private BugActivity activity;
+	private static final long serialVersionUID = 8129839924723442681L;	
 
 	private int reportId;
 	private List<String> ccList;
@@ -40,7 +38,8 @@ public class BugReport implements Serializable, Comparable<BugReport> {
 	
 	private List<ReportAttachment> attachments;
 	private List<Comment> comments;
-	private StatusType status;	
+	private StatusType status;
+	private BugActivity activity;
 
 	public static final Pattern SUBCOMPONENT_REGEX = Pattern.compile("\\[((\\w+\\/*\\s*)+)\\]");
 
@@ -229,5 +228,29 @@ public class BugReport implements Serializable, Comparable<BugReport> {
 
 	public void setStatus(String status) {		
 		this.status = StatusType.convert(status);
+	}
+
+	public String getPriority() {
+		return priority;
+	}
+
+	public void setPriority(String priority) {
+		this.priority = priority;
+	}
+
+	public String getDuplicateOf() {
+		return duplicateOf;
+	}
+
+	public void setDuplicateOf(String duplicateOf) {
+		this.duplicateOf = duplicateOf;
+	}
+
+	public String getSeverity() {
+		return severity;
+	}
+
+	public void setSeverity(String severity) {
+		this.severity = severity;
 	}
 }

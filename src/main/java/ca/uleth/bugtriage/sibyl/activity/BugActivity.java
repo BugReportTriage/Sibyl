@@ -39,7 +39,7 @@ public class BugActivity implements Iterable<BugActivityEvent>, Serializable {
 
 	private final List<AttachmentEvent> attachmentEvents;
 
-	public BugActivity(int id) {
+	public BugActivity() {
 		this.statusEvents = new ArrayList<StatusEvent>();
 		this.resolutionEvents = new ArrayList<ResolutionEvent>();
 		this.assignmentEvents = new ArrayList<AssignmentEvent>();
