@@ -10,6 +10,8 @@ import java.util.Set;
 import org.junit.Test;
 
 import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import ca.uleth.bugtriage.sibyl.report.bugzilla.json.BugReportsBugzilla;
 import ca.uleth.bugtriage.sibyl.report.bugzilla.json.ReportBugzilla;

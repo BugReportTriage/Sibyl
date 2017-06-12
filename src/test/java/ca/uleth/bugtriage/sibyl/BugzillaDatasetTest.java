@@ -3,13 +3,14 @@ package ca.uleth.bugtriage.sibyl;
 import java.io.IOException;
 import java.util.List;
 
-import org.codehaus.jackson.JsonParseException;
-import org.codehaus.jackson.map.JsonMappingException;
-import org.codehaus.jackson.map.ObjectMapper;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
+
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import ca.uleth.bugtriage.sibyl.datacollection.BugzillaDataset;
 import ca.uleth.bugtriage.sibyl.report.BugReport;
@@ -32,8 +33,7 @@ public class BugzillaDatasetTest {
 		testFirefox.startDate = "2010-06-01";
 		testFirefox.endDate = "2010-06-02";	
 	}
-	
-	@Ignore
+		
 	@Test
 	public void testGetDataBugzilla() throws JsonParseException, JsonMappingException, IOException {
 		
@@ -73,8 +73,7 @@ public class BugzillaDatasetTest {
 		Assert.assertEquals("flagtypes.name", details.getFieldName());
 		Assert.assertEquals("", details.getRemoved());
 	}
-
-	@Ignore
+	
 	@Test
 	public void testGetReportCommentsBugzilla() throws JsonParseException, JsonMappingException, IOException {
 
@@ -88,12 +87,12 @@ public class BugzillaDatasetTest {
 		Assert.assertEquals(4721961, comments.get(0).getId().intValue());
 
 	}
-	@Ignore
+	
 	@Test
 	public void testBugReportBugzilla() {
 		
 		List<BugReport> reports = BugzillaDataset.getData(testFirefox);
 		
-		Assert.assertEquals(2, reports);
+		Assert.assertEquals(2, reports.size());
 	}
 }
