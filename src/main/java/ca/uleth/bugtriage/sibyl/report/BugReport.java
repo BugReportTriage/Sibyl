@@ -1,31 +1,25 @@
 package ca.uleth.bugtriage.sibyl.report;
 
-import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import ca.uleth.bugtriage.sibyl.activity.BugActivity;
+import ca.uleth.bugtriage.sibyl.activity.events.ResolutionType;
 import ca.uleth.bugtriage.sibyl.activity.events.StatusType;
 
 /**
  * A bug report entered in Bugzilla.
  */
-public class BugReport implements Serializable, Comparable<BugReport> {
-
-	/**
-	 * Generated serialization id
-	 */
-	private static final long serialVersionUID = 8129839924723442681L;	
+public class BugReport implements Comparable<BugReport> {
 
 	private int reportId;
 	private List<String> ccList;
 	private String component;
 	private String summary;
 	private String reporter;	
-	private String assigned;
-	private String resolution;
+	private String assigned;	
 	private Date created;
 	private String operatingSystem;
 	private String hardware;
@@ -40,21 +34,16 @@ public class BugReport implements Serializable, Comparable<BugReport> {
 	private List<Comment> comments;
 	private StatusType status;
 	private BugActivity activity;
+	private ResolutionType resolution;
 
 	public static final Pattern SUBCOMPONENT_REGEX = Pattern.compile("\\[((\\w+\\/*\\s*)+)\\]");
 
-	public BugReport(int id) {
+	public BugReport() {}
+	
+	public void setId(int id){
 		this.reportId = id;
 	}
 
-	/**
-	 * Get the change history
-	 * 
-	 * @return The change history of the bug
-	 * 
-	 *         (As getting the history is expensive (requires parsing a seperate
-	 *         HTML file) the history is retrieved lazily)
-	 */
 	public BugActivity getActivity() {
 		return this.activity;
 	}
@@ -63,7 +52,7 @@ public class BugReport implements Serializable, Comparable<BugReport> {
 		this.activity = activity;
 	}
 
-	public List<String> getCC() {
+	public List<String> getCCList() {
 		return this.ccList;
 	}
 
@@ -95,11 +84,11 @@ public class BugReport implements Serializable, Comparable<BugReport> {
 		return this.status;
 	}
 
-	public String getAssignedTo() {
+	public String getAssigned() {
 		return this.assigned;
 	}
 
-	public String getResolution() {
+	public ResolutionType getResolution() {
 		return this.resolution;
 	}
 
@@ -126,7 +115,7 @@ public class BugReport implements Serializable, Comparable<BugReport> {
 		return this.getId();
 	}
 
-	public String getOS() {
+	public String getOperatingSystem() {
 		return this.operatingSystem;
 	}
 
@@ -138,14 +127,14 @@ public class BugReport implements Serializable, Comparable<BugReport> {
 		return this.changed;
 	}
 
-	public String getSubcomponent() {
+	public String subcomponent() {
 		Matcher subcomponentMatcher = SUBCOMPONENT_REGEX.matcher(this.summary);
 		if (subcomponentMatcher.find()) {
 			return subcomponentMatcher.group(1);
 		}
 		return null;
 	}
-
+/*
 	public int getDupId() {
 		Pattern dupIdPattern = Pattern
 				.compile("\\*\\*\\* This bug has been marked as a duplicate of (bug )?(\\d+) \\*\\*\\*");
@@ -159,7 +148,7 @@ public class BugReport implements Serializable, Comparable<BugReport> {
 		}
 		return -1;
 	}
-
+*/
 	public int compareTo(BugReport reportToCompare) {
 		if (reportToCompare.getId() > this.getId()) {
 			return 1;
@@ -182,7 +171,7 @@ public class BugReport implements Serializable, Comparable<BugReport> {
 		this.reportId = reportId;
 	}
 
-	public void setCcList(List<String> ccList) {
+	public void setCCList(List<String> ccList) {
 		this.ccList = ccList;
 	}
 
@@ -207,7 +196,7 @@ public class BugReport implements Serializable, Comparable<BugReport> {
 	}
 
 	public void setResolution(String resolution) {
-		this.resolution = resolution;
+		this.resolution = ResolutionType.convert(resolution);
 	}
 
 	public void setCreated(Date created) {

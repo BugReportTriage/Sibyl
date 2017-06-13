@@ -11,10 +11,12 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
 import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -177,7 +179,7 @@ public class BugzillaDataset {
 		return reports;
 	}
 
-	public static void writeToFile(Project project, List<BugReport> reports) {
+	public static File exportReports(Project project, List<BugReport> reports) {
 		try {
 
 			File dataFile = new File(project.dataDir + "/" + project.name + "_" + project.startDate + ".json");
@@ -186,10 +188,13 @@ public class BugzillaDataset {
 				parent.mkdir();
 			}
 
-			ObjectMapper mapper = new ObjectMapper();
-			mapper.writeValue(dataFile, reports);
 			System.out.println("Writing to: " + dataFile.getName());
+			
+			ObjectMapper mapper = new ObjectMapper();
+			mapper.writerWithDefaultPrettyPrinter().writeValue(dataFile, reports);
+			
 			System.out.println("Bugs written out: " + dataFile.getName());
+			return dataFile;
 		} catch (FileNotFoundException e) {
 
 			e.printStackTrace();
@@ -197,5 +202,27 @@ public class BugzillaDataset {
 
 			e.printStackTrace();
 		}
+		return null;
+	}
+	
+	public static List<BugReport> importReports(File input) throws JsonProcessingException, IOException {
+		
+		//List<BugReport> reports = new ArrayList<BugReport>();
+		ObjectMapper mapper = new ObjectMapper();
+		
+		List<BugReport> reports = mapper.readValue(input, new TypeReference<List<BugReport>>() {
+		});
+		
+		/*
+		JsonNode root = mapper.readTree(input);
+		
+		for(JsonNode child : root){
+			System.out.println(child.toString());
+			BugReport report = mapper.readValue(child.toString(), BugReport.class);
+			reports.add(report);
+		}
+		*/
+		
+		return reports;
 	}
 }

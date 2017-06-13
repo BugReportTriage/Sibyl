@@ -50,7 +50,7 @@ public class WontFixTriage {
 		for (BugReport report : testReports) {
 			precision = 0;
 			recall = 0;
-			String actual = report.getResolution();
+			String actual = report.getResolution().toString();
 			System.out.println(report.getId() + ": " + actual);
 			
 			if (!actual.toLowerCase().equals("WONTFIX".toLowerCase())

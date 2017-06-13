@@ -11,17 +11,21 @@ public class AttachmentEvent extends BugActivityEvent {
 
 	private static final Pattern id = Pattern.compile("\\d+");
 
-	private final int attachmentId;
+	private int attachmentId;
 
 	private List<AttachmentFlag> flags;
 
+	public AttachmentEvent() {
+		
+	}
+	
 	public AttachmentEvent(int id, List<AttachmentFlag> flags) {
 		this.what = BugActivityEvent.ATTACHMENT;
 		this.attachmentId = id;
 		this.flags = flags;
 	}
 
-	public String getFlagsString() {
+	public String flagsString() {
 		String flagString = "";
 		for (AttachmentFlag flag : this.flags) {
 			flagString += flag + " ";
@@ -156,7 +160,7 @@ public class AttachmentEvent extends BugActivityEvent {
 	@Override
 	public String toString() {
 		return this.getName() + " | " + this.getDate() + " | " + this.getWhat()
-				+ " | " + this.attachmentId + " | " + this.getFlagsString();
+				+ " | " + this.attachmentId + " | " + this.flagsString();
 	}
 
 	public List<AttachmentFlag> getFlags() {

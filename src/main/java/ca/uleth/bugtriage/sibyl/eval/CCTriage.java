@@ -47,7 +47,7 @@ public class CCTriage {
 		// Remove any reports that don't have CCs
 		Set<BugReport> ccReports = new HashSet<BugReport>();
 		for (BugReport report : testReports) {
-			if (report.getCC().isEmpty())
+			if (report.getCCList().isEmpty())
 				continue;
 			ccReports.add(report);
 		}
@@ -59,7 +59,7 @@ public class CCTriage {
 		for (BugReport report : ccReports) {
 			precision = 0;
 			recall = 0;
-			List<String> actual = report.getCC();
+			List<String> actual = report.getCCList();
 			// System.out.println(report.getId() + ": " + actual);
 			List<Classification> predictions = classifier.classify(report);
 			int unknown = 0;

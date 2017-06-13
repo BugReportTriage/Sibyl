@@ -83,7 +83,7 @@ public class BreakDownDataMonths {
 					case RESOLVED:
 					case VERIFIED:
 					case CLOSED:
-						date = report.getActivity().getResolution().getDate();
+						date = report.getActivity().resolution().getDate();
 						break;
 					default:
 						System.err.println("Strange status: " + report.getStatus());

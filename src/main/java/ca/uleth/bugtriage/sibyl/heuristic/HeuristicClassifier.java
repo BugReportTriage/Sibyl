@@ -84,7 +84,7 @@ public abstract class HeuristicClassifier extends Classifier {
 			HeuristicClassifier classifier) {
 
 		if (this.useDuplicateResolver) {
-			int bugId = report.getDupId();// getDuplicateId(user, report);
+			int bugId = Integer.parseInt(report.getDuplicateOf());// getDuplicateId(user, report);
 			//System.out.println("Getting dup " + report.getId() + " --> " + bugId);
 			// System.out.println(report.getId() + " dup of " + bugId);
 			if (bugId != -1) {

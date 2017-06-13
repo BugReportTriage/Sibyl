@@ -468,7 +468,7 @@ public abstract class TriageClassifier implements Serializable {
 
 		if (USE_OS) {
 			attribute = dataset.attribute(OS);
-			instance.setValue(attribute, report.getOS().toLowerCase());
+			instance.setValue(attribute, report.getOperatingSystem().toLowerCase());
 		}
 
 		if (USE_HARDWARE) {

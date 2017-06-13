@@ -29,7 +29,7 @@ public class EclipseHeuristic extends HeuristicClassifier {
 
 	public Classification classifyReport(BugReport report) {
 
-		ResolutionEvent resolution = report.getActivity().getResolution();
+		ResolutionEvent resolution = report.getActivity().resolution();
 		String resolver = null;
 
 		if(report.getId() == 140669){
@@ -44,15 +44,15 @@ public class EclipseHeuristic extends HeuristicClassifier {
 			String lastAssigned = report.getActivity().lastAssignedTo();
 			if (lastAssigned == null) { // bug report was never reassigned
 				return new Classification(Email.getAddress(report
-						.getAssignedTo()), "Heuristic #6", 1);
+						.getAssigned()), "Heuristic #6", 1);
 			}
 			return new Classification(Email.getAddress(lastAssigned),
 					"Heuristic #6", 1);
 		}
 
-		resolver = resolution.getResolvedBy();
+		resolver = resolution.resolvedBy();
 
-		String assignedTo = Email.getAddress(report.getAssignedTo());
+		String assignedTo = Email.getAddress(report.getAssigned());
 		String reporter = Email.getAddress(report.getReporter());
 		ResolutionType type = resolution.getType();
 
@@ -77,7 +77,7 @@ public class EclipseHeuristic extends HeuristicClassifier {
 		// Heuristic #1
 		if (assignedTo.contains(resolver)) {
 			this.ruleCount[0]++;
-			return new Classification(Email.getAddress(report.getAssignedTo()),
+			return new Classification(Email.getAddress(report.getAssigned()),
 					"Heuristic #1", 1);
 		}
 
@@ -111,7 +111,7 @@ public class EclipseHeuristic extends HeuristicClassifier {
 
 			List<Comment> comments = report.getComments();
 			for (Comment comment : comments) {
-				String authour = Email.getAddress(comment.getAuthor());
+				String authour = Email.getAddress(comment.getAuthour());
 				// Find the first person to respond that is not the reporter
 				if (!authour.contains(reporter)) { // Heuristic #4
 					this.ruleCount[3]++;

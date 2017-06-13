@@ -52,7 +52,7 @@ public class SubcomponentTriage {
 		for (BugReport report : testReports) {
 			precision = 0;
 			recall = 0;
-			String actual = report.getSubcomponent();
+			String actual = report.subcomponent();
 			if(actual == null)
 				continue;
 			/*

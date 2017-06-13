@@ -10,10 +10,6 @@ public class Comment {
 		return text;
 	}
 
-	public String getAuthor() {		
-		return getAuthour();
-	}
-
 	public void setText(String text) {
 		this.text = text;
 	}

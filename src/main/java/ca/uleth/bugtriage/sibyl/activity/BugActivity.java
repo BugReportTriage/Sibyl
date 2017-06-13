@@ -37,7 +37,7 @@ public class BugActivity implements Iterable<BugActivityEvent>, Serializable {
 
 	private final List<BugActivityEvent> otherEvents;
 
-	private final List<AttachmentEvent> attachmentEvents;
+	private final List<AttachmentEvent> attachmentEvents;	
 
 	public BugActivity() {
 		this.statusEvents = new ArrayList<StatusEvent>();
@@ -119,13 +119,12 @@ public class BugActivity implements Iterable<BugActivityEvent>, Serializable {
 	 * @return the name of the person who resolved the bug if resolved, null
 	 *         otherwise
 	 */
-	public ResolutionEvent getResolution() {
+	public ResolutionEvent resolution() {
 
 		if (this.resolutionEvents.size() > 0) {
 			return this.resolutionEvents.get(this.resolutionEvents.size() - 1);
 		}
 		return null;
-
 	}
 
 	/**
@@ -135,7 +134,7 @@ public class BugActivity implements Iterable<BugActivityEvent>, Serializable {
 	 * @return the name of the person who last set the status of the report,
 	 *         null otherwise
 	 */
-	public String getWhoSetStatus() {
+	public String whoSetStatus() {
 
 		if (this.statusEvents.size() > 0) {
 			return this.statusEvents.get(this.statusEvents.size() - 1)
@@ -167,7 +166,7 @@ public class BugActivity implements Iterable<BugActivityEvent>, Serializable {
 			List<AttachmentFlag> flags = event.getFlags();
 			for (AttachmentFlag flag : flags) {
 				boolean approvalGranted = flag.getStatus().equals(
-						AttachmentFlagStatus.APPROVAL)
+						AttachmentFlagStatus.REVIEW)
 						&& flag.getState().equals(AttachmentFlagState.GRANTED);
 				if (approvalGranted) {
 					approvalEvents.add(event);
@@ -267,7 +266,7 @@ public class BugActivity implements Iterable<BugActivityEvent>, Serializable {
 		return reviewEventNames;
 	}
 
-	public String getMostFrequentAttachmentSubmitter() {
+	public String mostFrequentAttachmentSubmitter() {
 		// Map<String, Integer> attachmentSubmitters = new HashMap<String,
 		// Integer>();
 		FrequencyTable attachmentSubmitters = new FrequencyTable();
@@ -406,7 +405,7 @@ public class BugActivity implements Iterable<BugActivityEvent>, Serializable {
 	public List<String> getCCAdded() {
 		List<String> ccAdded = new ArrayList<String>();
 		for (BugActivityEvent event : this.otherEvents) {
-			if (event.getWhat().equals("CC") && event.getRemoved().equals("")) {
+			if (event.getWhat().equals("cc") && event.getRemoved().equals("")) {
 				String[] ccs = event.getAdded().split(",");
 				for (int i = 0; i < ccs.length; i++)
 					ccAdded.add(ccs[i].trim());

@@ -39,7 +39,7 @@ public class MozillaHeuristic extends HeuristicClassifier {
 		}
 		
 		if(false){ // only fixed reports
-		ResolutionEvent resolution = report.getActivity().getResolution();
+		ResolutionEvent resolution = report.getActivity().resolution();
 		if (resolution != null
 				&& resolution.getType().equals(ResolutionType.FIXED) == false && resolution
 						.getType().equals(ResolutionType.DUPLICATE) == false) {
@@ -83,7 +83,7 @@ public class MozillaHeuristic extends HeuristicClassifier {
 		DUPLICATE {
 			public Classification classify(BugReport report) {
 				BugActivity activity = report.getActivity();
-				ResolutionEvent resolution = activity.getResolution();
+				ResolutionEvent resolution = activity.resolution();
 				if (resolution != null) {
 					if (resolution.getType().equals(ResolutionType.DUPLICATE)) {
 						
@@ -110,7 +110,7 @@ public class MozillaHeuristic extends HeuristicClassifier {
 		WORKSFORME {
 			public Classification classify(BugReport report) {
 				BugActivity activity = report.getActivity();
-				ResolutionEvent resolution = activity.getResolution();
+				ResolutionEvent resolution = activity.resolution();
 				if (resolution != null) {
 					if (resolution.getType().equals(ResolutionType.WORKSFORME)) {
 						return new Classification(
@@ -125,7 +125,7 @@ public class MozillaHeuristic extends HeuristicClassifier {
 		PATCH {
 			public Classification classify(BugReport report) {
 				BugActivity activity = report.getActivity();
-				ResolutionEvent resolution = activity.getResolution();
+				ResolutionEvent resolution = activity.resolution();
 				if (resolution != null) {
 					if (resolution.getType().equals(ResolutionType.FIXED)) {
 						List<AttachmentEvent> approvedAttachments = activity
@@ -144,7 +144,7 @@ public class MozillaHeuristic extends HeuristicClassifier {
 										.println("WARNING: No submitters found for: "
 												+ report.getId());
 								return new Classification(Email
-										.getAddress(report.getAssignedTo()),
+										.getAddress(report.getAssigned()),
 										"Patch Submitter Unknown", 1);
 							}
 
@@ -157,7 +157,7 @@ public class MozillaHeuristic extends HeuristicClassifier {
 
 							if (submitters.size() > 1) {
 								String prolificSubmitter = activity
-										.getMostFrequentAttachmentSubmitter();
+										.mostFrequentAttachmentSubmitter();
 								if (prolificSubmitter.equals("")) {
 									int numSubmitters = submitters.size() - 1;
 									String lastSubmitter = submitters
@@ -185,16 +185,16 @@ public class MozillaHeuristic extends HeuristicClassifier {
 		INVALID {
 			public Classification classify(BugReport report) {
 				BugActivity activity = report.getActivity();
-				ResolutionEvent resolution = activity.getResolution();
+				ResolutionEvent resolution = activity.resolution();
 				if (resolution != null) {
 					if (resolution.getType().equals(ResolutionType.INVALID)) {
 						String resolver = Email.getAddress(resolution
-								.getResolvedBy());
+								.resolvedBy());
 						String submitter = Email.getAddress(report
 								.getReporter());
 						if (resolver.equals(submitter) == false) {
 							return new Classification(Email
-									.getAddress(resolution.getResolvedBy()),
+									.getAddress(resolution.resolvedBy()),
 									"Invalid Report Heuristic", 1);
 						}
 					}
@@ -221,7 +221,7 @@ public class MozillaHeuristic extends HeuristicClassifier {
 			public Classification classify(BugReport report) {
 				if (report.getStatus().equals(StatusType.ASSIGNED)) {
 					return new Classification(Email.getAddress(report
-							.getAssignedTo()), "Assigned Bug Heuristic", 1);
+							.getAssigned()), "Assigned Bug Heuristic", 1);
 				}
 				return null;
 			}
@@ -255,14 +255,14 @@ public class MozillaHeuristic extends HeuristicClassifier {
 		FIXED {
 			public Classification classify(BugReport report) {
 				BugActivity activity = report.getActivity();
-				ResolutionEvent resolution = activity.getResolution();
+				ResolutionEvent resolution = activity.resolution();
 				if (resolution != null) {
 					if (resolution.getType().equals(ResolutionType.FIXED)) {
 						List<AttachmentEvent> approvedAttachments = activity
 								.getApprovedAttachments();
 						if (approvedAttachments.isEmpty()) {
 							return new Classification(Email
-									.getAddress(resolution.getResolvedBy()),
+									.getAddress(resolution.resolvedBy()),
 									"Fixed, No Patch", 1);
 						}
 					}
@@ -277,7 +277,7 @@ public class MozillaHeuristic extends HeuristicClassifier {
 		WONT_FIX {
 			public Classification classify(BugReport report) {
 				BugActivity activity = report.getActivity();
-				ResolutionEvent resolution = activity.getResolution();
+				ResolutionEvent resolution = activity.resolution();
 				if (resolution != null) {
 					if (resolution.getType().equals(ResolutionType.WONTFIX)) {
 						return new Classification(
@@ -296,11 +296,11 @@ public class MozillaHeuristic extends HeuristicClassifier {
 		SUBITTER_ERROR {
 			public Classification classify(BugReport report) {
 				BugActivity activity = report.getActivity();
-				ResolutionEvent resolution = activity.getResolution();
+				ResolutionEvent resolution = activity.resolution();
 				if (resolution != null) {
 					if (resolution.getType().equals(ResolutionType.INVALID)) {
 						String resolver = Email.getAddress(resolution
-								.getResolvedBy());
+								.resolvedBy());
 						String submitter = Email.getAddress(report
 								.getReporter());
 						if (resolver.equals(submitter)) {
