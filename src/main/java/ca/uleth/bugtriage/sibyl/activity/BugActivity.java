@@ -18,9 +18,16 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
-import ca.uleth.bugtriage.sibyl.activity.events.*;
+import ca.uleth.bugtriage.sibyl.activity.events.AssignmentEvent;
+import ca.uleth.bugtriage.sibyl.activity.events.AttachmentEvent;
+import ca.uleth.bugtriage.sibyl.activity.events.AttachmentFlag;
+import ca.uleth.bugtriage.sibyl.activity.events.AttachmentFlagState;
+import ca.uleth.bugtriage.sibyl.activity.events.AttachmentFlagStatus;
+import ca.uleth.bugtriage.sibyl.activity.events.BugActivityEvent;
+import ca.uleth.bugtriage.sibyl.activity.events.ResolutionEvent;
+import ca.uleth.bugtriage.sibyl.activity.events.ResolutionType;
+import ca.uleth.bugtriage.sibyl.activity.events.StatusEvent;
 import ca.uleth.bugtriage.sibyl.report.BugReport;
 import ca.uleth.bugtriage.sibyl.utils.Email;
 import ca.uleth.bugtriage.sibyl.utils.FrequencyTable;

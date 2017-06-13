@@ -1,16 +1,9 @@
 package ca.uleth.bugtriage.sibyl.dataset;
 
-import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
 
 import ca.uleth.bugtriage.sibyl.Project;
-import ca.uleth.bugtriage.sibyl.report.BugReport;
-import ca.uleth.bugtriage.sibyl.utils.Utils;
 
 public class CreateDataset {
 
@@ -118,13 +111,6 @@ public class CreateDataset {
 			break;
 		}
 		return monthName;
-	}
-
-	private final Project project;
-
-	public CreateDataset(Project p) {
-		this.project = p;
-
 	}
 }
 

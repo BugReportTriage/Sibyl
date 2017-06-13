@@ -22,8 +22,7 @@ public class BreakDownDataMonths {
 	public static void main(String[] args) {
 
 		Project project = Project.PLATFORM;
-		Set<BugReport> reports = Utils
-				.getReports(Utils.getTrainingSet(EclipseData.ECLIPSE_DIR, 8, EclipseData.LAST_TRAINING_MONTH));
+		Set<BugReport> reports = null;//Utils.getReports(Utils.getTrainingSet(EclipseData.ECLIPSE_DIR, 8, EclipseData.LAST_TRAINING_MONTH));
 
 		Map<Date, Set<BugReport>> reportSets = breakupReports(reports);
 
@@ -33,30 +32,7 @@ public class BreakDownDataMonths {
 
 		//writeoutReports(project, project.getDataDir(), reportSets);
 	}
-
-	private static void writeoutReports(Project project, Map<Date, Set<BugReport>> reportSets) {
-		System.out.println("Writing out reports");
-		String reportsFilename;
-		Set<BugReport> reports;
-		for (Date date : reportSets.keySet()) {
-			reports = reportSets.get(date);
-			Calendar nextDay = Calendar.getInstance();
-			nextDay.setTime(date);
-			nextDay.roll(Calendar.DATE, true);
-			if (nextDay.before(date)) {
-				System.err.println("Month roll over: " + date);
-				nextDay.roll(Calendar.MONTH, true);
-			}
-			if (nextDay.before(date)) {
-				System.err.println("Year roll over: " + date);
-				nextDay.roll(Calendar.YEAR, true);
-			}
-			//reportsFilename = FileDataset.constructFilename(user, date, nextDay.getTime());
-			// Utils.writeDataset(dataDir + reportsFilename,
-			// new ArrayList<TriageBugReport>(reports));
-		}
-	}
-
+	
 	private static Map<Date, Set<BugReport>> breakupReports(Set<BugReport> reports) {
 		System.out.println("Breaking up reports");
 		Map<Date, Set<BugReport>> reportSets = new TreeMap<Date, Set<BugReport>>();

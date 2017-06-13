@@ -87,6 +87,7 @@ public class Environment {
 				File file = new File(confFile);
 				BufferedReader reader = new BufferedReader(new FileReader(file));
 				SERVLET_URL = reader.readLine();
+				reader.close();
 			} catch (FileNotFoundException e) {
 				System.err.println("Configuration file not found: " + confFile);
 			} catch (IOException e) {

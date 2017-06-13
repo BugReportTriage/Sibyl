@@ -31,7 +31,7 @@ public class Resolver2FixerMap {
 
 		String[] dataFiles = Utils.getTrainingSet(FirefoxData.FIREFOX_DIR,
 				NUM_MONTHS, FirefoxData.LAST_TRAINING_MONTH);
-		Set<BugReport> reports = Utils.getReports(dataFiles);
+		Set<BugReport> reports = null;//Utils.getReports(dataFiles);
 		HeuristicClassifier heuristic = Heuristic.MOZILLA.getClassifier();
 
 		String fixer, resolver;
@@ -96,6 +96,7 @@ public class Resolver2FixerMap {
 			ObjectInputStream in = new ObjectInputStream(new FileInputStream(
 					filename));
 			Map<String, Set<String>> map = (Map<String, Set<String>>)in.readObject();
+			in.close();
 			return map;
 		} catch (FileNotFoundException e) {
 			

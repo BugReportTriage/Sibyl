@@ -43,16 +43,14 @@ public class ComponentClassifier extends MLClassifier {
 		throw new UnsupportedOperationException();
 	}
 
-	public List<Classification> classify(BugReport report,
-			String component) {
+	public List<Classification> classify(BugReport report, String component) {
 		List<Classification> componentClassifications = new ArrayList<Classification>();
 		TriageClassifier componentClassifier = this.classifiers.get(component);
 		if (componentClassifier != null) {
 			componentClassifications = componentClassifier.classify(report);
 		} else {
-			componentClassifications.add(new Classification(
-					HeuristicClassifier.CANNOT_CLASSIFY, component
-							+ " unknown by classifier", 1.0));
+			componentClassifications.add(
+					new Classification(HeuristicClassifier.CANNOT_CLASSIFY, component + " unknown by classifier", 1.0));
 		}
 		return componentClassifications;
 	}
@@ -64,16 +62,15 @@ public class ComponentClassifier extends MLClassifier {
 	}
 
 	@Override
-	public void train(String[] trainingSets, String[] testingSet,
-			String developerInfoFile, Heuristic heuristic) {
+	public void train(String[] trainingSets, String[] testingSet, String developerInfoFile, Heuristic heuristic) {
 
-		Set<BugReport> bugs = Utils.getReports(trainingSets);
+		Set<BugReport> bugs = null;// Utils.getReports(trainingSets);
 		Set<BugReport> testingBugs;
 		if (developerInfoFile != null) {
 			DeveloperInfo developerInfo = new DeveloperInfo(developerInfoFile);
 			testingBugs = developerInfo.getTestingSet(testingSet);
 		} else if (testingSet != null) {
-			testingBugs = Utils.getReports(testingSet);
+			testingBugs = null;// Utils.getReports(testingSet);
 		} else {
 			testingBugs = new HashSet<BugReport>();
 		}
@@ -81,8 +78,7 @@ public class ComponentClassifier extends MLClassifier {
 		createClassifiers(partitions, testingBugs, heuristic);
 	}
 
-	private Map<String, Set<BugReport>> partition(
-			Set<BugReport> bugs) {
+	private Map<String, Set<BugReport>> partition(Set<BugReport> bugs) {
 		Map<String, Set<BugReport>> partitions = new HashMap<String, Set<BugReport>>();
 
 		String component;
@@ -98,27 +94,22 @@ public class ComponentClassifier extends MLClassifier {
 		return partitions;
 	}
 
-	private void createClassifiers(
-			Map<String, Set<BugReport>> partitions,
-			Set<BugReport> testingReports, Heuristic heuristic) {
+	private void createClassifiers(Map<String, Set<BugReport>> partitions, Set<BugReport> testingReports,
+			Heuristic heuristic) {
 
 		Set<BugReport> trainingReports;
 		TriageClassifier partitionClassifier = null;
 		System.out.println("Components: " + partitions.keySet().size());
 		for (String partitionName : partitions.keySet()) {
 			trainingReports = partitions.get(partitionName);
-
-			// printIds(trainingReports);
-
 			try {
-				
-				if(true)
-					throw new UnsupportedOperationException();
-				
-				partitionClassifier = null; //new MLClassifier(Classifier.makeCopy(this.classifier));
-				
+
+				partitionClassifier = null; // new
+											// MLClassifier(Classifier.makeCopy(this.classifier));
+
 				if (heuristic == Heuristic.SUBCOMPONENT) {
-					Profiles profiles = ca.uleth.bugtriage.sibyl.classifier.Classifier.createSubcomponentProfiles(trainingReports, heuristic);
+					Profiles profiles = ca.uleth.bugtriage.sibyl.classifier.Classifier
+							.createSubcomponentProfiles(trainingReports, heuristic);
 					partitionClassifier.setProfile(profiles);
 				} else {
 					partitionClassifier.setProfile(this.profile);
@@ -126,27 +117,15 @@ public class ComponentClassifier extends MLClassifier {
 
 				System.out.println("\n--> " + partitionName + " <--");
 
-				partitionClassifier.train(trainingReports, testingReports,
-						heuristic);
+				partitionClassifier.train(trainingReports, testingReports, heuristic);
 
 				this.classifiers.put(partitionName, partitionClassifier);
 			} catch (Exception e) {
 				// Classifier could not be created
-				System.err.println("Classifier for " + partitionName
-						+ " could not be created!");
+				System.err.println("Classifier for " + partitionName + " could not be created!");
 
 			}
 		}
-	}
-
-	private void printIds(Set<BugReport> trainingReports) {
-		List<Integer> ids = new ArrayList<Integer>();
-		for (BugReport report : trainingReports) {
-			ids.add(new Integer(report.getId()));
-		}
-		Collections.sort(ids);
-		System.out.println(ids);
-
 	}
 
 	@Override
@@ -158,16 +137,16 @@ public class ComponentClassifier extends MLClassifier {
 		return classes;
 	}
 
-	public List<String> getClasses(String component){
-		//System.out.println("Getting classes for: " + component);
+	public List<String> getClasses(String component) {
+		// System.out.println("Getting classes for: " + component);
 		TriageClassifier classifier = this.classifiers.get(component);
-		if(classifier == null) {
+		if (classifier == null) {
 			System.err.println("No classifier for " + component + "!");
 			return Collections.EMPTY_LIST;
 		}
 		return classifier.getClasses();
 	}
-	
+
 	@Override
 	public boolean inTrainingSet(BugReport report) {
 		String component = report.getComponent();

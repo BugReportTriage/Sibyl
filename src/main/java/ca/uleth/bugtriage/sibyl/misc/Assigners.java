@@ -17,7 +17,7 @@ public class Assigners {
 
 	public static void main(String[] args) {
 		int NUM_MONTHS = 1;
-		Set<BugReport> reports = Utils.getReports(Utils.getTrainingSet(EclipseData.ECLIPSE_DIR, NUM_MONTHS, EclipseData.LAST_TRAINING_MONTH));
+		Set<BugReport> reports = null;//Utils.getReports(Utils.getTrainingSet(EclipseData.ECLIPSE_DIR, NUM_MONTHS, EclipseData.LAST_TRAINING_MONTH));
 		
 		Map<String, FrequencyTable> assigners = new HashMap<String, FrequencyTable>();
 		BugActivityEvent bugEvent;

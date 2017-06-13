@@ -3,7 +3,6 @@ package ca.uleth.bugtriage.sibyl.heuristic;
 import java.util.List;
 
 import ca.uleth.bugtriage.sibyl.Classification;
-import ca.uleth.bugtriage.sibyl.Project;
 import ca.uleth.bugtriage.sibyl.activity.events.ResolutionEvent;
 import ca.uleth.bugtriage.sibyl.activity.events.ResolutionType;
 import ca.uleth.bugtriage.sibyl.report.BugReport;

@@ -20,38 +20,6 @@ public class MozillaHeuristic extends HeuristicClassifier {
 
 	public Classification classifyReport(BugReport report) {
 		
-		/*
-		 * False bug - someone testing Bugzilla (discovered purely by accident)
-		 * May 30/05
-		 */
-		if (report.getId() == 288759) {
-			return new Classification(HeuristicClassifier.CANNOT_CLASSIFY,
-					"The Bug That Should Never Have Been", 1);
-		}
-
-		/*
-		 * Circular duplicates of bugs (281536 and 281535) and (244067 and
-		 * 244068)
-		 */
-		if (report.getId() == 281536 || report.getId() == 244068) {
-			return new Classification(HeuristicClassifier.CANNOT_CLASSIFY,
-					"Bug with circular dependency", 1);
-		}
-		
-		if(false){ // only fixed reports
-		ResolutionEvent resolution = report.getActivity().resolution();
-		if (resolution != null
-				&& resolution.getType().equals(ResolutionType.FIXED) == false && resolution
-						.getType().equals(ResolutionType.DUPLICATE) == false) {
-			 //System.out.println("not fixed: " + resolution.getType());
-			return new Classification(HeuristicClassifier.CANNOT_CLASSIFY,
-					"Not Fixed Heuristic", 1);
-		}}
-		
-		if(report.getId() == 318396){
-			System.out.println("Pause");
-		}
-		
 		for (Heuristics heuristic : Heuristics.values()) {
 			Classification classification = heuristic.classify(report);
 			if (classification != null) {

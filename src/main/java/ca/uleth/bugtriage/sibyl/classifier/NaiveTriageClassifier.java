@@ -21,8 +21,7 @@ import ca.uleth.bugtriage.sibyl.utils.FrequencyTable;
 import weka.core.Instance;
 import weka.core.Instances;
 
-public class NaiveTriageClassifier extends TriageClassifier implements
-		Serializable {
+public class NaiveTriageClassifier extends TriageClassifier implements Serializable {
 
 	/**
 	 * 
@@ -54,28 +53,22 @@ public class NaiveTriageClassifier extends TriageClassifier implements
 	}
 
 	@Override
-	public void train(Set<BugReport> reports,
-			Set<BugReport> testingBugs, Heuristic heuristic)
-			throws Exception {
+	public void train(Set<BugReport> reports, Set<BugReport> testingBugs, Heuristic heuristic) throws Exception {
 
 		System.out.println("Training " + this.getName());
 		heuristic.getClassifier().useDuplicateResolver(true);
 
 		// Filter reports
-		System.out.println("Training Set before removing test reports: "
-				+ reports.size());
+		System.out.println("Training Set before removing test reports: " + reports.size());
 		reports.removeAll(testingBugs);
-		System.out.println("Training Set after removing test reports: "
-				+ reports.size());
+		System.out.println("Training Set after removing test reports: " + reports.size());
 		reports = getTrainingBugs(reports, heuristic);
 
 		FrequencyTable frequencyTable = new FrequencyTable();
 		for (BugReport report : reports) {
-			String classification = heuristic.getClassifier().classify(report)
-					.getClassification();
+			String classification = heuristic.getClassifier().classify(report).getClassification();
 			if (classification.equals(HeuristicClassifier.CANNOT_CLASSIFY) == false
-					&& classification
-							.equals(HeuristicClassifier.HEURISTIC_FAILURE) == false) {
+					&& classification.equals(HeuristicClassifier.HEURISTIC_FAILURE) == false) {
 				frequencyTable.add(classification);
 			}
 		}
@@ -85,9 +78,8 @@ public class NaiveTriageClassifier extends TriageClassifier implements
 		System.out.println("Creating prediction list");
 		double totalReports = frequencyTable.getStatistics().getSum();
 		for (String developer : frequencyTable.getKeys()) {
-			this.predictionList.add(new Classification(developer,
-					"Number Resolved", frequencyTable.getFrequency(developer)
-							/ totalReports));
+			this.predictionList.add(new Classification(developer, "Number Resolved",
+					frequencyTable.getFrequency(developer) / totalReports));
 			this.classes.add(developer);
 		}
 	}
@@ -100,14 +92,9 @@ public class NaiveTriageClassifier extends TriageClassifier implements
 	public static NaiveTriageClassifier load(File file) {
 		try {
 			System.out.println("Reading in classifier");
-			ObjectInputStream in = new ObjectInputStream(new FileInputStream(
-					file));
+			ObjectInputStream in = new ObjectInputStream(new FileInputStream(file));
 			NaiveTriageClassifier ntc = (NaiveTriageClassifier) in.readObject();
-			System.out.println("Classifier retrieved");
-			// System.out.println("Classes: " +
-			// mlc.filteredDataset.numClasses());
-			// System.out.println("Instances: "
-			// + mlc.filteredDataset.numInstances());
+			in.close();
 			return ntc;
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();

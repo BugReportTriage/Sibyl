@@ -1,13 +1,10 @@
 package ca.uleth.bugtriage.sibyl.classifier.eclipse;
 
-import java.util.Map;
-
 import ca.uleth.bugtriage.sibyl.Project;
 import ca.uleth.bugtriage.sibyl.classifier.Classifier;
 import ca.uleth.bugtriage.sibyl.classifier.ClassifierType;
 import ca.uleth.bugtriage.sibyl.classifier.TriageClassifier;
 import ca.uleth.bugtriage.sibyl.heuristic.Heuristic;
-import ca.uleth.bugtriage.sibyl.utils.FrequencyTable;
 import ca.uleth.bugtriage.sibyl.utils.Profiles;
 import ca.uleth.bugtriage.sibyl.utils.Utils;
 
@@ -19,9 +16,7 @@ public class EclipseClassifier {
 		ClassifierType classifierType = ClassifierType.SVM;
 
 		Heuristic heuristic = Heuristic.ECLIPSE;
-		String dupSet = EclipseData.DUPLICATES;
-		heuristic.getClassifier().setDataset(dupSet);
-
+		
 		String[] trainingSet = Utils.getTrainingSet(EclipseData.ECLIPSE_DIR,
 				numMonths, EclipseData.LAST_TRAINING_MONTH);
 		String[] profileSet = Utils.getTrainingSet(EclipseData.ECLIPSE_DIR,

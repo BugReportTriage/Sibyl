@@ -1,10 +1,7 @@
 package ca.uleth.bugtriage.sibyl.analysis;
 
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.apache.commons.math.stat.descriptive.DescriptiveStatistics;
 
@@ -12,7 +9,6 @@ import ca.uleth.bugtriage.sibyl.Project;
 import ca.uleth.bugtriage.sibyl.activity.BugActivity;
 import ca.uleth.bugtriage.sibyl.activity.events.BugActivityEvent;
 import ca.uleth.bugtriage.sibyl.classifier.ClassifierNotFoundException;
-import ca.uleth.bugtriage.sibyl.classifier.ComponentClassifier;
 import ca.uleth.bugtriage.sibyl.classifier.TriageClassifier;
 import ca.uleth.bugtriage.sibyl.sibyl.Sibyl;
 import ca.uleth.bugtriage.sibyl.utils.FrequencyTable;

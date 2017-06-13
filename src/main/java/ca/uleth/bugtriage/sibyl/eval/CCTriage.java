@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.Set;
 
 import org.apache.commons.math.stat.descriptive.DescriptiveStatistics;
-import org.apache.commons.math.stat.descriptive.DescriptiveStatistics;
 
 import ca.uleth.bugtriage.sibyl.Classification;
 import ca.uleth.bugtriage.sibyl.classifier.MLClassifier;
@@ -29,7 +28,7 @@ public class CCTriage {
 			e.printStackTrace();
 		}
 		System.out.println("Getting test reports [" + testSet.length + "]");
-		Set<BugReport> testReports = Utils.getReports(testSet);
+		Set<BugReport> testReports = null;//Utils.getReports(testSet);
 
 		double precision, recall, adjustedRecall, correct;
 		DescriptiveStatistics precisionStats, recallStats, adjustedRecallStats;
