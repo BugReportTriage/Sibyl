@@ -9,6 +9,8 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -132,6 +134,11 @@ public class BugzillaDataset {
 		return "";
 	}
 
+	/**
+	 * Get all bug report data
+	 * @param project The project information
+	 * @return A collection of BugReport objects.
+	 */
 	public static List<BugReport> getData(Project project) {
 		List<BugReport> reports = new ArrayList<BugReport>();
 		ObjectMapper mapper = new ObjectMapper();
@@ -176,7 +183,13 @@ public class BugzillaDataset {
 		return reports;
 	}
 
-	public static File exportReports(Project project, List<BugReport> reports) {
+	/**
+	 * Export a collection of bug reports to a file in JSON format.
+	 * @param project
+	 * @param reports
+	 * @return
+	 */
+	public static File exportReports(Project project, Collection<BugReport> reports) {
 		try {
 
 			File dataFile = new File(project.dataDir + "/" + project.name + "_" + project.startDate + ".json");
@@ -202,23 +215,24 @@ public class BugzillaDataset {
 		return null;
 	}
 	
-	public static List<BugReport> importReports(File input) throws JsonProcessingException, IOException {
+	/**
+	 * Import a JSON formated file created by {@link BugzillaDataset}.export(). 
+	 * @param input The file containing the bug reports in JSON format.
+	 * @return A collection of BugReport objects.
+	 * @throws JsonProcessingException
+	 * @throws IOException
+	 */
+	public static List<BugReport> importReports(File input) {
 		
-		//List<BugReport> reports = new ArrayList<BugReport>();
 		ObjectMapper mapper = new ObjectMapper();
 		
-		List<BugReport> reports = mapper.readValue(input, new TypeReference<List<BugReport>>() {
-		});
-		
-		/*
-		JsonNode root = mapper.readTree(input);
-		
-		for(JsonNode child : root){
-			System.out.println(child.toString());
-			BugReport report = mapper.readValue(child.toString(), BugReport.class);
-			reports.add(report);
+		List<BugReport> reports = Collections.emptyList();
+		try {
+			reports = mapper.readValue(input, new TypeReference<List<BugReport>>() {
+			});
+		} catch (IOException e) {			
+			System.err.println("Unable to import file " + input.toString());
 		}
-		*/
 		
 		return reports;
 	}
