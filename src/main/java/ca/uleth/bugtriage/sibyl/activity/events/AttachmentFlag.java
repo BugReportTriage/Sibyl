@@ -9,8 +9,10 @@ public class AttachmentFlag implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private final AttachmentFlagStatus status;
-	private final AttachmentFlagState state;
+	private AttachmentFlagStatus status;
+	private AttachmentFlagState state;
+	
+	public AttachmentFlag() {}
 	
 	public AttachmentFlag(AttachmentFlagStatus status, AttachmentFlagState state) {
 		this.status = status;

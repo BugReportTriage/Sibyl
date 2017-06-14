@@ -3,7 +3,6 @@ package ca.uleth.bugtriage.sibyl.analysis;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.TimeZone;
 
 import org.apache.commons.math.stat.descriptive.DescriptiveStatistics;
 
@@ -12,7 +11,6 @@ import ca.uleth.bugtriage.sibyl.activity.BugActivity;
 import ca.uleth.bugtriage.sibyl.activity.events.AssignmentEvent;
 import ca.uleth.bugtriage.sibyl.activity.events.BugActivityEvent;
 import ca.uleth.bugtriage.sibyl.classifier.ClassifierNotFoundException;
-import ca.uleth.bugtriage.sibyl.classifier.ComponentClassifier;
 import ca.uleth.bugtriage.sibyl.classifier.TriageClassifier;
 import ca.uleth.bugtriage.sibyl.report.BugReport;
 import ca.uleth.bugtriage.sibyl.sibyl.Sibyl;
@@ -20,8 +18,7 @@ import ca.uleth.bugtriage.sibyl.utils.FrequencyTable;
 
 public class AssignmentAnalysis extends RecommendationAnalysis {
 
-	public AssignmentAnalysis(List<ViewEvent> viewEvents,
-			List<ChangeEvent> events) {
+	public AssignmentAnalysis(List<ViewEvent> viewEvents, List<ChangeEvent> events) {
 		super(viewEvents, events);
 	}
 
@@ -41,8 +38,8 @@ public class AssignmentAnalysis extends RecommendationAnalysis {
 			if (ccAdded != "") {
 				for (String recommendation : event.assignmentRecommendations()) {
 					if (ccAdded.equals(recommendation)) {
-						System.out.println("Recommendation added to CC: "
-								+ recommendation + " --> " + event.reportId());
+						System.out
+								.println("Recommendation added to CC: " + recommendation + " --> " + event.reportId());
 						recommendationCCs++;
 					}
 				}
@@ -66,72 +63,45 @@ public class AssignmentAnalysis extends RecommendationAnalysis {
 			if (rank(event) != 0) {
 
 				if (event.assignmentRecommendations().size() == 1
-						&& event.assignmentRecommendations().get(0).contains(
-								"Control Report")) {
+						&& event.assignmentRecommendations().get(0).contains("Control Report")) {
 					// System.out.println("---> Control report");
 					controlReports++;
 					continue;
 				}
 
 				if (event.assignmentRecommendations().isEmpty()) {
-					// System.out.println("No recommendations recorded: " +
-					// event.getDate());
 					continue;
 				}
 
-				if (this.correct(event.getActivityLog().getAllAssignedTo(),
-						event.assignmentRecommendations(),
+				if (this.correct(event.getActivityLog().getAllAssignedTo(), event.assignmentRecommendations(),
 						Sibyl.NUM_DEVELOPER_RECOMMENDATIONS)) {
 					stats.addValue(1);
 				} else {
-					if (this.correct(event.getActivityLog().getResolvers(),
-							event.assignmentRecommendations(),
+					if (this.correct(event.getActivityLog().getResolvers(), event.assignmentRecommendations(),
 							Sibyl.NUM_DEVELOPER_RECOMMENDATIONS)) {
-						// System.out.println("==> Fixed By Recommendation
-						// <==");
 						resolvedByRecommendation++;
 						stats.addValue(1);
 						continue;
 					}
 					stats.addValue(0);
 
-					if (this.correct(event.getActivityLog().getAllAssignedTo(),
-							event.assignmentRecommendations(),
+					if (this.correct(event.getActivityLog().getAllAssignedTo(), event.assignmentRecommendations(),
 							Sibyl.LOGGED_DEVELOPER_RECOMMENDATIONS)) {
-						// System.out.println("==> Out of View <==");
 						outOfView++;
 						outOfViewRanks.add("Rank = " + this.rank(event));
 						continue;
 					}
 
 					if (event.component().equals("UI") == false) {
-						 System.out.println("(Component changed) Report Id: "
-						 +
-						 event.reportId() + " --> " + event.component());
+						System.out.println(
+								"(Component changed) Report Id: " + event.reportId() + " --> " + event.component());
 						componentChanged++;
 						continue;
 					}
 
 					if (event.product().equals("Platform") == false) {
-						// System.out.println("(Product changed) Report Id: " +
-						// event.reportId() + " --> " + event.product());
 						productChanged++;
 						continue;
-					}
-
-					/*
-					 * if(event.reportId().equals("157061"))
-					 * System.out.println("HALT");
-					 */
-
-					if (false) {
-						System.out.println("------------------------");
-						System.out.println("Report Id: " + event.reportId());
-						System.out.println("Recommendations: "
-								+ event.assignmentRecommendations());
-						System.out.println("Assigned-To: "
-								+ event.getActivityLog().getAllAssignedTo());
-						System.out.println("------------------------");
 					}
 				}
 			}
@@ -139,8 +109,7 @@ public class AssignmentAnalysis extends RecommendationAnalysis {
 
 		System.out.println("Out of View: " + outOfView);
 		System.out.println(outOfViewRanks);
-		System.out.println("Resolved by Recommendation: "
-				+ resolvedByRecommendation);
+		System.out.println("Resolved by Recommendation: " + resolvedByRecommendation);
 		System.out.println("Wrong Component: " + componentChanged);
 		System.out.println("Wrong Product: " + productChanged);
 		System.out.println("Control Reports: " + controlReports);
@@ -149,8 +118,7 @@ public class AssignmentAnalysis extends RecommendationAnalysis {
 	}
 
 	@Override
-	protected TriageClassifier getClassifier(Project project)
-			throws ClassifierNotFoundException {
+	protected TriageClassifier getClassifier(Project project) throws ClassifierNotFoundException {
 		return project.getDeveloperClassifier();
 	}
 
@@ -172,14 +140,12 @@ public class AssignmentAnalysis extends RecommendationAnalysis {
 		List<String> examined = new ArrayList<String>();
 		for (ChangeEvent event : this.events) {
 			if (examined.contains(event.reportId()) == false) {
-				BugReport report = reports.get(event.reportId());
 				if (event.assignmentRecommendations().contains(event)) {
 					reportedByARecommendation++;
 				}
 			}
 		}
-		System.out.println("Reported by recommendation: "
-				+ reportedByARecommendation);
+		System.out.println("Reported by recommendation: " + reportedByARecommendation);
 	}
 
 	@Override

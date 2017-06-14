@@ -2,7 +2,6 @@ package ca.uleth.bugtriage.sibyl.classifier;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 import ca.uleth.bugtriage.sibyl.Classification;
 import ca.uleth.bugtriage.sibyl.report.BugReport;
@@ -10,16 +9,6 @@ import weka.core.Instance;
 import weka.core.Instances;
 
 public class SibylClassifier extends TriageClassifier {
-
-	/**
-	 * Generated id
-	 */
-	private static final long serialVersionUID = 7083008649861435259L;
-
-	//private static final String[]  sibylDevelopers = {"janvik@cs.ubc.ca", "jkanvik@gmail.com", "john@anvik.ca"};
-	//private static final String[]  sibylDevelopers = {, "janvik@cs.ubc.ca", "frodo@lotr.com", "asmith@matrix.net", "vader@empire.com"};
-	
-	private static final Random rand = new Random();
 	
 	@Override
 	protected void build(Instances dataset) throws Exception {

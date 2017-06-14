@@ -9,7 +9,7 @@ public class SubcomponentHeuristic extends HeuristicClassifier {
 
 	public Classification classifyReport(BugReport report) {
 
-		String subcomponent = report.getSubcomponent();
+		String subcomponent = report.subcomponent();
 		if (subcomponent != null)
 			return new Classification(subcomponent, "Subcomponent", 1);
 

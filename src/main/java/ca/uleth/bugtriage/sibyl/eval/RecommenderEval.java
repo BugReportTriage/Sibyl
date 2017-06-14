@@ -5,18 +5,15 @@ import java.io.FileFilter;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import org.apache.commons.math.stat.descriptive.DescriptiveStatistics;
 import org.apache.commons.math.stat.descriptive.DescriptiveStatistics;
 
 import ca.uleth.bugtriage.sibyl.Classification;
 import ca.uleth.bugtriage.sibyl.Project;
 import ca.uleth.bugtriage.sibyl.classifier.MLClassifier;
 import ca.uleth.bugtriage.sibyl.classifier.TriageClassifier;
-import ca.uleth.bugtriage.sibyl.classifier.eclipse.EclipseData;
 import ca.uleth.bugtriage.sibyl.heuristic.Heuristic;
 import ca.uleth.bugtriage.sibyl.heuristic.HeuristicClassifier;
 import ca.uleth.bugtriage.sibyl.report.BugReport;
@@ -46,7 +43,7 @@ public class RecommenderEval {
 			e.printStackTrace();
 		}
 		System.out.println("Getting test reports [" + testSet.length + "]");
-		Set<BugReport> testReports = Utils.getReports(testSet);
+		Set<BugReport> testReports = null;//Utils.getReports(testSet);
 
 		double precision, recall, correct;
 		DescriptiveStatistics precisionStats, recallStats;

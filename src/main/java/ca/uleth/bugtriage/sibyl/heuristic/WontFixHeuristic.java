@@ -16,7 +16,7 @@ public class WontFixHeuristic extends HeuristicClassifier {
 			classification = new Classification(CANNOT_CLASSIFY,
 					"Not Reliable Report", 1);
 		}else{
-			String status = report.getResolution();
+			String status = report.getResolution().toString();
 			System.out.print(status + " --> ");
 			if(status.toLowerCase().equals("WONTFIX".toLowerCase())){
 			classification = new Classification(WontFixHeuristic.NEGATIVE,

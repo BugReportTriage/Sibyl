@@ -4,10 +4,13 @@ public class ResolutionEvent extends BugActivityEvent {
 
 	private static final long serialVersionUID = 3258693199936631348L;
 
-	private final ResolutionType type;
+	private ResolutionType type;
 
-	public ResolutionEvent(ResolutionType type) {
-		this.what = BugActivityEvent.RESOLUTION;
+	public ResolutionEvent() {
+		this.what = BugActivityEvent.RESOLUTION;		
+	}
+	
+	public void setType(ResolutionType type){
 		this.type = type;
 	}
 
@@ -15,7 +18,7 @@ public class ResolutionEvent extends BugActivityEvent {
 		return this.type;
 	}
 
-	public String getResolvedBy() {
+	public String resolvedBy() {
 		return this.getName();
 	}
 

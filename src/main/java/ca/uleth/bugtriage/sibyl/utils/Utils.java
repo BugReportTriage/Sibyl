@@ -2,125 +2,20 @@ package ca.uleth.bugtriage.sibyl.utils;
 
 import java.io.File;
 import java.io.FileFilter;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.SocketTimeoutException;
-import java.net.URL;
-import java.net.URLConnection;
-import java.security.GeneralSecurityException;
-import java.security.KeyManagementException;
-import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import javax.security.auth.login.LoginException;
-
-import ca.uleth.bugtriage.sibyl.activity.ActivityParser;
-import ca.uleth.bugtriage.sibyl.dataset.Dataset;
-import ca.uleth.bugtriage.sibyl.exceptions.PasswordNotFoundException;
-import ca.uleth.bugtriage.sibyl.report.BugReport;
-
 public class Utils {
-
-	private static final ActivityParser ACTIVITY_PARSER = new ActivityParser();
-
-	private static final int RETRY_LIMIT = 10;
-
-	private static final int CONNECTION_RETRY_DELAY = 30; // in seconds
 
 	private static final long DAY_IN_MILLISEC = 24 * 60 * 60 * 1000;
 
-	private static final int MOST_RECENT_YEAR = 2006;
+	private static final int MOST_RECENT_YEAR = 2006;	
 	
-	public static Set<BugReport> getReports(String[] reportFiles) {
-		
-		if(true)
-			throw new UnsupportedOperationException();
-		
-		Map<String, BugReport> bugs = new HashMap<String, BugReport>();
-
-		for (String filename : reportFiles) {
-			 //System.out.println("Getting files from : " + filename);
-			if (filename == null) {
-				System.err.println("Null filename!");
-				continue;
-			}
-			Dataset data = null; //new FileDataset(new File(filename));
-			List<BugReport> reports = data.getData();
-			for (BugReport report : reports) {
-				try {
-					String bugId = String.valueOf(report.getId());
-
-					if (bugs.containsKey(bugId) == false) {
-						bugs.put(bugId, report);
-					} else {
-						// System.out.println("Duplicate " + bugId);
-					}
-				} catch (Exception ex) {
-					if (report == null) {
-						System.err.println("Null Report in Dataset");
-					} else {
-						System.err.println("Problem with: " + report.getId());
-					}
-				}
-
-			}
-		}
-
-		Set<BugReport> bugSet = new HashSet<BugReport>(bugs
-				.values());
-		return bugSet;
-	}
-
-	public static Set<BugReport> getReports(String reportFile) {
-		String[] array = new String[1];
-		array[0] = reportFile;
-		return getReports(array);
-	}
-	
-	public static void writeDataset(String filename, List data) {
-		try {
-
-			if (data.isEmpty()) {
-				System.err.println("No data to write to " + filename);
-				return;
-			}
-
-			File dataFile = new File(filename);
-			File parent = new File(dataFile.getParent());
-			if (parent.exists() == false) {
-				parent.mkdir();
-			}
-
-			ObjectOutputStream out = new ObjectOutputStream(
-					new FileOutputStream(filename));
-			System.out.println("Writing to: " + filename);
-			out.writeObject(data);
-			out.close();
-			System.out.println("Bug list written out: " + filename);
-		} catch (FileNotFoundException e) {
-
-			e.printStackTrace();
-		} catch (IOException e) {
-
-			e.printStackTrace();
-		}
-	}
-
 	@Deprecated
 	public static String[] getMonths(String[] dataSets, int numMonths) {
 		String[] months = new String[numMonths];

@@ -10,8 +10,6 @@ import ca.uleth.bugtriage.sibyl.activity.BugActivity;
 import ca.uleth.bugtriage.sibyl.activity.events.BugActivityEvent;
 import ca.uleth.bugtriage.sibyl.classifier.ClassifierNotFoundException;
 import ca.uleth.bugtriage.sibyl.classifier.TriageClassifier;
-import ca.uleth.bugtriage.sibyl.sibyl.Sibyl;
-import ca.uleth.bugtriage.sibyl.utils.FrequencyTable;
 
 public class InterestAnalysis extends RecommendationAnalysis {
 
@@ -117,21 +115,9 @@ public class InterestAnalysis extends RecommendationAnalysis {
 				int numCorrect = this.numCorrect(correctList, event
 						.ccRecommendations(), windowSize);
 				if (numCorrect != 0) {
-
-					if (false) {
-						System.out.println("------------------------");
-						System.out.println("Report Id: " + event.reportId());
-						System.out.println("Recommendations: "
-								+ event.ccRecommendations().subList(0,
-										windowSize));
-						System.out.println("CC Changes: "
-								+ event.getActivityLog().getCCAdded());
-						System.out.println("------------------------");
-					}
-
+					
 					double recall = numCorrect
 							/ (event.getActivityLog().getCCAdded().size() * 1.0);
-					// System.out.println("==> Recall: " + recall);
 					stats.addValue(recall);
 
 					numCorrect = this.numCorrect(correctList, topNames,
@@ -139,15 +125,6 @@ public class InterestAnalysis extends RecommendationAnalysis {
 					recall = numCorrect
 							/ (event.getActivityLog().getCCAdded().size() * 1.0);
 					topstats.addValue(recall);
-				} else {
-					/*
-					 * System.out.println("------------------------");
-					 * System.out.println("Report Id: " + event.reportId());
-					 * System.out.println("Recommendations: " +
-					 * event.ccRecommendations()); System.out.println("CC
-					 * Changes: " + event.getActivityLog().getCCAdded());
-					 * System.out.println("------------------------");
-					 */
 				}
 
 			}

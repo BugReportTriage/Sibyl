@@ -118,17 +118,6 @@ public abstract class RecommendationAnalysis {
 					}
 				}
 				if (!known) {
-					if (false) {
-						System.out
-								.println("-------------------------------------");
-						System.out.println("Report: " + event.reportId());
-						System.out.println("Product: " + event.product());
-						System.out.println("Component: " + event.component());
-						System.out.println("Knowns: " + knowns);
-						System.out.println("Unknown: " + assigned);
-						System.out
-								.println("-------------------------------------");
-					}
 					unknowns.put(date, assigned);
 				}
 			}

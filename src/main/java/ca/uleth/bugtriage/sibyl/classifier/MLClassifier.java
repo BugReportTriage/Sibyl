@@ -8,21 +8,17 @@ import java.io.ObjectInputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Enumeration;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
-import java.util.Set;
 
 import ca.uleth.bugtriage.sibyl.Classification;
 import ca.uleth.bugtriage.sibyl.heuristic.Heuristic;
 import ca.uleth.bugtriage.sibyl.report.BugReport;
 import weka.classifiers.Classifier;
 import weka.classifiers.Evaluation;
-import weka.classifiers.functions.SMO;
 import weka.classifiers.lazy.IBk;
 import weka.core.Instance;
 import weka.core.Instances;
-import weka.filters.Filter;
 
 public class MLClassifier extends TriageClassifier implements Serializable {
 
@@ -92,10 +88,7 @@ public class MLClassifier extends TriageClassifier implements Serializable {
 					file));
 			MLClassifier mlc = (MLClassifier) in.readObject();
 			System.out.println("Classifier retrieved");
-			// System.out.println("Classes: " +
-			// mlc.filteredDataset.numClasses());
-			// System.out.println("Instances: "
-			// + mlc.filteredDataset.numInstances());
+			in.close();
 			return mlc;
 		} 
 	catch(FileNotFoundException e){
@@ -177,8 +170,7 @@ public class MLClassifier extends TriageClassifier implements Serializable {
 			System.out.println("Leave-one-out cross validating...");
 			// System.err.println("Nominal data: " +
 			// this.filteredDataset.classAttribute().isNominal());
-			for (int index = 0; index < this.filteredDataset.numInstances(); index++) {
-				Instance instance = this.filteredDataset.instance(index);
+			for (int index = 0; index < this.filteredDataset.numInstances(); index++) {				
 				Instances instances = new Instances(this.filteredDataset);
 				instances.delete(index);
 			}
