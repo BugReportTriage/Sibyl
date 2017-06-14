@@ -8,12 +8,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import ca.uleth.bugtriage.sibyl.Classification;
 import ca.uleth.bugtriage.sibyl.classifier.Classifier;
 import ca.uleth.bugtriage.sibyl.report.BugReport;
-import ca.uleth.bugtriage.sibyl.utils.Utils;
 
 public abstract class HeuristicClassifier extends Classifier {
 
@@ -35,21 +33,6 @@ public abstract class HeuristicClassifier extends Classifier {
 	@Override
 	public Classification classify(BugReport report) {
 		return this.classifyReport(report);
-	}
-
-	public void setDataset(String dataset) {
-		Set<BugReport> bugs = Utils.getReports(dataset);
-
-		this.setDuplicateCache(bugs);
-	}
-
-	private void setDuplicateCache(Set<BugReport> reports) {
-
-		for (BugReport report : reports) {
-			this.dataset.put(new Integer(report.getId()), report);
-		}
-		
-		//System.err.println(this.dataset.keySet());
 	}
 
 	public void useDuplicateResolver(boolean flag) {
@@ -84,7 +67,7 @@ public abstract class HeuristicClassifier extends Classifier {
 			HeuristicClassifier classifier) {
 
 		if (this.useDuplicateResolver) {
-			int bugId = report.getDupId();// getDuplicateId(user, report);
+			int bugId = Integer.parseInt(report.getDuplicateOf());// getDuplicateId(user, report);
 			//System.out.println("Getting dup " + report.getId() + " --> " + bugId);
 			// System.out.println(report.getId() + " dup of " + bugId);
 			if (bugId != -1) {
@@ -159,42 +142,4 @@ public abstract class HeuristicClassifier extends Classifier {
 
 		return null;
 	}
-
-	private static int getDuplicateId(BugReport report) {
-		
-		if(true)
-			throw new UnsupportedOperationException();
-
-		//try {
-			//String reportUrl = user.getRepository() + "/show_bug.cgi?id="
-				//	+ report.getId();
-/*
-			BugzillaPage page = new BugzillaPage();
-			//URL bugReportURL = new URL(reportUrl);
-			Messages messages = new Messages();
-			//ca.uleth.bugtriage.sibyl.utils.Utils.connectToServer(bugReportURL, messages);
-			//page.get(bugReportURL.openStream(), messages);
-
-			if (messages.size() != 0) {
-				System.out.println(messages);
-			}
-
-			Pattern dupIdPattern = Pattern
-					.compile("\\*\\*\\*\\sThis.*show_bug.cgi\\?id=(\\d+).*");
-			Matcher matcher = dupIdPattern.matcher(page.toString());
-			while (matcher.find()) {
-				String dupIdStr = matcher.group(1);
-				return Integer.parseInt(dupIdStr);
-			}
- 		*/
-		//} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
-		//	e.printStackTrace();
-		//} catch (IOException e) {
-			// TODO Auto-generated catch block
-			//e.printStackTrace();
-		//}
-
-		return -1;
-	}	
 }

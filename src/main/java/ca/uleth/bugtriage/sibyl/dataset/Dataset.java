@@ -1,13 +1,11 @@
 package ca.uleth.bugtriage.sibyl.dataset;
 
-import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import ca.uleth.bugtriage.sibyl.report.BugReport;
 
-import java.util.ArrayList;
-
-public abstract class Dataset implements Serializable {
+public abstract class Dataset {
 
 	protected final List<BugReport> reports;
 

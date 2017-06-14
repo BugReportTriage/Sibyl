@@ -7,15 +7,11 @@ import java.util.List;
 import java.util.Set;
 
 import org.apache.commons.math.stat.descriptive.DescriptiveStatistics;
-import org.apache.commons.math.stat.descriptive.DescriptiveStatistics;
 
 import ca.uleth.bugtriage.sibyl.Classification;
 import ca.uleth.bugtriage.sibyl.classifier.MLClassifier;
 import ca.uleth.bugtriage.sibyl.classifier.TriageClassifier;
-import ca.uleth.bugtriage.sibyl.classifier.firefox.FirefoxData;
 import ca.uleth.bugtriage.sibyl.report.BugReport;
-import ca.uleth.bugtriage.sibyl.utils.Environment;
-import ca.uleth.bugtriage.sibyl.utils.FrequencyTable;
 import ca.uleth.bugtriage.sibyl.utils.Utils;
 
 public class SubcomponentTriage {
@@ -34,7 +30,7 @@ public class SubcomponentTriage {
 		}
 		
 		System.out.println("Getting test set");
-		Set<BugReport> testReports = Utils.getReports(testSet);
+		Set<BugReport> testReports = null;//Utils.getReports(testSet);
 
 		double precision, recall;
 		DescriptiveStatistics precisionStats, recallStats; 
@@ -52,7 +48,7 @@ public class SubcomponentTriage {
 		for (BugReport report : testReports) {
 			precision = 0;
 			recall = 0;
-			String actual = report.getSubcomponent();
+			String actual = report.subcomponent();
 			if(actual == null)
 				continue;
 			/*

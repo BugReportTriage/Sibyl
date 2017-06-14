@@ -58,6 +58,7 @@ public class DeveloperInfo {
 									+ bugNumber);
 				}
 			}
+			reader.close();
 
 		} catch (FileNotFoundException e) {
 			System.err.println(this.developerInfoFilename + " not found");
@@ -153,7 +154,7 @@ public class DeveloperInfo {
 	}
 
 	public Set<BugReport> getTestingSet(String[] testingSetFilename) {
-		Set<BugReport> reports = Utils.getReports(testingSetFilename);
+		Set<BugReport> reports = null;//Utils.getReports(testingSetFilename);
 		Set<BugReport> testingReports = new HashSet<BugReport>();
 		Map<Integer, Set<String>> developerInfo = this.getDeveloperInfo();
 

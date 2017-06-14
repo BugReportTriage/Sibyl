@@ -1,12 +1,24 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<<<<<<< HEAD
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+=======
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+>>>>>>> master
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>ca.uleth.bugtriage</groupId>
 	<artifactId>Sibyl</artifactId>
 	<packaging>war</packaging>
 	<version>0.0.1-SNAPSHOT</version>
+<<<<<<< HEAD
 	<name>Sibyl Maven Webapp</name>
 	<url>http://maven.apache.org</url>
+=======
+	<name>Sibyl Maven Webapp</name>	
+	<url>http://maven.apache.org</url>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+>>>>>>> master
 	<dependencies>
 		<dependency>
 			<groupId>javax.servlet</groupId>
@@ -27,6 +39,7 @@
 			<groupId>com.sun.jersey</groupId>
 			<artifactId>jersey-json</artifactId>
 			<version>1.19.3</version>
+<<<<<<< HEAD
 		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
@@ -34,6 +47,9 @@
 			<version>3.8.1</version>
 			<scope>test</scope>
 		</dependency>
+=======
+		</dependency>		
+>>>>>>> master
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpclient</artifactId>
@@ -80,11 +96,14 @@
 			<version>1.6.0-rc2</version>
 		</dependency>
 		<dependency>
+<<<<<<< HEAD
 			<groupId>org.codehaus.jackson</groupId>
 			<artifactId>jackson-mapper-asl</artifactId>
 			<version>1.9.13</version>
 		</dependency>
 		<dependency>
+=======
+>>>>>>> master
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-core</artifactId>
 			<version>2.8.8</version>
@@ -94,8 +113,27 @@
 			<artifactId>jackson-annotations</artifactId>
 			<version>2.8.8</version>
 		</dependency>
+<<<<<<< HEAD
+=======
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.8.8.1</version>
+		</dependency>
+>>>>>>> master
 	</dependencies>
 	<build>
 		<finalName>Sibyl</finalName>
 	</build>
+<<<<<<< HEAD
+=======
+	<issueManagement>
+  	<system>GitHub</system>
+  	<url>https://github.com/BugReportTriage/Sibyl/issues</url>
+  </issueManagement>
+  <ciManagement>
+  	<url>https://travis-ci.org/BugReportTriage/Sibyl</url>
+  	<system>Travis-CI</system>
+  </ciManagement>
+>>>>>>> master
 </project>

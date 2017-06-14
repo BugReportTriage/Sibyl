@@ -40,13 +40,10 @@ import weka.core.Instances;
 import weka.core.SelectedTag;
 import weka.core.SparseInstance;
 import weka.core.stopwords.Rainbow;
-import weka.core.stopwords.StopwordsHandler;
 import weka.filters.Filter;
 import weka.filters.unsupervised.attribute.StringToWordVector;
 
-public abstract class TriageClassifier implements Serializable {
-
-	private static final long serialVersionUID = 3258693199936631348L;
+public abstract class TriageClassifier {	
 
 	private final static String DESCRIPTION = "Description";
 
@@ -468,7 +465,7 @@ public abstract class TriageClassifier implements Serializable {
 
 		if (USE_OS) {
 			attribute = dataset.attribute(OS);
-			instance.setValue(attribute, report.getOS().toLowerCase());
+			instance.setValue(attribute, report.getOperatingSystem().toLowerCase());
 		}
 
 		if (USE_HARDWARE) {
@@ -490,7 +487,7 @@ public abstract class TriageClassifier implements Serializable {
 	public void train(String[] trainingSets, String[] testingSet, String developerInfoFile, Heuristic heuristic)
 			throws Exception {
 
-		Set<BugReport> trainingBugs = Utils.getReports(trainingSets);
+		Set<BugReport> trainingBugs = null;//Utils.getReports(trainingSets);
 
 		System.out.println("Trainingset Size: " + trainingBugs.size());
 		Set<BugReport> testingBugs;
@@ -498,7 +495,7 @@ public abstract class TriageClassifier implements Serializable {
 			DeveloperInfo developerInfo = new DeveloperInfo(developerInfoFile);
 			testingBugs = developerInfo.getTestingSet(testingSet);
 		} else if (testingSet != null) {
-			testingBugs = Utils.getReports(testingSet);
+			testingBugs = null;//Utils.getReports(testingSet);
 		} else {
 			testingBugs = new HashSet<BugReport>();
 		}

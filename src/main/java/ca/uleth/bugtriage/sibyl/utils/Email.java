@@ -12,9 +12,7 @@ public class Email {
 			.compile("@(\\w+-?)+(\\.\\w+)+");
 
 	private static final Pattern EMAIL = Pattern
-			.compile("(\\w+-?\\+?\\.?)+@(\\w+-?)+(\\.\\w+)+");
-	
-	private static final Pattern BUGZILLA_EMAIL = Pattern.compile("&lt;(\\w|\\W)");
+			.compile("(\\w+-?\\+?\\.?)+@(\\w+-?)+(\\.\\w+)+");	
 
 	private static String match(Pattern pattern, String string){
 		String match = null;

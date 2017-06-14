@@ -3,8 +3,6 @@ package ca.uleth.bugtriage.sibyl.classifier.firefox;
 import java.io.File;
 import java.io.FileNotFoundException;
 
-import ca.uleth.bugtriage.sibyl.Project;
-import ca.uleth.bugtriage.sibyl.classifier.Classifiers;
 import ca.uleth.bugtriage.sibyl.classifier.MLClassifier;
 import ca.uleth.bugtriage.sibyl.classifier.TriageClassifier;
 import ca.uleth.bugtriage.sibyl.eval.Triage;

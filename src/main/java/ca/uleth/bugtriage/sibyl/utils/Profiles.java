@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -22,7 +21,7 @@ import ca.uleth.bugtriage.sibyl.heuristic.Heuristic;
 import ca.uleth.bugtriage.sibyl.heuristic.HeuristicClassifier;
 import ca.uleth.bugtriage.sibyl.report.BugReport;
 
-public class Profiles implements Serializable {
+public class Profiles {
 
 	/* Old version */
 	// private static final Pattern monthYear = Pattern
@@ -98,7 +97,7 @@ public class Profiles implements Serializable {
 				System.err.println("WARNING: (Month null)" + dataFile);
 			}
 
-			Set<BugReport> reports = Utils.getReports(dataFile);
+			Set<BugReport> reports = null; //Utils.getReports(dataFile);
 			//System.out.println(dataFile);
 			if (this.monthNames.contains(month) == false)
 				this.monthNames.add(month);
@@ -223,10 +222,9 @@ public class Profiles implements Serializable {
 	@Override
 	public String toString() {
 		StringBuffer sb = new StringBuffer();
-		FrequencyTable profile;
+		
 		int scaledFrequency, count;
 		for (String name : this.profiles.keySet()) {
-			profile = this.profiles.get(name);
 			sb.append(name + ":\n");
 			for (String month : this.monthNames) {
 				sb.append("\t" + month + ": ");

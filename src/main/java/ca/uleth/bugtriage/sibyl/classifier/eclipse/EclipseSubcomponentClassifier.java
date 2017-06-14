@@ -1,13 +1,9 @@
 package ca.uleth.bugtriage.sibyl.classifier.eclipse;
 
-import java.io.File;
-
-import ca.uleth.bugtriage.sibyl.Project;
 import ca.uleth.bugtriage.sibyl.classifier.Classifier;
 import ca.uleth.bugtriage.sibyl.classifier.ClassifierType;
 import ca.uleth.bugtriage.sibyl.classifier.TriageClassifier;
 import ca.uleth.bugtriage.sibyl.heuristic.Heuristic;
-import ca.uleth.bugtriage.sibyl.utils.Profiles;
 import ca.uleth.bugtriage.sibyl.utils.Utils;
 
 public class EclipseSubcomponentClassifier {

@@ -17,13 +17,13 @@ public class BugActivityEvent implements Comparable<BugActivityEvent>,
 
 	private static final long serialVersionUID = 3258693199936631348L;
 
-	protected final static String STATUS = "Status";
+	protected final static String STATUS = "status";
 
-	protected final static String RESOLUTION = "Resolution";
+	protected final static String RESOLUTION = "resolution";
 
 	protected final static String ASSIGNMENT = "AssignedTo";
 
-	protected final static String ATTACHMENT = "Attachment";
+	protected final static String ATTACHMENT = "flagtypes.name";
 
 	protected String name;
 
@@ -47,14 +47,16 @@ public class BugActivityEvent implements Comparable<BugActivityEvent>,
 		}
 
 		if (RESOLUTION.equals(type)) {
-			return new ResolutionEvent(ResolutionType.convert(change));
+			ResolutionEvent e = new ResolutionEvent();
+			e.setType(ResolutionType.convert(change));
+			return e;
 		}
 
 		if (ASSIGNMENT.equals(type)) {
 			return new AssignmentEvent(change);
 		}
 
-		if (type.contains(ATTACHMENT) && type.contains("Flag")) {
+		if (type.contains(ATTACHMENT)) {
 			return new AttachmentEvent(AttachmentEvent.parseId(type),
 					AttachmentEvent.parseFlags(change));
 		}

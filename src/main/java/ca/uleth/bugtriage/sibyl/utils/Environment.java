@@ -25,41 +25,20 @@ public class Environment {
 
 	private static String CLASSIFIER_DIR = null;
 
-	private static final String WINDOWS_DIR = "C:/";
-
-	private static final String SERVER_DIR = "/isd/se2/usr/janvik/";
-
 	public static final boolean DEVELOPMENT_INSTANCE = false;
 
 	private static final String CVS_DATA_DIR = "sibyl/cvsEval/";
 
 	private static String BUG_DATA_DIR = null;
 
-	private static String ROOT_DIR;
-
 	public static String getRootDir() {
-		if (ROOT_DIR == null) {
-			System.err.println("Setting root dir");
-			File serverDir = new File(SERVER_DIR);
-			File windowsDir = new File(WINDOWS_DIR);
-			if (serverDir.exists()) {
-				ROOT_DIR = SERVER_DIR;
-			} else if (windowsDir.exists()) {
-				ROOT_DIR = WINDOWS_DIR;
-			} else {
-				System.err
-						.println("I have no clue where I am! Please check the filesystem I am running on.");
-			}
-			System.err.println("ROOT_DIR: " + ROOT_DIR);
-		}
-		return ROOT_DIR;
+		return System.getProperty("user.dir") + "/";
 	}
 
 	
 	public static String getBugDataDir() {
 		if (BUG_DATA_DIR == null) {
-			BUG_DATA_DIR = getRootDir() + "Documents and Settings/John/My Documents/Work/Sibyl/dataSets/";
-			//BUG_DATA_DIR = getServletDataDir() + "dataSets/";
+			BUG_DATA_DIR = getRootDir() + "data/";			
 		}
 		return BUG_DATA_DIR;
 	}
@@ -108,6 +87,7 @@ public class Environment {
 				File file = new File(confFile);
 				BufferedReader reader = new BufferedReader(new FileReader(file));
 				SERVLET_URL = reader.readLine();
+				reader.close();
 			} catch (FileNotFoundException e) {
 				System.err.println("Configuration file not found: " + confFile);
 			} catch (IOException e) {

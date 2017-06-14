@@ -32,7 +32,7 @@ public class CCClassifier extends MLClassifier {
 		for (BugReport report : bugs) {
 
 			parentInstance = this.makeTrainingInstance(report, dataset);
-			for (String cc : report.getCC()) {
+			for (String cc : report.getCCList()) {
 				if (this.classNames.contains(cc)) {
 					trainingInstance = (Instance) parentInstance.copy();
 
@@ -52,7 +52,7 @@ public class CCClassifier extends MLClassifier {
 		System.out.println("CC Filtering...");
 		FrequencyTable ccNames = new FrequencyTable();
 		for (BugReport report : reports) {
-			for (String cc : report.getCC()) {
+			for (String cc : report.getCCList()) {
 				ccNames.add(cc);
 			}
 		}

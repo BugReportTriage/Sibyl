@@ -1,13 +1,11 @@
 package ca.uleth.bugtriage.sibyl.eval;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.apache.commons.math.stat.descriptive.DescriptiveStatistics;
 import org.apache.commons.math.stat.descriptive.DescriptiveStatistics;
 
 import ca.uleth.bugtriage.sibyl.Classification;

@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.Set;
 
 import org.apache.commons.math.stat.descriptive.DescriptiveStatistics;
-import org.apache.commons.math.stat.descriptive.DescriptiveStatistics;
 
 import ca.uleth.bugtriage.sibyl.Classification;
 import ca.uleth.bugtriage.sibyl.classifier.MLClassifier;
@@ -29,7 +28,7 @@ public class CCTriage {
 			e.printStackTrace();
 		}
 		System.out.println("Getting test reports [" + testSet.length + "]");
-		Set<BugReport> testReports = Utils.getReports(testSet);
+		Set<BugReport> testReports = null;//Utils.getReports(testSet);
 
 		double precision, recall, adjustedRecall, correct;
 		DescriptiveStatistics precisionStats, recallStats, adjustedRecallStats;
@@ -47,7 +46,7 @@ public class CCTriage {
 		// Remove any reports that don't have CCs
 		Set<BugReport> ccReports = new HashSet<BugReport>();
 		for (BugReport report : testReports) {
-			if (report.getCC().isEmpty())
+			if (report.getCCList().isEmpty())
 				continue;
 			ccReports.add(report);
 		}
@@ -59,7 +58,7 @@ public class CCTriage {
 		for (BugReport report : ccReports) {
 			precision = 0;
 			recall = 0;
-			List<String> actual = report.getCC();
+			List<String> actual = report.getCCList();
 			// System.out.println(report.getId() + ": " + actual);
 			List<Classification> predictions = classifier.classify(report);
 			int unknown = 0;
