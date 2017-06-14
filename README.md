@@ -6,3 +6,4 @@
 [![Issue Count](https://codeclimate.com/github/BugReportTriage/Sibyl/badges/issue_count.svg)](https://codeclimate.com/github/BugReportTriage/Sibyl/issues)
 
 Bug report triage recommender from "Who Should Fix This Bug?" (ICSE 2006)
+
