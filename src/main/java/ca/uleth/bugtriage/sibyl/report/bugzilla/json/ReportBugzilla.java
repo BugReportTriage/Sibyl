@@ -218,7 +218,6 @@ public class ReportBugzilla implements Comparable<ReportBugzilla>{
 				+ status + ", summary=" + summary + "]";
 	}
 
-	@Override
 	public int compareTo(ReportBugzilla report) {		
 		return this.id.intValue() - report.id.intValue();
 	}
