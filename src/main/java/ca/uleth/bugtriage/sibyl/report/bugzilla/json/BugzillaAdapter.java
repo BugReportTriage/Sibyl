@@ -32,7 +32,7 @@ public class BugzillaAdapter {
 		if (r.getDupe_of() != null)
 			report.setDuplicateOf(r.getDupe_of().toString());
 		report.setStatus(r.getStatus());
-		// report.getSubcomponent(); // TODO Only Eclipse?
+		// report.getSubcomponent(); // TODO: Only Eclipse?
 
 		return report;
 	}
@@ -42,7 +42,7 @@ public class BugzillaAdapter {
 		List<HistoryBugzilla> events = historyBugzilla.getBugs().get(0).getHistory(); // only
 																						// ever
 																						// one
-																						// 'bug'
+																						// 'bug'		
 		for (HistoryBugzilla e : events) {
 			for (ChangeBugzilla c : e.getChanges()) {
 				String type = c.getFieldName();

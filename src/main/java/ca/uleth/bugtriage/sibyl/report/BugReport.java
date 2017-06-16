@@ -29,8 +29,7 @@ public class BugReport implements Comparable<BugReport> {
 	private String severity;
 	
 	private String description;
-	
-	private List<ReportAttachment> attachments;
+		
 	private List<Comment> comments;
 	private StatusType status;
 	private BugActivity activity;
@@ -134,21 +133,7 @@ public class BugReport implements Comparable<BugReport> {
 		}
 		return null;
 	}
-/*
-	public int getDupId() {
-		Pattern dupIdPattern = Pattern
-				.compile("\\*\\*\\* This bug has been marked as a duplicate of (bug )?(\\d+) \\*\\*\\*");
-		for (Comment comment : this.getComments()) {
-			String text = comment.getText();
-			Matcher matcher = dupIdPattern.matcher(text);
-			if (matcher.find()) {
-				String dupIdStr = matcher.group(2);
-				return Integer.parseInt(dupIdStr);
-			}
-		}
-		return -1;
-	}
-*/
+
 	public int compareTo(BugReport reportToCompare) {
 		if (reportToCompare.getId() > this.getId()) {
 			return 1;
@@ -157,10 +142,6 @@ public class BugReport implements Comparable<BugReport> {
 			return -1;
 		}
 		return 0;
-	}
-
-	public List<ReportAttachment> getAttachments() {
-		return this.attachments;
 	}
 
 	public void setDescription(String desc) {
