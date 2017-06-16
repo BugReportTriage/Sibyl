@@ -44,7 +44,6 @@ public class BugzillaDatasetTest {
 		testFirefox.endDate = "2010-06-02";
 	}
 
-	@Ignore
 	@Test
 	public void testGetDataBugzilla() throws JsonParseException, JsonMappingException, IOException {
 
@@ -58,8 +57,7 @@ public class BugzillaDatasetTest {
 		Assert.assertEquals(569360, reports.get(0).getId().intValue());
 		Assert.assertEquals(569459, reports.get(1).getId().intValue());
 	}
-
-	@Ignore
+	
 	@Test
 	public void testGetReportHistoryBugzillaNormal() throws JsonParseException, JsonMappingException, IOException {
 
@@ -200,8 +198,7 @@ public class BugzillaDatasetTest {
 		Assert.assertEquals(AttachmentFlagStatus.TEST_SUITE, flags.get(0).getStatus());
 		Assert.assertEquals(AttachmentFlagState.REQUESTED, flags.get(0).getState());
 	}
-
-	@Ignore
+	
 	@Test
 	public void testGetReportCommentsBugzilla() throws JsonParseException, JsonMappingException, IOException {
 
@@ -215,8 +212,7 @@ public class BugzillaDatasetTest {
 		Assert.assertEquals(4721961, comments.get(0).getId().intValue());
 
 	}
-
-	@Ignore
+	
 	@Test
 	public void testBugReportBugzilla() {
 
@@ -266,8 +262,7 @@ public class BugzillaDatasetTest {
 		Assert.assertEquals(0, activity.getComponentChanges().size());
 		Assert.assertEquals(7, activity.getCCAdded().size());
 	}
-
-	@Ignore
+	
 	@Test
 	public void testBugReportBugzillaExport() {
 
@@ -277,7 +272,6 @@ public class BugzillaDatasetTest {
 		BugzillaDataset.exportReports(testFirefox, reports);
 	}
 
-	@Ignore
 	@Test
 	public void testBugReportBugzillaImport() throws JsonProcessingException, IOException {
 
