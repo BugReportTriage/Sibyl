@@ -15,7 +15,7 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import ca.uleth.bugtriage.sibyl.activity.BugActivity;
-import ca.uleth.bugtriage.sibyl.activity.events.AttachmentFlag;
+import ca.uleth.bugtriage.sibyl.activity.events.BugzillaFlag;
 import ca.uleth.bugtriage.sibyl.activity.events.AttachmentFlagState;
 import ca.uleth.bugtriage.sibyl.activity.events.AttachmentFlagStatus;
 import ca.uleth.bugtriage.sibyl.activity.events.BugActivityEvent;
@@ -109,7 +109,7 @@ public class BugzillaDatasetTest {
 		
 		BugActivityEvent event = BugActivityEvent.createEvent(details.getFieldName(), details.getAdded());
 		Assert.assertTrue(event instanceof FlagEvent);
-		List<AttachmentFlag> flags = ((FlagEvent) event).getFlags();
+		List<BugzillaFlag> flags = ((FlagEvent) event).getFlags();
 		Assert.assertEquals(1, flags.size());
 		Assert.assertEquals(AttachmentFlagStatus.NEEDINFO, flags.get(0).getStatus());
 		Assert.assertEquals(AttachmentFlagState.REQUESTED, flags.get(0).getState());
@@ -137,7 +137,7 @@ public class BugzillaDatasetTest {
 		
 		BugActivityEvent event = BugActivityEvent.createEvent(details.getFieldName(), details.getAdded());
 		Assert.assertTrue(event instanceof FlagEvent);
-		List<AttachmentFlag> flags = ((FlagEvent) event).getFlags();
+		List<BugzillaFlag> flags = ((FlagEvent) event).getFlags();
 		Assert.assertEquals(1, flags.size());
 		Assert.assertEquals(AttachmentFlagStatus.QE_VERIFY, flags.get(0).getStatus());
 		Assert.assertEquals(AttachmentFlagState.DENIED, flags.get(0).getState());
@@ -165,7 +165,7 @@ public class BugzillaDatasetTest {
 		
 		BugActivityEvent event = BugActivityEvent.createEvent(details.getFieldName(), details.getAdded());
 		Assert.assertTrue(event instanceof FlagEvent);
-		List<AttachmentFlag> flags = ((FlagEvent) event).getFlags();
+		List<BugzillaFlag> flags = ((FlagEvent) event).getFlags();
 		Assert.assertEquals(1, flags.size());
 		Assert.assertEquals(AttachmentFlagStatus.BACKLOG, flags.get(0).getStatus());
 		Assert.assertEquals(AttachmentFlagState.GRANTED, flags.get(0).getState());
@@ -193,7 +193,7 @@ public class BugzillaDatasetTest {
 		
 		BugActivityEvent event = BugActivityEvent.createEvent(details.getFieldName(), details.getAdded());
 		Assert.assertTrue(event instanceof FlagEvent);
-		List<AttachmentFlag> flags = ((FlagEvent) event).getFlags();
+		List<BugzillaFlag> flags = ((FlagEvent) event).getFlags();
 		Assert.assertEquals(1, flags.size());
 		Assert.assertEquals(AttachmentFlagStatus.TEST_SUITE, flags.get(0).getStatus());
 		Assert.assertEquals(AttachmentFlagState.REQUESTED, flags.get(0).getState());

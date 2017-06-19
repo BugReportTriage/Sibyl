@@ -56,7 +56,7 @@ public class BugActivityEvent implements Comparable<BugActivityEvent>,
 			return new AssignmentEvent(change);
 		}
 
-		if (FLAG.equals(type)) {
+		if (type.contains(FLAG)) {
 			return new FlagEvent(FlagEvent.parseId(type),
 					FlagEvent.parseFlags(change));
 		}

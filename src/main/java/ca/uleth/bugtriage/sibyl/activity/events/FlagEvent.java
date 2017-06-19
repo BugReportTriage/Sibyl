@@ -13,13 +13,13 @@ public class FlagEvent extends BugActivityEvent {
 
 	private int attachmentId;
 
-	private List<AttachmentFlag> flags;
+	private List<BugzillaFlag> flags;
 
 	public FlagEvent() {
 
 	}
 
-	public FlagEvent(int id, List<AttachmentFlag> flags) {
+	public FlagEvent(int id, List<BugzillaFlag> flags) {
 		this.what = BugActivityEvent.FLAG;
 		this.attachmentId = id;
 		this.flags = flags;
@@ -27,7 +27,7 @@ public class FlagEvent extends BugActivityEvent {
 
 	public String flagsString() {
 		String flagString = "";
-		for (AttachmentFlag flag : this.flags) {
+		for (BugzillaFlag flag : this.flags) {
 			flagString += flag + " ";
 		}
 		return flagString;
@@ -42,8 +42,8 @@ public class FlagEvent extends BugActivityEvent {
 		return -1;
 	}
 
-	public static List<AttachmentFlag> parseFlags(String flag) {
-		List<AttachmentFlag> flags = new ArrayList<AttachmentFlag>();
+	public static List<BugzillaFlag> parseFlags(String flag) {
+		List<BugzillaFlag> flags = new ArrayList<BugzillaFlag>();
 		AttachmentFlagStatus flagStatus = AttachmentFlagStatus.UNKNOWN;
 		AttachmentFlagState flagState = AttachmentFlagState.UNKNOWN;
 
@@ -125,7 +125,7 @@ public class FlagEvent extends BugActivityEvent {
 				System.err.println("WARNING: Attachment flag state unknown: " + token);
 			}
 
-			flags.add(new AttachmentFlag(flagStatus, flagState));
+			flags.add(new BugzillaFlag(flagStatus, flagState));
 		}
 
 		return flags;
@@ -137,7 +137,7 @@ public class FlagEvent extends BugActivityEvent {
 				+ this.flagsString();
 	}
 
-	public List<AttachmentFlag> getFlags() {
+	public List<BugzillaFlag> getFlags() {
 		return this.flags;
 	}
 
