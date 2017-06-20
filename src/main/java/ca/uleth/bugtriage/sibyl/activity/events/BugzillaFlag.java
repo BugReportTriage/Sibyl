@@ -2,7 +2,7 @@ package ca.uleth.bugtriage.sibyl.activity.events;
 
 import java.io.Serializable;
 
-public class AttachmentFlag implements Serializable {
+public class BugzillaFlag implements Serializable {
 	
 	/**
 	 * 
@@ -12,9 +12,9 @@ public class AttachmentFlag implements Serializable {
 	private AttachmentFlagStatus status;
 	private AttachmentFlagState state;
 	
-	public AttachmentFlag() {}
+	public BugzillaFlag() {}
 	
-	public AttachmentFlag(AttachmentFlagStatus status, AttachmentFlagState state) {
+	public BugzillaFlag(AttachmentFlagStatus status, AttachmentFlagState state) {
 		this.status = status;
 		this.state = state;
 	}
