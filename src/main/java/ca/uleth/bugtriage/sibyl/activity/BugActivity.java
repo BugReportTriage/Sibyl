@@ -20,8 +20,8 @@ import java.util.Set;
 import java.util.regex.Matcher;
 
 import ca.uleth.bugtriage.sibyl.activity.events.AssignmentEvent;
-import ca.uleth.bugtriage.sibyl.activity.events.AttachmentEvent;
-import ca.uleth.bugtriage.sibyl.activity.events.AttachmentFlag;
+import ca.uleth.bugtriage.sibyl.activity.events.FlagEvent;
+import ca.uleth.bugtriage.sibyl.activity.events.BugzillaFlag;
 import ca.uleth.bugtriage.sibyl.activity.events.AttachmentFlagState;
 import ca.uleth.bugtriage.sibyl.activity.events.AttachmentFlagStatus;
 import ca.uleth.bugtriage.sibyl.activity.events.BugActivityEvent;
@@ -44,13 +44,13 @@ public class BugActivity implements Iterable<BugActivityEvent>, Serializable {
 
 	private final List<BugActivityEvent> otherEvents;
 
-	private final List<AttachmentEvent> attachmentEvents;	
+	private final List<FlagEvent> flagEvents;	
 
 	public BugActivity() {
 		this.statusEvents = new ArrayList<StatusEvent>();
 		this.resolutionEvents = new ArrayList<ResolutionEvent>();
 		this.assignmentEvents = new ArrayList<AssignmentEvent>();
-		this.attachmentEvents = new ArrayList<AttachmentEvent>();
+		this.flagEvents = new ArrayList<FlagEvent>();
 		this.otherEvents = new ArrayList<BugActivityEvent>();
 	}
 
@@ -70,8 +70,8 @@ public class BugActivity implements Iterable<BugActivityEvent>, Serializable {
 			return;
 		}
 
-		if (event instanceof AttachmentEvent) {
-			this.attachmentEvents.add((AttachmentEvent) event);
+		if (event instanceof FlagEvent) {
+			this.flagEvents.add((FlagEvent) event);
 			return;
 		}
 
@@ -83,7 +83,7 @@ public class BugActivity implements Iterable<BugActivityEvent>, Serializable {
 		events.addAll(this.statusEvents);
 		events.addAll(this.resolutionEvents);
 		events.addAll(this.assignmentEvents);
-		events.addAll(this.attachmentEvents);
+		events.addAll(this.flagEvents);
 		events.addAll(this.otherEvents);
 		Collections.sort(events);
 		return events;
@@ -165,13 +165,13 @@ public class BugActivity implements Iterable<BugActivityEvent>, Serializable {
 		return null;
 	}
 
-	public List<AttachmentEvent> getApprovedAttachments() {
-		List<AttachmentEvent> approvalEvents = new ArrayList<AttachmentEvent>();
+	public List<FlagEvent> getApprovedAttachments() {
+		List<FlagEvent> approvalEvents = new ArrayList<FlagEvent>();
 
 		/* Case 1: Attachement gets approved */
-		for (AttachmentEvent event : this.attachmentEvents) {
-			List<AttachmentFlag> flags = event.getFlags();
-			for (AttachmentFlag flag : flags) {
+		for (FlagEvent event : this.flagEvents) {
+			List<BugzillaFlag> flags = event.getFlags();
+			for (BugzillaFlag flag : flags) {
 				boolean approvalGranted = flag.getStatus().equals(
 						AttachmentFlagStatus.REVIEW)
 						&& flag.getState().equals(AttachmentFlagState.GRANTED);
@@ -183,9 +183,10 @@ public class BugActivity implements Iterable<BugActivityEvent>, Serializable {
 
 		if (approvalEvents.isEmpty()) {
 			/* Case 2: Attachment only gets superreview granted */
-			for (AttachmentEvent event : this.attachmentEvents) {
-				List<AttachmentFlag> flags = event.getFlags();
-				for (AttachmentFlag flag : flags) {
+			for (FlagEvent event : this.flagEvents) {
+				List<BugzillaFlag> flags = event.getFlags();
+				for (BugzillaFlag flag : flags) {
+					/*
 					boolean superReviewGranted = flag.getStatus().equals(
 							AttachmentFlagStatus.SUPERREVIEW)
 							&& flag.getState().equals(
@@ -193,6 +194,7 @@ public class BugActivity implements Iterable<BugActivityEvent>, Serializable {
 					if (superReviewGranted) {
 						approvalEvents.add(event);
 					}
+					*/
 				}
 			}
 		}
@@ -201,15 +203,15 @@ public class BugActivity implements Iterable<BugActivityEvent>, Serializable {
 	}
 
 	public Set<String> getAttachmentSubmitters(
-			List<AttachmentEvent> approvalEvents) {
+			List<FlagEvent> approvalEvents) {
 		Set<String> reviewEventNames = new HashSet<String>();
 
 		// Case 1: Attachment was not submitted by a reviewer
-		for (AttachmentEvent approvalEvent : approvalEvents) {
-			for (AttachmentEvent event : this.attachmentEvents) {
+		for (FlagEvent approvalEvent : approvalEvents) {
+			for (FlagEvent event : this.flagEvents) {
 				if (event.getAttachmentId() == approvalEvent.getAttachmentId()) {
-					List<AttachmentFlag> flags = event.getFlags();
-					for (AttachmentFlag flag : flags) {
+					List<BugzillaFlag> flags = event.getFlags();
+					for (BugzillaFlag flag : flags) {
 						boolean reviewRequested = flag.getStatus().equals(
 								AttachmentFlagStatus.REVIEW)
 								&& flag.getState().equals(
@@ -225,23 +227,23 @@ public class BugActivity implements Iterable<BugActivityEvent>, Serializable {
 		if (reviewEventNames.isEmpty()) {
 			// Case 2: Attachment was submitted and reviewed by a reviewer
 			// (see Mozilla bug 95520, Mozilla bug 228968, Mozilla bug 290494)
-			for (AttachmentEvent approvalEvent : approvalEvents) {
-				for (AttachmentEvent event : this.attachmentEvents) {
+			for (FlagEvent approvalEvent : approvalEvents) {
+				for (FlagEvent event : this.flagEvents) {
 					if (event.getAttachmentId() == approvalEvent
 							.getAttachmentId()) {
-						List<AttachmentFlag> flags = event.getFlags();
-						for (AttachmentFlag flag : flags) {
+						List<BugzillaFlag> flags = event.getFlags();
+						for (BugzillaFlag flag : flags) {
 							boolean reviewGranted = flag.getStatus().equals(
 									AttachmentFlagStatus.REVIEW)
 									&& flag.getState().equals(
 											AttachmentFlagState.GRANTED);
-							boolean superReviewRequested = flag.getStatus()
+							/*boolean superReviewRequested = flag.getStatus()
 									.equals(AttachmentFlagStatus.SUPERREVIEW)
 									&& flag.getState().equals(
 											AttachmentFlagState.REQUESTED);
 							if (reviewGranted || superReviewRequested) {
 								reviewEventNames.add(event.getName());
-							}
+							}*/
 						}
 					}
 				}
@@ -251,19 +253,20 @@ public class BugActivity implements Iterable<BugActivityEvent>, Serializable {
 		if (reviewEventNames.isEmpty()) {
 			// Case 3: Minor fix after superreview
 			// (see Mozilla bug 290494)
-			for (AttachmentEvent approvalEvent : approvalEvents) {
-				for (AttachmentEvent event : this.attachmentEvents) {
+			for (FlagEvent approvalEvent : approvalEvents) {
+				for (FlagEvent event : this.flagEvents) {
 					if (event.getAttachmentId() == approvalEvent
 							.getAttachmentId()) {
-						List<AttachmentFlag> flags = event.getFlags();
-						for (AttachmentFlag flag : flags) {
+						List<BugzillaFlag> flags = event.getFlags();
+						for (BugzillaFlag flag : flags) {
+							/*
 							boolean approvalRequested = flag.getStatus()
 									.equals(AttachmentFlagStatus.APPROVAL)
 									&& flag.getState().equals(
 											AttachmentFlagState.REQUESTED);
 							if (approvalRequested) {
 								reviewEventNames.add(event.getName());
-							}
+							}*/
 						}
 					}
 				}
@@ -277,9 +280,10 @@ public class BugActivity implements Iterable<BugActivityEvent>, Serializable {
 		// Map<String, Integer> attachmentSubmitters = new HashMap<String,
 		// Integer>();
 		FrequencyTable attachmentSubmitters = new FrequencyTable();
-		for (AttachmentEvent event : this.attachmentEvents) {
+		for (FlagEvent event : this.flagEvents) {
 			String submitter = event.getName();
-			for (AttachmentFlag attachmentFlag : event.getFlags()) {
+			for (BugzillaFlag attachmentFlag : event.getFlags()) {
+				/*
 				boolean review = attachmentFlag.getStatus().equals(
 						AttachmentFlagStatus.REVIEW)
 						|| attachmentFlag.getStatus().equals(
@@ -289,6 +293,7 @@ public class BugActivity implements Iterable<BugActivityEvent>, Serializable {
 								AttachmentFlagState.REQUESTED)) {
 					attachmentSubmitters.add(submitter);
 				}
+				*/
 			}
 		}
 
@@ -322,10 +327,10 @@ public class BugActivity implements Iterable<BugActivityEvent>, Serializable {
 			}
 		}
 
-		Collections.sort(this.attachmentEvents);
-		for (int index = this.attachmentEvents.size() - 1; index >= 0; index--) {
-			AttachmentEvent event = this.attachmentEvents.get(index);
-			for (AttachmentFlag attachmentFlag : event.getFlags()) {
+		Collections.sort(this.flagEvents);
+		for (int index = this.flagEvents.size() - 1; index >= 0; index--) {
+			FlagEvent event = this.flagEvents.get(index);
+			for (BugzillaFlag attachmentFlag : event.getFlags()) {
 				if (attachmentFlag.getStatus().equals(
 						AttachmentFlagStatus.REVIEW)
 						&& attachmentFlag.getState().equals(

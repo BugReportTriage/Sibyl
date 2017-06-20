@@ -5,7 +5,7 @@ import java.util.List;
 
 import ca.uleth.bugtriage.sibyl.Classification;
 import ca.uleth.bugtriage.sibyl.activity.BugActivity;
-import ca.uleth.bugtriage.sibyl.activity.events.AttachmentEvent;
+import ca.uleth.bugtriage.sibyl.activity.events.FlagEvent;
 import ca.uleth.bugtriage.sibyl.activity.events.ResolutionEvent;
 import ca.uleth.bugtriage.sibyl.activity.events.ResolutionType;
 import ca.uleth.bugtriage.sibyl.activity.events.StatusType;
@@ -96,7 +96,7 @@ public class MozillaHeuristic extends HeuristicClassifier {
 				ResolutionEvent resolution = activity.resolution();
 				if (resolution != null) {
 					if (resolution.getType().equals(ResolutionType.FIXED)) {
-						List<AttachmentEvent> approvedAttachments = activity
+						List<FlagEvent> approvedAttachments = activity
 								.getApprovedAttachments();
 						if (approvedAttachments.isEmpty() == false) {
 							List<String> submitters = new ArrayList<String>(
@@ -226,7 +226,7 @@ public class MozillaHeuristic extends HeuristicClassifier {
 				ResolutionEvent resolution = activity.resolution();
 				if (resolution != null) {
 					if (resolution.getType().equals(ResolutionType.FIXED)) {
-						List<AttachmentEvent> approvedAttachments = activity
+						List<FlagEvent> approvedAttachments = activity
 								.getApprovedAttachments();
 						if (approvedAttachments.isEmpty()) {
 							return new Classification(Email

@@ -58,6 +58,7 @@ public class BugzillaDataset {
 		String url = project.url + "/rest/bug?product=" + project.product + CLOSED_FIXED + "&include_fields="
 				+ DATA_FIELDS + "&quicksearch=creation_ts%3E=" + project.startDate + "%20creation_ts%3C"
 				+ project.endDate;
+		System.err.println("Report URL:" + url); // TODO: Replace with actual logger
 		return getJsonData(url);
 	}
 
@@ -148,9 +149,12 @@ public class BugzillaDataset {
 			BugReportsBugzilla bugs = mapper.readValue(reportsJson, BugReportsBugzilla.class);
 			List<ReportBugzilla> reportsBugzilla = bugs.getBugs();
 
+			System.err.println("Number of reports: " + reportsBugzilla.size()); // TODO: Log instead
+			int count = 1;
 			for (ReportBugzilla r : reportsBugzilla) {
 				BugReport report = BugzillaAdapter.convertReport(r);
 
+				System.err.println(count + ")Processing history for " + report.getId());  // TODO: Log instead
 				// Add bug report history
 				String historyJson = BugzillaDataset.getHistory(project, r.getId().toString());
 				BugReportHistoryBugzilla historyBugzilla = mapper.readValue(historyJson,
@@ -158,6 +162,7 @@ public class BugzillaDataset {
 				BugActivity history = BugzillaAdapter.convertHistory(historyBugzilla);
 				report.setActivity(history);
 
+				System.err.println(count + ")Processing comments for " + report.getId());  // TODO: Log instead
 				// Add bug report comments
 				String commentsJson = BugzillaDataset.getComments(project, r.getId().toString());
 				Report commentsBugzillaReport = mapper.readValue(commentsJson, Report.class);
@@ -168,6 +173,10 @@ public class BugzillaDataset {
 				report.setDescription(comments.get(0).getText());
 
 				reports.add(report);
+				count++;
+								
+				// Add delay to not overwhelm server
+				Thread.sleep(2000);
 			}
 		} catch (JsonParseException e) {
 			// TODO Auto-generated catch block
@@ -176,6 +185,9 @@ public class BugzillaDataset {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
