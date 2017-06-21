@@ -16,6 +16,7 @@ import java.util.Set;
 import org.apache.commons.math.stat.descriptive.DescriptiveStatistics;
 
 import ca.uleth.bugtriage.sibyl.Classification;
+import ca.uleth.bugtriage.sibyl.Project;
 import ca.uleth.bugtriage.sibyl.eval.DeveloperInfo;
 import ca.uleth.bugtriage.sibyl.heuristic.Heuristic;
 import ca.uleth.bugtriage.sibyl.heuristic.HeuristicClassifier;
@@ -29,7 +30,7 @@ import weka.attributeSelection.ASSearch;
 import weka.attributeSelection.AttributeSelection;
 import weka.attributeSelection.
 
-ChiSquaredAttributeEval;
+		ChiSquaredAttributeEval;
 import weka.attributeSelection.InfoGainAttributeEval;
 import weka.attributeSelection.PrincipalComponents;
 import weka.attributeSelection.Ranker;
@@ -39,11 +40,12 @@ import weka.core.Instance;
 import weka.core.Instances;
 import weka.core.SelectedTag;
 import weka.core.SparseInstance;
+import weka.core.converters.ArffSaver;
 import weka.core.stopwords.Rainbow;
 import weka.filters.Filter;
 import weka.filters.unsupervised.attribute.StringToWordVector;
 
-public abstract class TriageClassifier {	
+public abstract class TriageClassifier {
 
 	private final static String DESCRIPTION = "Description";
 
@@ -477,16 +479,17 @@ public abstract class TriageClassifier {
 
 	}
 
-	public void train(Set<BugReport> trainingReports, Set<BugReport> testingReports, Heuristic heuristic) throws Exception {
-		System.out.println("Training " + this.getName());		// 
+	public void train(Set<BugReport> trainingReports, Set<BugReport> testingReports, Heuristic heuristic)
+			throws Exception {
+		System.out.println("Training " + this.getName()); //
 		this.trainingDataset = createDataset("TrainingDataset", trainingReports, testingReports, heuristic);
 		this.train();
 	}
 
-	public void train(Set<BugReport> trainingReports, Set<BugReport> testingReports, String developerInfoFile, Heuristic heuristic)
-			throws Exception {
+	public void train(Set<BugReport> trainingReports, Set<BugReport> testingReports, String developerInfoFile,
+			Heuristic heuristic) throws Exception {
 
-		System.out.println("Trainingset Size: " + trainingReports.size());		
+		System.out.println("Training set Size: " + trainingReports.size());
 		if (developerInfoFile != null) {
 			DeveloperInfo developerInfo = new DeveloperInfo(developerInfoFile);
 			testingReports = developerInfo.getTestingSet(testingReports);
@@ -494,19 +497,26 @@ public abstract class TriageClassifier {
 		train(trainingReports, testingReports, heuristic);
 	}
 
-	public void save(File saveFile) {
+	public File save(Project project) {
 		try {
-
-			System.out.println("Writing out classifier: " + saveFile.getName());
-			ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(saveFile));
-			out.writeObject(this);
-			out.close();
-			System.out.println("Classifier written out");
+			ArffSaver saver = new ArffSaver();
+			saver.setInstances(filteredDataset);
+			saver.setFile(project.getClassifierDatafile());			
+			saver.writeBatch();
+			return project.getClassifierDatafile();
+			/*
+			 * System.out.println("Writing out classifier: " +
+			 * saveFile.getName()); ObjectOutputStream out = new
+			 * ObjectOutputStream(new FileOutputStream(saveFile));
+			 * out.writeObject(this); out.flush(); out.close();
+			 * System.out.println("Classifier written out");
+			 */
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		return null;
 	}
 
 	public void printClassFrequencies() {

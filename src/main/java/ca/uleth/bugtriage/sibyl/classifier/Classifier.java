@@ -23,10 +23,8 @@ public abstract class Classifier {
 		throw new UnsupportedOperationException();
 	}
 
-	public static File saveClassifier(Project project, TriageClassifier classifier) {
-		File classifierFile = new File(Environment.getClassifierDir() + project.name + ".classifier");
-		classifier.save(classifierFile);
-		return classifierFile;
+	public static File saveClassifier(Project project, TriageClassifier classifier) {		
+		return classifier.save(project);		
 	}
 
 	public static final double SUBCOMPONENT_THRESHOLD = 5;
@@ -39,9 +37,10 @@ public abstract class Classifier {
 		System.out.println("Developers: " + profiles.size());
 		System.err.println(profiles);
 
-		System.err.println("Before Pruning: " + profiles.size());
-		profiles.pruneTotal(dataset.getProject().threshold);
-		System.err.println("After Pruning: " + profiles.size());
+		System.err.println("Before Pruning (threshold): " + profiles.size());
+		profiles.pruneStdDev();
+		System.err.println("After Pruning (threshold): " + profiles.size());
+		
 		return profiles;
 	}
 

@@ -12,6 +12,7 @@ import ca.uleth.bugtriage.sibyl.classifier.kdeplasma.KDEData;
 import ca.uleth.bugtriage.sibyl.classifier.libreoffice.LibreOfficeData;
 import ca.uleth.bugtriage.sibyl.heuristic.Heuristic;
 import ca.uleth.bugtriage.sibyl.sibyl.Sibyl;
+import ca.uleth.bugtriage.sibyl.utils.Environment;
 
 public enum Project {
 	UNKNOWN("Unknown Project", "Unknown URL", "Unknown Product", "", "", "", null, null, null,
@@ -19,8 +20,8 @@ public enum Project {
 	PLATFORM("Eclipse-Platform", "https://bugs.eclipse.org/bugs/", "Platform",
 					"2017-05-15", "2017-06-15", EclipseData.ECLIPSE_DIR, EclipseData.DUPLICATES, Classifiers.ECLIPSE,
 					Heuristic.ECLIPSE, 9), 
-	FIREFOX("Firefox", "https://bugzilla.mozilla.org/", "Firefox", "2017-05-01",
-							"2017-06-01", FirefoxData.FIREFOX_DIR, FirefoxData.DUPLICATES, Classifiers.FIREFOX,
+	FIREFOX("Firefox", "https://bugzilla.mozilla.org/", "Firefox", "2016-01-01",
+							"2017-01-01", FirefoxData.FIREFOX_DIR, FirefoxData.DUPLICATES, Classifiers.FIREFOX,
 							Heuristic.MOZILLA, 9), 
 	KDE_PLASMA("KDE-Plasma 5", "https://bugs.kde.org/", "plasmashell",
 									"2017-05-15", "2017-05-15", KDEData.KDE_PLASMA_DIR, KDEData.DUPLICATES, Classifiers.KDE_PLASMA,
@@ -91,5 +92,9 @@ public enum Project {
 	
 	public File getDatafile(){
 	    return new File(dataDir + "/" + name + "_" + startDate + "_" + endDate + ".json");
+	}
+
+	public File getClassifierDatafile() {		
+		return new File(Environment.getClassifierDir() + name + ".arff");
 	}
 }
