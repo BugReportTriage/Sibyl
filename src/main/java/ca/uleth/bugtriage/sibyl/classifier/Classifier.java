@@ -2,6 +2,7 @@ package ca.uleth.bugtriage.sibyl.classifier;
 
 import java.io.File;
 import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -39,9 +40,9 @@ public abstract class Classifier {
 
 	public static final int NUM_PROFILE_MONTHS = 3;
 
-	public static Profiles createDeveloperProfiles(String[] dataset,
+	public static Profiles createDeveloperProfiles(List<BugReport> testing,
 			Project project) {
-		Profiles profile = new Profiles(dataset, project.heuristic);
+		Profiles profile = new Profiles(testing, project.heuristic);
 		System.out.println("Creating profiles...");
 		profile.createProfiles(NUM_PROFILE_MONTHS);
 		

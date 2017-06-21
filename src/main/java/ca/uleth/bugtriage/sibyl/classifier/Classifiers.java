@@ -3,9 +3,11 @@ package ca.uleth.bugtriage.sibyl.classifier;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Date;
+import java.util.Set;
 
 import ca.uleth.bugtriage.sibyl.Project;
 import ca.uleth.bugtriage.sibyl.heuristic.Heuristic;
+import ca.uleth.bugtriage.sibyl.report.BugReport;
 import ca.uleth.bugtriage.sibyl.utils.Environment;
 import ca.uleth.bugtriage.sibyl.utils.Profiles;
 import ca.uleth.bugtriage.sibyl.utils.Utils;
@@ -132,7 +134,7 @@ public enum Classifiers {
 	public static TriageClassifier updateClassifier(Heuristic heuristic, ClassifierType type) {		
 		
 		Project project = null;
-		String[] dataFiles = Utils.dataFiles(new File(project.dataDir));
+		Set<BugReport> dataFiles = Utils.dataFiles(new File(project.dataDir));
 
 		Profiles profile = null;
 		String classifierName = getClassifierFilename(project);
