@@ -215,8 +215,28 @@ public class BugzillaDatasetTest {
 
     @Test
     public void testBugReportBugzilla() {
+	testBugReportBugzilla(dataset.getData());
+    }
+    
+    @Test
+    public void testBugReportBugzillaExportImport() {
 
-	List<BugReport> reports = new ArrayList<BugReport>(dataset.getData());
+	Set<BugReport> reports = dataset.getData();
+	Assert.assertEquals(2, reports.size());
+
+	File file = dataset.exportReports(dataset.getProject().getDatafile());
+	Assert.assertTrue(file.exists());
+	
+	reports = null; // clear reference
+	reports = dataset.importReports(dataset.getProject().getDatafile());
+	Assert.assertEquals(2, reports.size());
+	
+	testBugReportBugzilla(reports);
+    }
+    
+    public void testBugReportBugzilla(Set<BugReport> r) {
+
+	List<BugReport> reports = new ArrayList<BugReport>(r);
 
 	Assert.assertEquals(2, reports.size());
 
@@ -263,4 +283,6 @@ public class BugzillaDatasetTest {
 	Assert.assertEquals(0, activity.getComponentChanges().size());
 	Assert.assertEquals(3, activity.getCCAdded().size());
     }
+
+   
 }
