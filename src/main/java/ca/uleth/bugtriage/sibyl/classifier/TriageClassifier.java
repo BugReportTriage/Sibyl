@@ -477,29 +477,21 @@ public abstract class TriageClassifier {
 
 	}
 
-	public void train(Set<BugReport> reports, Set<BugReport> testingBugs, Heuristic heuristic) throws Exception {
-		System.out.println("Training " + this.getName());
-		// heuristic.getClassifier().useDuplicateResolver(true);
-		this.trainingDataset = createDataset("TrainingDataset", reports, testingBugs, heuristic);
+	public void train(Set<BugReport> trainingReports, Set<BugReport> testingReports, Heuristic heuristic) throws Exception {
+		System.out.println("Training " + this.getName());		// 
+		this.trainingDataset = createDataset("TrainingDataset", trainingReports, testingReports, heuristic);
 		this.train();
 	}
 
-	public void train(String[] trainingSets, String[] testingSet, String developerInfoFile, Heuristic heuristic)
+	public void train(Set<BugReport> trainingReports, Set<BugReport> testingReports, String developerInfoFile, Heuristic heuristic)
 			throws Exception {
 
-		Set<BugReport> trainingBugs = null;//Utils.getReports(trainingSets);
-
-		System.out.println("Trainingset Size: " + trainingBugs.size());
-		Set<BugReport> testingBugs;
+		System.out.println("Trainingset Size: " + trainingReports.size());		
 		if (developerInfoFile != null) {
 			DeveloperInfo developerInfo = new DeveloperInfo(developerInfoFile);
-			testingBugs = developerInfo.getTestingSet(testingSet);
-		} else if (testingSet != null) {
-			testingBugs = null;//Utils.getReports(testingSet);
-		} else {
-			testingBugs = new HashSet<BugReport>();
+			testingReports = developerInfo.getTestingSet(testingReports);
 		}
-		train(trainingBugs, testingBugs, heuristic);
+		train(trainingReports, testingReports, heuristic);
 	}
 
 	public void save(File saveFile) {

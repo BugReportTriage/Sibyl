@@ -81,10 +81,7 @@ public class DeveloperInfo {
 			conversionData = EclipseData.USER_NAMES;
 		} else if (this.developerInfoFilename
 				.equals(FirefoxData.DEVELOPER_INFO)) {
-			conversionData = FirefoxData.USER_NAMES;
-			// }else if
-			// (this.developerInfoFilename.equals(GccDataset.DEVELOPER_INFO)) {
-			// conversionData = GCCData.USER_NAMES;
+			conversionData = FirefoxData.USER_NAMES;			
 		} 
 		return createConversionMap(conversionData);
 	}
@@ -153,8 +150,7 @@ public class DeveloperInfo {
 		return this.parseDeveloperInfo();
 	}
 
-	public Set<BugReport> getTestingSet(String[] testingSetFilename) {
-		Set<BugReport> reports = null;//Utils.getReports(testingSetFilename);
+	public Set<BugReport> getTestingSet(Set<BugReport> reports) {		
 		Set<BugReport> testingReports = new HashSet<BugReport>();
 		Map<Integer, Set<String>> developerInfo = this.getDeveloperInfo();
 

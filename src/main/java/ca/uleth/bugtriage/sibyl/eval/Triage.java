@@ -12,66 +12,49 @@ import ca.uleth.bugtriage.sibyl.utils.Environment;
 
 public class Triage {
 
-	private static final int START_X = 1;
+    private static final int START_X = 1;
 
-	public static final int TOP_X = 3;
+    public static final int TOP_X = 3;
 
-	/*
-	 * Statistics
-	 */
-	// private Profiles threeMonth, fourMonth, sixMonth, twelveMonth;
-	public Triage() {
-		/*
-		 * this.threeMonth = null; this.fourMonth = null; this.sixMonth = null;
-		 * this.twelveMonth = null;
-		 */
+    public Triage() {
+    }
+
+    public void evaluate(String classifierFilename, Set<BugReport> testingReports, String developerInfoFilename) {
+
+	classifierFilename = Environment.getClassifierDir() + classifierFilename;
+	File classifierFile = new File(classifierFilename);
+	TriageClassifier classifier = null;
+	try {
+	    classifier = MLClassifier.load(classifierFile);
+	} catch (FileNotFoundException e) {
+	    // TODO Auto-generated catch block
+	    e.printStackTrace();
 	}
+	// NearestNeighbour.load(classifierFile);
 
-	/*
-	 * public void setProfiles(Profiles three, Profiles four, Profiles six,
-	 * Profiles twelve) { this.threeMonth = three; this.fourMonth = four;
-	 * this.sixMonth = six; this.twelveMonth = twelve; }
-	 */
-	public void evaluate(String classifierFilename, String[] testingFiles,
-			String developerInfoFilename) {
+	System.out.println("# classes: " + classifier.numClasses());
 
-		classifierFilename = Environment.getClassifierDir() + classifierFilename;
-		File classifierFile = new File(classifierFilename);
-		TriageClassifier classifier= null;
-		try {
-			classifier = MLClassifier.load(classifierFile);
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		//NearestNeighbour.load(classifierFile);
+	evaluate(classifier, testingReports, developerInfoFilename);
+    }
 
-		System.out.println("# classes: " + classifier.numClasses());
+    public void evaluate(TriageClassifier classifier, Set<BugReport> testingReports, String developerInfoFilename) {
 
-		evaluate(classifier, testingFiles, developerInfoFilename);
+	DeveloperInfo developerInfo = new DeveloperInfo(developerInfoFilename);
+	Map<Integer, Set<String>> developerInfoMap = developerInfo.getDeveloperInfo();
+
+	Set<String> cantconvert = developerInfo.getCantconvert();
+	System.out.println("cant convert (" + cantconvert.size() + "): " + cantconvert);
+
+	System.out.println("Testing: " + classifier.getName());
+
+	Set<BugReport> testReports = developerInfo.getTestingSet(testingReports);
+
+	int numClasses = classifier.getClasses().size();
+	for (int topX = START_X; topX <= TOP_X && topX <= numClasses; topX++) {
+
+	    TriageEvaluation eval = new TriageEvaluation(classifier, developerInfoMap, testReports, topX);
+	    eval.run();
+	    System.out.println("[" + eval.notMapped.size() + "]: " + eval.notMapped);
 	}
-
-public void evaluate(TriageClassifier classifier, String[] testingFiles,
-			String developerInfoFilename) {
-
-		DeveloperInfo developerInfo = new DeveloperInfo(
-				developerInfoFilename);
-		Map<Integer, Set<String>> developerInfoMap = developerInfo.getDeveloperInfo();
-
-		Set<String> cantconvert = developerInfo.getCantconvert();
-		System.out.println("cant convert (" + cantconvert.size() + "): "
-				+ cantconvert);
-
-		System.out.println("Testing: " + classifier.getName());
-
-		Set<BugReport> testReports = developerInfo.getTestingSet(testingFiles);//Utils.getReports(testingFilename);
-
-		int numClasses = classifier.getClasses().size();
-		for (int topX = START_X; topX <= TOP_X && topX <= numClasses; topX++) {
-
-			TriageEvaluation eval = new TriageEvaluation(classifier,
-					developerInfoMap, testReports, topX);
-			eval.run();
-			System.out.println("[" + eval.notMapped.size() + "]: " + eval.notMapped);
-		}
-	}}
+    }
+}

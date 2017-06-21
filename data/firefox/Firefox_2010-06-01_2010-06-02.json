@@ -1,0 +1,138 @@
+[ {
+  "component" : "Search",
+  "summary" : "background color of even rows in search dropdown illegible on dark Ubuntu theme",
+  "reporter" : "dbaron@dbaron.org",
+  "assigned" : "nobody@mozilla.org",
+  "created" : null,
+  "operatingSystem" : "Linux",
+  "hardware" : "x86",
+  "priority" : "--",
+  "duplicateOf" : null,
+  "severity" : "normal",
+  "description" : "On the dark Ubuntu \"Ambience\" theme (which I believe is the default in 10.04), even rows in the search dropdown are nearly illegible.  I think this means that either:\n * we're misusing system colors, or\n * there's something wrong with the system colors that we're getting\nI'm guessing the first is more likely and filing this in Firefox::Search, though I could be wrong.\n\nSteps to reproduce:\n * In Ubuntu 10.04, go to System -> Preferences -> Appearance -> Theme and choose the \"Ambiance\" theme\n * start Firefox (I'm using a mozilla-central Linux x86-64 nightly, 2010-06-01)\n * type something in the search field that yields search suggestions, like \"Mozilla\"\n\nActual results:\n * even rows in the suggestions dropdown have light gray text on a slightly different light gray background, which is basically illegible\n\nExpected results:\n * legible text in both odd and even rows of the dropdown",
+  "comments" : [ {
+    "text" : "On the dark Ubuntu \"Ambience\" theme (which I believe is the default in 10.04), even rows in the search dropdown are nearly illegible.  I think this means that either:\n * we're misusing system colors, or\n * there's something wrong with the system colors that we're getting\nI'm guessing the first is more likely and filing this in Firefox::Search, though I could be wrong.\n\nSteps to reproduce:\n * In Ubuntu 10.04, go to System -> Preferences -> Appearance -> Theme and choose the \"Ambiance\" theme\n * start Firefox (I'm using a mozilla-central Linux x86-64 nightly, 2010-06-01)\n * type something in the search field that yields search suggestions, like \"Mozilla\"\n\nActual results:\n * even rows in the suggestions dropdown have light gray text on a slightly different light gray background, which is basically illegible\n\nExpected results:\n * legible text in both odd and even rows of the dropdown",
+    "authour" : "dbaron@dbaron.org",
+    "created" : "2010-06-01T21:24:23Z"
+  }, {
+    "text" : "Created attachment 448612\nscreenshot",
+    "authour" : "dbaron@dbaron.org",
+    "created" : "2010-06-01T21:24:46Z"
+  }, {
+    "text" : "So, some brief research into system colors.  The following testcase:\n\n<style type=\"text/css\">\ndiv { background: red; color: red }\n</style>\n<div style=\"background: -moz-Field; color: -moz-FieldText\">\n  -moz-FieldText on -moz-Field\n</div>\n<div style=\"background: -moz-OddTreeRow; color: -moz-FieldText\">\n  -moz-FieldText on -moz-OddTreeRow\n</div>\n<div style=\"background: -moz-EvenTreeRow; color: -moz-FieldText\">\n  -moz-FieldText on -moz-EvenTreeRow\n</div>\n\nis displayed entirely using dark text on a light background (slightly varying backgrounds), so if those colors were being used (which is the appropriate use of even/odd row colors), it wouldn't be illegible.\n\nThe only GTK UI I can find that uses alternating colors (Places -> Home Folder, then View -> List) does seem to match the colors I see in that testcase.\n\nBut I don't see any GTK UI with alternating colored rows in dropdowns.  Dropdowns in this theme tend to be uniformly light text on a dark background (unlike tree widgets).",
+    "authour" : "dbaron@dbaron.org",
+    "created" : "2010-06-01T21:41:48Z"
+  }, {
+    "text" : "It looks like it's picking up the global odd row rule for multi column tree views from http://mxr.mozilla.org/mozilla-central/source/toolkit/themes/gnomestripe/global/tree.css#79. \n\nWhich seems intended for list views in things like the Library and not menus. Maybe an unintended side effect of some other work there?",
+    "authour" : "shorlander@mozilla.com",
+    "created" : "2010-06-29T18:33:50Z"
+  }, {
+    "text" : "That rule alone should be fine, given comment 2.",
+    "authour" : "gavin.sharp@gmail.com",
+    "created" : "2010-06-29T18:43:35Z"
+  }, {
+    "text" : "(In reply to comment #4)\n> That rule alone should be fine, given comment 2.\n\nRight, if there was a specified even row using the right text color it wouldn't look terrible. But those colors in Ambiance are grey and lighter grey when every other menu is dark brown with beige text.",
+    "authour" : "shorlander@mozilla.com",
+    "created" : "2010-06-29T18:50:36Z"
+  }, {
+    "text" : "Comment 2 says that \"-moz-FieldText on -moz-OddTreeRow\" is not unreadable. The styling for odd rows in the search bar dropdown, as far as I can tell, uses \"-moz-FieldText on -moz-OddTreeRow\", and yet it is unreadable. So something must be wrong with either comment 2, or my understanding of the styling :)\n\nWhether the text should be alternating at all is a separate question. The fact that it is for this dropdown is probably caused by bug 282127 - the search bar autocomplete dropdown has multiple columns because of the \"Suggestions\" separator label. We should probably fix that in a separate bug.",
+    "authour" : "gavin.sharp@gmail.com",
+    "created" : "2010-06-29T19:24:48Z"
+  }, {
+    "text" : "It's a little hard to unravel. But it looks to me like it is picking up \"color: menutext\" from autocomplete.css and then picking up the odd-row styling from tree.css.\n\nThe rule just specifies a background color and not a text color so it continues to use menutext which is why it looks unreadable:\n\ntreechildren::-moz-tree-row(multicol, odd) {\n background-color: -moz-oddtreerow;\n}\n\nAlthough I might be looking at that wrong :)",
+    "authour" : "shorlander@mozilla.com",
+    "created" : "2010-06-29T19:46:27Z"
+  }, {
+    "text" : "Hmmm.  I just saw bug 566178 during triage; this may be a duplicate of that bug.",
+    "authour" : "dbaron@dbaron.org",
+    "created" : "2010-06-29T23:17:11Z"
+  }, {
+    "text" : "Yes, this (comment 0) will be fixed by bug 566178, which I'll check in later today after addressing the last review comment. Sorry for wasting your time, it took a while to satisfy my reviewer.\n\nThe bug is that the rules for multi-column odd tree rows in tree.css apply to the search bar autocomplete result popup as well, which is a multi-column tree because it has the label \"Suggestions\" in the second (comment) column.\n\nThe fix is to exclude treechildren with class autocomplete-treebody, see attachment 454671:\n\n-treechildren::-moz-tree-row(multicol, odd) {\n- background-color: -moz-oddtreerow;\n+treechildren:not(.autocomplete-treebody)::-moz-tree-row(multicol, odd) {\n+  background-color: -moz-oddtreerow;\n }\n \n-treechildren::-moz-tree-row(selected) {\n+treechildren::-moz-tree-row(selected),\n+treechildren:not(.autocomplete-treebody)::-moz-tree-row(selected) {\n   background-color: -moz-cellhighlight;\n }\n \n treechildren::-moz-tree-row(selected, focus),\n-treechildren::-moz-tree-row(multicol, odd, selected, focus) {\n+treechildren:not(.autocomplete-treebody)::-moz-tree-row(selected, focus) {\n   background-color: Highlight;\n }\n\nPlease comment in bug 566178 if you consider this the wrong fix.\n\n*** This bug has been marked as a duplicate of bug 566178 ***",
+    "authour" : "steffen.wilberg@web.de",
+    "created" : "2010-06-30T07:27:09Z"
+  }, {
+    "text" : "*** Bug 577293 has been marked as a duplicate of this bug. ***",
+    "authour" : "gavin.sharp@gmail.com",
+    "created" : "2010-07-09T19:44:11Z"
+  }, {
+    "text" : "Let's call this \"fixed by\", rather than a duplicate.",
+    "authour" : "gavin.sharp@gmail.com",
+    "created" : "2010-07-09T19:44:51Z"
+  }, {
+    "text" : "(In reply to comment #1)\n> Created an attachment (id=448612) [details]\n> screenshot\n\nHow did you get a screenshot of the dropdown? I couldn't with the default screenshot app. in 10.04.",
+    "authour" : "navneethc@gmail.com",
+    "created" : "2010-07-09T19:58:38Z"
+  }, {
+    "text" : "Verified fixed with trunk builds on OS X and Linux like Mozilla/5.0 (Macintosh; Intel Mac OS X 10.6; en-US; rv:2.0b2pre) Gecko/20100712 Minefield/4.0b2pre",
+    "authour" : "hskupin@gmail.com",
+    "created" : "2010-07-12T22:14:04Z"
+  } ],
+  "status" : "VERIFIED",
+  "activity" : {
+    "assignmentEvents" : [ ],
+    "resolvers" : [ "steffen.wilberg@web.de", "gavin.sharp@gmail.com" ],
+    "approvedAttachments" : [ ],
+    "fixers" : [ "gavin.sharp@gmail.com" ],
+    "componentChanges" : [ ],
+    "ccadded" : [ "gavin.sharp@gmail.com", "steffen.wilberg@web.de", "tymerkaev@gmail.com", "shorlander@mozilla.com", "dbaron@dbaron.org", "navneethc@gmail.com", "hskupin@gmail.com" ],
+    "allAssignedTo" : [ ],
+    "subcomponentChanges" : [ ]
+  },
+  "resolution" : "FIXED",
+  "cclist" : [ "dbaron@dbaron.org", "gavin.sharp@gmail.com", "hskupin@gmail.com", "navneethc@gmail.com", "shorlander@mozilla.com", "steffen.wilberg@web.de", "tymerkaev@gmail.com" ],
+  "id" : 569459
+}, {
+  "component" : "General",
+  "summary" : "browser.js should not assume SVGAElement is always defined",
+  "reporter" : "mounir@lamouri.fr",
+  "assigned" : "mounir@lamouri.fr",
+  "created" : null,
+  "operatingSystem" : "All",
+  "hardware" : "All",
+  "priority" : "--",
+  "duplicateOf" : null,
+  "severity" : "normal",
+  "description" : "Created attachment 448527\nPatch v1\n\nWhen svg is disabled, SVGAElement is undefined and browser.js is checking if |tipElement| is an instance of SVGAElement which leads to an error.",
+  "comments" : [ {
+    "text" : "Created attachment 448527\nPatch v1\n\nWhen svg is disabled, SVGAElement is undefined and browser.js is checking if |tipElement| is an instance of SVGAElement which leads to an error.",
+    "authour" : "mounir@lamouri.fr",
+    "created" : "2010-06-01T15:43:20Z"
+  }, {
+    "text" : "Comment on attachment 448527\nPatch v1\n\n>diff --git a/browser/base/content/browser.js b/browser/base/content/browser.js\n\n>+#endif // MOZ_SV\n\ntypo: MOZ_SVG",
+    "authour" : "gavin.sharp@gmail.com",
+    "created" : "2010-06-01T19:28:49Z"
+  }, {
+    "text" : "Created attachment 448652\nPatch v1.1\n\nr=gavin\n\nThank you for your review.",
+    "authour" : "mounir@lamouri.fr",
+    "created" : "2010-06-02T00:22:27Z"
+  }, {
+    "text" : "http://hg.mozilla.org/mozilla-central/rev/25db3186f58b",
+    "authour" : "mak77@bonardo.net",
+    "created" : "2010-06-17T10:56:43Z"
+  } ],
+  "status" : "RESOLVED",
+  "activity" : {
+    "assignmentEvents" : [ ],
+    "resolvers" : [ "mak77@bonardo.net" ],
+    "approvedAttachments" : [ {
+      "name" : "gavin.sharp@gmail.com",
+      "date" : "2010-06-01T19:28:49Z",
+      "what" : "flagtypes.name",
+      "removed" : "review?(gavin.sharp@gmail.com)",
+      "added" : "",
+      "attachmentId" : 448527,
+      "flags" : [ {
+        "status" : "REVIEW",
+        "state" : "GRANTED"
+      } ]
+    } ],
+    "fixers" : [ "mak77@bonardo.net" ],
+    "componentChanges" : [ ],
+    "ccadded" : [ "gavin.sharp@gmail.com", "21@vingtetun.org", "mak77@bonardo.net" ],
+    "allAssignedTo" : [ ],
+    "subcomponentChanges" : [ ]
+  },
+  "resolution" : "FIXED",
+  "cclist" : [ "21@vingtetun.org", "gavin.sharp@gmail.com", "mak77@bonardo.net" ],
+  "id" : 569360
+} ]

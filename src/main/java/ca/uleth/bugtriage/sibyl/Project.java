@@ -1,5 +1,6 @@
 package ca.uleth.bugtriage.sibyl;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 
 import ca.uleth.bugtriage.sibyl.classifier.ClassifierNotFoundException;
@@ -18,8 +19,8 @@ public enum Project {
 	PLATFORM("Eclipse-Platform", "https://bugs.eclipse.org/bugs/", "Platform",
 					"2017-05-15", "2017-06-15", EclipseData.ECLIPSE_DIR, EclipseData.DUPLICATES, Classifiers.ECLIPSE,
 					Heuristic.ECLIPSE, 9), 
-	FIREFOX("Firefox", "https://bugzilla.mozilla.org/", "Firefox", "2016-01-01",
-							"2016-02-01", FirefoxData.FIREFOX_DIR, FirefoxData.DUPLICATES, Classifiers.FIREFOX,
+	FIREFOX("Firefox", "https://bugzilla.mozilla.org/", "Firefox", "2017-05-01",
+							"2017-06-01", FirefoxData.FIREFOX_DIR, FirefoxData.DUPLICATES, Classifiers.FIREFOX,
 							Heuristic.MOZILLA, 9), 
 	KDE_PLASMA("KDE-Plasma 5", "https://bugs.kde.org/", "plasmashell",
 									"2017-05-15", "2017-05-15", KDEData.KDE_PLASMA_DIR, KDEData.DUPLICATES, Classifiers.KDE_PLASMA,
@@ -74,14 +75,6 @@ public enum Project {
 		}
 	}
 
-	public TriageClassifier getComponentClassifier() throws ClassifierNotFoundException {
-		try {
-			return this.classifiers.getComponentClassifier();
-		} catch (FileNotFoundException e) {
-			throw new ClassifierNotFoundException("A component classifier for " + name + " was not found.");
-		}
-	}
-
 	public static Project getProject(String project) {
 		if (project != null) {
 			for (Project knownProject : Project.values()) {
@@ -95,20 +88,8 @@ public enum Project {
 		}
 		return UNKNOWN;
 	}
-
-	public TriageClassifier getSubcomponentClassifier() throws ClassifierNotFoundException {
-		try {
-			return this.classifiers.getSubcomponentClassifier();
-		} catch (FileNotFoundException e) {
-			throw new ClassifierNotFoundException("A subcomponent classifier for " + name + " was not found.");
-		}
-	}
-
-	public TriageClassifier getCCClassifier() throws ClassifierNotFoundException {
-		try {
-			return this.classifiers.getCCClassifier();
-		} catch (FileNotFoundException e) {
-			throw new ClassifierNotFoundException("A subcomponent classifier for " + name + " was not found.");
-		}
+	
+	public File getDatafile(){
+	    return new File(dataDir + "/" + name + "_" + startDate + "_" + endDate + ".json");
 	}
 }
