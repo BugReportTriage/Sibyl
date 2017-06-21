@@ -143,8 +143,11 @@ public class BugzillaDataset extends Dataset {
 			String reportsJson = this.getReports();
 			BugReportsBugzilla bugs = mapper.readValue(reportsJson, BugReportsBugzilla.class);
 			List<ReportBugzilla> reportsBugzilla = bugs.getBugs();
-
+			
+			int count = 1;
+			
 			for (ReportBugzilla r : reportsBugzilla) {
+				System.err.println("Getting report " + count + " / " + reportsBugzilla.size());
 				BugReport report = BugzillaAdapter.convertReport(r);
 
 				// Add bug report history
@@ -164,6 +167,10 @@ public class BugzillaDataset extends Dataset {
 				report.setDescription(comments.get(0).getText());
 
 				reports.add(report);
+				count++;
+				
+				// Pause to not annoy
+				Thread.sleep(5000);
 			}
 		} catch (JsonParseException e) {
 			// TODO Auto-generated catch block
@@ -172,6 +179,9 @@ public class BugzillaDataset extends Dataset {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
