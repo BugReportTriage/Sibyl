@@ -26,45 +26,45 @@ import ca.uleth.bugtriage.sibyl.utils.Utils;
 
 public class MozillaClassificationTest {
 
-    private static List<BugReport> reports;
+	private static List<BugReport> reports;
 
-    @Test
-    public void testFixedHeuristic() {
-	Dataset dataset = new BugzillaDataset(Project.FIREFOX);
-	File testData = new File(dataset.getProject().dataDir + "/Firefox_2bugs.json");
-	reports = new ArrayList<BugReport>(dataset.importReports(testData));
-	assertEquals(2, reports.size());
+	@Test
+	public void testFixedHeuristic() {
+		Dataset dataset = new BugzillaDataset(Project.FIREFOX);
+		File testData = new File(dataset.getProject().dataDir + "/Firefox_2bugs.json");
+		reports = new ArrayList<BugReport>(dataset.importReports(testData));
+		assertEquals(2, reports.size());
 
-	HeuristicClassifier hClassifier = Project.FIREFOX.heuristic.getClassifier();
+		HeuristicClassifier hClassifier = Project.FIREFOX.heuristic.getClassifier();
 
-	BugReport report = reports.get(0);
-	assertEquals(569360, report.getId());
+		BugReport report = reports.get(0);
+		assertEquals(569459, report.getId());
 
-	Classification result = hClassifier.classify(report);
-	assertEquals("mounir@lamouri.fr", result.getClassification());
+		Classification result = hClassifier.classify(report);
+		assertEquals("gavin.sharp@gmail.com", result.getClassification());
 
-	report = reports.get(1);
-	assertEquals(569459, report.getId());
+		report = reports.get(1);
+		assertEquals(569360, report.getId());
 
-	result = hClassifier.classify(report);
-	assertEquals("gavin.sharp@gmail.com", result.getClassification());
-    }
+		result = hClassifier.classify(report);
+		assertEquals("mounir@lamouri.fr", result.getClassification());
 
-    @Ignore
-    @Test
-    public void testBuildClassisifer() {
-	Dataset dataset = new BugzillaDataset(Project.FIREFOX);
-	reports = new ArrayList<BugReport>(dataset.importReports());
-	assertEquals(142, reports.size());
+	}
+	
+	@Test
+	public void testBuildClassisifer() {
+		Dataset dataset = new BugzillaDataset(Project.FIREFOX);
+		reports = new ArrayList<BugReport>(dataset.importReports());
+		assertEquals(142, reports.size());
 
-	ClassifierType classifierType = ClassifierType.SVM;
-	// ClassifierType classifierType = ClassifierType.COMPONENT_BASED;
+		ClassifierType classifierType = ClassifierType.SVM;
+		// ClassifierType classifierType = ClassifierType.COMPONENT_BASED;
 
-	Heuristic heuristic = Heuristic.MOZILLA;
+		Heuristic heuristic = Heuristic.MOZILLA;
 
-	// Use a 90/10 split for training/testing
-	assertEquals(reports.size(), dataset.getTrainingReports().size() + dataset.getTestingReports().size());
+		// Use a 90/10 split for training/testing
+		assertEquals(reports.size(), dataset.getTrainingReports().size() + dataset.getTestingReports().size());
 
-	Profiles profiles = Classifier.createDeveloperProfiles(dataset);	
-    }
+		Profiles profiles = Classifier.createDeveloperProfiles(dataset);
+	}
 }

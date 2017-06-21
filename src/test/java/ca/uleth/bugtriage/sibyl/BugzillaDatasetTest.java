@@ -36,253 +36,252 @@ import ca.uleth.bugtriage.sibyl.report.bugzilla.json.history.HistoryBugzilla;
 
 public class BugzillaDatasetTest {
 
-    private static BugzillaDataset dataset;
+	private static BugzillaDataset dataset;
 
-    @BeforeClass
-    public static void setup() {
-	Project testFirefox = Project.FIREFOX;
-	testFirefox.startDate = "2010-06-01";
-	testFirefox.endDate = "2010-06-02";
-	dataset = new BugzillaDataset(testFirefox);
-    }
+	@BeforeClass
+	public static void setup() {
+		Project testFirefox = Project.FIREFOX;
+		testFirefox.startDate = "2010-06-01";
+		testFirefox.endDate = "2010-06-02";
+		dataset = new BugzillaDataset(testFirefox);
+	}
 
-    @Test
-    public void testGetDataBugzilla() throws JsonParseException, JsonMappingException, IOException {
+	@Test
+	public void testGetDataBugzilla() throws JsonParseException, JsonMappingException, IOException {
 
-	String data = dataset.getReports();
-	ObjectMapper mapper = new ObjectMapper();
-	BugReportsBugzilla bugs = mapper.readValue(data, BugReportsBugzilla.class);
-	List<ReportBugzilla> reports = bugs.getBugs();
+		String data = dataset.getReports();
+		ObjectMapper mapper = new ObjectMapper();
+		BugReportsBugzilla bugs = mapper.readValue(data, BugReportsBugzilla.class);
+		List<ReportBugzilla> reports = bugs.getBugs();
 
-	Assert.assertEquals(2, reports.size());
-	Assert.assertEquals(569360, reports.get(0).getId().intValue());
-	Assert.assertEquals(569459, reports.get(1).getId().intValue());
-    }
+		Assert.assertEquals(2, reports.size());
+		Assert.assertEquals(569360, reports.get(0).getId().intValue());
+		Assert.assertEquals(569459, reports.get(1).getId().intValue());
+	}
 
-    @Test
-    public void testGetReportHistoryBugzillaNormal() throws JsonParseException, JsonMappingException, IOException {
+	@Test
+	public void testGetReportHistoryBugzillaNormal() throws JsonParseException, JsonMappingException, IOException {
 
-	String data = dataset.getHistory("569360");
+		String data = dataset.getHistory("569360");
 
-	ObjectMapper mapper = new ObjectMapper();
-	BugReportHistoryBugzilla history = mapper.readValue(data, BugReportHistoryBugzilla.class);
-	List<BugHistory> reports = history.getBugs();
+		ObjectMapper mapper = new ObjectMapper();
+		BugReportHistoryBugzilla history = mapper.readValue(data, BugReportHistoryBugzilla.class);
+		List<BugHistory> reports = history.getBugs();
 
-	Assert.assertEquals(1, reports.size());
-	Assert.assertEquals(569360, reports.get(0).getId().intValue());
+		Assert.assertEquals(1, reports.size());
+		Assert.assertEquals(569360, reports.get(0).getId().intValue());
 
-	List<HistoryBugzilla> changes = reports.get(0).getHistory();
-	Assert.assertEquals(8, changes.size());
+		List<HistoryBugzilla> changes = reports.get(0).getHistory();
+		Assert.assertEquals(8, changes.size());
 
-	HistoryBugzilla change = changes.get(0);
-	Assert.assertEquals("mounir@lamouri.fr", change.getWho());
-	Assert.assertEquals("2010-06-01T15:43:20Z", change.getWhen());
+		HistoryBugzilla change = changes.get(0);
+		Assert.assertEquals("mounir@lamouri.fr", change.getWho());
+		Assert.assertEquals("2010-06-01T15:43:20Z", change.getWhen());
 
-	ChangeBugzilla details = change.getChanges().get(0);
-	Assert.assertEquals("review?(gavin.sharp@gmail.com)", details.getAdded());
-	Assert.assertEquals("448527", details.getAttachmentId());
-	Assert.assertEquals("flagtypes.name", details.getFieldName());
-	Assert.assertEquals("", details.getRemoved());
-    }
+		ChangeBugzilla details = change.getChanges().get(0);
+		Assert.assertEquals("review?(gavin.sharp@gmail.com)", details.getAdded());
+		Assert.assertEquals("448527", details.getAttachmentId());
+		Assert.assertEquals("flagtypes.name", details.getFieldName());
+		Assert.assertEquals("", details.getRemoved());
+	}
 
-    @Test
-    public void testGetReportHistoryBugzillaNeedInfo() throws JsonParseException, JsonMappingException, IOException {
+	@Test
+	public void testGetReportHistoryBugzillaNeedInfo() throws JsonParseException, JsonMappingException, IOException {
 
-	String data = dataset.getHistory("1236213");
+		String data = dataset.getHistory("1236213");
 
-	ObjectMapper mapper = new ObjectMapper();
-	BugReportHistoryBugzilla history = mapper.readValue(data, BugReportHistoryBugzilla.class);
-	List<BugHistory> reports = history.getBugs();
+		ObjectMapper mapper = new ObjectMapper();
+		BugReportHistoryBugzilla history = mapper.readValue(data, BugReportHistoryBugzilla.class);
+		List<BugHistory> reports = history.getBugs();
 
-	Assert.assertEquals(1, reports.size());
-	Assert.assertEquals(1236213, reports.get(0).getId().intValue());
+		Assert.assertEquals(1, reports.size());
+		Assert.assertEquals(1236213, reports.get(0).getId().intValue());
 
-	List<HistoryBugzilla> changes = reports.get(0).getHistory();
-	Assert.assertEquals(8, changes.size());
+		List<HistoryBugzilla> changes = reports.get(0).getHistory();
+		Assert.assertEquals(8, changes.size());
 
-	HistoryBugzilla change = changes.get(2);
+		HistoryBugzilla change = changes.get(2);
 
-	// Second change made at this time
-	ChangeBugzilla details = change.getChanges().get(1);
-	Assert.assertEquals("needinfo?(shorlander@mozilla.com)", details.getAdded());
-	Assert.assertNull(details.getAttachmentId());
+		// Second change made at this time
+		ChangeBugzilla details = change.getChanges().get(1);
+		Assert.assertEquals("needinfo?(shorlander@mozilla.com)", details.getAdded());
+		Assert.assertNull(details.getAttachmentId());
 
-	BugActivityEvent event = BugActivityEvent.createEvent(details.getFieldName(), details.getAdded());
-	Assert.assertTrue(event instanceof FlagEvent);
-	List<BugzillaFlag> flags = ((FlagEvent) event).getFlags();
-	Assert.assertEquals(1, flags.size());
-	Assert.assertEquals(AttachmentFlagStatus.NEEDINFO, flags.get(0).getStatus());
-	Assert.assertEquals(AttachmentFlagState.REQUESTED, flags.get(0).getState());
-    }
+		BugActivityEvent event = BugActivityEvent.createEvent(details.getFieldName(), details.getAdded());
+		Assert.assertTrue(event instanceof FlagEvent);
+		List<BugzillaFlag> flags = ((FlagEvent) event).getFlags();
+		Assert.assertEquals(1, flags.size());
+		Assert.assertEquals(AttachmentFlagStatus.NEEDINFO, flags.get(0).getStatus());
+		Assert.assertEquals(AttachmentFlagState.REQUESTED, flags.get(0).getState());
+	}
 
-    @Test
-    public void testGetReportHistoryBugzillaQEVerify() throws JsonParseException, JsonMappingException, IOException {
+	@Test
+	public void testGetReportHistoryBugzillaQEVerify() throws JsonParseException, JsonMappingException, IOException {
 
-	String data = dataset.getHistory("1236229");
+		String data = dataset.getHistory("1236229");
 
-	ObjectMapper mapper = new ObjectMapper();
-	BugReportHistoryBugzilla history = mapper.readValue(data, BugReportHistoryBugzilla.class);
-	List<BugHistory> reports = history.getBugs();
+		ObjectMapper mapper = new ObjectMapper();
+		BugReportHistoryBugzilla history = mapper.readValue(data, BugReportHistoryBugzilla.class);
+		List<BugHistory> reports = history.getBugs();
 
-	Assert.assertEquals(1, reports.size());
-	Assert.assertEquals(1236229, reports.get(0).getId().intValue());
+		Assert.assertEquals(1, reports.size());
+		Assert.assertEquals(1236229, reports.get(0).getId().intValue());
 
-	List<HistoryBugzilla> changes = reports.get(0).getHistory();
-	Assert.assertEquals(10, changes.size());
+		List<HistoryBugzilla> changes = reports.get(0).getHistory();
+		Assert.assertEquals(10, changes.size());
 
-	HistoryBugzilla change = changes.get(0);
-	ChangeBugzilla details = change.getChanges().get(0);
-	Assert.assertEquals("qe-verify-", details.getAdded());
-	Assert.assertNull(details.getAttachmentId());
+		HistoryBugzilla change = changes.get(0);
+		ChangeBugzilla details = change.getChanges().get(0);
+		Assert.assertEquals("qe-verify-", details.getAdded());
+		Assert.assertNull(details.getAttachmentId());
 
-	BugActivityEvent event = BugActivityEvent.createEvent(details.getFieldName(), details.getAdded());
-	Assert.assertTrue(event instanceof FlagEvent);
-	List<BugzillaFlag> flags = ((FlagEvent) event).getFlags();
-	Assert.assertEquals(1, flags.size());
-	Assert.assertEquals(AttachmentFlagStatus.QE_VERIFY, flags.get(0).getStatus());
-	Assert.assertEquals(AttachmentFlagState.DENIED, flags.get(0).getState());
-    }
+		BugActivityEvent event = BugActivityEvent.createEvent(details.getFieldName(), details.getAdded());
+		Assert.assertTrue(event instanceof FlagEvent);
+		List<BugzillaFlag> flags = ((FlagEvent) event).getFlags();
+		Assert.assertEquals(1, flags.size());
+		Assert.assertEquals(AttachmentFlagStatus.QE_VERIFY, flags.get(0).getStatus());
+		Assert.assertEquals(AttachmentFlagState.DENIED, flags.get(0).getState());
+	}
 
-    @Test
-    public void testGetReportHistoryBugzillaBacklog() throws JsonParseException, JsonMappingException, IOException {
+	@Test
+	public void testGetReportHistoryBugzillaBacklog() throws JsonParseException, JsonMappingException, IOException {
 
-	String data = dataset.getHistory("1239845");
+		String data = dataset.getHistory("1239845");
 
-	ObjectMapper mapper = new ObjectMapper();
-	BugReportHistoryBugzilla history = mapper.readValue(data, BugReportHistoryBugzilla.class);
-	List<BugHistory> reports = history.getBugs();
+		ObjectMapper mapper = new ObjectMapper();
+		BugReportHistoryBugzilla history = mapper.readValue(data, BugReportHistoryBugzilla.class);
+		List<BugHistory> reports = history.getBugs();
 
-	Assert.assertEquals(1, reports.size());
-	Assert.assertEquals(1239845, reports.get(0).getId().intValue());
+		Assert.assertEquals(1, reports.size());
+		Assert.assertEquals(1239845, reports.get(0).getId().intValue());
 
-	List<HistoryBugzilla> changes = reports.get(0).getHistory();
-	Assert.assertEquals(22, changes.size());
+		List<HistoryBugzilla> changes = reports.get(0).getHistory();
+		Assert.assertEquals(22, changes.size());
 
-	HistoryBugzilla change = changes.get(0);
-	ChangeBugzilla details = change.getChanges().get(2);
-	Assert.assertEquals("firefox-backlog+", details.getAdded());
-	Assert.assertNull(details.getAttachmentId());
+		HistoryBugzilla change = changes.get(0);
+		ChangeBugzilla details = change.getChanges().get(2);
+		Assert.assertEquals("firefox-backlog+", details.getAdded());
+		Assert.assertNull(details.getAttachmentId());
 
-	BugActivityEvent event = BugActivityEvent.createEvent(details.getFieldName(), details.getAdded());
-	Assert.assertTrue(event instanceof FlagEvent);
-	List<BugzillaFlag> flags = ((FlagEvent) event).getFlags();
-	Assert.assertEquals(1, flags.size());
-	Assert.assertEquals(AttachmentFlagStatus.BACKLOG, flags.get(0).getStatus());
-	Assert.assertEquals(AttachmentFlagState.GRANTED, flags.get(0).getState());
-    }
+		BugActivityEvent event = BugActivityEvent.createEvent(details.getFieldName(), details.getAdded());
+		Assert.assertTrue(event instanceof FlagEvent);
+		List<BugzillaFlag> flags = ((FlagEvent) event).getFlags();
+		Assert.assertEquals(1, flags.size());
+		Assert.assertEquals(AttachmentFlagStatus.BACKLOG, flags.get(0).getStatus());
+		Assert.assertEquals(AttachmentFlagState.GRANTED, flags.get(0).getState());
+	}
 
-    @Test
-    public void testGetReportHistoryBugzillaInTestSuite() throws JsonParseException, JsonMappingException, IOException {
+	@Test
+	public void testGetReportHistoryBugzillaInTestSuite() throws JsonParseException, JsonMappingException, IOException {
 
-	String data = dataset.getHistory("1239671");
+		String data = dataset.getHistory("1239671");
 
-	ObjectMapper mapper = new ObjectMapper();
-	BugReportHistoryBugzilla history = mapper.readValue(data, BugReportHistoryBugzilla.class);
-	List<BugHistory> reports = history.getBugs();
+		ObjectMapper mapper = new ObjectMapper();
+		BugReportHistoryBugzilla history = mapper.readValue(data, BugReportHistoryBugzilla.class);
+		List<BugHistory> reports = history.getBugs();
 
-	Assert.assertEquals(1, reports.size());
-	Assert.assertEquals(1239671, reports.get(0).getId().intValue());
+		Assert.assertEquals(1, reports.size());
+		Assert.assertEquals(1239671, reports.get(0).getId().intValue());
 
-	List<HistoryBugzilla> changes = reports.get(0).getHistory();
-	Assert.assertEquals(27, changes.size());
+		List<HistoryBugzilla> changes = reports.get(0).getHistory();
+		Assert.assertEquals(27, changes.size());
 
-	HistoryBugzilla change = changes.get(19);
-	ChangeBugzilla details = change.getChanges().get(0);
-	Assert.assertEquals("in-testsuite?", details.getAdded());
-	Assert.assertNull(details.getAttachmentId());
+		HistoryBugzilla change = changes.get(19);
+		ChangeBugzilla details = change.getChanges().get(0);
+		Assert.assertEquals("in-testsuite?", details.getAdded());
+		Assert.assertNull(details.getAttachmentId());
 
-	BugActivityEvent event = BugActivityEvent.createEvent(details.getFieldName(), details.getAdded());
-	Assert.assertTrue(event instanceof FlagEvent);
-	List<BugzillaFlag> flags = ((FlagEvent) event).getFlags();
-	Assert.assertEquals(1, flags.size());
-	Assert.assertEquals(AttachmentFlagStatus.TEST_SUITE, flags.get(0).getStatus());
-	Assert.assertEquals(AttachmentFlagState.REQUESTED, flags.get(0).getState());
-    }
+		BugActivityEvent event = BugActivityEvent.createEvent(details.getFieldName(), details.getAdded());
+		Assert.assertTrue(event instanceof FlagEvent);
+		List<BugzillaFlag> flags = ((FlagEvent) event).getFlags();
+		Assert.assertEquals(1, flags.size());
+		Assert.assertEquals(AttachmentFlagStatus.TEST_SUITE, flags.get(0).getStatus());
+		Assert.assertEquals(AttachmentFlagState.REQUESTED, flags.get(0).getState());
+	}
 
-    @Test
-    public void testGetReportCommentsBugzilla() throws JsonParseException, JsonMappingException, IOException {
+	@Test
+	public void testGetReportCommentsBugzilla() throws JsonParseException, JsonMappingException, IOException {
 
-	String data = dataset.getComments("569360");
+		String data = dataset.getComments("569360");
 
-	ObjectMapper mapper = new ObjectMapper();
-	Report report = mapper.readValue(data, Report.class);
-	List<Comment> comments = report.getComments();
+		ObjectMapper mapper = new ObjectMapper();
+		Report report = mapper.readValue(data, Report.class);
+		List<Comment> comments = report.getComments();
 
-	Assert.assertEquals(4, comments.size());
-	Assert.assertEquals(4721961, comments.get(0).getId().intValue());
+		Assert.assertEquals(4, comments.size());
+		Assert.assertEquals(4721961, comments.get(0).getId().intValue());
 
-    }
+	}
 
-    @Test
-    public void testBugReportBugzilla() {
-	testBugReportBugzilla(dataset.getData());
-    }
-    
-    @Test
-    public void testBugReportBugzillaExportImport() {
+	@Test
+	public void testBugReportBugzilla() {
+		testBugReportBugzilla(dataset.getData());
+	}
 
-	Set<BugReport> reports = dataset.getData();
-	Assert.assertEquals(2, reports.size());
+	@Test
+	public void testBugReportBugzillaExportImport() {
 
-	File file = dataset.exportReports(dataset.getProject().getDatafile());
-	Assert.assertTrue(file.exists());
-	
-	reports = null; // clear reference
-	reports = dataset.importReports(dataset.getProject().getDatafile());
-	Assert.assertEquals(2, reports.size());
-	
-	testBugReportBugzilla(reports);
-    }
-    
-    public void testBugReportBugzilla(Set<BugReport> r) {
+		Set<BugReport> reports = dataset.getData();
+		Assert.assertEquals(2, reports.size());
 
-	List<BugReport> reports = new ArrayList<BugReport>(r);
+		File file = dataset.exportReports(dataset.getProject().getDatafile());
+		Assert.assertTrue(file.exists());
 
-	Assert.assertEquals(2, reports.size());
+		reports = null; // clear reference
+		reports = dataset.importReports(dataset.getProject().getDatafile());
+		Assert.assertEquals(2, reports.size());
 
-	/* Validate report #1 */
-	BugReport report = reports.get(0);
+		testBugReportBugzilla(reports);
+	}
 
-	Assert.assertEquals(569459, report.getId());
-	Assert.assertNull(report.getDuplicateOf());
-	Assert.assertEquals("nobody@mozilla.org", report.getAssigned());
-	Assert.assertEquals(StatusType.VERIFIED, report.getStatus());
-	Assert.assertEquals(ResolutionType.FIXED, report.getResolution());
+	public void testBugReportBugzilla(Set<BugReport> r) {
 
-	BugActivity activity = report.getActivity();
-	Assert.assertEquals(0, activity.getAssignmentEvents().size());
-	Assert.assertEquals("gavin.sharp@gmail.com", activity.resolution().resolvedBy());
-	Assert.assertEquals(2, activity.getResolvers().size());
-	Assert.assertEquals("hskupin@gmail.com", activity.whoSetStatus());
-	Assert.assertEquals(0, activity.getApprovedAttachments().size());
-	Assert.assertEquals(0, activity.getAttachmentSubmitters(activity.getApprovedAttachments()).size());
-	Assert.assertEquals("", activity.mostFrequentAttachmentSubmitter());
-	Assert.assertEquals(1, activity.getFixers().size());
-	Assert.assertEquals("gavin.sharp@gmail.com", activity.getFixers().get(0));
-	Assert.assertEquals(0, activity.getComponentChanges().size());
-	Assert.assertEquals(7, activity.getCCAdded().size());
+		List<BugReport> reports = new ArrayList<BugReport>(r);
 
-	/* Validate report #2 */
-	report = reports.get(1);
-	Assert.assertEquals(569360, report.getId());
-	Assert.assertNull(report.getDuplicateOf());
-	Assert.assertEquals("mounir@lamouri.fr", report.getAssigned());
-	Assert.assertEquals(StatusType.RESOLVED, report.getStatus());
-	Assert.assertEquals(ResolutionType.FIXED, report.getResolution());
+		Assert.assertEquals(2, reports.size());
 
-	activity = report.getActivity();
-	Assert.assertEquals(0, activity.getAssignmentEvents().size());
-	Assert.assertEquals("mak77@bonardo.net", activity.resolution().resolvedBy());
-	Assert.assertEquals(1, activity.getResolvers().size());
-	Assert.assertEquals("mak77@bonardo.net", activity.whoSetStatus());
-	Assert.assertEquals(1, activity.getApprovedAttachments().size());
-	Assert.assertEquals(1, activity.getAttachmentSubmitters(activity.getApprovedAttachments()).size());
-	Assert.assertEquals("mounir@lamouri.fr", activity.mostFrequentAttachmentSubmitter());
-	Assert.assertEquals(1, activity.getFixers().size());
-	Assert.assertEquals("mak77@bonardo.net", activity.getFixers().get(0));
-	Assert.assertEquals(0, activity.getComponentChanges().size());
-	Assert.assertEquals(3, activity.getCCAdded().size());
-    }
+		/* Validate report #1 */
+		BugReport report = reports.get(0);
 
-   
+		Assert.assertEquals(569459, report.getId());
+		Assert.assertNull(report.getDuplicateOf());
+		Assert.assertEquals("nobody@mozilla.org", report.getAssigned());
+		Assert.assertEquals(StatusType.VERIFIED, report.getStatus());
+		Assert.assertEquals(ResolutionType.FIXED, report.getResolution());
+
+		BugActivity activity = report.getActivity();
+		Assert.assertEquals(0, activity.getAssignmentEvents().size());
+		Assert.assertEquals("gavin.sharp@gmail.com", activity.resolution().resolvedBy());
+		Assert.assertEquals(2, activity.resolvers().size());
+		Assert.assertEquals("hskupin@gmail.com", activity.whoSetStatus());
+		Assert.assertEquals(0, activity.approvedAttachments().size());
+		Assert.assertEquals(0, activity.attachmentSubmitters(activity.approvedAttachments()).size());
+		Assert.assertEquals("", activity.mostFrequentAttachmentSubmitter());
+		Assert.assertEquals(1, activity.fixers().size());
+		Assert.assertEquals("gavin.sharp@gmail.com", activity.fixers().get(0));
+		Assert.assertEquals(0, activity.componentChanges().size());
+		Assert.assertEquals(7, activity.ccAdded().size());
+
+		/* Validate report #2 */
+		report = reports.get(1);
+		Assert.assertEquals(569360, report.getId());
+		Assert.assertNull(report.getDuplicateOf());
+		Assert.assertEquals("mounir@lamouri.fr", report.getAssigned());
+		Assert.assertEquals(StatusType.RESOLVED, report.getStatus());
+		Assert.assertEquals(ResolutionType.FIXED, report.getResolution());
+
+		activity = report.getActivity();
+		Assert.assertEquals(0, activity.getAssignmentEvents().size());
+		Assert.assertEquals("mak77@bonardo.net", activity.resolution().resolvedBy());
+		Assert.assertEquals(1, activity.resolvers().size());
+		Assert.assertEquals("mak77@bonardo.net", activity.whoSetStatus());
+		Assert.assertEquals(1, activity.approvedAttachments().size());
+		Assert.assertEquals(1, activity.attachmentSubmitters(activity.approvedAttachments()).size());
+		Assert.assertEquals("mounir@lamouri.fr", activity.mostFrequentAttachmentSubmitter());
+		Assert.assertEquals(1, activity.fixers().size());
+		Assert.assertEquals("mak77@bonardo.net", activity.fixers().get(0));
+		Assert.assertEquals(0, activity.componentChanges().size());
+		Assert.assertEquals(3, activity.ccAdded().size());
+	}
+
 }

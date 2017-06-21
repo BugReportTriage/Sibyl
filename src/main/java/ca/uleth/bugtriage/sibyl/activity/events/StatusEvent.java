@@ -4,10 +4,13 @@ public class StatusEvent extends BugActivityEvent {
 
 	private static final long serialVersionUID = 3258693199936631348L;
 
-	private final StatusType type;
+	private StatusType type;
 
-	public StatusEvent(StatusType type) {
+	public StatusEvent() {
 		this.what = BugActivityEvent.STATUS;
+	}
+
+	public void setType(StatusType type) {
 		this.type = type;
 	}
 
@@ -17,7 +20,7 @@ public class StatusEvent extends BugActivityEvent {
 
 	@Override
 	public String toString() {
-		return this.getName() + " | " + this.getDate() + " | " + this.getWhat()
-				+ " | " + this.getRemoved() + " | " + this.getType();
+		return this.getName() + " | " + this.getDate() + " | " + this.getWhat() + " | " + this.getRemoved() + " | "
+				+ this.getType();
 	}
 }

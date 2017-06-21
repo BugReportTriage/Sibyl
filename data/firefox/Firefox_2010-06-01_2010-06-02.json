@@ -69,18 +69,97 @@
   } ],
   "status" : "VERIFIED",
   "activity" : {
+    "statusEvents" : [ {
+      "name" : "steffen.wilberg@web.de",
+      "date" : "2010-06-30T07:27:09Z",
+      "what" : "status",
+      "removed" : "NEW",
+      "added" : "",
+      "type" : "RESOLVED"
+    }, {
+      "name" : "hskupin@gmail.com",
+      "date" : "2010-07-12T22:14:04Z",
+      "what" : "status",
+      "removed" : "RESOLVED",
+      "added" : "",
+      "type" : "VERIFIED"
+    } ],
+    "resolutionEvents" : [ {
+      "name" : "steffen.wilberg@web.de",
+      "date" : "2010-06-30T07:27:09Z",
+      "what" : "resolution",
+      "removed" : "",
+      "added" : "",
+      "type" : "DUPLICATE"
+    }, {
+      "name" : "gavin.sharp@gmail.com",
+      "date" : "2010-07-09T19:44:51Z",
+      "what" : "resolution",
+      "removed" : "DUPLICATE",
+      "added" : "",
+      "type" : "FIXED"
+    } ],
     "assignmentEvents" : [ ],
-    "resolvers" : [ "steffen.wilberg@web.de", "gavin.sharp@gmail.com" ],
-    "approvedAttachments" : [ ],
-    "fixers" : [ "gavin.sharp@gmail.com" ],
-    "componentChanges" : [ ],
-    "ccadded" : [ "gavin.sharp@gmail.com", "steffen.wilberg@web.de", "tymerkaev@gmail.com", "shorlander@mozilla.com", "dbaron@dbaron.org", "navneethc@gmail.com", "hskupin@gmail.com" ],
-    "allAssignedTo" : [ ],
-    "subcomponentChanges" : [ ]
+    "otherEvents" : [ {
+      "name" : "gavin.sharp@gmail.com",
+      "date" : "2010-06-02T07:00:15Z",
+      "what" : "cc",
+      "removed" : "",
+      "added" : "gavin.sharp@gmail.com, steffen.wilberg@web.de"
+    }, {
+      "name" : "tymerkaev@gmail.com",
+      "date" : "2010-06-02T15:01:04Z",
+      "what" : "cc",
+      "removed" : "",
+      "added" : "tymerkaev@gmail.com"
+    }, {
+      "name" : "shorlander@mozilla.com",
+      "date" : "2010-06-29T18:20:28Z",
+      "what" : "cc",
+      "removed" : "",
+      "added" : "shorlander@mozilla.com"
+    }, {
+      "name" : "dbaron@dbaron.org",
+      "date" : "2010-06-29T23:17:11Z",
+      "what" : "cc",
+      "removed" : "",
+      "added" : "dbaron@dbaron.org"
+    }, {
+      "name" : "steffen.wilberg@web.de",
+      "date" : "2010-06-30T07:27:09Z",
+      "what" : "cf_last_resolved",
+      "removed" : "",
+      "added" : "2010-06-30 00:27:09"
+    }, {
+      "name" : "gavin.sharp@gmail.com",
+      "date" : "2010-07-09T19:44:11Z",
+      "what" : "cc",
+      "removed" : "",
+      "added" : "navneethc@gmail.com"
+    }, {
+      "name" : "gavin.sharp@gmail.com",
+      "date" : "2010-07-09T19:44:51Z",
+      "what" : "depends_on",
+      "removed" : "",
+      "added" : "566178"
+    }, {
+      "name" : "gavin.sharp@gmail.com",
+      "date" : "2010-07-09T19:44:51Z",
+      "what" : "target_milestone",
+      "removed" : "---",
+      "added" : "Firefox 3.7b2"
+    }, {
+      "name" : "hskupin@gmail.com",
+      "date" : "2010-07-12T22:14:04Z",
+      "what" : "cc",
+      "removed" : "",
+      "added" : "hskupin@gmail.com"
+    } ],
+    "flagEvents" : [ ]
   },
   "resolution" : "FIXED",
-  "cclist" : [ "dbaron@dbaron.org", "gavin.sharp@gmail.com", "hskupin@gmail.com", "navneethc@gmail.com", "shorlander@mozilla.com", "steffen.wilberg@web.de", "tymerkaev@gmail.com" ],
-  "id" : 569459
+  "id" : 569459,
+  "cclist" : [ "dbaron@dbaron.org", "gavin.sharp@gmail.com", "hskupin@gmail.com", "navneethc@gmail.com", "shorlander@mozilla.com", "steffen.wilberg@web.de", "tymerkaev@gmail.com" ]
 }, {
   "component" : "General",
   "summary" : "browser.js should not assume SVGAElement is always defined",
@@ -112,9 +191,84 @@
   } ],
   "status" : "RESOLVED",
   "activity" : {
+    "statusEvents" : [ {
+      "name" : "mak77@bonardo.net",
+      "date" : "2010-06-17T10:56:43Z",
+      "what" : "status",
+      "removed" : "ASSIGNED",
+      "added" : "",
+      "type" : "RESOLVED"
+    } ],
+    "resolutionEvents" : [ {
+      "name" : "mak77@bonardo.net",
+      "date" : "2010-06-17T10:56:43Z",
+      "what" : "resolution",
+      "removed" : "",
+      "added" : "",
+      "type" : "FIXED"
+    } ],
     "assignmentEvents" : [ ],
-    "resolvers" : [ "mak77@bonardo.net" ],
-    "approvedAttachments" : [ {
+    "otherEvents" : [ {
+      "name" : "gavin.sharp@gmail.com",
+      "date" : "2010-06-01T19:28:26Z",
+      "what" : "cc",
+      "removed" : "",
+      "added" : "gavin.sharp@gmail.com"
+    }, {
+      "name" : "mounir@lamouri.fr",
+      "date" : "2010-06-02T00:22:27Z",
+      "what" : "attachments.isobsolete:448527",
+      "removed" : "0",
+      "added" : "1"
+    }, {
+      "name" : "mounir@lamouri.fr",
+      "date" : "2010-06-02T00:22:37Z",
+      "what" : "keywords",
+      "removed" : "",
+      "added" : "checkin-needed"
+    }, {
+      "name" : "21@vingtetun.org",
+      "date" : "2010-06-07T23:59:48Z",
+      "what" : "cc",
+      "removed" : "",
+      "added" : "21@vingtetun.org"
+    }, {
+      "name" : "mak77@bonardo.net",
+      "date" : "2010-06-17T10:56:43Z",
+      "what" : "cc",
+      "removed" : "",
+      "added" : "mak77@bonardo.net"
+    }, {
+      "name" : "mak77@bonardo.net",
+      "date" : "2010-06-17T10:56:43Z",
+      "what" : "target_milestone",
+      "removed" : "---",
+      "added" : "Firefox 3.7a6"
+    }, {
+      "name" : "mak77@bonardo.net",
+      "date" : "2010-06-17T10:56:43Z",
+      "what" : "cf_last_resolved",
+      "removed" : "",
+      "added" : "2010-06-17 03:56:43"
+    }, {
+      "name" : "mak77@bonardo.net",
+      "date" : "2010-06-17T10:56:50Z",
+      "what" : "keywords",
+      "removed" : "checkin-needed",
+      "added" : ""
+    } ],
+    "flagEvents" : [ {
+      "name" : "mounir@lamouri.fr",
+      "date" : "2010-06-01T15:43:20Z",
+      "what" : "flagtypes.name",
+      "removed" : "",
+      "added" : "",
+      "attachmentId" : 448527,
+      "flags" : [ {
+        "status" : "REVIEW",
+        "state" : "REQUESTED"
+      } ]
+    }, {
       "name" : "gavin.sharp@gmail.com",
       "date" : "2010-06-01T19:28:49Z",
       "what" : "flagtypes.name",
@@ -125,14 +279,9 @@
         "status" : "REVIEW",
         "state" : "GRANTED"
       } ]
-    } ],
-    "fixers" : [ "mak77@bonardo.net" ],
-    "componentChanges" : [ ],
-    "ccadded" : [ "gavin.sharp@gmail.com", "21@vingtetun.org", "mak77@bonardo.net" ],
-    "allAssignedTo" : [ ],
-    "subcomponentChanges" : [ ]
+    } ]
   },
   "resolution" : "FIXED",
-  "cclist" : [ "21@vingtetun.org", "gavin.sharp@gmail.com", "mak77@bonardo.net" ],
-  "id" : 569360
+  "id" : 569360,
+  "cclist" : [ "21@vingtetun.org", "gavin.sharp@gmail.com", "mak77@bonardo.net" ]
 } ]

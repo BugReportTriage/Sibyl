@@ -53,7 +53,7 @@ public class MozillaHeuristic extends HeuristicClassifier {
 				if (resolution != null) {
 					if (resolution.getType().equals(ResolutionType.FIXED)) {
 						List<FlagEvent> approvedAttachments = activity
-								.getApprovedAttachments();
+								.approvedAttachments();
 						if (approvedAttachments.isEmpty()) {
 							return new Classification(Email
 									.getAddress(resolution.resolvedBy()),
@@ -116,11 +116,11 @@ public class MozillaHeuristic extends HeuristicClassifier {
 				if (resolution != null) {
 					if (resolution.getType().equals(ResolutionType.FIXED)) {
 						List<FlagEvent> approvedAttachments = activity
-								.getApprovedAttachments();
+								.approvedAttachments();
 						if (approvedAttachments.isEmpty() == false) {
 							List<String> submitters = new ArrayList<String>(
 									activity
-											.getAttachmentSubmitters(approvedAttachments));
+											.attachmentSubmitters(approvedAttachments));
 
 							if (submitters.size() == 0) {
 								/*
