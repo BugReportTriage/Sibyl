@@ -46,7 +46,7 @@ public enum Project {
 
 	public final String duplicateReportsFile;
 
-	public final double threshold;
+	public double threshold;
 
 	public String startDate;
 

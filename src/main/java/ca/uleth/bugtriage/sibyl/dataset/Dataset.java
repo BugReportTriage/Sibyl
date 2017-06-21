@@ -48,17 +48,17 @@ public abstract class Dataset {
 	public abstract Set<BugReport> getData();
 
 	public Set<BugReport> getTrainingReports() {
-		int trainingSize = (int) Math.round(this.reports.size() * TRAINING_PERCENTAGE);
+		double trainingSize =  Math.round(this.reports.size() * TRAINING_PERCENTAGE);
 		List<BugReport> trainingReports = new ArrayList<BugReport>(this.reports);
 
-		return new TreeSet<BugReport>(trainingReports.subList(0, trainingSize));
+		return new TreeSet<BugReport>(trainingReports.subList(0, (int)trainingSize));
 	}
 
 	public Set<BugReport> getTestingReports() {
-		int trainingSize = (int) Math.round(this.reports.size() * TRAINING_PERCENTAGE);
-		List<BugReport> trainingReports = new ArrayList<BugReport>(this.reports);
-
-		return new TreeSet<BugReport>(trainingReports.subList(trainingSize, trainingReports.size()));
+		int lastTrainingIndex = (int) Math.round(this.reports.size() * TRAINING_PERCENTAGE);
+		List<BugReport> reports = new ArrayList<BugReport>(this.reports);
+		List<BugReport> testingReports = reports.subList(lastTrainingIndex, reports.size());
+		return new TreeSet<BugReport>(testingReports);
 	}
 
 	public Project getProject() {
@@ -128,6 +128,7 @@ public abstract class Dataset {
 			System.err.println(e.getMessage());
 		}
 
+		this.reports.addAll(reports);
 		return reports;
 	}
 

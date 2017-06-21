@@ -45,8 +45,10 @@ public class Environment {
 
 	public static String getClassifierDir() {
 		if (CLASSIFIER_DIR == null) {
-			CLASSIFIER_DIR = getRootDir() + "Documents and Settings/John/My Documents/Work/Sibyl/classifiers/";
-			//CLASSIFIER_DIR = getServletDataDir() + "classifier/";
+			CLASSIFIER_DIR = getRootDir() + "classifiers/";
+			File dir = new File(CLASSIFIER_DIR);
+			if(dir.exists() == false)
+				dir.mkdirs();
 		}
 		return CLASSIFIER_DIR;
 	}

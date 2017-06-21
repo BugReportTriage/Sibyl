@@ -80,7 +80,7 @@ public class Profiles {
 
 	int scaledFrequency, count;
 	for (String name : this.profiles.keySet()) {
-	    sb.append(name + ":\n");
+	    sb.append(name + ": ");
 	    scaledFrequency = this.profiles.get(name) / FACTOR;
 	    for (count = 0; count < scaledFrequency; count++) {
 		sb.append("*");

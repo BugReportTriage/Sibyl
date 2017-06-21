@@ -244,13 +244,9 @@ public class BugActivity implements Iterable<BugActivityEvent>, Serializable {
 									AttachmentFlagStatus.REVIEW)
 									&& flag.getState().equals(
 											AttachmentFlagState.GRANTED);
-							/*boolean superReviewRequested = flag.getStatus()
-									.equals(AttachmentFlagStatus.SUPERREVIEW)
-									&& flag.getState().equals(
-											AttachmentFlagState.REQUESTED);
-							if (reviewGranted || superReviewRequested) {
+							if (reviewGranted) {
 								reviewEventNames.add(event.getName());
-							}*/
+							}
 						}
 					}
 				}
