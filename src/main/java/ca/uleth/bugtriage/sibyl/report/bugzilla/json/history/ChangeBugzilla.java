@@ -13,8 +13,8 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
     "field_name",
     "removed"
 })
-//@JsonIgnoreProperties(ignoreUnknown=true)
-@JsonIgnoreProperties
+@JsonIgnoreProperties(ignoreUnknown=true)
+
 public class ChangeBugzilla {
 
     @JsonProperty("added")

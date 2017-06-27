@@ -36,22 +36,24 @@ import ca.uleth.bugtriage.sibyl.report.bugzilla.json.history.BugReportHistoryBug
 
 public class BugzillaDataset extends Dataset {
 
+	private static final int BATCH_SIZE = 50;
+
 	private static final String CLOSED_FIXED = "&resolution=FIXED&status=RESOLVED&status=VERIFIED&status=CLOSED";
 
 	private static final String DATA_FIELDS = "id," + "cc," + "component," + "summary," + "creator," + "assigned_to,"
 			+ "resolution," + "creation_time," + "op_sys," + "platform," + "last_change_time," + "priority,"
 			+ "dupe_of," + "severity," + "status";
 
-	public BugzillaDataset(Project p){
-	    super(p);
+	public BugzillaDataset(Project p) {
+		super(p);
 	}
-	
+
 	/**
-	 *         Example:
-	 *         https://bugzilla.mozilla.org//rest/bug?product=Firefox&resolution
-	 *         =FIXED&status=RESOLVED&status=VERIFIED&status=CLOSED&
-	 *         include_fields=id&quicksearch=creation_ts%3E=2010-06-01%
-	 *         20creation_ts%3C2010-06-02
+	 * Example:
+	 * https://bugzilla.mozilla.org//rest/bug?product=Firefox&resolution
+	 * =FIXED&status=RESOLVED&status=VERIFIED&status=CLOSED&
+	 * include_fields=id&quicksearch=creation_ts%3E=2010-06-01%
+	 * 20creation_ts%3C2010-06-02
 	 */
 	@Override
 	public String getReports() {
@@ -86,23 +88,23 @@ public class BugzillaDataset extends Dataset {
 	 * @param reportId
 	 *            The id of the report.
 	 * @return Comments of the report in JSON format.
-	 * @throws IOException 
-	 * @throws JsonMappingException 
-	 * @throws JsonParseException 
+	 * @throws IOException
+	 * @throws JsonMappingException
+	 * @throws JsonParseException
 	 */
 	public String getComments(String reportId) throws JsonParseException, JsonMappingException, IOException {
 
 		/* GET /rest/bug/(id)/comment */
-		String url = project.url + "/rest/bug/" + reportId + "/comment";		
-		
+		String url = project.url + "/rest/bug/" + reportId + "/comment";
+
 		String data = getJsonData(url);
-		
+
 		ObjectMapper mapper = new ObjectMapper();
 		Map<String, JsonNode> commentsBugzilla = mapper.readValue(data, new TypeReference<Map<String, JsonNode>>() {
 		});
 		/* Should only be 1 item */
 		JsonNode bugsChild = new ArrayList<JsonNode>(commentsBugzilla.values()).get(0);
-		
+
 		JsonNode commentsJson = bugsChild.iterator().next();
 		return commentsJson.toString();
 	}
@@ -136,39 +138,58 @@ public class BugzillaDataset extends Dataset {
 	}
 
 	@Override
-	public Set<BugReport> getData() {	
+	public Set<BugReport> getData() {
+		return getData(0);
+	}
+
+	public Set<BugReport> getData(int startingReportNum) {
 		ObjectMapper mapper = new ObjectMapper();
 
 		try {
 			String reportsJson = this.getReports();
 			BugReportsBugzilla bugs = mapper.readValue(reportsJson, BugReportsBugzilla.class);
 			List<ReportBugzilla> reportsBugzilla = bugs.getBugs();
-			
-			int count = 1;
-			
-			for (ReportBugzilla r : reportsBugzilla) {
-				System.err.println("Getting report " + count + " / " + reportsBugzilla.size());
+
+			for (int reportNum = startingReportNum; reportNum < reportsBugzilla.size(); reportNum++) {
+				ReportBugzilla r = reportsBugzilla.get(reportNum);
+				System.err.println("Getting report " + reportNum + " / " + reportsBugzilla.size());
 				BugReport report = BugzillaAdapter.convertReport(r);
 
 				// Add bug report history
-				String historyJson = this.getHistory(r.getId().toString());
-				BugReportHistoryBugzilla historyBugzilla = mapper.readValue(historyJson,
-						BugReportHistoryBugzilla.class);
-				BugActivity history = BugzillaAdapter.convertHistory(historyBugzilla);
-				report.setActivity(history);
+				try {
+					String historyJson = this.getHistory(r.getId().toString());
+					BugReportHistoryBugzilla historyBugzilla = mapper.readValue(historyJson,
+							BugReportHistoryBugzilla.class);
+					BugActivity history = BugzillaAdapter.convertHistory(historyBugzilla);
+					report.setActivity(history);
+				} catch (JsonMappingException e) {
+					System.err.println("Problem getting comments from report #" + r.getId());
+					System.err.println(e.getMessage());
+					continue;
+				}
 
-				// Add bug report comments
-				String commentsJson = this.getComments(r.getId().toString());
-				Report commentsBugzillaReport = mapper.readValue(commentsJson, Report.class);
-				List<Comment> commentsBugzilla = commentsBugzillaReport.getComments();
-				
-				List<ca.uleth.bugtriage.sibyl.report.Comment> comments= BugzillaAdapter.convertComments(commentsBugzilla);
-				report.setComments(comments);
-				report.setDescription(comments.get(0).getText());
+				try {
+					// Add bug report comments
+					String commentsJson = this.getComments(r.getId().toString());
+					Report commentsBugzillaReport = mapper.readValue(commentsJson, Report.class);
+					List<Comment> commentsBugzilla = commentsBugzillaReport.getComments();
 
+					List<ca.uleth.bugtriage.sibyl.report.Comment> comments = BugzillaAdapter
+							.convertComments(commentsBugzilla);
+					report.setComments(comments);
+					report.setDescription(comments.get(0).getText());
+				} catch (JsonMappingException e) {
+					System.err.println("Problem getting comments from report #" + r.getId());
+					System.err.println(e.getMessage());
+					continue;
+				}
 				reports.add(report);
-				count++;
-				
+
+				if (reportNum % BATCH_SIZE == 0) {
+					saveCheckpoint(reportNum);
+					reports.clear();
+				}
+
 				// Pause to not annoy
 				Thread.sleep(5000);
 			}
@@ -189,7 +210,25 @@ public class BugzillaDataset extends Dataset {
 		return reports;
 	}
 
-	
-	
-	
+	private void saveCheckpoint(int count) {
+		try {
+			File dataFile = new File(getProject().getDatafile().getAbsolutePath() + "." + count / BATCH_SIZE);
+			File parent = new File(dataFile.getParent());
+			if (parent.exists() == false) {
+				parent.mkdir();
+			}
+
+			System.out.println("Writing to: " + dataFile.getName());
+
+			ObjectMapper mapper = new ObjectMapper();
+			mapper.writerWithDefaultPrettyPrinter().writeValue(dataFile, reports);
+
+			System.out.println("Bugs written out: " + dataFile.getName());
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+	}
 }
