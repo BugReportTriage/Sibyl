@@ -51,7 +51,7 @@ public class MozillaClassificationTest {
 	@Test
 	public void testBuildClassisifer() {
 		Dataset dataset = new BugzillaDataset(Project.FIREFOX);
-		File testData = new File(dataset.getProject().dataDir + "/Firefox_2017-05-01_2017-06-01.json");
+		File testData = new File(dataset.getProject().dataDir + "/testing/Firefox_2017-05-01_2017-06-01.json");
 		List<BugReport> reports = new ArrayList<BugReport>(dataset.importReports(testData));
 		assertEquals(386, reports.size());
 
@@ -89,8 +89,8 @@ public class MozillaClassificationTest {
 		ClassifierType classifierType = ClassifierType.SVM;
 		Heuristic heuristic = Heuristic.MOZILLA;		
 		assertEquals(reports.size(), dataset.getTrainingReports().size() + dataset.getTestingReports().size());
-		dataset.getProject().thresholdLow = 3;
-		dataset.getProject().thresholdHigh = 20;
+		dataset.getProject().thresholdLow = 10;
+		dataset.getProject().thresholdHigh = 40;
 		Profiles profiles = Classifier.createDeveloperProfiles(dataset);
 		
 		TriageClassifier classifier = Classifier.create(classifierType, dataset.getTrainingReports(),
@@ -98,7 +98,7 @@ public class MozillaClassificationTest {
 		
 		for (BugReport testReport : dataset.getTestingReports()) {
 			List<Classification> predictions = classifier.classify(testReport);
-			Assert.assertEquals(20, predictions.size());
+			Assert.assertEquals(12, predictions.size());
 			//System.err.println(predictions);
 		}
 	}
