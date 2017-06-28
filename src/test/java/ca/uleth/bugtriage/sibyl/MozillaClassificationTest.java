@@ -28,7 +28,7 @@ public class MozillaClassificationTest {
 	@Test
 	public void testFixedHeuristic() {
 		Dataset dataset = new BugzillaDataset(Project.FIREFOX);
-		File testData = new File(dataset.getProject().dataDir + "/Firefox_2bugs.json");
+		File testData = new File(dataset.getProject().dataDir + "/testing/Firefox_2bugs.json");
 		List<BugReport> reports = new ArrayList<BugReport>(dataset.importReports(testData));
 		assertEquals(2, reports.size());
 
