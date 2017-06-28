@@ -43,7 +43,9 @@ public class BugActivityEvent implements Comparable<BugActivityEvent>,
 		BugActivityEvent event = new BugActivityEvent();
 
 		if (STATUS.equals(type)) {
-			return new StatusEvent(StatusType.convert(change));
+			StatusEvent e = new StatusEvent();
+			e.setType(StatusType.convert(change));
+			return e;
 		}
 
 		if (RESOLUTION.equals(type)) {

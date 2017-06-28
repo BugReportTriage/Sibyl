@@ -5,7 +5,7 @@ import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
-@SuiteClasses({ BugReportJsonTest.class, BugzillaDatasetTest.class })
+@SuiteClasses({ BugReportJsonTest.class, BugzillaDatasetTest.class, MozillaClassificationTest.class })
 public class AllTests {
 
 }

@@ -15,7 +15,7 @@ import junit.framework.TestCase;
 
 public class BugReportJsonTest extends TestCase {
 
-	private static final String TEST_BUGZILLA_BUG_FILENAME = "data/testBug.json";
+	private static final String TEST_BUGZILLA_BUG_FILENAME = "data/firefox/testing/testBug.json";
 	private ReportBugzilla report = null;	
 
 	@Test

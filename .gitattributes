@@ -1,2 +1,5 @@
 *.zip filter=lfs diff=lfs merge=lfs -text
 *.bugs filter=lfs diff=lfs merge=lfs -text
+*.json filter=lfs diff=lfs merge=lfs -text
+*.json.\d\d filter=lfs diff=lfs merge=lfs -text
+*.json.* filter=lfs diff=lfs merge=lfs -text

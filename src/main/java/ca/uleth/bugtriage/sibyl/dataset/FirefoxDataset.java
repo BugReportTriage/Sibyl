@@ -1,6 +1,6 @@
 package ca.uleth.bugtriage.sibyl.dataset;
 
-import java.util.List;
+import java.util.Set;
 
 import ca.uleth.bugtriage.sibyl.Project;
 import ca.uleth.bugtriage.sibyl.datacollection.BugzillaDataset;
@@ -10,8 +10,9 @@ public class FirefoxDataset {
 
 	public static void main(String[] args) {
 		System.out.println("Getting reports from " + Project.FIREFOX.name);
-		List<BugReport> reports = BugzillaDataset.getData(Project.FIREFOX);
+		BugzillaDataset dataset = new BugzillaDataset(Project.FIREFOX);
+		Set<BugReport> reports = dataset.getData();
 		System.out.println("Writing reports to " + Project.FIREFOX.dataDir);
-		BugzillaDataset.exportReports(Project.FIREFOX, reports);				
+		dataset.exportReports();
 	}
 }

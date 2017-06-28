@@ -13,6 +13,8 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -23,6 +25,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import ca.uleth.bugtriage.sibyl.Project;
 import ca.uleth.bugtriage.sibyl.activity.BugActivity;
+import ca.uleth.bugtriage.sibyl.dataset.Dataset;
 import ca.uleth.bugtriage.sibyl.report.BugReport;
 import ca.uleth.bugtriage.sibyl.report.bugzilla.json.BugReportsBugzilla;
 import ca.uleth.bugtriage.sibyl.report.bugzilla.json.BugzillaAdapter;
@@ -31,7 +34,7 @@ import ca.uleth.bugtriage.sibyl.report.bugzilla.json.comment.Comment;
 import ca.uleth.bugtriage.sibyl.report.bugzilla.json.comment.Report;
 import ca.uleth.bugtriage.sibyl.report.bugzilla.json.history.BugReportHistoryBugzilla;
 
-public class BugzillaDataset {
+public class BugzillaDataset extends Dataset {
 
 	private static final String CLOSED_FIXED = "&resolution=FIXED&status=RESOLVED&status=VERIFIED&status=CLOSED";
 
@@ -39,26 +42,23 @@ public class BugzillaDataset {
 			+ "resolution," + "creation_time," + "op_sys," + "platform," + "last_change_time," + "priority,"
 			+ "dupe_of," + "severity," + "status";
 
-	/**
-	 * Get bug report data for a project.
-	 * 
-	 * @param project
-	 *            The project to get the reports from.
-	 * @return The report data in JSON format.
-	 * 
-	 *         Example:
-	 *         https://bugzilla.mozilla.org//rest/bug?product=Firefox&resolution
-	 *         =FIXED&status=RESOLVED&status=VERIFIED&status=CLOSED&
-	 *         include_fields=id&quicksearch=creation_ts%3E=2010-06-01%
-	 *         20creation_ts%3C2010-06-02
-	 */
+	public BugzillaDataset(Project p) {
+		super(p);
+	}
 
-	public static String getReports(Project project) {
+	/**
+	 * Example:
+	 * https://bugzilla.mozilla.org//rest/bug?product=Firefox&resolution
+	 * =FIXED&status=RESOLVED&status=VERIFIED&status=CLOSED&
+	 * include_fields=id&quicksearch=creation_ts%3E=2010-06-01%
+	 * 20creation_ts%3C2010-06-02
+	 */
+	@Override
+	public String getReports() {
 
 		String url = project.url + "/rest/bug?product=" + project.product + CLOSED_FIXED + "&include_fields="
 				+ DATA_FIELDS + "&quicksearch=creation_ts%3E=" + project.startDate + "%20creation_ts%3C"
 				+ project.endDate;
-		System.err.println("Report URL:" + url); // TODO: Replace with actual logger
 		return getJsonData(url);
 	}
 
@@ -71,7 +71,7 @@ public class BugzillaDataset {
 	 *            The id of the report.
 	 * @return Activity history of the report in JSON format.
 	 */
-	public static String getHistory(Project project, String reportId) {
+	public String getHistory(String reportId) {
 
 		/* GET /rest/bug/(id)/history */
 		String url = project.url + "/rest/bug/" + reportId + "/history";
@@ -86,23 +86,23 @@ public class BugzillaDataset {
 	 * @param reportId
 	 *            The id of the report.
 	 * @return Comments of the report in JSON format.
-	 * @throws IOException 
-	 * @throws JsonMappingException 
-	 * @throws JsonParseException 
+	 * @throws IOException
+	 * @throws JsonMappingException
+	 * @throws JsonParseException
 	 */
-	public static String getComments(Project project, String reportId) throws JsonParseException, JsonMappingException, IOException {
+	public String getComments(String reportId) throws JsonParseException, JsonMappingException, IOException {
 
 		/* GET /rest/bug/(id)/comment */
-		String url = project.url + "/rest/bug/" + reportId + "/comment";		
-		
+		String url = project.url + "/rest/bug/" + reportId + "/comment";
+
 		String data = getJsonData(url);
-		
+
 		ObjectMapper mapper = new ObjectMapper();
 		Map<String, JsonNode> commentsBugzilla = mapper.readValue(data, new TypeReference<Map<String, JsonNode>>() {
 		});
 		/* Should only be 1 item */
 		JsonNode bugsChild = new ArrayList<JsonNode>(commentsBugzilla.values()).get(0);
-		
+
 		JsonNode commentsJson = bugsChild.iterator().next();
 		return commentsJson.toString();
 	}
@@ -135,48 +135,61 @@ public class BugzillaDataset {
 		return "";
 	}
 
-	/**
-	 * Get all bug report data
-	 * @param project The project information
-	 * @return A collection of BugReport objects.
-	 */
-	public static List<BugReport> getData(Project project) {
-		List<BugReport> reports = new ArrayList<BugReport>();
+	@Override
+	public Set<BugReport> getData() {
+		return getData(0, Integer.MAX_VALUE);
+	}
+
+	public Set<BugReport> getData(int startingReportNum, int batchSize) {
 		ObjectMapper mapper = new ObjectMapper();
 
 		try {
-			String reportsJson = getReports(project);
+			String reportsJson = this.getReports();
 			BugReportsBugzilla bugs = mapper.readValue(reportsJson, BugReportsBugzilla.class);
 			List<ReportBugzilla> reportsBugzilla = bugs.getBugs();
 
-			System.err.println("Number of reports: " + reportsBugzilla.size()); // TODO: Log instead
-			int count = 1;
-			for (ReportBugzilla r : reportsBugzilla) {
+			for (int reportNum = startingReportNum; reportNum < reportsBugzilla.size(); reportNum++) {
+				ReportBugzilla r = reportsBugzilla.get(reportNum);
+				System.err.println("Getting report " + (reportNum + 1) + " / " + reportsBugzilla.size());
 				BugReport report = BugzillaAdapter.convertReport(r);
 
-				System.err.println(count + ")Processing history for " + report.getId());  // TODO: Log instead
 				// Add bug report history
-				String historyJson = BugzillaDataset.getHistory(project, r.getId().toString());
-				BugReportHistoryBugzilla historyBugzilla = mapper.readValue(historyJson,
-						BugReportHistoryBugzilla.class);
-				BugActivity history = BugzillaAdapter.convertHistory(historyBugzilla);
-				report.setActivity(history);
+				try {
+					String historyJson = this.getHistory(r.getId().toString());
+					BugReportHistoryBugzilla historyBugzilla = mapper.readValue(historyJson,
+							BugReportHistoryBugzilla.class);
+					BugActivity history = BugzillaAdapter.convertHistory(historyBugzilla);
+					report.setActivity(history);
+				} catch (JsonMappingException e) {
+					System.err.println("Problem getting comments from report #" + r.getId());
+					System.err.println(e.getMessage());
+					continue;
+				}
 
-				System.err.println(count + ")Processing comments for " + report.getId());  // TODO: Log instead
-				// Add bug report comments
-				String commentsJson = BugzillaDataset.getComments(project, r.getId().toString());
-				Report commentsBugzillaReport = mapper.readValue(commentsJson, Report.class);
-				List<Comment> commentsBugzilla = commentsBugzillaReport.getComments();
-				
-				List<ca.uleth.bugtriage.sibyl.report.Comment> comments= BugzillaAdapter.convertComments(commentsBugzilla);
-				report.setComments(comments);
-				report.setDescription(comments.get(0).getText());
+				try {
+					// Add bug report comments
+					String commentsJson = this.getComments(r.getId().toString());
+					Report commentsBugzillaReport = mapper.readValue(commentsJson, Report.class);
+					List<Comment> commentsBugzilla = commentsBugzillaReport.getComments();
 
+					List<ca.uleth.bugtriage.sibyl.report.Comment> comments = BugzillaAdapter
+							.convertComments(commentsBugzilla);
+					report.setComments(comments);
+					report.setDescription(comments.get(0).getText());
+				} catch (JsonMappingException e) {
+					System.err.println("Problem getting comments from report #" + r.getId());
+					System.err.println(e.getMessage());
+					continue;
+				}
 				reports.add(report);
-				count++;
-								
-				// Add delay to not overwhelm server
-				Thread.sleep(2000);
+
+				if ((reportNum+1) % batchSize == 0) {
+					saveCheckpoint(reportNum, batchSize);
+					reports.clear();
+				}
+
+				// Pause to not annoy
+				Thread.sleep(5000);
 			}
 		} catch (JsonParseException e) {
 			// TODO Auto-generated catch block
@@ -195,57 +208,25 @@ public class BugzillaDataset {
 		return reports;
 	}
 
-	/**
-	 * Export a collection of bug reports to a file in JSON format.
-	 * @param project
-	 * @param reports
-	 * @return
-	 */
-	public static File exportReports(Project project, Collection<BugReport> reports) {
+	private void saveCheckpoint(int count, int batchSize) {
 		try {
-
-			File dataFile = new File(project.dataDir + "/" + project.name + "_" + project.startDate + ".json");
+			File dataFile = new File(getProject().getDatafile().getAbsolutePath() + "." + count / batchSize);
 			File parent = new File(dataFile.getParent());
 			if (parent.exists() == false) {
 				parent.mkdir();
 			}
 
 			System.out.println("Writing to: " + dataFile.getName());
-			
+
 			ObjectMapper mapper = new ObjectMapper();
 			mapper.writerWithDefaultPrettyPrinter().writeValue(dataFile, reports);
-			
-			System.out.println("Bugs written out: " + dataFile.getName());
-			return dataFile;
-		} catch (FileNotFoundException e) {
 
+			System.out.println("Bugs written out: " + dataFile.getName());
+		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
-
 			e.printStackTrace();
 		}
-		return null;
-	}
-	
-	/**
-	 * Import a JSON formated file created by {@link BugzillaDataset}.export(). 
-	 * @param input The file containing the bug reports in JSON format.
-	 * @return A collection of BugReport objects.
-	 * @throws JsonProcessingException
-	 * @throws IOException
-	 */
-	public static List<BugReport> importReports(File input) {
-		
-		ObjectMapper mapper = new ObjectMapper();
-		
-		List<BugReport> reports = Collections.emptyList();
-		try {
-			reports = mapper.readValue(input, new TypeReference<List<BugReport>>() {
-			});
-		} catch (IOException e) {			
-			System.err.println("Unable to import file " + input.toString());
-		}
-		
-		return reports;
+
 	}
 }
