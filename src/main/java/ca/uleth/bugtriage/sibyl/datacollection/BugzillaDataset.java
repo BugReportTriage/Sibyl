@@ -36,8 +36,6 @@ import ca.uleth.bugtriage.sibyl.report.bugzilla.json.history.BugReportHistoryBug
 
 public class BugzillaDataset extends Dataset {
 
-	private static final int BATCH_SIZE = 50;
-
 	private static final String CLOSED_FIXED = "&resolution=FIXED&status=RESOLVED&status=VERIFIED&status=CLOSED";
 
 	private static final String DATA_FIELDS = "id," + "cc," + "component," + "summary," + "creator," + "assigned_to,"
@@ -139,10 +137,10 @@ public class BugzillaDataset extends Dataset {
 
 	@Override
 	public Set<BugReport> getData() {
-		return getData(0);
+		return getData(0, Integer.MAX_VALUE);
 	}
 
-	public Set<BugReport> getData(int startingReportNum) {
+	public Set<BugReport> getData(int startingReportNum, int batchSize) {
 		ObjectMapper mapper = new ObjectMapper();
 
 		try {
@@ -152,7 +150,7 @@ public class BugzillaDataset extends Dataset {
 
 			for (int reportNum = startingReportNum; reportNum < reportsBugzilla.size(); reportNum++) {
 				ReportBugzilla r = reportsBugzilla.get(reportNum);
-				System.err.println("Getting report " + reportNum + " / " + reportsBugzilla.size());
+				System.err.println("Getting report " + (reportNum + 1) + " / " + reportsBugzilla.size());
 				BugReport report = BugzillaAdapter.convertReport(r);
 
 				// Add bug report history
@@ -185,8 +183,8 @@ public class BugzillaDataset extends Dataset {
 				}
 				reports.add(report);
 
-				if (reportNum % BATCH_SIZE == 0) {
-					saveCheckpoint(reportNum);
+				if ((reportNum+1) % batchSize == 0) {
+					saveCheckpoint(reportNum, batchSize);
 					reports.clear();
 				}
 
@@ -210,9 +208,9 @@ public class BugzillaDataset extends Dataset {
 		return reports;
 	}
 
-	private void saveCheckpoint(int count) {
+	private void saveCheckpoint(int count, int batchSize) {
 		try {
-			File dataFile = new File(getProject().getDatafile().getAbsolutePath() + "." + count / BATCH_SIZE);
+			File dataFile = new File(getProject().getDatafile().getAbsolutePath() + "." + count / batchSize);
 			File parent = new File(dataFile.getParent());
 			if (parent.exists() == false) {
 				parent.mkdir();
