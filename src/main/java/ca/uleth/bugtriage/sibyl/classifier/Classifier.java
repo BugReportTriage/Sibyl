@@ -30,7 +30,7 @@ public abstract class Classifier {
 	public static final double SUBCOMPONENT_THRESHOLD = 5;
 
 	public static Profiles createDeveloperProfiles(Dataset dataset) {
-		Profiles profiles = new Profiles(dataset.getTestingReports(), dataset.getProject().heuristic);
+		Profiles profiles = new Profiles(dataset.getTrainingReports(), dataset.getProject().heuristic);
 		System.out.println("Creating profiles...");
 		profiles.create();
 
@@ -38,7 +38,7 @@ public abstract class Classifier {
 		System.err.println(profiles);
 
 		System.err.println("Before Pruning (threshold): " + profiles.size());
-		profiles.pruneStdDev();
+		profiles.pruneTotal(dataset.getProject().thresholdLow, dataset.getProject().thresholdHigh);
 		System.err.println("After Pruning (threshold): " + profiles.size());
 		
 		return profiles;

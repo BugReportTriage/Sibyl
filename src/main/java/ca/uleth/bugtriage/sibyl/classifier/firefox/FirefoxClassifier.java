@@ -11,16 +11,15 @@ import ca.uleth.bugtriage.sibyl.utils.Profiles;
 
 public class FirefoxClassifier {
 
-    public static void create() {
+	public static void create() {
 
-	ClassifierType classifierType = ClassifierType.SVM;
-	Heuristic heuristic = Heuristic.MOZILLA;
+		ClassifierType classifierType = ClassifierType.SVM;
+		Heuristic heuristic = Heuristic.MOZILLA;
 
-	Dataset dataset = new BugzillaDataset(Project.FIREFOX);
-	Profiles profile = Classifier.createDeveloperProfiles(dataset);
-	TriageClassifier classifier = Classifier.create(classifierType, dataset.getTrainingReports(),
-		dataset.getTestingReports(), FirefoxData.DEVELOPER_INFO, heuristic, profile);
-	Classifier.saveClassifier(dataset.getProject(), classifier);
-
-    }
+		Dataset dataset = new BugzillaDataset(Project.FIREFOX);
+		Profiles profile = Classifier.createDeveloperProfiles(dataset);
+		TriageClassifier classifier = Classifier.create(classifierType, dataset.getTrainingReports(),
+				dataset.getTestingReports(), FirefoxData.DEVELOPER_INFO, heuristic, profile);
+		Classifier.saveClassifier(dataset.getProject(), classifier);
+	}
 }

@@ -80,6 +80,10 @@ public class MLClassifier extends TriageClassifier implements Serializable {
 		return classifications;
 	}
 
+	public Classifier getClassifier() {
+		return classifier;
+	}
+
 	public static MLClassifier load(File file) throws FileNotFoundException {
 		try {
 
@@ -109,7 +113,7 @@ public class MLClassifier extends TriageClassifier implements Serializable {
 
 	public boolean evaluate(BugReport report, Heuristic heuristic) {
 		try {
-			Instance instance = this.createInstance(report, this.trainingDataset);
+			Instance instance = this.createInstance(report, this.trainingInstances);
 			this.filter.input(instance);
 			instance = this.filter.output();
 			Evaluation eval = new Evaluation(this.filteredDataset);

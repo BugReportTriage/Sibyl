@@ -19,6 +19,7 @@ import ca.uleth.bugtriage.sibyl.report.BugReport;
 
 public abstract class Dataset {
 
+	// Use a 90/10 split for training/testing
 	private static final double TRAINING_PERCENTAGE = 0.9;
 
 	protected final Project project;

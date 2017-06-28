@@ -62,7 +62,7 @@ public class MozillaClassificationTest {
 		// Use a 90/10 split for training/testing
 		assertEquals(reports.size(), dataset.getTrainingReports().size() + dataset.getTestingReports().size());
 
-		dataset.getProject().threshold = 3;
+		dataset.getProject().thresholdLow = 3;
 		Profiles profiles = Classifier.createDeveloperProfiles(dataset);
 
 		TriageClassifier classifier = Classifier.create(classifierType, dataset.getTrainingReports(),
@@ -82,15 +82,15 @@ public class MozillaClassificationTest {
 		
 		
 		Dataset dataset = new BugzillaDataset(Project.FIREFOX);
-		File testData = new File(dataset.getProject().dataDir + "/Firefox_2017-05-01_2017-06-01.json");
+		File testData = new File(dataset.getProject().dataDir + "testing/Firefox_2017-05-01_2017-06-01.json");
 		List<BugReport> reports = new ArrayList<BugReport>(dataset.importReports(testData));
 		assertEquals(386, reports.size());
 		
 		ClassifierType classifierType = ClassifierType.SVM;
-		Heuristic heuristic = Heuristic.MOZILLA;
-		// Use a 90/10 split for training/testing
+		Heuristic heuristic = Heuristic.MOZILLA;		
 		assertEquals(reports.size(), dataset.getTrainingReports().size() + dataset.getTestingReports().size());
-		dataset.getProject().threshold = 3;
+		dataset.getProject().thresholdLow = 3;
+		dataset.getProject().thresholdHigh = 20;
 		Profiles profiles = Classifier.createDeveloperProfiles(dataset);
 		
 		TriageClassifier classifier = Classifier.create(classifierType, dataset.getTrainingReports(),
@@ -99,7 +99,7 @@ public class MozillaClassificationTest {
 		for (BugReport testReport : dataset.getTestingReports()) {
 			List<Classification> predictions = classifier.classify(testReport);
 			Assert.assertEquals(20, predictions.size());
-			System.err.println(predictions);
+			//System.err.println(predictions);
 		}
 	}
 }

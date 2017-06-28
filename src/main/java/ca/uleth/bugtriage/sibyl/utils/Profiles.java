@@ -22,15 +22,13 @@ public class Profiles {
 
 	private final Map<String, Integer> profiles;
 
-	private final List<String> monthNames;
-
 	private static final int FACTOR = 1;
 
 	public Profiles(Set<BugReport> reports, Heuristic heuristic) {
 		this.reports = reports;
 		this.heuristic = heuristic;
 		this.profiles = new TreeMap<String, Integer>();
-		this.monthNames = new ArrayList<String>();
+		new ArrayList<String>();
 
 		this.heuristic.getClassifier().useDuplicateResolver(true);
 	}
@@ -64,13 +62,13 @@ public class Profiles {
 		}
 	}
 
-	public void pruneTotal(double cutoff) {
-		System.err.println("Pruning (Total): " + cutoff);
+	public void pruneTotal(double low, double high) {
+		System.err.println("Pruning (Total): " + low + "-" + high);
 		Integer fixedTotal;
 		Set<String> keys = new HashSet<String>(this.profiles.keySet());
 		for (String name : keys) {
 			fixedTotal = this.profiles.get(name);
-			if (fixedTotal < cutoff) {
+			if (fixedTotal < low || fixedTotal > high) {
 				this.profiles.remove(name);
 			}
 		}
@@ -87,27 +85,27 @@ public class Profiles {
 			for (count = 0; count < scaledFrequency; count++) {
 				sb.append("*");
 			}
-			sb.append("\n");
+			sb.append(" (" + this.profiles.get(name) + ")\n");
 		}
 
 		return sb.toString();
 	}
 
-	public void pruneStdDev() {		
+	public void pruneStdDev() {
 		SummaryStatistics stats = new SummaryStatistics();
-		
-		for(Integer fixed : this.profiles.values()){
+
+		for (Integer fixed : this.profiles.values()) {
 			stats.addValue(fixed.doubleValue());
 		}
-		
+
 		double mean = stats.getMean();
 		double stdDev = stats.getStandardDeviation();
-		System.err.println("Mean: " + mean + " stdDecv: " + stdDev) ;
-		
+		System.err.println("Mean: " + mean + " stdDecv: " + stdDev);
+
 		Set<String> keys = new HashSet<String>(this.profiles.keySet());
 		for (String name : keys) {
 			int fixedTotal = this.profiles.get(name);
-			if (fixedTotal < mean-(2*stdDev) || fixedTotal > mean+(2*stdDev)) {
+			if (fixedTotal < mean - (2 * stdDev) || fixedTotal > mean + (2 * stdDev)) {
 				this.profiles.remove(name);
 			}
 		}
