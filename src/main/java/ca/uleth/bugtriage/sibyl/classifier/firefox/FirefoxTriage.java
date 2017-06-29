@@ -40,15 +40,17 @@ public class FirefoxTriage {
 			Evaluation eval = new Evaluation(classifier.getTrainingInstances());
 			MLClassifier mlc = (MLClassifier)classifier;
 			 eval.evaluateModel(mlc.getClassifier(), classifier.getTestingInstances());
+			 System.out.println(eval.toSummaryString()+eval.toMatrixString());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+	/*	
 		for (BugReport testReport : dataset.getTestingReports()) {
 			System.out.println("Classifying " + testReport.getId());
 			List<Classification> predictions = classifier.classify(testReport);			
 			System.out.println(predictions);
 		}
+		*/
 	}
 }
