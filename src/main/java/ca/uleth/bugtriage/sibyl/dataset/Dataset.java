@@ -33,26 +33,33 @@ public abstract class Dataset {
 	/**
 	 * Get bug report data for a project.
 	 * 
-	 * @param project
-	 *            The project to get the reports from.
 	 * @return The report data in JSON format.
 	 */
-	public abstract String getReports();
+	public abstract String getReportsJSON();
 
 	/**
-	 * Get all bug report data
-	 * 
-	 * @param project
-	 *            The project information
+	 * Get all bug report data from a remote issue tracking system
+	 * 	
 	 * @return A collection of BugReport objects.
 	 */
 	public abstract Set<BugReport> getData();
 
+	/**
+	 * Get all bug report data
+	 * 
+	 * @return A collection of BugReport objects.
+	 */
+	public Set<BugReport> getReports() {
+		if(this.reports == null || this.reports.isEmpty())
+			System.err.println("Reports not imported or retrieved yet.");
+		return this.reports;
+	}
+
 	public Set<BugReport> getTrainingReports() {
-		double trainingSize =  Math.round(this.reports.size() * TRAINING_PERCENTAGE);
+		double trainingSize = Math.round(this.reports.size() * TRAINING_PERCENTAGE);
 		List<BugReport> trainingReports = new ArrayList<BugReport>(this.reports);
 
-		return new TreeSet<BugReport>(trainingReports.subList(0, (int)trainingSize));
+		return new TreeSet<BugReport>(trainingReports.subList(0, (int) trainingSize));
 	}
 
 	public Set<BugReport> getTestingReports() {
