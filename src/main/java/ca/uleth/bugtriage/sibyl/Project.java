@@ -22,7 +22,7 @@ public enum Project {
 					Heuristic.ECLIPSE, 9, 100), 
 	FIREFOX("Firefox", "https://bugzilla.mozilla.org/", "Firefox", "2015-01-01",
 							"2016-01-01", FirefoxData.FIREFOX_DIR, FirefoxData.DUPLICATES, Classifiers.FIREFOX,
-							Heuristic.MOZILLA, 20, 70), 
+							Heuristic.MOZILLA, 10, 70), 
 	KDE_PLASMA("KDE-Plasma 5", "https://bugs.kde.org/", "plasmashell",
 									"2017-05-15", "2017-05-15", KDEData.KDE_PLASMA_DIR, KDEData.DUPLICATES, Classifiers.KDE_PLASMA,
 									Heuristic.KDE_PLASMA, 9, 100), 
