@@ -6,16 +6,10 @@ notifications:
 cache:
   directories:
   - $HOME/.m2
-
-before_install:
-    mkdir -p $HOME/bin
-    wget https://github.com/github/git-lfs/releases/download/v1.1.2/git-lfs-linux-amd64-1.1.2.tar.gz
-    tar xvfz git-lfs-linux-amd64-1.1.2.tar.gz
-    mv git-lfs-1.1.2/git-lfs $HOME/bin/git-lfs
-    export PATH=$PATH:$HOME/bin/
   
 install:
-    mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
+   mkdir -p /tmp/git-lfs && curl -L https://github.com/github/git-lfs/releases/download/v2.2.0/git-lfs-$([ "$TRAVIS_OS_NAME" == "linux" ] && echo "linux" || echo "darwin")-amd64-2.2.0.tar.gz | tar -xz -C /tmp/git-lfs --strip-components 1 && /tmp/git-lfs/git-lfs pull
+   mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
 
 script:
    - mvn test
