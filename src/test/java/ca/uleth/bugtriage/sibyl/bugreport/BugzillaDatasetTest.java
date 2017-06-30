@@ -1,4 +1,4 @@
-package ca.uleth.bugtriage.sibyl;
+package ca.uleth.bugtriage.sibyl.bugreport;
 
 import java.io.File;
 import java.io.IOException;
@@ -15,6 +15,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import ca.uleth.bugtriage.sibyl.Project;
 import ca.uleth.bugtriage.sibyl.activity.BugActivity;
 import ca.uleth.bugtriage.sibyl.activity.events.AttachmentFlagState;
 import ca.uleth.bugtriage.sibyl.activity.events.AttachmentFlagStatus;
@@ -49,7 +50,7 @@ public class BugzillaDatasetTest {
 	@Test
 	public void testGetDataBugzilla() throws JsonParseException, JsonMappingException, IOException {
 
-		String data = dataset.getReports();
+		String data = dataset.getReportsJSON();
 		ObjectMapper mapper = new ObjectMapper();
 		BugReportsBugzilla bugs = mapper.readValue(data, BugReportsBugzilla.class);
 		List<ReportBugzilla> reports = bugs.getBugs();

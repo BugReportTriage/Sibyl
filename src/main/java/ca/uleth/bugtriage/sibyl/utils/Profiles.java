@@ -1,11 +1,16 @@
 package ca.uleth.bugtriage.sibyl.utils;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
+import java.util.SortedSet;
 import java.util.TreeMap;
+import java.util.TreeSet;
 
 import org.apache.commons.math.stat.descriptive.SummaryStatistics;
 
@@ -22,7 +27,7 @@ public class Profiles {
 
 	private final Map<String, Integer> profiles;
 
-	private static final int FACTOR = 1;
+	private static final int FACTOR = 10;
 
 	public Profiles(Set<BugReport> reports, Heuristic heuristic) {
 		this.reports = reports;
@@ -74,23 +79,35 @@ public class Profiles {
 		}
 	}
 
+	static <K, V extends Comparable<? super V>> SortedSet<Map.Entry<K, V>> entriesSortedByValues(Map<K, V> map) {
+		SortedSet<Map.Entry<K, V>> sortedEntries = new TreeSet<Map.Entry<K, V>>(new Comparator<Map.Entry<K, V>>() {
+			public int compare(Map.Entry<K, V> e1, Map.Entry<K, V> e2) {
+				int res = e2.getValue().compareTo(e1.getValue());
+				return res != 0 ? res : 1;
+			}
+		});
+		sortedEntries.addAll(map.entrySet());
+		return sortedEntries;
+	}
+
 	@Override
 	public String toString() {
 		StringBuffer sb = new StringBuffer();
 
 		int scaledFrequency, count;
-		for (String name : this.profiles.keySet()) {
-			sb.append(name + ": ");
-			scaledFrequency = this.profiles.get(name) / FACTOR;
+		for (Entry<String, Integer> entry : entriesSortedByValues(this.profiles)) {
+			sb.append(entry.getKey() + ": ");
+			scaledFrequency = entry.getValue() / FACTOR;
 			for (count = 0; count < scaledFrequency; count++) {
 				sb.append("*");
 			}
-			sb.append(" (" + this.profiles.get(name) + ")\n");
+			sb.append(" (" + entry.getValue() + ")\n");
 		}
 
 		return sb.toString();
 	}
 
+	// Doesn't work due to long tail
 	public void pruneStdDev() {
 		SummaryStatistics stats = new SummaryStatistics();
 
@@ -109,5 +126,40 @@ public class Profiles {
 				this.profiles.remove(name);
 			}
 		}
+	}
+
+	// Prune by percentages
+	public void prunePercentage(double topPercent, double bottomPercent) {
+
+		int total = this.profiles.size();
+		int top = (int) Math.floor(total * topPercent);
+		int bottom = (int) Math.floor(total * bottomPercent);
+
+		SortedSet<Entry<String, Integer>> sortedByFixed = entriesSortedByValues(this.profiles);
+		Iterator<Entry<String, Integer>> entryItr = sortedByFixed.iterator();
+
+		// Determine the top cutoff value
+		for (int i = 0; i < top; i++)
+			entryItr.next();
+
+		int topCutoff = entryItr.next().getValue();
+
+		// Remove top percentage
+		for (Entry<String, Integer> entry : sortedByFixed) {
+			if (entry.getValue() > topCutoff)
+				this.profiles.remove(entry.getKey());
+		}
+		// Determine the bottom cutoff value
+		for (int i = 0; i < sortedByFixed.size() - (top + bottom); i++)
+			entryItr.next();
+
+		int bottomCutoff = entryItr.next().getValue();
+
+		// Remove bottom percentage
+		for (Entry<String, Integer> entry : sortedByFixed) {
+			if (entry.getValue() < bottomCutoff)
+				this.profiles.remove(entry.getKey());
+		}
+
 	}
 }
