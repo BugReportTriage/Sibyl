@@ -1,4 +1,4 @@
-package ca.uleth.bugtriage.sibyl;
+package ca.uleth.bugtriage.sibyl.bugreport;
 
 import java.io.File;
 import java.io.IOException;

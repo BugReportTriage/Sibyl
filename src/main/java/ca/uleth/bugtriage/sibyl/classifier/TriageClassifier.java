@@ -495,7 +495,7 @@ public abstract class TriageClassifier {
 		Instances testing = new Instances(this.filteredDataset);
 		for (BugReport report : testingReports) {
 			try {
-				Instance bugInstance = this.createInstance(report, this.filteredDataset);
+				Instance bugInstance = this.createInstance(report, this.trainingInstances);
 
 				this.filter.input(bugInstance);
 				bugInstance = this.filter.output();

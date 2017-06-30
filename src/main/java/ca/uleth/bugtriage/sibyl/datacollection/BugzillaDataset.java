@@ -54,7 +54,7 @@ public class BugzillaDataset extends Dataset {
 	 * 20creation_ts%3C2010-06-02
 	 */
 	@Override
-	public String getReports() {
+	public String getReportsJSON() {
 
 		String url = project.url + "/rest/bug?product=" + project.product + CLOSED_FIXED + "&include_fields="
 				+ DATA_FIELDS + "&quicksearch=creation_ts%3E=" + project.startDate + "%20creation_ts%3C"
@@ -144,7 +144,7 @@ public class BugzillaDataset extends Dataset {
 		ObjectMapper mapper = new ObjectMapper();
 
 		try {
-			String reportsJson = this.getReports();
+			String reportsJson = this.getReportsJSON();
 			BugReportsBugzilla bugs = mapper.readValue(reportsJson, BugReportsBugzilla.class);
 			List<ReportBugzilla> reportsBugzilla = bugs.getBugs();
 
