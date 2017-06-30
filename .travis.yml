@@ -13,5 +13,5 @@ before_install:
   - git lfs install  
 
 script:
-  - git lfs checkout
+  - git lfs pull
   - mvn test
