@@ -3,23 +3,23 @@ package ca.uleth.bugtriage.sibyl.classifier.firefox;
 import ca.uleth.bugtriage.sibyl.Project;
 import ca.uleth.bugtriage.sibyl.classifier.Classifier;
 import ca.uleth.bugtriage.sibyl.classifier.ClassifierType;
+import ca.uleth.bugtriage.sibyl.classifier.TriageClassifier;
+import ca.uleth.bugtriage.sibyl.datacollection.BugzillaDataset;
+import ca.uleth.bugtriage.sibyl.dataset.Dataset;
 import ca.uleth.bugtriage.sibyl.heuristic.Heuristic;
 import ca.uleth.bugtriage.sibyl.utils.Profiles;
-import ca.uleth.bugtriage.sibyl.utils.Utils;
 
 public class FirefoxClassifier {
 
-	public static void create(int numMonths) {
+	public static void create() {
 
 		ClassifierType classifierType = ClassifierType.SVM;
-		//ClassifierType classifierType = ClassifierType.COMPONENT_BASED;
-
 		Heuristic heuristic = Heuristic.MOZILLA;
-		
-		String[] trainingSet = Utils.getTrainingSet(FirefoxData.FIREFOX_DIR,
-				numMonths, FirefoxData.LAST_TRAINING_MONTH);
-		String[] profileSet  = Utils.getTrainingSet(FirefoxData.FIREFOX_DIR,
-				Classifier.NUM_PROFILE_MONTHS, FirefoxData.LAST_TRAINING_MONTH);
-		Profiles profile = Classifier.createDeveloperProfiles(profileSet, Project.FIREFOX);		
+
+		Dataset dataset = new BugzillaDataset(Project.FIREFOX);
+		Profiles profile = Classifier.createDeveloperProfiles(dataset);
+		TriageClassifier classifier = Classifier.create(classifierType, dataset.getTrainingReports(),
+				dataset.getTestingReports(), FirefoxData.DEVELOPER_INFO, heuristic, profile);
+		Classifier.saveClassifier(dataset.getProject(), classifier);
 	}
 }

@@ -16,6 +16,7 @@ import java.util.Set;
 import org.apache.commons.math.stat.descriptive.DescriptiveStatistics;
 
 import ca.uleth.bugtriage.sibyl.Classification;
+import ca.uleth.bugtriage.sibyl.Project;
 import ca.uleth.bugtriage.sibyl.eval.DeveloperInfo;
 import ca.uleth.bugtriage.sibyl.heuristic.Heuristic;
 import ca.uleth.bugtriage.sibyl.heuristic.HeuristicClassifier;
@@ -29,7 +30,7 @@ import weka.attributeSelection.ASSearch;
 import weka.attributeSelection.AttributeSelection;
 import weka.attributeSelection.
 
-ChiSquaredAttributeEval;
+		ChiSquaredAttributeEval;
 import weka.attributeSelection.InfoGainAttributeEval;
 import weka.attributeSelection.PrincipalComponents;
 import weka.attributeSelection.Ranker;
@@ -39,11 +40,12 @@ import weka.core.Instance;
 import weka.core.Instances;
 import weka.core.SelectedTag;
 import weka.core.SparseInstance;
+import weka.core.converters.ArffSaver;
 import weka.core.stopwords.Rainbow;
 import weka.filters.Filter;
 import weka.filters.unsupervised.attribute.StringToWordVector;
 
-public abstract class TriageClassifier {	
+public abstract class TriageClassifier {
 
 	private final static String DESCRIPTION = "Description";
 
@@ -83,7 +85,7 @@ public abstract class TriageClassifier {
 
 	protected final Filter filter;
 
-	protected Instances trainingDataset;
+	protected Instances trainingInstances;
 
 	protected Instances filteredDataset;
 
@@ -98,6 +100,8 @@ public abstract class TriageClassifier {
 	private ASSearch searcher;
 
 	private ASEvaluation evaluator;
+
+	private Instances testingInstances;
 
 	public TriageClassifier() {
 		super();
@@ -158,7 +162,7 @@ public abstract class TriageClassifier {
 	public List<Classification> classify(BugReport report) {
 		{
 			try {
-				Instance bugInstance = this.createInstance(report, this.trainingDataset);
+				Instance bugInstance = this.createInstance(report, this.trainingInstances);
 
 				this.filter.input(bugInstance);
 				bugInstance = this.filter.output();
@@ -213,16 +217,9 @@ public abstract class TriageClassifier {
 
 	private void train() throws Exception {
 		// Filter instances
-		System.out.println("Instances: " + this.trainingDataset.numInstances());
-		System.out.println("Classes: " + this.trainingDataset.numClasses());
+		System.out.println("Instances: " + this.trainingInstances.numInstances());
+		System.out.println("Classes: " + this.trainingInstances.numClasses());
 		this.printClassFrequencies();
-
-		this.filteredDataset = this.filterTrainingData(this.trainingDataset);
-
-		if (USE_ATTRIBUTE_SELECTION) {
-			System.out.println("Using " + this.evaluator.getClass().getSimpleName());
-			this.filteredDataset = this.filterInformationContent(this.filteredDataset);
-		}
 
 		System.out.println("Building Classifier");
 		this.build(this.filteredDataset);
@@ -300,7 +297,7 @@ public abstract class TriageClassifier {
 
 	public List<String> getClasses() {
 		List<String> classList = new ArrayList<String>();
-		Enumeration<Object> classes = this.trainingDataset.classAttribute().enumerateValues();
+		Enumeration<Object> classes = this.trainingInstances.classAttribute().enumerateValues();
 		while (classes.hasMoreElements()) {
 			classList.add(classes.nextElement().toString());
 		}
@@ -323,28 +320,29 @@ public abstract class TriageClassifier {
 		return classNames;
 	}
 
-	protected Instances createDataset(String datasetName, Set<BugReport> trainingBugs, Set<BugReport> testingBugs,
-			Heuristic heuristic) {
+	protected Instances createTrainingDataset(String datasetName, Set<BugReport> trainingBugs,
+			Set<BugReport> testingBugs, Heuristic heuristic) {
 
-		// Remove testing reports from the training set
+		if (trainingBugs.equals(testingBugs) == false) {
+			// Remove testing reports from the training set
+			System.out.println("Test set size: " + testingBugs.size());
+			System.out.println("Training Set before removing test reports: " + trainingBugs.size());
 
-		System.out.println("Test set size: " + testingBugs.size());
-		System.out.println("Training Set before removing test reports: " + trainingBugs.size());
-
-		if (!trainingBugs.removeAll(testingBugs)) {
-			System.err.println("Training set unchanged - Manual processing");
-			Set<BugReport> toRemove = new HashSet<BugReport>();
-			for (BugReport r : testingBugs) {
-				for (BugReport x : trainingBugs) {
-					if (x.equals(r)) {
-						toRemove.add(x);
+			if (!trainingBugs.removeAll(testingBugs)) {
+				System.err.println("Training set unchanged - Manual processing");
+				Set<BugReport> toRemove = new HashSet<BugReport>();
+				for (BugReport r : testingBugs) {
+					for (BugReport x : trainingBugs) {
+						if (x.equals(r)) {
+							toRemove.add(x);
+						}
 					}
 				}
+				trainingBugs.removeAll(toRemove);
 			}
-			trainingBugs.removeAll(toRemove);
-		}
 
-		System.out.println("Training Set after removing test reports: " + trainingBugs.size());
+			System.out.println("Training Set after removing test reports: " + trainingBugs.size());
+		}
 		trainingBugs = this.getTrainingBugs(trainingBugs, heuristic);
 
 		this.saveTrainingIds(trainingBugs);
@@ -477,44 +475,73 @@ public abstract class TriageClassifier {
 
 	}
 
-	public void train(Set<BugReport> reports, Set<BugReport> testingBugs, Heuristic heuristic) throws Exception {
-		System.out.println("Training " + this.getName());
-		// heuristic.getClassifier().useDuplicateResolver(true);
-		this.trainingDataset = createDataset("TrainingDataset", reports, testingBugs, heuristic);
+	public void train(Set<BugReport> trainingReports, Set<BugReport> testingReports, Heuristic heuristic)
+			throws Exception {
+		System.out.println("Training " + this.getName()); //
+		this.trainingInstances = createTrainingDataset("TrainingDataset", trainingReports, testingReports, heuristic);
+		this.filteredDataset = this.filterTrainingData(this.trainingInstances);
+
+		if (USE_ATTRIBUTE_SELECTION) {
+			System.out.println("Using " + this.evaluator.getClass().getSimpleName());
+			this.filteredDataset = this.filterInformationContent(this.filteredDataset);
+		}
+		
+		this.testingInstances = createTestingDataset(testingReports);
 		this.train();
 	}
 
-	public void train(String[] trainingSets, String[] testingSet, String developerInfoFile, Heuristic heuristic)
-			throws Exception {
+	private Instances createTestingDataset(Set<BugReport> testingReports) {
 
-		Set<BugReport> trainingBugs = null;//Utils.getReports(trainingSets);
+		Instances testing = new Instances(this.filteredDataset);
+		for (BugReport report : testingReports) {
+			try {
+				Instance bugInstance = this.createInstance(report, this.trainingInstances);
 
-		System.out.println("Trainingset Size: " + trainingBugs.size());
-		Set<BugReport> testingBugs;
-		if (developerInfoFile != null) {
-			DeveloperInfo developerInfo = new DeveloperInfo(developerInfoFile);
-			testingBugs = developerInfo.getTestingSet(testingSet);
-		} else if (testingSet != null) {
-			testingBugs = null;//Utils.getReports(testingSet);
-		} else {
-			testingBugs = new HashSet<BugReport>();
+				this.filter.input(bugInstance);
+				bugInstance = this.filter.output();
+
+				if (USE_ATTRIBUTE_SELECTION)
+					bugInstance = this.selector.reduceDimensionality(bugInstance);
+
+				testing.add(bugInstance);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
-		train(trainingBugs, testingBugs, heuristic);
+		return testing;
 	}
 
-	public void save(File saveFile) {
-		try {
+	public void train(Set<BugReport> trainingReports, Set<BugReport> testingReports, String developerInfoFile,
+			Heuristic heuristic) throws Exception {
 
-			System.out.println("Writing out classifier: " + saveFile.getName());
-			ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(saveFile));
-			out.writeObject(this);
-			out.close();
-			System.out.println("Classifier written out");
+		System.out.println("Training set Size: " + trainingReports.size());
+		if (developerInfoFile != null) {
+			DeveloperInfo developerInfo = new DeveloperInfo(developerInfoFile);
+			testingReports = developerInfo.getTestingSet(testingReports);
+		}
+		train(trainingReports, testingReports, heuristic);
+	}
+
+	public File save(Project project) {
+		try {
+			ArffSaver saver = new ArffSaver();
+			saver.setInstances(filteredDataset);
+			saver.setFile(project.getClassifierDatafile());
+			saver.writeBatch();
+			return project.getClassifierDatafile();
+			/*
+			 * System.out.println("Writing out classifier: " +
+			 * saveFile.getName()); ObjectOutputStream out = new
+			 * ObjectOutputStream(new FileOutputStream(saveFile));
+			 * out.writeObject(this); out.flush(); out.close();
+			 * System.out.println("Classifier written out");
+			 */
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		return null;
 	}
 
 	public void printClassFrequencies() {
@@ -530,15 +557,18 @@ public abstract class TriageClassifier {
 	}
 
 	public int numClasses() {
-		return this.trainingDataset.numClasses();
+		return this.trainingInstances.numClasses();
 	}
 
 	public boolean inTrainingSet(BugReport report) {
 		return this.trainingIds.contains(new Integer(report.getId()));
 	}
 
-	public Instances getData() {
-		return this.filteredDataset;
+	public Instances getTrainingInstances() {
+		return filteredDataset;
+	}
 
+	public Instances getTestingInstances() {
+		return testingInstances;
 	}
 }

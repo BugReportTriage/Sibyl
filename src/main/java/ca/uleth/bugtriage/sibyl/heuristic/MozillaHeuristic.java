@@ -5,7 +5,7 @@ import java.util.List;
 
 import ca.uleth.bugtriage.sibyl.Classification;
 import ca.uleth.bugtriage.sibyl.activity.BugActivity;
-import ca.uleth.bugtriage.sibyl.activity.events.AttachmentEvent;
+import ca.uleth.bugtriage.sibyl.activity.events.FlagEvent;
 import ca.uleth.bugtriage.sibyl.activity.events.ResolutionEvent;
 import ca.uleth.bugtriage.sibyl.activity.events.ResolutionType;
 import ca.uleth.bugtriage.sibyl.activity.events.StatusType;
@@ -45,6 +45,25 @@ public class MozillaHeuristic extends HeuristicClassifier {
 	}
 
 	private enum Heuristics {
+	    /* Bug was fixed without a patch, so assign whomever marked it as fixed */
+		FIXED {
+			public Classification classify(BugReport report) {
+				BugActivity activity = report.getActivity();
+				ResolutionEvent resolution = activity.resolution();
+				if (resolution != null) {
+					if (resolution.getType().equals(ResolutionType.FIXED)) {
+						List<FlagEvent> approvedAttachments = activity
+								.approvedAttachments();
+						if (approvedAttachments.isEmpty()) {
+							return new Classification(Email
+									.getAddress(resolution.resolvedBy()),
+									"Fixed, No Patch", 1);
+						}
+					}
+				}
+				return null;
+			}
+		},
 		/*
 		 * Assign to the class of the report that this report is a duplicate of.
 		 */
@@ -96,12 +115,12 @@ public class MozillaHeuristic extends HeuristicClassifier {
 				ResolutionEvent resolution = activity.resolution();
 				if (resolution != null) {
 					if (resolution.getType().equals(ResolutionType.FIXED)) {
-						List<AttachmentEvent> approvedAttachments = activity
-								.getApprovedAttachments();
+						List<FlagEvent> approvedAttachments = activity
+								.approvedAttachments();
 						if (approvedAttachments.isEmpty() == false) {
 							List<String> submitters = new ArrayList<String>(
 									activity
-											.getAttachmentSubmitters(approvedAttachments));
+											.attachmentSubmitters(approvedAttachments));
 
 							if (submitters.size() == 0) {
 								/*
@@ -219,25 +238,7 @@ public class MozillaHeuristic extends HeuristicClassifier {
 				return null;
 			}
 		},
-		/* Bug was fixed without a patch, so assign whomever marked it as fixed */
-		FIXED {
-			public Classification classify(BugReport report) {
-				BugActivity activity = report.getActivity();
-				ResolutionEvent resolution = activity.resolution();
-				if (resolution != null) {
-					if (resolution.getType().equals(ResolutionType.FIXED)) {
-						List<AttachmentEvent> approvedAttachments = activity
-								.getApprovedAttachments();
-						if (approvedAttachments.isEmpty()) {
-							return new Classification(Email
-									.getAddress(resolution.resolvedBy()),
-									"Fixed, No Patch", 1);
-						}
-					}
-				}
-				return null;
-			}
-		},
+		
 		/*
 		 * As WONTFIX is usually reached by consenus, don't know who would have
 		 * fixed it

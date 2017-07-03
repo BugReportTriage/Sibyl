@@ -23,7 +23,7 @@ public class BugActivityEvent implements Comparable<BugActivityEvent>,
 
 	protected final static String ASSIGNMENT = "AssignedTo";
 
-	protected final static String ATTACHMENT = "flagtypes.name";
+	protected final static String FLAG = "flagtypes.name";
 
 	protected String name;
 
@@ -43,7 +43,9 @@ public class BugActivityEvent implements Comparable<BugActivityEvent>,
 		BugActivityEvent event = new BugActivityEvent();
 
 		if (STATUS.equals(type)) {
-			return new StatusEvent(StatusType.convert(change));
+			StatusEvent e = new StatusEvent();
+			e.setType(StatusType.convert(change));
+			return e;
 		}
 
 		if (RESOLUTION.equals(type)) {
@@ -56,9 +58,9 @@ public class BugActivityEvent implements Comparable<BugActivityEvent>,
 			return new AssignmentEvent(change);
 		}
 
-		if (type.contains(ATTACHMENT)) {
-			return new AttachmentEvent(AttachmentEvent.parseId(type),
-					AttachmentEvent.parseFlags(change));
+		if (type.contains(FLAG)) {
+			return new FlagEvent(FlagEvent.parseId(type),
+					FlagEvent.parseFlags(change));
 		}
 
 		event.setWhat(type);

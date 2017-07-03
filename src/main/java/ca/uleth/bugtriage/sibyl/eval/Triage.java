@@ -16,62 +16,45 @@ public class Triage {
 
 	public static final int TOP_X = 3;
 
-	/*
-	 * Statistics
-	 */
-	// private Profiles threeMonth, fourMonth, sixMonth, twelveMonth;
 	public Triage() {
-		/*
-		 * this.threeMonth = null; this.fourMonth = null; this.sixMonth = null;
-		 * this.twelveMonth = null;
-		 */
 	}
 
-	/*
-	 * public void setProfiles(Profiles three, Profiles four, Profiles six,
-	 * Profiles twelve) { this.threeMonth = three; this.fourMonth = four;
-	 * this.sixMonth = six; this.twelveMonth = twelve; }
-	 */
-	public void evaluate(String classifierFilename, String[] testingFiles,
-			String developerInfoFilename) {
+	public void evaluate(String classifierFilename, Set<BugReport> testingReports, String developerInfoFilename) {
 
 		classifierFilename = Environment.getClassifierDir() + classifierFilename;
 		File classifierFile = new File(classifierFilename);
-		TriageClassifier classifier= null;
+		TriageClassifier classifier = null;
 		try {
 			classifier = MLClassifier.load(classifierFile);
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		//NearestNeighbour.load(classifierFile);
+		// NearestNeighbour.load(classifierFile);
 
 		System.out.println("# classes: " + classifier.numClasses());
 
-		evaluate(classifier, testingFiles, developerInfoFilename);
+		evaluate(classifier, testingReports, developerInfoFilename);
 	}
 
-public void evaluate(TriageClassifier classifier, String[] testingFiles,
-			String developerInfoFilename) {
+	public void evaluate(TriageClassifier classifier, Set<BugReport> testingReports, String developerInfoFilename) {
 
-		DeveloperInfo developerInfo = new DeveloperInfo(
-				developerInfoFilename);
+		DeveloperInfo developerInfo = new DeveloperInfo(developerInfoFilename);
 		Map<Integer, Set<String>> developerInfoMap = developerInfo.getDeveloperInfo();
 
 		Set<String> cantconvert = developerInfo.getCantconvert();
-		System.out.println("cant convert (" + cantconvert.size() + "): "
-				+ cantconvert);
+		System.out.println("cant convert (" + cantconvert.size() + "): " + cantconvert);
 
 		System.out.println("Testing: " + classifier.getName());
 
-		Set<BugReport> testReports = developerInfo.getTestingSet(testingFiles);//Utils.getReports(testingFilename);
+		Set<BugReport> testReports = developerInfo.getTestingSet(testingReports);
 
 		int numClasses = classifier.getClasses().size();
 		for (int topX = START_X; topX <= TOP_X && topX <= numClasses; topX++) {
 
-			TriageEvaluation eval = new TriageEvaluation(classifier,
-					developerInfoMap, testReports, topX);
+			TriageEvaluation eval = new TriageEvaluation(classifier, developerInfoMap, testReports, topX);
 			eval.run();
 			System.out.println("[" + eval.notMapped.size() + "]: " + eval.notMapped);
 		}
-	}}
+	}
+}

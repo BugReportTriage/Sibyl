@@ -6,9 +6,7 @@ public enum ClassifierType {
 	C45(new MLClassifier(MLAlgorithm.C45)),
 	NN(new MLClassifier(MLAlgorithm.NN)), 
 	RULES(new MLClassifier(MLAlgorithm.RULES)),
-	COMPONENT_BASED(new ComponentClassifier(MLAlgorithm.SVM)), 
-	NAIVE(new NaiveTriageClassifier()), 
-	CC(new CCClassifier(MLAlgorithm.SVM));
+	NAIVE(new NaiveTriageClassifier());
 
 	private TriageClassifier classifier;
 

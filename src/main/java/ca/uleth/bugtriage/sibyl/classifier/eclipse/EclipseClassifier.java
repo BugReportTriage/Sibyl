@@ -4,32 +4,26 @@ import ca.uleth.bugtriage.sibyl.Project;
 import ca.uleth.bugtriage.sibyl.classifier.Classifier;
 import ca.uleth.bugtriage.sibyl.classifier.ClassifierType;
 import ca.uleth.bugtriage.sibyl.classifier.TriageClassifier;
+import ca.uleth.bugtriage.sibyl.datacollection.BugzillaDataset;
+import ca.uleth.bugtriage.sibyl.dataset.Dataset;
 import ca.uleth.bugtriage.sibyl.heuristic.Heuristic;
 import ca.uleth.bugtriage.sibyl.utils.Profiles;
-import ca.uleth.bugtriage.sibyl.utils.Utils;
 
 // @tag recommender.eclipse.assignment -author=John -date="enCA:15/10/07"
 public class EclipseClassifier {
 
-	public static void create(int numMonths) {
+	public static void create() {
 
 		ClassifierType classifierType = ClassifierType.SVM;
-
 		Heuristic heuristic = Heuristic.ECLIPSE;
 		
-		String[] trainingSet = Utils.getTrainingSet(EclipseData.ECLIPSE_DIR,
-				numMonths, EclipseData.LAST_TRAINING_MONTH);
-		String[] profileSet = Utils.getTrainingSet(EclipseData.ECLIPSE_DIR,
-				Classifier.NUM_PROFILE_MONTHS, EclipseData.LAST_TRAINING_MONTH);
-		Profiles profile = Classifier.createDeveloperProfiles(profileSet,
-				Project.PLATFORM);
+		Dataset dataset = new BugzillaDataset(Project.PLATFORM);		
+		Profiles profile = Classifier.createDeveloperProfiles(dataset);
 
-		TriageClassifier classifier = Classifier.create(
-				// ClassifierType.COMPONENT_BASED,
-				classifierType, trainingSet, Utils.getTestingSet(
-						EclipseData.ECLIPSE_DIR, EclipseData.TESTING_MONTH),
-				EclipseData.DEVELOPER_INFO_PACKAGE, heuristic, profile, true);
+		TriageClassifier classifier = Classifier.create(				
+				classifierType, dataset.getTrainingReports(), dataset.getTestingReports(),
+				EclipseData.DEVELOPER_INFO_PACKAGE, heuristic, profile);
 		heuristic.getClassifier().writeDupsToDownload(EclipseData.DUPLICATES);
-		Classifier.saveClassifier("eclipse" + numMonths + "month", classifier);
+		Classifier.saveClassifier(Project.PLATFORM, classifier);
 	}
 }
