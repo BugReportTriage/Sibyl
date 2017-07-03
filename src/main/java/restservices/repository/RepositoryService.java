@@ -1,5 +1,9 @@
 package restservices.repository;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -11,7 +15,9 @@ import org.codehaus.jackson.map.ObjectMapper;
 
 import ca.uleth.bugtriage.sibyl.Project;
 import ca.uleth.bugtriage.sibyl.datacollection.BugzillaDataset;
+import ca.uleth.bugtriage.sibyl.report.BugReport;
 import restservices.repositoryBean.RepositoryProduct;
+import restservices.repositoryBean.TriageRecommender;
 import restservices.utilities.HttpClient;
 
 @Path("repository")
@@ -37,10 +43,27 @@ public class RepositoryService
 	public String saveRecommenderData(@QueryParam("reportDate") String reportDate,@QueryParam("reportLimit") String reportLimit,@QueryParam("recommenderName") String recommenderName,@QueryParam("recommenderPath") String recommenderPath) throws Exception {
 		logger.info("In saveRecommenderData "+reportDate+"  "+reportLimit+"  "+recommenderName+"  "+recommenderPath);
 		//TODO set url report start end date limit, recommender dir		
-		String data = BugzillaDataset.getReports(Project.FIREFOX);
-		//System.out.print(data);		
-		//BugzillaDataset.writeToFile(Project.FIREFOX, data);
-		return data;
+		//we need to change project constructor
+		List<BugReport> reports = BugzillaDataset.getData(Project.FIREFOX);
+		//System.out.print(data);	
+		//export report method is giving error
+		BugzillaDataset.exportReports(Project.FIREFOX, reports);
+		return "success";
 	}
-	
+	@Path("readRecommenderData")
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	public TriageRecommender readRecommenderData() throws Exception {
+		logger.info("In readRecommenderData ");
+		List<BugReport> reports = BugzillaDataset.getData(Project.FIREFOX);
+		Map<String, Integer> fixingFreq = new HashMap<String, Integer>();
+		for(BugReport b : reports){
+			Integer n = fixingFreq.get(b.getAssigned());
+			n = (n == null) ? 1 : ++n;			
+			fixingFreq.put(b.getAssigned(), n);
+		}
+		TriageRecommender rec = new TriageRecommender();
+		rec.setFrequencyCutoff(fixingFreq);
+		return rec;
+	}
 }
