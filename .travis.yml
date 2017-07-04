@@ -7,7 +7,11 @@ cache:
   directories:
   - $HOME/.m2
   
-install: mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
+before_install:  
+  - curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash
+  - sudo apt-get install git-lfs
+  - git lfs install  
 
 script:
-   - mvn test
+  - git lfs pull
+  - mvn test
