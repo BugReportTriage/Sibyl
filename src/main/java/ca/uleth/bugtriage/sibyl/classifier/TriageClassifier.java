@@ -219,7 +219,7 @@ public abstract class TriageClassifier {
 		// Filter instances
 		System.out.println("Instances: " + this.trainingInstances.numInstances());
 		System.out.println("Classes: " + this.trainingInstances.numClasses());
-		this.printClassFrequencies();
+		//this.printClassFrequencies();
 
 		System.out.println("Building Classifier");
 		this.build(this.filteredDataset);
