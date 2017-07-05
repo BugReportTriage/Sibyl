@@ -223,9 +223,4 @@ public class BugReport implements Comparable<BugReport> {
 	public void setSeverity(String severity) {
 		this.severity = severity;
 	}
-	
-	@Override
-	public String toString() {		
-		return Integer.toString(this.reportId);
-	}
 }
