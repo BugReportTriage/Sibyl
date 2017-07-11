@@ -18,8 +18,8 @@ public class BugReport implements Comparable<BugReport> {
 	private List<String> ccList;
 	private String component;
 	private String summary;
-	private String reporter;	
-	private String assigned;	
+	private String reporter;
+	private String assigned;
 	private Date created;
 	private String operatingSystem;
 	private String hardware;
@@ -27,9 +27,9 @@ public class BugReport implements Comparable<BugReport> {
 	private String priority;
 	private String duplicateOf;
 	private String severity;
-	
+
 	private String description;
-		
+
 	private List<Comment> comments;
 	private StatusType status;
 	private BugActivity activity;
@@ -37,9 +37,10 @@ public class BugReport implements Comparable<BugReport> {
 
 	public static final Pattern SUBCOMPONENT_REGEX = Pattern.compile("\\[((\\w+\\/*\\s*)+)\\]");
 
-	public BugReport() {}
-	
-	public void setId(int id){
+	public BugReport() {
+	}
+
+	public void setId(int id) {
 		this.reportId = id;
 	}
 
@@ -71,15 +72,20 @@ public class BugReport implements Comparable<BugReport> {
 		return this.summary;
 	}
 
-	public String getDescription() {		
-		return this.description;
+	public String getDescription() {
+		if (this.comments.isEmpty()) {
+			System.err.println("Report #" + getId() + " has no comments?");
+			return "";
+		} else {
+			return this.comments.get(0).getText();
+		}
 	}
 
 	public String getReporter() {
 		return this.reporter;
 	}
 
-	public StatusType getStatus() {		
+	public StatusType getStatus() {
 		return this.status;
 	}
 
@@ -99,7 +105,7 @@ public class BugReport implements Comparable<BugReport> {
 	public boolean equals(Object obj) {
 		if (obj instanceof BugReport) {
 			BugReport tbr = (BugReport) obj;
-			this.equals(tbr);
+			return this.equals(tbr);
 		}
 		return false;
 	}
@@ -196,7 +202,7 @@ public class BugReport implements Comparable<BugReport> {
 		this.changed = changed;
 	}
 
-	public void setStatus(String status) {		
+	public void setStatus(String status) {
 		this.status = StatusType.convert(status);
 	}
 
