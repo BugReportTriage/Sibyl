@@ -204,7 +204,7 @@ public abstract class TriageClassifier {
 	protected Instances filterTrainingData(Instances data) {
 
 		try {
-			System.out.println("Filtering dataset");
+			//System.out.println("Filtering dataset");
 			this.filter.setInputFormat(data);
 			Instances filteredData = Filter.useFilter(data, this.filter);
 			filteredData.compactify();
@@ -217,13 +217,13 @@ public abstract class TriageClassifier {
 
 	private void train() throws Exception {
 		// Filter instances
-		System.out.println("Instances: " + this.trainingInstances.numInstances());
-		System.out.println("Classes: " + this.trainingInstances.numClasses());
-		this.printClassFrequencies();
+		//System.out.println("Instances: " + this.trainingInstances.numInstances());
+		//System.out.println("Classes: " + this.trainingInstances.numClasses());
+		//this.printClassFrequencies();
 
-		System.out.println("Building Classifier");
+		System.out.print("Building Classifier...");
 		this.build(this.filteredDataset);
-		System.out.println("Classifier Built");
+		System.out.println("Built");
 
 		/*
 		 * Attribute attribute; System.out.println("Attribute Weights:"); for
@@ -287,11 +287,12 @@ public abstract class TriageClassifier {
 			this.classFrequency.add(className);
 
 		}
-
+/*
 		System.err.println("Reports In: " + bugs.size());
 		System.err.println("Reports Out: " + trainingBugs.size());
 		System.err.println("Cant Classify: " + cantclassify);
 		System.err.println(reasons);
+		*/
 		return trainingBugs;
 	}
 
@@ -325,9 +326,10 @@ public abstract class TriageClassifier {
 
 		if (trainingBugs.equals(testingBugs) == false) {
 			// Remove testing reports from the training set
-			System.out.println("Test set size: " + testingBugs.size());
-			System.out.println("Training Set before removing test reports: " + trainingBugs.size());
+			//System.out.println("Test set size: " + testingBugs.size());
+			//System.out.println("Training Set before removing test reports: " + trainingBugs.size());
 
+			/*
 			if (!trainingBugs.removeAll(testingBugs)) {
 				System.err.println("Training set unchanged - Manual processing");
 				Set<BugReport> toRemove = new HashSet<BugReport>();
@@ -340,23 +342,24 @@ public abstract class TriageClassifier {
 				}
 				trainingBugs.removeAll(toRemove);
 			}
+			*/
 
-			System.out.println("Training Set after removing test reports: " + trainingBugs.size());
+			//System.out.println("Training Set after removing test reports: " + trainingBugs.size());
 		}
 		trainingBugs = this.getTrainingBugs(trainingBugs, heuristic);
 
 		this.saveTrainingIds(trainingBugs);
 
-		System.out.println("Getting class names...");
+		//System.out.println("Getting class names...");
 		FastVector classNames = this.getClassNames(trainingBugs, heuristic);
 
 		Instances dataset = this.initDataset(datasetName, classNames);
 
-		System.out.println("Creating instances...");
+		//System.out.println("Creating instances...");
 
 		this.addInstances(trainingBugs, heuristic, dataset);
-		System.out.println("Instances: " + dataset.numInstances());
-		System.out.println("Dataset created.");
+		//System.out.println("Instances: " + dataset.numInstances());
+		//System.out.println("Dataset created.");
 		return dataset;
 	}
 
@@ -492,7 +495,7 @@ public abstract class TriageClassifier {
 
 	private Instances createTestingDataset(Set<BugReport> testingReports) {
 
-		Instances testing = new Instances(this.filteredDataset);
+		Instances testing = new Instances(this.filteredDataset,testingReports.size());
 		for (BugReport report : testingReports) {
 			try {
 				Instance bugInstance = this.createInstance(report, this.trainingInstances);

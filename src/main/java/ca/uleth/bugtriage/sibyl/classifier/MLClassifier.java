@@ -62,7 +62,7 @@ public class MLClassifier extends TriageClassifier implements Serializable {
 		}
 	}
 
-	protected List<Classification> classify(Instance instance) throws Exception {
+	public List<Classification> classify(Instance instance) throws Exception {
 		List<Classification> classifications = new ArrayList<Classification>();
 
 		// Check if there is only one class

@@ -2,6 +2,8 @@ package ca.uleth.bugtriage.sibyl;
 
 import java.io.Serializable;
 
+import ca.uleth.bugtriage.sibyl.report.BugReport;
+
 public class Classification implements Comparable<Classification>, Serializable {
 
 	/**
@@ -39,6 +41,19 @@ public class Classification implements Comparable<Classification>, Serializable 
 		return this.probability;
 	}
 
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof Classification) {
+			Classification c = (Classification) obj;
+			return this.equals(c);
+		}
+		return false;
+	}
+	
+	public boolean equals(Classification c) {
+		return c.getClassification().equals(this.classification);
+	}
+	
 	public int compareTo(Classification c) {
 		if (this.probability < c.getProbability()) {
 			return -1;

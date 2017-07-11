@@ -6,7 +6,8 @@ public enum ClassifierType {
 	C45(new MLClassifier(MLAlgorithm.C45)),
 	NN(new MLClassifier(MLAlgorithm.NN)), 
 	RULES(new MLClassifier(MLAlgorithm.RULES)),
-	NAIVE(new NaiveTriageClassifier());
+	NAIVE(new NaiveTriageClassifier()),
+	MLP(new MLClassifier(MLAlgorithm.MLP)), INB(new MLClassifier(MLAlgorithm.INB));
 
 	private TriageClassifier classifier;
 
