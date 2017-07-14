@@ -73,15 +73,15 @@ public abstract class TriageClassifier {
 
 	private static final boolean USE_HARDWARE = false;
 
-	private static final boolean USE_ATTRIBUTE_SELECTION = false;
+	private static final boolean USE_ATTRIBUTE_SELECTION = true;
 
-	private static final boolean USE_INFO_GAIN = true;
+	private static final boolean USE_INFO_GAIN = false;
 
 	// Don't use PCA! Takes far too long! (Quit classifier-creation job after 16
 	// hours)
 	private static final boolean USE_PRINCIPAL_COMPONENTS = false;
 
-	private static final boolean USE_CHI_SQUARED = false;
+	private static final boolean USE_CHI_SQUARED = true;
 
 	protected final Filter filter;
 
@@ -133,7 +133,7 @@ public abstract class TriageClassifier {
 		// System.err.println("Using alphebetic tokens");
 		// ((StringToWordVector) this.filter).setOnlyAlphabeticTokens(true);
 
-		this.selector = new AttributeSelection();
+		this.selector = new AttributeSelection();		
 		if (USE_INFO_GAIN)
 			this.evaluator = new InfoGainAttributeEval();
 		if (USE_PRINCIPAL_COMPONENTS)
@@ -436,7 +436,7 @@ public abstract class TriageClassifier {
 		return instance;
 	}
 
-	protected Instance createInstance(BugReport report, Instances dataset) {
+	public Instance createInstance(BugReport report, Instances dataset) {
 
 		int numAttributes = dataset.numAttributes();
 

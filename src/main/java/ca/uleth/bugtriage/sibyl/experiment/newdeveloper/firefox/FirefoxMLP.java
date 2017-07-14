@@ -59,7 +59,7 @@ public class FirefoxMLP {
 		 * + byDeveloper.get(dev)); }
 		 */
 
-		int stopAfter = 1;
+		int stopAfter = 10;
 		for (String dev : byDeveloper.keySet()) {
 			int atSign = dev.indexOf('@');
 			String devName = dev.substring(0, atSign);
