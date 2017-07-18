@@ -1,7 +1,6 @@
 package ca.uleth.bugtriage.sibyl.utils;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -10,7 +9,6 @@ import java.util.Map.Entry;
 import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeMap;
-import java.util.TreeSet;
 
 import org.apache.commons.math.stat.descriptive.SummaryStatistics;
 
@@ -79,23 +77,12 @@ public class Profiles {
 		}
 	}
 
-	static <K, V extends Comparable<? super V>> SortedSet<Map.Entry<K, V>> entriesSortedByValues(Map<K, V> map) {
-		SortedSet<Map.Entry<K, V>> sortedEntries = new TreeSet<Map.Entry<K, V>>(new Comparator<Map.Entry<K, V>>() {
-			public int compare(Map.Entry<K, V> e1, Map.Entry<K, V> e2) {
-				int res = e2.getValue().compareTo(e1.getValue());
-				return res != 0 ? res : 1;
-			}
-		});
-		sortedEntries.addAll(map.entrySet());
-		return sortedEntries;
-	}
-
 	@Override
 	public String toString() {
 		StringBuffer sb = new StringBuffer();
 
 		int scaledFrequency, count;
-		for (Entry<String, Integer> entry : entriesSortedByValues(this.profiles)) {
+		for (Entry<String, Integer> entry : Utils.entriesSortedByValues(this.profiles)) {
 			sb.append(entry.getKey() + ": ");
 			scaledFrequency = entry.getValue() / FACTOR;
 			for (count = 0; count < scaledFrequency; count++) {
@@ -135,7 +122,7 @@ public class Profiles {
 		int top = (int) Math.floor(total * topPercent);
 		int bottom = (int) Math.floor(total * bottomPercent);
 
-		SortedSet<Entry<String, Integer>> sortedByFixed = entriesSortedByValues(this.profiles);
+		SortedSet<Entry<String, Integer>> sortedByFixed = Utils.entriesSortedByValues(this.profiles);
 		Iterator<Entry<String, Integer>> entryItr = sortedByFixed.iterator();
 
 		// Determine the top cutoff value
