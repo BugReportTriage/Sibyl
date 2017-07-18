@@ -14,219 +14,224 @@ import ca.uleth.bugtriage.sibyl.activity.events.StatusType;
  */
 public class BugReport implements Comparable<BugReport> {
 
-	private int reportId;
-	private List<String> ccList;
-	private String component;
-	private String summary;
-	private String reporter;
-	private String assigned;
-	private Date created;
-	private String operatingSystem;
-	private String hardware;
-	private String changed;
-	private String priority;
-	private String duplicateOf;
-	private String severity;
+    private int reportId;
+    private List<String> ccList;
+    private String component;
+    private String summary;
+    private String reporter;
+    private String assigned;
+    private Date created;
+    private String operatingSystem;
+    private String hardware;
+    private String changed;
+    private String priority;
+    private String duplicateOf;
+    private String severity;
 
-	private String description;
+    private String description;
 
-	private List<Comment> comments;
-	private StatusType status;
-	private BugActivity activity;
-	private ResolutionType resolution;
+    private List<Comment> comments;
+    private StatusType status;
+    private BugActivity activity;
+    private ResolutionType resolution;
 
-	public static final Pattern SUBCOMPONENT_REGEX = Pattern.compile("\\[((\\w+\\/*\\s*)+)\\]");
+    public static final Pattern SUBCOMPONENT_REGEX = Pattern.compile("\\[((\\w+\\/*\\s*)+)\\]");
 
-	public BugReport() {
+    public BugReport() {
+    }
+
+    public void setId(int id) {
+	this.reportId = id;
+    }
+
+    public BugActivity getActivity() {
+	return this.activity;
+    }
+
+    public void setActivity(BugActivity activity) {
+	this.activity = activity;
+    }
+
+    public List<String> getCCList() {
+	return this.ccList;
+    }
+
+    public String getComponent() {
+	return this.component;
+    }
+
+    public int getId() {
+	return this.reportId;
+    }
+
+    public List<Comment> getComments() {
+	return this.comments;
+    }
+
+    public String getSummary() {
+	return this.summary;
+    }
+
+    public String getDescription() {
+	if (this.comments.isEmpty()) {
+	    System.err.println("Report #" + getId() + " has no comments?");
+	    return "";
+	} else {
+	    return this.comments.get(0).getText();
 	}
+    }
 
-	public void setId(int id) {
-		this.reportId = id;
-	}
+    public String getReporter() {
+	return this.reporter;
+    }
 
-	public BugActivity getActivity() {
-		return this.activity;
-	}
+    public StatusType getStatus() {
+	return this.status;
+    }
 
-	public void setActivity(BugActivity activity) {
-		this.activity = activity;
-	}
+    public String getAssigned() {
+	return this.assigned;
+    }
 
-	public List<String> getCCList() {
-		return this.ccList;
-	}
+    public ResolutionType getResolution() {
+	return this.resolution;
+    }
 
-	public String getComponent() {
-		return this.component;
-	}
+    public Date getCreated() {
+	return this.created;
+    }
 
-	public int getId() {
-		return this.reportId;
+    @Override
+    public boolean equals(Object obj) {
+	if (obj instanceof BugReport) {
+	    BugReport tbr = (BugReport) obj;
+	    return this.equals(tbr);
 	}
+	return false;
+    }
 
-	public List<Comment> getComments() {
-		return this.comments;
-	}
+    public boolean equals(BugReport report) {
+	return report.getId() == this.getId();
+    }
 
-	public String getSummary() {
-		return this.summary;
-	}
+    @Override
+    public int hashCode() {
+	// System.out.println("using hashcode");
+	return this.getId();
+    }
 
-	public String getDescription() {
-		if (this.comments.isEmpty()) {
-			System.err.println("Report #" + getId() + " has no comments?");
-			return "";
-		} else {
-			return this.comments.get(0).getText();
-		}
-	}
+    public String getOperatingSystem() {
+	return this.operatingSystem;
+    }
 
-	public String getReporter() {
-		return this.reporter;
-	}
+    public String getHardware() {
+	return this.hardware;
+    }
 
-	public StatusType getStatus() {
-		return this.status;
-	}
+    public String lastModified() {
+	return this.changed;
+    }
 
-	public String getAssigned() {
-		return this.assigned;
+    public String subcomponent() {
+	Matcher subcomponentMatcher = SUBCOMPONENT_REGEX.matcher(this.summary);
+	if (subcomponentMatcher.find()) {
+	    return subcomponentMatcher.group(1);
 	}
+	return null;
+    }
 
-	public ResolutionType getResolution() {
-		return this.resolution;
+    public int compareTo(BugReport reportToCompare) {
+	if (reportToCompare.getId() > this.getId()) {
+	    return 1;
 	}
+	if (reportToCompare.getId() < this.getId()) {
+	    return -1;
+	}
+	return 0;
+    }
 
-	public Date getCreated() {
-		return this.created;
-	}
+    public void setDescription(String desc) {
+	this.description = desc;
+    }
 
-	@Override
-	public boolean equals(Object obj) {
-		if (obj instanceof BugReport) {
-			BugReport tbr = (BugReport) obj;
-			return this.equals(tbr);
-		}
-		return false;
-	}
+    public void setReportId(int reportId) {
+	this.reportId = reportId;
+    }
 
-	public boolean equals(BugReport report) {
-		return report.getId() == this.getId();
-	}
+    public void setCCList(List<String> ccList) {
+	this.ccList = ccList;
+    }
 
-	@Override
-	public int hashCode() {
-		// System.out.println("using hashcode");
-		return this.getId();
-	}
+    public void setComponent(String component) {
+	this.component = component;
+    }
 
-	public String getOperatingSystem() {
-		return this.operatingSystem;
-	}
+    public void setSummary(String summary) {
+	this.summary = summary;
+    }
 
-	public String getHardware() {
-		return this.hardware;
-	}
+    public void setComments(List<Comment> comments) {
+	this.comments = comments;
+    }
 
-	public String lastModified() {
-		return this.changed;
-	}
+    public void setReporter(String reporter) {
+	this.reporter = reporter;
+    }
 
-	public String subcomponent() {
-		Matcher subcomponentMatcher = SUBCOMPONENT_REGEX.matcher(this.summary);
-		if (subcomponentMatcher.find()) {
-			return subcomponentMatcher.group(1);
-		}
-		return null;
-	}
+    public void setAssigned(String assigned) {
+	this.assigned = assigned;
+    }
 
-	public int compareTo(BugReport reportToCompare) {
-		if (reportToCompare.getId() > this.getId()) {
-			return 1;
-		}
-		if (reportToCompare.getId() < this.getId()) {
-			return -1;
-		}
-		return 0;
-	}
+    public void setResolution(String resolution) {
+	this.resolution = ResolutionType.convert(resolution);
+    }
 
-	public void setDescription(String desc) {
-		this.description = desc;
-	}
+    public void setCreated(Date created) {
+	this.created = created;
+    }
 
-	public void setReportId(int reportId) {
-		this.reportId = reportId;
-	}
+    public void setOperatingSystem(String operatingSystem) {
+	this.operatingSystem = operatingSystem;
+    }
 
-	public void setCCList(List<String> ccList) {
-		this.ccList = ccList;
-	}
+    public void setHardware(String hardware) {
+	this.hardware = hardware;
+    }
 
-	public void setComponent(String component) {
-		this.component = component;
-	}
+    public void setChanged(String changed) {
+	this.changed = changed;
+    }
 
-	public void setSummary(String summary) {
-		this.summary = summary;
-	}
+    public void setStatus(String status) {
+	this.status = StatusType.convert(status);
+    }
 
-	public void setComments(List<Comment> comments) {
-		this.comments = comments;
-	}
+    public String getPriority() {
+	return priority;
+    }
 
-	public void setReporter(String reporter) {
-		this.reporter = reporter;
-	}
+    public void setPriority(String priority) {
+	this.priority = priority;
+    }
 
-	public void setAssigned(String assigned) {
-		this.assigned = assigned;
-	}
+    public String getDuplicateOf() {
+	return duplicateOf;
+    }
 
-	public void setResolution(String resolution) {
-		this.resolution = ResolutionType.convert(resolution);
-	}
+    public void setDuplicateOf(String duplicateOf) {
+	this.duplicateOf = duplicateOf;
+    }
 
-	public void setCreated(Date created) {
-		this.created = created;
-	}
+    public String getSeverity() {
+	return severity;
+    }
 
-	public void setOperatingSystem(String operatingSystem) {
-		this.operatingSystem = operatingSystem;
-	}
+    public void setSeverity(String severity) {
+	this.severity = severity;
+    }
 
-	public void setHardware(String hardware) {
-		this.hardware = hardware;
-	}
-
-	public void setChanged(String changed) {
-		this.changed = changed;
-	}
-
-	public void setStatus(String status) {
-		this.status = StatusType.convert(status);
-	}
-
-	public String getPriority() {
-		return priority;
-	}
-
-	public void setPriority(String priority) {
-		this.priority = priority;
-	}
-
-	public String getDuplicateOf() {
-		return duplicateOf;
-	}
-
-	public void setDuplicateOf(String duplicateOf) {
-		this.duplicateOf = duplicateOf;
-	}
-
-	public String getSeverity() {
-		return severity;
-	}
-
-	public void setSeverity(String severity) {
-		this.severity = severity;
-	}
+    @Override
+    public String toString() {
+	return Integer.toString(this.getId());
+    }
 }
