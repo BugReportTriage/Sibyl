@@ -41,6 +41,7 @@ import weka.core.Instances;
 import weka.core.SelectedTag;
 import weka.core.SparseInstance;
 import weka.core.converters.ArffSaver;
+import weka.core.stemmers.SnowballStemmer;
 import weka.core.stopwords.Rainbow;
 import weka.filters.Filter;
 import weka.filters.unsupervised.attribute.StringToWordVector;
@@ -83,7 +84,7 @@ public abstract class TriageClassifier {
 
 	private static final boolean USE_CHI_SQUARED = true;
 
-	protected final Filter filter;
+	protected final StringToWordVector filter;
 
 	protected Instances trainingInstances;
 
@@ -117,6 +118,9 @@ public abstract class TriageClassifier {
 		// System.err.println("Using IDF");
 		((StringToWordVector) this.filter).setIDFTransform(true);
 		((StringToWordVector) this.filter).setTFTransform(true);
+		
+		filter.setStemmer(new SnowballStemmer()); // Porter stemmer
+		
 		/*
 		 * Normalizing via document length appears to have the most effect,
 		 * likley because of the low information content of most fetures
