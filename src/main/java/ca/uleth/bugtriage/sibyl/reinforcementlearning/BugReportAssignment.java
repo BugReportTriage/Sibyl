@@ -16,11 +16,10 @@ public class BugReportAssignment implements ActionType {
     @Override
     public List<Action> allApplicableActions(State s) {
 	List<Action> triageActions = new ArrayList<Action>();
-	
-	BugTriageState state = (BugTriageState)s;
+		
 	for (String developer : BugTriageStateModel.developerFrequency.keySet()) {
 	    triageActions.add(new BugTriageAction(developer));
-	    System.out.println("Action: " + developer);
+	    //System.out.println("Action: " + developer);
 	}
 	return triageActions;
     }

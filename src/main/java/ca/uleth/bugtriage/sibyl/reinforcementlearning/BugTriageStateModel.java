@@ -6,14 +6,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Random;
-import java.util.Set;
 import java.util.TreeMap;
 
 import burlap.mdp.core.StateTransitionProb;
 import burlap.mdp.core.action.Action;
 import burlap.mdp.core.state.State;
 import burlap.mdp.singleagent.model.statemodel.FullStateModel;
-import ca.uleth.bugtriage.sibyl.report.BugReport;
+import weka.core.Instance;
+import weka.core.Instances;
 
 public class BugTriageStateModel implements FullStateModel {
     
@@ -21,33 +21,27 @@ public class BugTriageStateModel implements FullStateModel {
     
     public static final Random rand = new Random(1234);
     
-    private Iterator<BugReport> rItr;
+    private Iterator<Instance> rItr;
     
-    private List<BugReport> reports;
+    private Instances reports;
     
-    public BugTriageStateModel(List<BugReport> rs) {
+    public BugTriageStateModel(Instances rs) {
 	reports = rs;
 	init();
-	for(BugReport r : rs)
-	    updateFixes(r.getAssigned());
+	for(Instance r : rs){
+	    String fixer = r.toString(r.classAttribute());
+	    updateFixes(fixer);
+	}
 	
     }
     
     public State sample(State state, Action action) {
 
-	System.out.print("Sampling... ");
+	//System.out.print("Sampling... ");
 	
-	BugTriageState nextState = (BugTriageState) state.copy();
-	
-	BugReport nextReport = rItr.next();
-	nextState.set(BugTriageState.NEW_REPORT, nextReport);
-	System.out.print(nextReport + "> ");
-	
-	// Randomly choose a developer with equal probability
-	List<String> devNames = new ArrayList<String>(BugTriageStateModel.developerFrequency.keySet());
-	nextState.set(BugTriageState.FIXER, devNames.get(rand.nextInt(devNames.size()))); 
-	
-	System.out.println(nextState.get(BugTriageState.FIXER));
+	Instance nextReport = rItr.next();
+	BugTriageState nextState = new BugTriageState(nextReport);	
+	//System.out.println(nextState.get(BugTriageState.INSTANCE) + "> ");
 	
 	return nextState;
     }
@@ -60,10 +54,8 @@ public class BugTriageStateModel implements FullStateModel {
 	for (Integer fixes : BugTriageStateModel.developerFrequency.values())
 	    totalFixes += fixes.intValue();
 
-	for (Entry<String, Integer> entry : BugTriageStateModel.developerFrequency.entrySet()) {
-	    BugTriageState nextState = (BugTriageState) state.copy();
-	    nextState.set(BugTriageState.FIXER, entry.getKey());
-	    transisitonProbs.add(new StateTransitionProb(nextState, entry.getValue().intValue() / totalFixes));
+	for (Entry<String, Integer> entry : BugTriageStateModel.developerFrequency.entrySet()) {	    	    
+	    transisitonProbs.add(new StateTransitionProb(state, entry.getValue().intValue() / totalFixes));
 	}
 
 	return transisitonProbs;
@@ -79,7 +71,12 @@ public class BugTriageStateModel implements FullStateModel {
        }
 
     public void init() {
+	//this.reports.randomize(rand);
 	rItr = reports.iterator();
+    }
+
+    public boolean allTriaged() {	
+	return rItr.hasNext() == false;
     }
 
 }

@@ -1,18 +1,14 @@
 package ca.uleth.bugtriage.sibyl.reinforcementlearning;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
 
 import burlap.behavior.singleagent.Episode;
 import burlap.behavior.singleagent.learning.LearningAgent;
 import burlap.behavior.singleagent.learning.tdmethods.QLearning;
 import burlap.mdp.core.TerminalFunction;
 import burlap.mdp.core.action.ActionType;
-import burlap.mdp.singleagent.SADomain;
-import burlap.mdp.singleagent.environment.Environment;
+import burlap.mdp.core.state.State;
 import burlap.mdp.singleagent.environment.SimulatedEnvironment;
 import burlap.mdp.singleagent.model.FactoredModel;
 import burlap.mdp.singleagent.model.RewardFunction;
@@ -24,34 +20,47 @@ import ca.uleth.bugtriage.sibyl.report.BugReport;
 
 public class BugTriageQLearning {
 
+    private static final int NUM_REPORTS = 100;
+
     public static void main(String[] args) {
 
 	Dataset dataset = new BugzillaDataset(Project.FIREFOX);
-	List<BugReport> reports = new ArrayList<BugReport>(dataset.importReports()).subList(0, 10);
+	List<BugReport> reports = new ArrayList<BugReport>(dataset.importReports());// .subList(0,
+										    // NUM_REPORTS);
 
-	SADomain triageDomain = new SADomain();
+	BugTriageDomain triageDomain = new BugTriageDomain(Project.FIREFOX, reports);
+	triageDomain.init();
+
+	for (String term : triageDomain.getTerms()) {
+	    System.out.println(term);
+	}
+
 	ActionType assignment = new BugReportAssignment();
 	triageDomain.addActionType(assignment);
 
-	BugTriageStateModel model = new BugTriageStateModel(reports);
-	RewardFunction rf = new HeuristicRewardFunction(Project.FIREFOX.heuristic.getClassifier());
-	TerminalFunction tf = new BugTriageTerminalFunction(reports.get(reports.size()-1));
+	BugTriageStateModel model = new BugTriageStateModel(triageDomain.getInstances());
+	RewardFunction rf = new HeuristicRewardFunction();
+	TerminalFunction tf = new BugTriageTerminalFunction(model);
 
 	triageDomain.setModel(new FactoredModel(model, rf, tf));
 
 	LearningAgent agent = new QLearning(triageDomain, 0.99, new SimpleHashableStateFactory(), 0.0, 1.0);
 
-	//BugTriageEnvironment env = new BugTriageEnvironment(triageDomain, new BugTriageStateGenerator(reports));
-	SimulatedEnvironment env = new SimulatedEnvironment(triageDomain, new BugTriageState(reports.get(0)));
-	
-	// while(brIter.hasNext()){
-	for (int i = 0; i < 50; i++) {
-	    Episode e = agent.runLearningEpisode(env);
-	    System.out.println(i + ": " + e.maxTimeStep());
+	State start = model.sample(null, null); // Parameters not used
+	SimulatedEnvironment env = new SimulatedEnvironment(triageDomain, start);
+
+	Episode e = null;
+	int totalCorrect = 0;
+	for (int i = 0; i < reports.size() * 3; i++) {
+	    e = agent.runLearningEpisode(env);
 
 	    // reset environment for next learning episode
 	    env.resetEnvironment();
 	    model.init();
 	}
+	for (double reward : e.rewardSequence) {
+	    totalCorrect += reward;
+	}
+	System.out.println(totalCorrect + "/" + reports.size());
     }
 }

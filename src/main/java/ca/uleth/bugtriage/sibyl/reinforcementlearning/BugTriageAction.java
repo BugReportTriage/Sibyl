@@ -5,12 +5,9 @@ import ca.uleth.bugtriage.sibyl.report.BugReport;
 
 public class BugTriageAction implements Action {
 
-    private final String recommendation;
-    //private final BugReport newReport;
-
-    //public BugTriageAction(BugReport report, String recommendation) {
+    private final String recommendation;    
+    
     public BugTriageAction(String recommendation) {
-	//newReport = report;
 	this.recommendation = recommendation;
 	
     }
@@ -22,16 +19,10 @@ public class BugTriageAction implements Action {
 
     @Override
     public Action copy() {
-	//return new BugTriageAction(getReport(), getRecommendation());
 	return new BugTriageAction(getRecommendation());
     }
 
     public String getRecommendation() {
 	return recommendation;
     }
-/*
-    public BugReport getReport() {
-	return newReport;
-    }
-  */      
 }

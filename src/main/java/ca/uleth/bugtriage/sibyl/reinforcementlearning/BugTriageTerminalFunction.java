@@ -5,20 +5,16 @@ import burlap.mdp.core.state.State;
 import ca.uleth.bugtriage.sibyl.report.BugReport;
 
 public class BugTriageTerminalFunction implements TerminalFunction {
+    
+    private BugTriageStateModel stateModel;
 
-    private BugReport report;
-
-    public BugTriageTerminalFunction(BugReport r) {
-	this.report = r;
-	
+    public BugTriageTerminalFunction(BugTriageStateModel sm) {
+	this.stateModel = sm;	
     }
     
     @Override
     public boolean isTerminal(State s) {
-	
-	BugTriageState btState = (BugTriageState)s;
-	
-	return btState.getReport().getId() == report.getId();
+	return stateModel.allTriaged();
     }
 
 }
