@@ -14,7 +14,7 @@ public class HeuristicRewardFunction implements RewardFunction {
     public double reward(State state, Action action, State nextState) {
 	//System.out.print("Determining reward...");
 	BugTriageAction triage = (BugTriageAction) action;	
-	Instance report = (Instance)nextState.get(BugTriageState.INSTANCE);
+	Instance report = (Instance)nextState.get(BugReportText.INSTANCE);
 	String label = report.toString(report.classAttribute());
 	
 	//System.out.println(label + " (Actual) <--> (Rec)" + triage.getRecommendation());

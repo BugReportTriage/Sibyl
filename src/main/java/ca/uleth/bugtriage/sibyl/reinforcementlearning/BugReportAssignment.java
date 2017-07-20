@@ -25,12 +25,13 @@ public class BugReportAssignment implements ActionType {
     @Override
     public List<Action> allApplicableActions(State s) {
 	List<Action> triageActions = new ArrayList<Action>();
-	BugTriageState bts = (BugTriageState) s;
-	Instance report = bts.getReport();
+	BugReportText bts = (BugReportText) s;
+	String term = (String) bts.get(BugReportText.TEXT);
 
 	try {
-	    return allDevelopers();
-	    //return useClassifier(report);
+	    return developers(term);
+	    // return allDevelopers();
+	    // return useClassifier(report);
 	} catch (Exception e) {
 	    System.err.println("Something bad happened in " + this.getClass().getName());
 	    e.printStackTrace();
@@ -38,10 +39,22 @@ public class BugReportAssignment implements ActionType {
 	return triageActions;
     }
 
+    private List<Action> developers(String term) {
+	List<Action> triageActions = new ArrayList<Action>();
+	List<String> developers = this.domain.getTerm2Dev().get(term);
+	
+	System.out.println(developers);
+	
+	for (String dev : developers)
+	    triageActions.add(new BugTriageAction(dev));
+	
+	return triageActions;
+    }
+
     private List<Action> allDevelopers() {
 	List<Action> triageActions = new ArrayList<Action>();
 	for (String developer : BugTriageStateModel.developerFrequency.keySet()) {
-	    triageActions.add(new BugTriageAction(developer));	 
+	    triageActions.add(new BugTriageAction(developer));
 	}
 	return triageActions;
     }
