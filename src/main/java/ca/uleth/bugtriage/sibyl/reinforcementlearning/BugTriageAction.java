@@ -1,7 +1,6 @@
 package ca.uleth.bugtriage.sibyl.reinforcementlearning;
 
 import burlap.mdp.core.action.Action;
-import ca.uleth.bugtriage.sibyl.report.BugReport;
 
 public class BugTriageAction implements Action {
 

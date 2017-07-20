@@ -3,30 +3,12 @@ package ca.uleth.bugtriage.sibyl.reinforcementlearning;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
 
 import burlap.mdp.core.state.MutableState;
 import burlap.mdp.core.state.State;
 import burlap.mdp.core.state.UnknownKeyException;
-import ca.uleth.bugtriage.sibyl.report.BugReport;
-import weka.attributeSelection.ASEvaluation;
-import weka.attributeSelection.ASSearch;
-import weka.attributeSelection.AttributeSelection;
-import weka.attributeSelection.ChiSquaredAttributeEval;
-import weka.attributeSelection.InfoGainAttributeEval;
-import weka.attributeSelection.PrincipalComponents;
-import weka.attributeSelection.Ranker;
 import weka.core.Attribute;
-import weka.core.FastVector;
 import weka.core.Instance;
-import weka.core.Instances;
-import weka.core.SelectedTag;
-import weka.core.SparseInstance;
-import weka.core.stemmers.SnowballStemmer;
-import weka.core.stopwords.Rainbow;
-import weka.filters.Filter;
-import weka.filters.unsupervised.attribute.StringToWordVector;
 
 /**
  * The 'state' is the attributes (i.e. text) from the bug reports

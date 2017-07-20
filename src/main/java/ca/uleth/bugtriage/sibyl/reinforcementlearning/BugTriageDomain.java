@@ -3,18 +3,23 @@ package ca.uleth.bugtriage.sibyl.reinforcementlearning;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Enumeration;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
+import org.apache.commons.lang3.StringUtils;
 
 import burlap.mdp.singleagent.SADomain;
 import ca.uleth.bugtriage.sibyl.Project;
 import ca.uleth.bugtriage.sibyl.report.BugReport;
 import weka.attributeSelection.ASEvaluation;
-import weka.attributeSelection.ASSearch;
 import weka.attributeSelection.AttributeSelection;
 import weka.attributeSelection.ChiSquaredAttributeEval;
 import weka.attributeSelection.InfoGainAttributeEval;
 import weka.attributeSelection.PrincipalComponents;
 import weka.attributeSelection.Ranker;
+import weka.classifiers.Classifier;
+import weka.classifiers.lazy.IBk;
 import weka.core.Attribute;
 import weka.core.Instance;
 import weka.core.Instances;
@@ -23,6 +28,7 @@ import weka.core.SparseInstance;
 import weka.core.stemmers.SnowballStemmer;
 import weka.core.stopwords.Rainbow;
 import weka.filters.Filter;
+import weka.filters.unsupervised.attribute.Remove;
 import weka.filters.unsupervised.attribute.StringToWordVector;
 
 public class BugTriageDomain extends SADomain {
@@ -33,11 +39,13 @@ public class BugTriageDomain extends SADomain {
 
     private static final String REPORT_TEXT = "Description";
     private static final String FIXER = "Fixer";
+    private static final int NUM_ATTRIBUTES = 500;
 
     private List<BugReport> reports;
     private boolean initialized;
     private Instances dataset;
     private Project project;
+    private Classifier classifier;
 
     public BugTriageDomain(Project p, List<BugReport> r) {
 	project = p;
@@ -45,8 +53,8 @@ public class BugTriageDomain extends SADomain {
 	this.initialized = false;
     }
 
-    public void init() {	
-	List<String> classes = getClassNames();	
+    public void init() {
+	List<String> classes = getClassNames();
 	createDataset(classes, reports);
 	this.initialized = true;
     }
@@ -55,6 +63,10 @@ public class BugTriageDomain extends SADomain {
 	if (this.initialized == false)
 	    init();
 
+	return getTerms(this.dataset);
+    }
+
+    private List<String> getTerms(Instances dataset) {
 	List<String> attributeNames = new ArrayList<String>();
 	Enumeration<Attribute> attributes = dataset.enumerateAttributes();
 	while (attributes.hasMoreElements()) {
@@ -77,14 +89,47 @@ public class BugTriageDomain extends SADomain {
 	    filter.setInputFormat(rawDataset);
 	    Instances filteredDataset = Filter.useFilter(rawDataset, filter);
 
-	    AttributeSelection selector = createAttributeSelector(ATTRIBUTE_SELECTOR.CHI2);
-	    selector.SelectAttributes(filteredDataset);
-	    this.dataset = selector.reduceDimensionality(filteredDataset);
+	    System.err.println("Attributes before: " + filteredDataset.numAttributes());
+	    // for(String term : getTerms(filteredDataset))
+	    // System.out.println(term);
+
+	    filteredDataset = removeNumeric(filteredDataset);
+
+	    System.err.println("Attributes after numeric filtering: " + filteredDataset.numAttributes());
+	    // for(String term : getTerms(filteredDataset))
+	    // System.out.println(term);
+
+	    //AttributeSelection selector = createAttributeSelector(ATTRIBUTE_SELECTOR.CHI2);
+	    //selector.SelectAttributes(filteredDataset);
+	    //this.dataset = selector.reduceDimensionality(filteredDataset);
+	     this.dataset = filteredDataset;
+	    System.err.println("Attributes after: " + dataset.numAttributes());
+	    // for(String term : getTerms(dataset))
+	    // System.out.println(term);
 
 	} catch (Exception e) {
 	    System.err.println("Something bad happened in " + this.getClass().getSimpleName());
 	    e.printStackTrace();
 	}
+    }
+
+    private Instances removeNumeric(Instances dataset) throws Exception {
+	Set<Attribute> toRemove = new HashSet<Attribute>();
+	Enumeration<Attribute> attributes = dataset.enumerateAttributes();
+	while (attributes.hasMoreElements()) {
+	    Attribute a = attributes.nextElement();
+	    if (StringUtils.isNumeric(a.name()))
+		toRemove.add(a);
+	}
+	int[] removeIndices = new int[toRemove.size()];
+	int index = 0;
+	for (Attribute a : toRemove)
+	    removeIndices[index++] = a.index();
+	Remove filter = new Remove();
+	filter.setAttributeIndicesArray(removeIndices);
+	filter.setInputFormat(dataset);
+	return Filter.useFilter(dataset, filter);
+
     }
 
     private Instances initDataset(List<String> classes) {
@@ -111,8 +156,8 @@ public class BugTriageDomain extends SADomain {
 	}
 
 	Attribute attribute;
-	//attribute = dataset.attribute(FIXER);
-	//instance.setValue(attribute, " ");
+	// attribute = dataset.attribute(FIXER);
+	// instance.setValue(attribute, " ");
 	attribute = dataset.attribute(REPORT_TEXT);
 	instance.setValue(attribute, text);
 
@@ -154,10 +199,11 @@ public class BugTriageDomain extends SADomain {
 	}
 	selector.setEvaluator(evaluator);
 
-	ASSearch searcher = new Ranker();
-	((Ranker) searcher).setThreshold(0);
+	Ranker ranker = new Ranker();
+	ranker.setNumToSelect(NUM_ATTRIBUTES);
+	ranker.setThreshold(0);
 
-	selector.setSearch(searcher);
+	selector.setSearch(ranker);
 
 	return selector;
     }
@@ -180,5 +226,19 @@ public class BugTriageDomain extends SADomain {
 	if (this.initialized == false)
 	    init();
 	return this.dataset;
+    }
+
+    public Classifier getClassifier() {
+	if (classifier == null) {
+	     classifier = new IBk(10);
+	    //classifier = new SMO();
+	    try {
+		classifier.buildClassifier(getInstances());
+	    } catch (Exception e) {
+		System.err.println("Problem creating classifier");
+		e.printStackTrace();
+	    }
+	}
+	return classifier;
     }
 }
