@@ -26,7 +26,7 @@ public class BugTriageQLearning {
 	public static void main(String[] args) {
 
 		Dataset dataset = new BugzillaDataset(Project.FIREFOX);
-		List<BugReport> reports = new ArrayList<BugReport>(dataset.importReports()).subList(0, NUM_REPORTS);
+		List<BugReport> reports = new ArrayList<BugReport>(dataset.importReports());//.subList(0, NUM_REPORTS);
 
 		BugTriageDomain triageDomain = new BugTriageDomain(Project.FIREFOX, reports);
 		triageDomain.init();
@@ -44,7 +44,7 @@ public class BugTriageQLearning {
 		for (int j = 0; j < 10; j++) {
 			Episode e = null;
 			double totalCorrect = 0;
-			for (int i = 0; i < reports.size() * FACTOR; i++) {
+			for (int i = 0; i < triageDomain.getInstances().size() * FACTOR; i++) {
 				//System.out.println("Round # " + j + " Learning Episode #" + i);
 				e = agent.runLearningEpisode(env);
 
@@ -58,7 +58,7 @@ public class BugTriageQLearning {
 			for (double reward : e.rewardSequence) {
 				totalCorrect += reward;
 			}
-			System.out.println(totalCorrect + "/" + reports.size() + "(" + totalCorrect * 100 / reports.size() + "%)");
+			System.out.println(totalCorrect + "/" + triageDomain.getInstances().size() + "(" + totalCorrect * 100 / triageDomain.getInstances().size() + "%)");
 		}
 	}
 }

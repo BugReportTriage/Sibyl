@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -50,7 +51,7 @@ public class BugTriageDomain extends OOSADomain {
 
 	private static final String REPORT_TEXT = "Description";
 	private static final String FIXER = "Fixer";
-	private static final int NUM_ATTRIBUTES = 10000;
+	private static final int NUM_ATTRIBUTES = 1000;
 
 	private List<BugReport> reports;
 	private boolean initialized;
@@ -158,12 +159,14 @@ public class BugTriageDomain extends OOSADomain {
 
 			AttributeSelection selector = createAttributeSelector(ATTRIBUTE_SELECTOR.CHI2);
 			selector.SelectAttributes(filteredDataset);
-			 this.dataset = selector.reduceDimensionality(filteredDataset);
+			filteredDataset = selector.reduceDimensionality(filteredDataset);
 			//this.dataset = filteredDataset;
-			System.err.println("Attributes after: " + dataset.numAttributes());
+			System.err.println("Attributes after: " + filteredDataset.numAttributes());
 			// for(String term : getTerms(dataset))
 			// System.out.println(term);
 
+			this.dataset = filterNoData(filteredDataset);    
+			
 		} catch (Exception e) {
 			System.err.println("Something bad happened in " + this.getClass().getSimpleName());
 			e.printStackTrace();
@@ -298,4 +301,23 @@ public class BugTriageDomain extends OOSADomain {
 		}
 		return classifier;
 	}
+
+    private Instances filterNoData(Instances dataset) {
+        System.err.println("Reports before no data filtering: " + reports.size());
+        Instances filtered = new Instances(dataset, 0);
+        Iterator<Instance> itr = dataset.iterator();
+        while(itr.hasNext()){            
+            Instance report = itr.next();
+            for(int i=0; i<report.numAttributes(); i++){
+                if(i == report.classIndex())
+                    continue;
+                if(report.value(i) > 0){
+                    filtered.add(report);
+                    break;
+                }
+            }
+        }
+        System.err.println("Reports after: " + filtered.size());
+        return filtered;
+    }
 }
