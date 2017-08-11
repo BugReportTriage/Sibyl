@@ -24,4 +24,9 @@ public class BugTriageAction implements Action {
 	public String getRecommendation() {
 		return recommendation;
 	}
+	
+	@Override
+	public String toString() {	 
+	    return recommendation;
+	}
 }

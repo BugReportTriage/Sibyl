@@ -52,7 +52,7 @@ public class BugTriageDomain extends OOSADomain {
 
     private static final String REPORT_TEXT = "Description";
     private static final String FIXER = "Fixer";
-    private static final int NUM_ATTRIBUTES = 200;
+    private static final int NUM_ATTRIBUTES = 500;
 
     private List<BugReport> reports;
     private boolean initialized;
@@ -100,20 +100,11 @@ public class BugTriageDomain extends OOSADomain {
         }
 
         // Create domain states
-        // this.addStateClass(BugReportText.BR_TEXT, BugReportText.class);
         this.addStateClass(BugReportTerm.BR_TERM, BugReportTerm.class);
 
         ActionType assignment = new BugReportAssignment(this);
         this.addActionType(assignment);
 
-        OODomain.Helper.addPfsToDomain(this,
-                Arrays.<PropositionalFunction>asList(new ReportTerm()));
-
-        BugTriageStateModel model = new BugTriageStateModel(this);
-        RewardFunction rf = new HeuristicRewardFunction();
-        TerminalFunction tf = new BugTriageTerminalFunction(model);
-
-        this.setModel(new FactoredModel(model, rf, tf));
 
         this.initialized = true;
     }
@@ -151,8 +142,8 @@ public class BugTriageDomain extends OOSADomain {
                     instance.setClassValue(
                             this.project.heuristic.getClassifier().classify(r).getClassification());
                     rawDataset.add(instance);
-                }else{
-                    //System.out.println("Report " + r.getId() + " not included.");
+                } else {
+                    // System.out.println("Report " + r.getId() + " not included.");
                 }
             }
 
@@ -172,13 +163,12 @@ public class BugTriageDomain extends OOSADomain {
             // System.out.println(term);
 
             AttributeSelection selector = createAttributeSelector(
-                    ATTRIBUTE_SELECTOR.INFORMATION_GAIN);
+                    ATTRIBUTE_SELECTOR.CHI2);
             selector.SelectAttributes(filteredDataset);
-            filteredDataset = selector.reduceDimensionality(filteredDataset);
-            // this.dataset = filteredDataset;
+            //filteredDataset = selector.reduceDimensionality(filteredDataset);      
             System.err.println("Attributes after: " + filteredDataset.numAttributes());
-            // for(String term : getTerms(dataset))
-            // System.out.println(term);
+             //for(String term : getTerms(dataset))
+             //System.out.println(term);
 
             this.dataset = filterNoData(filteredDataset);
 
@@ -191,14 +181,17 @@ public class BugTriageDomain extends OOSADomain {
     private Instances removeNumericSymbols(Instances dataset) throws Exception {
         Set<Attribute> toRemove = new HashSet<Attribute>();
         Enumeration<Attribute> attributes = dataset.enumerateAttributes();
-        char[] symbols = { '=', '@', '/', '-', '_', '+', '`', '[', ']', '#','*','<','>', '{', '}', '%' };
+        char[] symbols = { '=', '@', '/', '-', '_', '+', '`', '[', ']', '#', '*', '<', '>', '{',
+                '}', '%', '|', '\\' };
         while (attributes.hasMoreElements()) {
             Attribute a = attributes.nextElement();
             if (StringUtils.isNumeric(a.name()))
                 toRemove.add(a);
             if (StringUtils.containsAny(a.name(), symbols))
                 toRemove.add(a);
-            if(StringUtils.contains(a.name(), "0x"))
+            if (StringUtils.contains(a.name(), "0x"))
+                toRemove.add(a);
+            if(StringUtils.isBlank(a.name()))
                 toRemove.add(a);
         }
         int[] removeIndices = new int[toRemove.size()];
@@ -293,7 +286,7 @@ public class BugTriageDomain extends OOSADomain {
             Profiles devProfiles = new Profiles(new HashSet<BugReport>(this.reports),
                     this.project.heuristic);
             devProfiles.create();
-            devProfiles.pruneTotal(this.project.thresholdLow, this.project.thresholdHigh);
+            // devProfiles.pruneTotal(this.project.thresholdLow, this.project.thresholdHigh);
             return new ArrayList<String>(devProfiles.getProfiles().keySet());
         } else {
             String className;
