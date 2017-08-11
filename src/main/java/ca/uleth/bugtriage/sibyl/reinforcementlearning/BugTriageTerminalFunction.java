@@ -6,15 +6,16 @@ import ca.uleth.bugtriage.sibyl.report.BugReport;
 
 public class BugTriageTerminalFunction implements TerminalFunction {
 
-    private BugTriageStateModel stateModel;
+    private BugReportStateGenerator stateGenerator;
 
-    public BugTriageTerminalFunction(BugTriageStateModel sm) {
-        this.stateModel = sm;
+    public BugTriageTerminalFunction(BugReportStateGenerator sg) {
+        this.stateGenerator = sg;
     }
 
     @Override
     public boolean isTerminal(State s) {
-        return stateModel.allTriaged();
+        return stateGenerator.reportTriaged();
+        //return stateModel.allTriaged();
     }
 
 }

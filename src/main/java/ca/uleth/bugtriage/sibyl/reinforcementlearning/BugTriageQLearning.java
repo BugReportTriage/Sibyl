@@ -6,6 +6,7 @@ import java.util.List;
 import burlap.behavior.singleagent.Episode;
 import burlap.behavior.singleagent.learning.LearningAgent;
 import burlap.behavior.singleagent.learning.tdmethods.QLearning;
+import burlap.mdp.auxiliary.StateGenerator;
 import burlap.mdp.core.TerminalFunction;
 import burlap.mdp.core.action.ActionType;
 import burlap.mdp.core.state.State;
@@ -20,45 +21,60 @@ import ca.uleth.bugtriage.sibyl.report.BugReport;
 
 public class BugTriageQLearning {
 
-	private static final int NUM_REPORTS = 200;
-	private static final int FACTOR = 2;
+    private static final int NUM_REPORTS = 20;
+    private static final int TRIALS = 10;
 
-	public static void main(String[] args) {
+    public static void main(String[] args) {
 
-		Dataset dataset = new BugzillaDataset(Project.FIREFOX);
-		List<BugReport> reports = new ArrayList<BugReport>(dataset.importReports());//.subList(0, NUM_REPORTS);
+        Dataset dataset = new BugzillaDataset(Project.FIREFOX);
+        List<BugReport> reports = new ArrayList<BugReport>(dataset.importReports()).subList(0,                NUM_REPORTS);
 
-		BugTriageDomain triageDomain = new BugTriageDomain(Project.FIREFOX, reports);
-		triageDomain.init();
+        BugTriageDomain triageDomain = new BugTriageDomain(Project.FIREFOX, reports);
+        triageDomain.init();
+        
+        BugReportStateGenerator generator = new BugReportStateGenerator(triageDomain);
+        BugTriageStateModel model = new BugTriageStateModel();
+        RewardFunction rf = new HeuristicRewardFunction();
+        TerminalFunction tf = new BugTriageTerminalFunction(generator);
 
-		for (String term : triageDomain.getTerms()) {
-			 //System.out.println(term);
-		}
+        triageDomain.setModel(new FactoredModel(model, rf, tf));
 
-		LearningAgent agent = new QLearning(triageDomain, 0.99, new SimpleHashableStateFactory(), 0.0, 1.0);
+        for (String term : triageDomain.getTerms()) {
+            // System.out.println(term);
+        }
 
-		State start = triageDomain.getModel().sample(null, null).op; //
-		// Parameters not used
-		SimulatedEnvironment env = new SimulatedEnvironment(triageDomain, start);
+        LearningAgent agent = new QLearning(triageDomain, 0.99, new SimpleHashableStateFactory(),
+                0.0, 1.0);
+               
+        SimulatedEnvironment env = new SimulatedEnvironment(triageDomain, generator);
 
-		for (int j = 0; j < 10; j++) {
-			Episode e = null;
-			double totalCorrect = 0;
-			for (int i = 0; i < triageDomain.getInstances().size() * FACTOR; i++) {
-				//System.out.println("Round # " + j + " Learning Episode #" + i);
-				e = agent.runLearningEpisode(env);
+        for (int j = 0; j < TRIALS; j++) {
+            Episode e = null;
+            double totalCorrect = 0;
+            for (int i = 0; i < triageDomain.getInstances().size(); i++) {
+                // System.out.println("Round # " + j + " Learning Episode #" + i);
+                e = agent.runLearningEpisode(env);
 
-				// reset environment for next learning episode
-				env.resetEnvironment();
-				FactoredModel fm = (FactoredModel)triageDomain.getModel();
-				BugTriageStateModel brsm = (BugTriageStateModel)fm.getStateModel(); 
-				brsm.init();
-			}
-			//System.out.println(e.rewardSequence);
-			for (double reward : e.rewardSequence) {
-				totalCorrect += reward;
-			}
-			System.out.println(totalCorrect + "/" + triageDomain.getInstances().size() + "(" + totalCorrect * 100 / triageDomain.getInstances().size() + "%)");
-		}
-	}
+                //System.out.println(e.stateSequence);
+                //System.out.println(e.rewardSequence);
+                for (double reward : e.rewardSequence) {
+                    totalCorrect += reward/(e.stateSequence.size()-1);
+                }
+                //System.out.println("Total Correct: " + totalCorrect);
+                
+                // reset environment for next learning episode
+                env.resetEnvironment();
+
+            }
+            
+            System.out.println(totalCorrect + "/" + triageDomain.getInstances().size() + " ("
+                    + totalCorrect * 100 / triageDomain.getInstances().size() + "%)");
+
+            FactoredModel fm = (FactoredModel) triageDomain.getModel();
+            BugTriageStateModel brsm = (BugTriageStateModel) fm.getStateModel();
+            
+            env.setStateGenerator(new BugReportStateGenerator(triageDomain));
+            env.resetEnvironment();
+        }
+    }
 }
