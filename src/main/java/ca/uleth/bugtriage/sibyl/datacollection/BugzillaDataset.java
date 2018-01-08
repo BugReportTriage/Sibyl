@@ -36,7 +36,7 @@ import ca.uleth.bugtriage.sibyl.report.bugzilla.json.history.BugReportHistoryBug
 
 public class BugzillaDataset extends Dataset {
 
-	private static final String CLOSED_FIXED = "&resolution=FIXED&status=RESOLVED&status=VERIFIED&status=CLOSED";
+	private static final String CLOSED_FIXED = "&status=RESOLVED&status=VERIFIED&status=CLOSED";
 
 	private static final String DATA_FIELDS = "id," + "cc," + "component," + "summary," + "creator," + "assigned_to,"
 			+ "resolution," + "creation_time," + "op_sys," + "platform," + "last_change_time," + "priority,"

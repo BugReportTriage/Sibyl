@@ -2,10 +2,19 @@ package ca.uleth.bugtriage.sibyl.activity.events;
 
 public enum ResolutionType {
 	
-	FIXED, DUPLICATE, WONTFIX, INVALID, WORKSFORME, REOPENED, LATER, 
-	REMIND, MOVED, UNKNOWN, NOTABUG, NOTGNOME, INCOMPLETE, OBSOLETE, EXPIRED, 
-	NOTXIMIAN, NEXTRELEASE, ERRATA, RAWHIDE, UPSTREAM, CANTFIX, CURRENTRELEASE, INSUFFICIENT_DATA, DEFERRED;
+	FIXED("Fixed"), DUPLICATE("Duplicate"), WONTFIX("Wontfix"), INVALID("Invalid"), WORKSFORME("Worksforme"), 
+	REOPENED("Reopened"), LATER("Later"),REMIND("Remind"), MOVED("Moved"), UNKNOWN("Unknown"), NOTABUG("Notabug"), 
+	NOTGNOME("NOTGNOME"), INCOMPLETE("Incomplete"),	OBSOLETE("Obsolete"), EXPIRED("Expired"), 
+	NOTXIMIAN("NOTXIMIAN"), NEXTRELEASE("Nextrelease"), ERRATA("ERRATA"), RAWHIDE("Rawhide"), UPSTREAM("Upstream"),
+	CANTFIX("Cantfix"), CURRENTRELEASE("Currentrelease"), INSUFFICIENT_DATA("Insufficientdata"), DEFERRED("Defferred");
+	private final String type;
 
+    private ResolutionType(String type) {
+        this.type = type;
+    }
+    public String getValue() {
+        return type;
+    }
 	public static ResolutionType convert(String change) {
 		if (change.equals("FIXED")) {
 			return ResolutionType.FIXED;
